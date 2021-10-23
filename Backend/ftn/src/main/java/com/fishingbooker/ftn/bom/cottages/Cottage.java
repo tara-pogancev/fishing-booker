@@ -2,6 +2,8 @@ package com.fishingbooker.ftn.bom.cottages;
 
 import com.fishingbooker.ftn.bom.DatabaseEntity;
 import com.fishingbooker.ftn.bom.Address;
+import com.fishingbooker.ftn.bom.RuleOfConduct;
+import com.fishingbooker.ftn.bom.users.CottageOwner;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -30,7 +32,7 @@ public class Cottage extends DatabaseEntity {
     private Set<Room> rooms;
 
     @OneToMany(mappedBy = "cottage")
-    private Set<CottageReservation> cottageReservations;
+    private Set<CottageQuickReservation> cottageQuickReservations;
 
     @ManyToMany
     @JoinTable(
@@ -40,5 +42,14 @@ public class Cottage extends DatabaseEntity {
     private Set<RuleOfConduct> rules;
 
     //todo cenovnik i informacije o dodatnim uslugama
+
+    //todo za period dostupnosti vikendice
+
+    @ManyToOne
+    @JoinColumn(name = "cottageOwner")
+    private CottageOwner cottageOwner;
+
+    @Column(name = "rating")
+    private float rating = 0;
 
 }

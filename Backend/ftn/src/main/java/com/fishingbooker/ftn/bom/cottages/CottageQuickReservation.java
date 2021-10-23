@@ -9,7 +9,7 @@ import java.util.Set;
 @Entity
 @Data
 @Table(name = "CottageReservation")
-public class CottageReservation extends Reservation {
+public class CottageQuickReservation extends Reservation {
 
     @Column(name = "guestLimit", nullable = false)
     private int guestLimit;

@@ -1,4 +1,4 @@
-package com.fishingbooker.ftn.bom.cottages;
+package com.fishingbooker.ftn.bom;
 
 import com.fishingbooker.ftn.bom.DatabaseEntity;
 import lombok.Data;
