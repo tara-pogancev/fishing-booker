@@ -3,7 +3,6 @@ package com.fishingbooker.ftn.bom.boats;
 import com.fishingbooker.ftn.bom.Address;
 import com.fishingbooker.ftn.bom.DatabaseEntity;
 import com.fishingbooker.ftn.bom.RuleOfConduct;
-import com.fishingbooker.ftn.bom.adventures.AvailableInstructorTimePeriod;
 import com.fishingbooker.ftn.bom.users.BoatOwner;
 import lombok.Data;
 
@@ -67,7 +66,7 @@ public class Boat extends DatabaseEntity {
 
     //todo cenovnik i informacije o dodatnim uslugama
 
-    @OneToMany(mappedBy="boat")
+    @OneToMany(mappedBy = "boat")
     private Set<AvailableBoatTimePeriod> availableTimePeriods;
 
     @Column(name = "cancellationPercentageKeep", nullable = false)

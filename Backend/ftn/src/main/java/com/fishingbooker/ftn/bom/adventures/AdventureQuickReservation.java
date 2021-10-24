@@ -1,9 +1,6 @@
 package com.fishingbooker.ftn.bom.adventures;
 
-
 import com.fishingbooker.ftn.bom.QuickReservation;
-import com.fishingbooker.ftn.bom.Reservation;
-import com.sun.xml.bind.v2.model.annotation.Quick;
 import lombok.Data;
 
 import javax.persistence.*;

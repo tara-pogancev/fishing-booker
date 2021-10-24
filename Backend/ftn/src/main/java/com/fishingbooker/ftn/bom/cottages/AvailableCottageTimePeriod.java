@@ -3,7 +3,10 @@ package com.fishingbooker.ftn.bom.cottages;
 import com.fishingbooker.ftn.bom.AvailableTimePeriod;
 import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
 @Data
@@ -11,7 +14,7 @@ import javax.persistence.*;
 public class AvailableCottageTimePeriod extends AvailableTimePeriod {
 
     @ManyToOne
-    @JoinColumn(name="cottage", nullable=false)
+    @JoinColumn(name = "cottage", nullable = false)
     private Cottage cottage;
 
 }

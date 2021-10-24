@@ -3,7 +3,6 @@ package com.fishingbooker.ftn.bom.cottages;
 import com.fishingbooker.ftn.bom.Address;
 import com.fishingbooker.ftn.bom.DatabaseEntity;
 import com.fishingbooker.ftn.bom.RuleOfConduct;
-import com.fishingbooker.ftn.bom.adventures.AvailableInstructorTimePeriod;
 import com.fishingbooker.ftn.bom.users.CottageOwner;
 import lombok.Data;
 
@@ -44,7 +43,7 @@ public class Cottage extends DatabaseEntity {
 
     //todo cenovnik i informacije o dodatnim uslugama
 
-    @OneToMany(mappedBy="cottage")
+    @OneToMany(mappedBy = "cottage")
     private Set<AvailableCottageTimePeriod> availableTimePeriods;
 
     @ManyToOne

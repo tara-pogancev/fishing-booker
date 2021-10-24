@@ -3,12 +3,20 @@ package com.fishingbooker.ftn.bom;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
 
-@Entity
+@MappedSuperclass
 @Data
-@Table(name = "Review")
 public class Review extends DatabaseEntity {
+
+    @Column(name = "review")
+    private String review;
+
+    @Column(name = "rating", nullable = false)
+    private Integer rating;
+
+    @Column(name = "isApproved", nullable = false)
+    private Boolean isApproved = false;
 
 }
