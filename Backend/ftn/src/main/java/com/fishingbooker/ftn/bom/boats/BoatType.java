@@ -2,7 +2,13 @@ package com.fishingbooker.ftn.bom.boats;
 
 public enum BoatType {
 
-    Camac1,
-    Camac2;
+    AllPurposeFishingBoat,
+    AluminumFishingBoat,
+    BassBoat,
+    BayBoat,
+    BowRider,
+    CabinCruiser,
+    JetBoat,
+    DeckBoat
 
 }

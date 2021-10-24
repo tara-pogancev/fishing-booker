@@ -1,6 +1,5 @@
 package com.fishingbooker.ftn.bom.cottages;
 
-import com.fishingbooker.ftn.bom.cottages.Cottage;
 import com.fishingbooker.ftn.bom.DatabaseEntity;
 
 import javax.persistence.*;
@@ -10,12 +9,10 @@ import javax.persistence.*;
 public class Room extends DatabaseEntity {
 
     @Column(name = "numberOfBeds", nullable = false)
-    private int numberOfBeds;
+    private Integer numberOfBeds;
 
     @OneToOne
     @JoinColumn(name = "cottageId", referencedColumnName = "id")
     private Cottage cottage;
-
-
 
 }

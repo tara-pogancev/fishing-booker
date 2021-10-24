@@ -1,11 +1,10 @@
 package com.fishingbooker.ftn.bom;
 
-import com.fishingbooker.ftn.bom.DatabaseEntity;
 import lombok.Data;
-import net.minidev.json.annotate.JsonIgnore;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
 @Data

@@ -10,10 +10,13 @@ import javax.persistence.Table;
 
 @Entity
 @Data
-@Table (name = "CottageUtility")
+@Table(name = "CottageUtility")
 public class CottageUtility extends DatabaseEntity {
 
-    @Column(name = "utilityName", nullable = false)
-    private String utilityName;
+    @Column(name = "name", nullable = false)
+    private String name;
+
+    @Column(name = "price", nullable = false)
+    private Double price;
 
 }

@@ -1,7 +1,6 @@
 package com.fishingbooker.ftn.bom.users;
 
 import com.fishingbooker.ftn.bom.boats.Boat;
-import com.fishingbooker.ftn.bom.cottages.Cottage;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -16,4 +15,5 @@ public class BoatOwner extends ApplicationUser {
 
     @OneToMany(mappedBy = "boatOwner")
     private Set<Boat> boats;
+
 }

@@ -18,10 +18,10 @@ public class Reservation extends DatabaseEntity {
     private LocalDate reservationEnd;
 
     @Column(name = "price", nullable = false)
-    private float price;
+    private Double price;
 
     @OneToOne
-    @JoinColumn(name = "reservationOwner", referencedColumnName = "id")
-    private RegisteredUser reservationOwner;
+    @JoinColumn(name = "reservationClient", referencedColumnName = "id")
+    private RegisteredUser reservationClient;
 
 }

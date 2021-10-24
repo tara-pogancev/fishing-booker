@@ -12,7 +12,10 @@ import javax.persistence.Table;
 @Table(name = "AdventureUtility")
 public class AdventureUtility extends DatabaseEntity {
 
-    @Column(name = "utilityName", nullable = false)
-    private String utilityName;
+    @Column(name = "name", nullable = false)
+    private String name;
+
+    @Column(name = "price", nullable = false)
+    private Double price;
 
 }

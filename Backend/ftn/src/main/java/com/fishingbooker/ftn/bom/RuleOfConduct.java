@@ -1,6 +1,5 @@
 package com.fishingbooker.ftn.bom;
 
-import com.fishingbooker.ftn.bom.DatabaseEntity;
 import lombok.Data;
 
 import javax.persistence.Column;

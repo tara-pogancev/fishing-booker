@@ -17,7 +17,6 @@ public class RegisteredUser extends ApplicationUser {
     @Column(name = "penalties", nullable = false)
     private Integer penalties = 0;
 
-    //todo: ono za pretplate
-    
+    //todo: Pretplate korisnika
 
 }

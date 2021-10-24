@@ -1,4 +1,14 @@
 package com.fishingbooker.ftn.bom;
 
-public class Review {
+
+import lombok.Data;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Data
+@Table(name = "Review")
+public class Review extends DatabaseEntity {
+
 }
