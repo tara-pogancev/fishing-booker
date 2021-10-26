@@ -2,10 +2,10 @@ package com.fishingbooker.ftn.bom.users;
 
 public enum ApplicationRole {
 
-    RegisteredUser,
-    CottageOwner,
-    BoatOwner,
-    FishingInstructor,
-    Administrator
+    REGISTERED_USER,
+    COTTAGE_OWNER,
+    BOAT_OWNER,
+    FISHING_INSTRUCTOR,
+    ADMINISTRATOR
 
 }

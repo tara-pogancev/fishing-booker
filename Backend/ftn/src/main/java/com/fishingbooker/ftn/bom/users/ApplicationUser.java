@@ -9,7 +9,6 @@ import javax.persistence.*;
 
 @MappedSuperclass
 @Data
-@Table(name = "ApplicationUser")
 public class ApplicationUser extends DatabaseEntity {
 
     @Column(name = "username", nullable = false, unique = true)

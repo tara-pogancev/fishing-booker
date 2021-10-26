@@ -1,10 +1,11 @@
 package com.fishingbooker.ftn.bom.users;
 
+import com.fishingbooker.ftn.bom.boats.Boat;
+import com.fishingbooker.ftn.bom.cottages.Cottage;
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Data
@@ -17,6 +18,25 @@ public class RegisteredUser extends ApplicationUser {
     @Column(name = "penalties", nullable = false)
     private Integer penalties = 0;
 
-    //todo: Pretplate korisnika
+    @ManyToMany
+    @JoinTable(
+            name = "user_boat_subscription",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "boat_id"))
+    private Set<Boat> boatSubscription;
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_cottage_subscription",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "cottage_id"))
+    private Set<Cottage> cottageSubscription;
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_instructor_subscription",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "instructor_id"))
+    private Set<FishingInstructor> instructorSubscription;
 
 }
