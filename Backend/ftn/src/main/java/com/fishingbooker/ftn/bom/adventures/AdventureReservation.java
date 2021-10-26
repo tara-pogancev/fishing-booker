@@ -17,7 +17,7 @@ public class AdventureReservation extends Reservation {
 
     @ManyToMany
     @JoinTable(
-            name = "adventure_reservation_utility",
+            name = "adventure_reservation_utilities",
             joinColumns = @JoinColumn(name = "adventure_reservation_id"),
             inverseJoinColumns = @JoinColumn(name = "adventure_utility_id"))
     private Set<AdventureUtility> utilities;

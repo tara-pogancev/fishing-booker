@@ -5,7 +5,10 @@ import com.fishingbooker.ftn.bom.Address;
 import com.fishingbooker.ftn.bom.DatabaseEntity;
 import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
 @Data

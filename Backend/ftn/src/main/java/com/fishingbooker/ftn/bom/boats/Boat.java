@@ -46,7 +46,8 @@ public class Boat extends DatabaseEntity {
     @Column(name = "description", nullable = false)
     private String description;
 
-    //todo slike
+    // todo: photos
+    // https://www.codejava.net/frameworks/spring-boot/spring-boot-file-upload-tutorial
 
     @Column(name = "guestLimit", nullable = false)
     private Integer guestLimit;
@@ -64,7 +65,12 @@ public class Boat extends DatabaseEntity {
     @Column(name = "fishingEquipment", nullable = false)
     private String fishingEquipment;
 
-    //todo cenovnik i informacije o dodatnim uslugama
+    @ManyToMany
+    @JoinTable(
+            name = "boat_utilities",
+            joinColumns = @JoinColumn(name = "boat_reservation_id"),
+            inverseJoinColumns = @JoinColumn(name = "boat_utility_id"))
+    private Set<BoatUtility> utilities;
 
     @OneToMany(mappedBy = "boat")
     private Set<AvailableBoatTimePeriod> availableTimePeriods;

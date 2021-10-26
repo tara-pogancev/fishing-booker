@@ -26,7 +26,8 @@ public class Cottage extends DatabaseEntity {
     @Column(name = "description", nullable = false)
     private String description;
 
-    //todo: photos
+    // todo: photos
+    // https://www.codejava.net/frameworks/spring-boot/spring-boot-file-upload-tutorial
 
     @OneToMany(mappedBy = "cottage", cascade = CascadeType.ALL)
     private Set<Room> rooms;
@@ -41,7 +42,12 @@ public class Cottage extends DatabaseEntity {
             inverseJoinColumns = @JoinColumn(name = "rule_id"))
     private Set<RuleOfConduct> rules;
 
-    //todo cenovnik i informacije o dodatnim uslugama
+    @ManyToMany
+    @JoinTable(
+            name = "cottage_utilities",
+            joinColumns = @JoinColumn(name = "cottage_reservation_id"),
+            inverseJoinColumns = @JoinColumn(name = "cottage_utility_id"))
+    private Set<CottageUtility> utilities;
 
     @OneToMany(mappedBy = "cottage")
     private Set<AvailableCottageTimePeriod> availableTimePeriods;
