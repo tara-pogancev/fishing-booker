@@ -1,12 +1,11 @@
 package com.fishingbooker.ftn.bom.users;
 
+import com.fishingbooker.ftn.bom.RegistrationRequest;
+import com.fishingbooker.ftn.bom.UserRank;
 import com.fishingbooker.ftn.bom.adventures.AvailableInstructorTimePeriod;
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Set;
 
 @Entity
@@ -22,5 +21,12 @@ public class FishingInstructor extends ApplicationUser {
 
     @OneToMany(mappedBy = "instructor")
     private Set<AvailableInstructorTimePeriod> availableTimePeriods;
+
+    @OneToOne(mappedBy = "fishingInstructor")
+    private RegistrationRequest request;
+
+    @ManyToOne()
+    @JoinColumn(name="rank")
+    UserRank rank;
 
 }

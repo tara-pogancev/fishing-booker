@@ -3,12 +3,10 @@ package com.fishingbooker.ftn.bom.users;
 
 import com.fishingbooker.ftn.bom.Address;
 import com.fishingbooker.ftn.bom.DatabaseEntity;
+import com.fishingbooker.ftn.bom.RegistrationRequest;
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 
 @MappedSuperclass
 @Data
@@ -38,5 +36,7 @@ public class ApplicationUser extends DatabaseEntity {
 
     @Column(name = "role", nullable = false)
     private ApplicationRole role;
+
+
 
 }

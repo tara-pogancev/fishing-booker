@@ -1,5 +1,7 @@
 package com.fishingbooker.ftn.bom.users;
 
+import com.fishingbooker.ftn.bom.RegistrationRequest;
+import com.fishingbooker.ftn.bom.UserRank;
 import com.fishingbooker.ftn.bom.boats.Boat;
 import com.fishingbooker.ftn.bom.cottages.Cottage;
 import lombok.Data;
@@ -39,4 +41,10 @@ public class RegisteredUser extends ApplicationUser {
             inverseJoinColumns = @JoinColumn(name = "instructor_id"))
     private Set<FishingInstructor> instructorSubscription;
 
+    @OneToOne(mappedBy = "user")
+    private RegistrationRequest request;
+
+    @ManyToOne()
+    @JoinColumn(name="rank")
+    UserRank rank;
 }

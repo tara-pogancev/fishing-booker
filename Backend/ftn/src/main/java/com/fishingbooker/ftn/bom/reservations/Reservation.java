@@ -1,5 +1,6 @@
-package com.fishingbooker.ftn.bom;
+package com.fishingbooker.ftn.bom.reservations;
 
+import com.fishingbooker.ftn.bom.DatabaseEntity;
 import com.fishingbooker.ftn.bom.users.RegisteredUser;
 
 import javax.persistence.Column;

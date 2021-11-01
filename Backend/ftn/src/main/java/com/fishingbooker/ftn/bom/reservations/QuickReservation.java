@@ -1,4 +1,6 @@
-package com.fishingbooker.ftn.bom;
+package com.fishingbooker.ftn.bom.reservations;
+
+import com.fishingbooker.ftn.bom.reservations.Reservation;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;

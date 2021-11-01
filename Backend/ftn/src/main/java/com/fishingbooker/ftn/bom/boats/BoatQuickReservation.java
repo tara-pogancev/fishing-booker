@@ -1,6 +1,6 @@
 package com.fishingbooker.ftn.bom.boats;
 
-import com.fishingbooker.ftn.bom.QuickReservation;
+import com.fishingbooker.ftn.bom.reservations.QuickReservation;
 import lombok.Data;
 
 import javax.persistence.*;
