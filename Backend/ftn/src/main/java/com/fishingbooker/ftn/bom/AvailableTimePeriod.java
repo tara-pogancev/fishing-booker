@@ -2,18 +2,17 @@ package com.fishingbooker.ftn.bom;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @MappedSuperclass
 @Data
 public class AvailableTimePeriod extends DatabaseEntity {
 
-    @Column(name = "start", nullable = false)
-    private LocalDate start;
+    @Column(name = "startDate", nullable = false)
+    private LocalDate startDate;
 
-    @Column(name = "end", nullable = false)
-    private LocalDate end;
+    @Column(name = "endDate", nullable = false)
+    private LocalDate endDate;
 
 }

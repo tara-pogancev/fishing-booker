@@ -1,7 +1,7 @@
 package com.fishingbooker.ftn.controller;
 
 import com.fishingbooker.ftn.bom.Address;
-import com.fishingbooker.ftn.service.AddressService;
+import com.fishingbooker.ftn.service.interfaces.AddressService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +23,5 @@ public class AddressController {
         List<Address> dtoList = addressService.findAll();
         return new ResponseEntity<List<Address>>(dtoList, HttpStatus.OK);
     }
-
 
 }

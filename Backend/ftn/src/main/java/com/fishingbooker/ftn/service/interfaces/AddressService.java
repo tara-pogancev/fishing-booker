@@ -1,4 +1,4 @@
-package com.fishingbooker.ftn.service;
+package com.fishingbooker.ftn.service.interfaces;
 
 import com.fishingbooker.ftn.bom.Address;
 

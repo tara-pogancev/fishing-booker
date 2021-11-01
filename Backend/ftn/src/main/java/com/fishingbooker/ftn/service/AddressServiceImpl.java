@@ -2,6 +2,7 @@ package com.fishingbooker.ftn.service;
 
 import com.fishingbooker.ftn.bom.Address;
 import com.fishingbooker.ftn.repository.AddressRepository;
+import com.fishingbooker.ftn.service.interfaces.AddressService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
