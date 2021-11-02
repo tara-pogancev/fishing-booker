@@ -1,0 +1,18 @@
+.hero {
+  background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.863),
+      rgba(0, 0, 0, 0.582),
+      rgba(0, 0, 0, 0.075)
+    ),
+    url("/assets/images/fish.jpg");
+  background-size: cover;
+}
+
+.title {
+  font-size: 3rem;
+}
+
+.subtitle {
+  font-size: 2rem;
+}
