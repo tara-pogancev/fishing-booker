@@ -19,15 +19,21 @@ Project made for Faculty of Technical Sciences' course Internet Software Archite
 
 - [Google Fonts](https://fonts.google.com/)
 - [Unsplash](https://unsplash.com/)
+- [Flaticon](https://www.flaticon.com/)
+- [unDraw](https://undraw.co/illustrations)
+- [ManyPixels](https://www.manypixels.co/gallery)
+- [FreePik](https://www.freepik.com/vectors/illustrations)
 
 
 ## Authors
 
-► Miloš Živić, RA75/2018
+► Tara Pogančev, RA80/2018 (student 1)
 
-► Đorđe Krsmanović, RA71/2018
+► Miloš Živić, RA75/2018 (student 2)
 
-► Tara Pogančev, RA80/2018
+► Đorđe Krsmanović, RA71/2018 (student 3)
+
+
 
 
 ## Screenshots

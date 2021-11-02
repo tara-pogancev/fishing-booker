@@ -1,0 +1,22 @@
+Color palette
+---------------
+White: FBF9F8
+Light Blue: 87C6F0
+Sky Blue: 459FBD
+Medium Blue: 37F0B4
+Gray Blue: 3A4E66
+Text Black: 191919
+
+Fonts
+---------------
+Logo font: Century Gothic
+
+
+Free Photos and Illustrations
+---------------
+Unsplash (photos): https://unsplash.com/
+Flaticon (icons and icon packs): https://www.flaticon.com/
+Illustation (illustrations with custom accent color): https://themeisle.com/illustrations/
+unDraw (illustrations with custom accent color): https://undraw.co/illustrations
+ManyPixels (illustrations with custom accent color): https://www.manypixels.co/gallery
+FreePik (vector illustrations): https://www.freepik.com/vectors/illustrations
