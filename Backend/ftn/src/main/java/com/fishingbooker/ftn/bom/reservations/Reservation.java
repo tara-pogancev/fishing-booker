@@ -1,7 +1,7 @@
 package com.fishingbooker.ftn.bom.reservations;
 
 import com.fishingbooker.ftn.bom.DatabaseEntity;
-import com.fishingbooker.ftn.bom.users.RegisteredUser;
+import com.fishingbooker.ftn.bom.users.RegisteredClient;
 
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
@@ -22,7 +22,7 @@ public class Reservation extends DatabaseEntity {
     private Double price;
 
     @OneToOne
-    @JoinColumn(name = "reservationClient", referencedColumnName = "id")
-    private RegisteredUser reservationClient;
+    @JoinColumn(name = "reservationClient", referencedColumnName = "userId")
+    private RegisteredClient reservationClient;
 
 }

@@ -2,7 +2,6 @@ package com.fishingbooker.ftn.bom;
 
 import com.fishingbooker.ftn.bom.users.*;
 import lombok.Data;
-import org.dom4j.tree.AbstractEntity;
 
 import javax.persistence.*;
 
@@ -12,19 +11,19 @@ import javax.persistence.*;
 public class RegistrationRequest extends DatabaseEntity {
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private RegisteredUser user;
+    @JoinColumn(name = "user_id", referencedColumnName = "userId")
+    private RegisteredClient user;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fishingInstructor_id", referencedColumnName = "id")
+    @JoinColumn(name = "fishingInstructor_id", referencedColumnName = "userId")
     private FishingInstructor fishingInstructor;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "cottageOwner_id", referencedColumnName = "id")
+    @JoinColumn(name = "cottageOwner_id", referencedColumnName = "userId")
     private CottageOwner cottageOwner;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "boatOwner_id", referencedColumnName = "id")
+    @JoinColumn(name = "boatOwner_id", referencedColumnName = "userId")
     private BoatOwner boatOwner;
 
     @Column(name = "requestStatus",nullable = false)
@@ -32,6 +31,5 @@ public class RegistrationRequest extends DatabaseEntity {
 
     @Column(name="causesOfRejection",nullable = true)
     private String causesOfRejection;
-
 
 }

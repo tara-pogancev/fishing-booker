@@ -3,17 +3,15 @@ package com.fishingbooker.ftn.bom.users;
 
 import com.fishingbooker.ftn.bom.Address;
 import com.fishingbooker.ftn.bom.DatabaseEntity;
-import com.fishingbooker.ftn.bom.RegistrationRequest;
 import lombok.Data;
 
 import javax.persistence.*;
 
-@MappedSuperclass
-@Data
-public class ApplicationUser extends DatabaseEntity {
 
-    @Column(name = "username", nullable = false, unique = true)
-    private String username;
+@Data
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+public class ApplicationUser extends DatabaseEntity {
 
     @Column(name = "password", nullable = false)
     private String password;
@@ -36,7 +34,5 @@ public class ApplicationUser extends DatabaseEntity {
 
     @Column(name = "role", nullable = false)
     private ApplicationRole role;
-
-
 
 }

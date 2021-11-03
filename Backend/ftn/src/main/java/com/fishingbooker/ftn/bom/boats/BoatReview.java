@@ -3,7 +3,7 @@ package com.fishingbooker.ftn.bom.boats;
 
 import com.fishingbooker.ftn.bom.Review;
 import com.fishingbooker.ftn.bom.users.BoatOwner;
-import com.fishingbooker.ftn.bom.users.RegisteredUser;
+import com.fishingbooker.ftn.bom.users.RegisteredClient;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -27,6 +27,6 @@ public class BoatReview extends Review {
             name = "boat_review_users",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "review_id"))
-    private Set<RegisteredUser> reviewClient;
+    private Set<RegisteredClient> reviewClient;
 
 }

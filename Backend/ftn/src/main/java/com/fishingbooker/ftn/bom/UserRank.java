@@ -3,7 +3,7 @@ package com.fishingbooker.ftn.bom;
 import com.fishingbooker.ftn.bom.users.BoatOwner;
 import com.fishingbooker.ftn.bom.users.CottageOwner;
 import com.fishingbooker.ftn.bom.users.FishingInstructor;
-import com.fishingbooker.ftn.bom.users.RegisteredUser;
+import com.fishingbooker.ftn.bom.users.RegisteredClient;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,7 +22,7 @@ public class UserRank extends  DatabaseEntity{
     private Integer necessaryPoints;
 
     @OneToMany(mappedBy = "rank")
-    private Set<RegisteredUser> registeredUsers;
+    private Set<RegisteredClient> registeredClients;
 
     @OneToMany(mappedBy = "rank")
     private Set<BoatOwner> boatOwners;

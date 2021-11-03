@@ -11,8 +11,9 @@ import java.util.Set;
 
 @Entity
 @Data
-@Table(name = "RegisteredUser")
-public class RegisteredUser extends ApplicationUser {
+@Table(name = "RegisteredClient")
+@PrimaryKeyJoinColumn(name = "userId")
+public class RegisteredClient extends ApplicationUser {
 
     @Column(name = "isBlocked", nullable = false)
     private Boolean isBlocked = false;

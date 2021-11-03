@@ -11,6 +11,7 @@ import java.util.Set;
 @Entity
 @Data
 @Table(name = "BoatOwner")
+@PrimaryKeyJoinColumn(name = "userId")
 public class BoatOwner extends ApplicationUser {
 
     @OneToMany(mappedBy = "boatOwner")

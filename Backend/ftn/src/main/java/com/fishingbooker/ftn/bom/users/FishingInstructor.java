@@ -11,6 +11,7 @@ import java.util.Set;
 @Entity
 @Data
 @Table(name = "FishingInstructor")
+@PrimaryKeyJoinColumn(name = "userId")
 public class FishingInstructor extends ApplicationUser {
 
     @Column(name = "biography")

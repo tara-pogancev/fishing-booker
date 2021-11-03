@@ -1,6 +1,6 @@
 package com.fishingbooker.ftn.bom.complaints;
 
-import com.fishingbooker.ftn.bom.users.RegisteredUser;
+import com.fishingbooker.ftn.bom.users.RegisteredClient;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -12,7 +12,7 @@ public class ReservationComplaint extends Complaint {
 
     @ManyToOne
     @JoinColumn(name = "client", nullable = false)
-    private RegisteredUser client;
+    private RegisteredClient client;
 
     @Column(name = "type", nullable = false)
     private ReservationComplaintType type;
