@@ -3,9 +3,11 @@ package com.fishingbooker.ftn.bom.users;
 
 import com.fishingbooker.ftn.bom.Address;
 import com.fishingbooker.ftn.bom.DatabaseEntity;
+import com.fishingbooker.ftn.security.registration.RegistrationToken;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Data
@@ -34,5 +36,8 @@ public class ApplicationUser extends DatabaseEntity {
 
     @Column(name = "role", nullable = false)
     private ApplicationRole role;
+
+    @Column(name = "enabled")
+    private Boolean enabled = false;
 
 }

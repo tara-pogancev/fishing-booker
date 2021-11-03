@@ -2,6 +2,7 @@ package com.fishingbooker.ftn.security;
 
 import com.fishingbooker.ftn.bom.users.ApplicationRole;
 import com.fishingbooker.ftn.bom.users.ApplicationUser;
+import com.fishingbooker.ftn.service.interfaces.ApplicationUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -19,7 +20,7 @@ import java.util.List;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     private static final String ROLE_PREFIX = "ROLE_";
-    //private final UserRepository userRepository;
+    private final ApplicationUserService userService;
 
     @Override
     @Transactional

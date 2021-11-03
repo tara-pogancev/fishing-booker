@@ -40,12 +40,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests().antMatchers(
-                        "/authenticate").permitAll()
+                        "/auth").permitAll()
                 .anyRequest().permitAll();
 //        http
 //                .csrf().disable()
 //                .authorizeRequests().antMatchers(
-//                        "/authenticate").permitAll()
+//                        "/auth").permitAll()
 //                .anyRequest().authenticated()
 //                .and().sessionManagement()
 //                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
