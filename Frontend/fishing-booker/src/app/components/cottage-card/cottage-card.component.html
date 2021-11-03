@@ -1,0 +1,11 @@
+<div class="card zoom" (click)="readMore()">
+  <div class="card-image">
+    <img class="cottage-image" src="{{ img }}" />
+  </div>
+
+  <div class="content p-4">
+    <h4>{{ title }}</h4>
+    <p>@{{ owner }}</p>
+    <p>{{ description | truncate: [30] }}</p>
+  </div>
+</div>

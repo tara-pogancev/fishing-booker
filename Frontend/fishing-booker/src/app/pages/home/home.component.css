@@ -1,4 +1,4 @@
-.hero {
+.hero-main {
   background: linear-gradient(
       0deg,
       rgba(0, 0, 0, 0.863),
@@ -15,4 +15,15 @@
 
 .subtitle {
   font-size: 2rem;
+}
+
+.hero-fishing {
+  background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.863),
+      rgba(0, 0, 0, 0.582),
+      rgba(0, 0, 0, 0.24)
+    ),
+    url("/assets/images/fish4.jpg");
+  background-size: cover;
 }

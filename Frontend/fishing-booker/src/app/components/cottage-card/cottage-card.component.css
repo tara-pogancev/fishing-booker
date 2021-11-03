@@ -7,3 +7,7 @@
 .card-image {
   height: 200px;
 }
+
+.card {
+  cursor: pointer;
+}

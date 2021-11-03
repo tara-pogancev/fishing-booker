@@ -58,6 +58,10 @@ body {
   font-family: Century Gothic, sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 /*----------------------------------------------
   ------------------------------------------------
   2. Header & Nav Styles
@@ -77,7 +81,22 @@ body {
 }
 
 .has-background-blue {
-  background-color: #87c6f0 !important;
+  background-color: #c3dae9 !important;
+}
+
+.black-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.zoom {
+  transition: transform 0.6s; /* Animation */
+  margin: 0 auto;
+}
+
+.zoom:hover {
+  transform: scale(
+    1.03
+  ); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 
 /*----------------------------------------------
@@ -91,6 +110,13 @@ body {
   5. Widget Styles
   ------------------------------------------------
   ----------------------------------------------*/
+.paralax {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 500px;
+}
 
 /*----------------------------------------------
   ------------------------------------------------
@@ -109,3 +135,6 @@ body {
   8. Generic Styles
   ------------------------------------------------
   ----------------------------------------------*/
+.max-width-800 {
+  max-width: 800px;
+}
