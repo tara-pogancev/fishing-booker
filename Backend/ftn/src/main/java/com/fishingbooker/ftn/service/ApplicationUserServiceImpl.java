@@ -1,34 +1,35 @@
 package com.fishingbooker.ftn.service;
 
-import com.fishingbooker.ftn.bom.users.ApplicationRole;
 import com.fishingbooker.ftn.bom.users.ApplicationUser;
+import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.ApplicationUserDto;
-import com.fishingbooker.ftn.repository.ApplicationUserRepository;
-import com.fishingbooker.ftn.repository.RegistrationTokenRepository;
 import com.fishingbooker.ftn.email.context.AccountVerificationEmailContext;
 import com.fishingbooker.ftn.email.service.EmailService;
+import com.fishingbooker.ftn.repository.ApplicationUserRepository;
+import com.fishingbooker.ftn.repository.RegistrationTokenRepository;
 import com.fishingbooker.ftn.security.registration.RegistrationToken;
 import com.fishingbooker.ftn.security.registration.RegistrationTokenService;
 import com.fishingbooker.ftn.service.interfaces.ApplicationUserService;
+import com.fishingbooker.ftn.service.interfaces.RegisteredClientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.util.StringUtils;
 
 import javax.mail.MessagingException;
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
 public class ApplicationUserServiceImpl implements ApplicationUserService {
 
     private final ApplicationUserRepository userRepository;
     private final RegistrationTokenService tokenService;
     private final RegistrationTokenRepository registrationTokenRepository;
     private final EmailService emailService;
+    private final DataConverter converter;
+    private final RegisteredClientService clientService;
 
     @Value("${site.base.url.https}")
     private String baseURL;
@@ -55,15 +56,16 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
     @Override
     public ApplicationUser create(ApplicationUserDto userDto) {
         if (findByEmail(userDto.getEmail()) == null) {
-            ApplicationUser user = new ApplicationUser();
-            user.setEmail(userDto.getEmail());
-            user.setName(userDto.getName());
-            user.setLastName("haha");
-            user.setPhone("haha2");
-            user.setRole(ApplicationRole.ADMINISTRATOR);
-            user.setPassword(userDto.getPassword());
+            ApplicationUser user = converter.convert(userDto, ApplicationUser.class);
+            switch (user.getRole()) {
+                case REGISTERED_CLIENT:
+                    user = clientService.create(userDto);
+                    break;
+                default:
+                    break;
+            }
             sendRegistrationConfirmationEmail(user);
-            return userRepository.save(user);
+            return user;
         }
         return null;
     }
@@ -81,13 +83,16 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
     @Override
     public Boolean verifyUser(String token) throws Exception {
         RegistrationToken secureToken = tokenService.findByToken(token);
-        if(Objects.isNull(secureToken) || !StringUtils.equals(token, secureToken.getToken()) || secureToken.isExpired()){
+        if (Objects.isNull(secureToken) || !StringUtils.equals(token, secureToken.getToken()) || secureToken.isExpired()) {
             throw new Exception("Invalid token!");
         }
         ApplicationUser user = userRepository.get(secureToken.getUser().getId());
-        if(Objects.isNull(user)){
+        if (Objects.isNull(user)) {
+            System.out.println("ERROR: No user found!");
             return false;
         }
+
+        System.out.println("Found user to verify: " + user.getName());
         user.setEnabled(true);
         userRepository.save(user);
 
@@ -96,7 +101,7 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
     }
 
     public void sendRegistrationConfirmationEmail(ApplicationUser user) {
-        RegistrationToken secureToken= tokenService.createSecureToken();
+        RegistrationToken secureToken = tokenService.createSecureToken();
         secureToken.setUser(user);
         registrationTokenRepository.save(secureToken);
         AccountVerificationEmailContext emailContext = new AccountVerificationEmailContext();
@@ -109,4 +114,5 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
             e.printStackTrace();
         }
     }
+
 }

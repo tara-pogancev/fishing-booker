@@ -2,7 +2,8 @@ package com.fishingbooker.ftn.bom;
 
 import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
 import java.time.LocalDate;
 
 @MappedSuperclass

@@ -28,9 +28,9 @@ public class RegistrationToken extends DatabaseEntity {
     @ManyToOne
     @JoinColumn(name = "userId", referencedColumnName = "id")
     private ApplicationUser user;
-
-    @Transient
-    private Boolean isExpired = false;
+//
+//    @Transient
+//    private Boolean isExpired = false;
 
     public boolean isExpired() {
         return getExpireAt().isBefore(LocalDateTime.now()); // this is generic implementation, you can always make it timezone specific

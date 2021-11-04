@@ -15,7 +15,7 @@ import java.util.Set;
 public class FishingInstructor extends ApplicationUser {
 
     @Column(name = "biography")
-    private String biography;
+    private String biography = "This user provided no biography.";
 
     @Column(name = "rating")
     private Double rating = 0.0;
@@ -27,7 +27,7 @@ public class FishingInstructor extends ApplicationUser {
     private RegistrationRequest request;
 
     @ManyToOne()
-    @JoinColumn(name="rank")
+    @JoinColumn(name = "rank")
     UserRank rank;
 
 }

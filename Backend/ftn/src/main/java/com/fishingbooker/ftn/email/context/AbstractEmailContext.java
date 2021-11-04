@@ -24,7 +24,7 @@ public abstract class AbstractEmailContext {
         this.context = new HashMap<>();
     }
 
-    public <T> void init(T context){
+    public <T> void init(T context) {
         //we can do any common configuration setup here
         // like setting up some base URL and context
     }
@@ -98,7 +98,7 @@ public abstract class AbstractEmailContext {
     }
 
     public Object put(String key, Object value) {
-        return key ==null ? null : this.context.put(key.intern(),value);
+        return key == null ? null : this.context.put(key.intern(), value);
     }
 
     public String getTemplateLocation() {

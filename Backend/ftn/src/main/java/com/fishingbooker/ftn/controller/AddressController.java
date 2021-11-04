@@ -19,7 +19,7 @@ public class AddressController {
     private final AddressService addressService;
 
     @GetMapping
-    public ResponseEntity<List<Address>> findAll(){
+    public ResponseEntity<List<Address>> findAll() {
         List<Address> dtoList = addressService.findAll();
         return new ResponseEntity<List<Address>>(dtoList, HttpStatus.OK);
     }

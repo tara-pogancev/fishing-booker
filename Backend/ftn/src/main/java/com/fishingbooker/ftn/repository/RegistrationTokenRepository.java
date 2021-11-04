@@ -7,7 +7,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RegistrationTokenRepository extends EntityRepository<RegistrationToken> {
 
-    RegistrationToken findByToken (final String token);
-    Long removeByToken (String token);
+    RegistrationToken findByToken(final String token);
+
+    Long removeByToken(String token);
 
 }

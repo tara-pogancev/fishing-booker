@@ -21,7 +21,7 @@ public class BoatOwner extends ApplicationUser {
     private RegistrationRequest request;
 
     @ManyToOne()
-    @JoinColumn(name="rank")
+    @JoinColumn(name = "rank")
     UserRank rank;
 
 }

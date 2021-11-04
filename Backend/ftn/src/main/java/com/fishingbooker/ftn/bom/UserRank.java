@@ -12,13 +12,13 @@ import javax.persistence.Table;
 import java.util.Set;
 
 @Entity
-@Table(name="userRank")
-public class UserRank extends  DatabaseEntity{
+@Table(name = "userRank")
+public class UserRank extends DatabaseEntity {
 
-    @Column(name="userRank",nullable=false)
+    @Column(name = "userRank", nullable = false)
     private Rank userRank;
 
-    @Column(name="necessaryPoints",nullable = false)
+    @Column(name = "necessaryPoints", nullable = false)
     private Integer necessaryPoints;
 
     @OneToMany(mappedBy = "rank")

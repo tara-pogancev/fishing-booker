@@ -20,4 +20,9 @@ public class Address extends DatabaseEntity {
     @Column(name = "street", nullable = false)
     private String street;
 
+    @Override
+    public String toString() {
+        return street + ", " + city + ", " + country;
+    }
+
 }

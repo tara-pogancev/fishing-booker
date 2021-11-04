@@ -4,13 +4,8 @@ import com.fishingbooker.ftn.bom.users.ApplicationUser;
 import com.fishingbooker.ftn.dto.ApplicationUserDto;
 import com.fishingbooker.ftn.service.interfaces.ApplicationUserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.web.csrf.InvalidCsrfTokenException;
-import org.springframework.web.bind.annotation.*;
 import org.springframework.context.MessageSource;
-import org.springframework.context.i18n.LocaleContextHolder;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.util.StringUtils;
 
 @RestController
@@ -28,7 +23,7 @@ public class RegistrationController {
 
     @GetMapping("/verify")
     public String verifyCustomer(@RequestParam(required = false) String token) throws Exception {
-        if(StringUtils.isEmpty(token)){
+        if (StringUtils.isEmpty(token)) {
             return "No token provided!";
         }
         try {
