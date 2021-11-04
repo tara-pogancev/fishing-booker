@@ -9,8 +9,7 @@ import com.fishingbooker.ftn.repository.ApplicationUserRepository;
 import com.fishingbooker.ftn.repository.RegistrationTokenRepository;
 import com.fishingbooker.ftn.security.registration.RegistrationToken;
 import com.fishingbooker.ftn.security.registration.RegistrationTokenService;
-import com.fishingbooker.ftn.service.interfaces.ApplicationUserService;
-import com.fishingbooker.ftn.service.interfaces.RegisteredClientService;
+import com.fishingbooker.ftn.service.interfaces.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -30,6 +29,10 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
     private final EmailService emailService;
     private final DataConverter converter;
     private final RegisteredClientService clientService;
+    private final AdministratorService administratorService;
+    private final BoatOwnerService boatOwnerService;
+    private final CottageOwnerService cottageOwnerService;
+    private final FishingInstructorService fishingInstructorService;
 
     @Value("${site.base.url.https}")
     private String baseURL;
@@ -58,10 +61,20 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
         if (findByEmail(userDto.getEmail()) == null) {
             ApplicationUser user = converter.convert(userDto, ApplicationUser.class);
             switch (user.getRole()) {
-                case REGISTERED_CLIENT:
-                    user = clientService.create(userDto);
+                case ADMINISTRATOR:
+                    user = administratorService.create(userDto);
+                    break;
+                case BOAT_OWNER:
+                    user = boatOwnerService.create(userDto);
+                    break;
+                case COTTAGE_OWNER:
+                    user = cottageOwnerService.create(userDto);
+                    break;
+                case FISHING_INSTRUCTOR:
+                    user = fishingInstructorService.create(userDto);
                     break;
                 default:
+                    user = clientService.create(userDto);
                     break;
             }
             sendRegistrationConfirmationEmail(user);

@@ -29,7 +29,7 @@ public class ApplicationUser extends DatabaseEntity {
     @JoinColumn(name = "address")
     private Address userAddress;
 
-    @Column(name = "phone", nullable = false, unique = true)
+    @Column(name = "phone", nullable = false)
     private String phone;
 
     @Column(name = "role", nullable = false)

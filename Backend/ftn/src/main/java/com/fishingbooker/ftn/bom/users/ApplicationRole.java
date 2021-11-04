@@ -24,4 +24,20 @@ public enum ApplicationRole {
                 return "Unknown role";
         }
     }
+
+    public static ApplicationRole getRoleFromString(String role) {
+        switch (role) {
+            case "Registered Client":
+                return ApplicationRole.REGISTERED_CLIENT;
+            case "Boat Owner":
+                return ApplicationRole.BOAT_OWNER;
+            case "Cottage Owner":
+                return ApplicationRole.COTTAGE_OWNER;
+            case "Fishing Instructor":
+                return ApplicationRole.FISHING_INSTRUCTOR;
+            default:
+                return ApplicationRole.ADMINISTRATOR;
+        }
+    }
+
 }

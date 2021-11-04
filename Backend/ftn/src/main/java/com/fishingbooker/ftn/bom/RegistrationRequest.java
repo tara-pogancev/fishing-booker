@@ -1,13 +1,16 @@
 package com.fishingbooker.ftn.bom;
 
-import com.fishingbooker.ftn.bom.users.*;
+import com.fishingbooker.ftn.bom.users.BoatOwner;
+import com.fishingbooker.ftn.bom.users.CottageOwner;
+import com.fishingbooker.ftn.bom.users.FishingInstructor;
+import com.fishingbooker.ftn.bom.users.RegisteredClient;
 import lombok.Data;
 
 import javax.persistence.*;
 
 @Entity
 @Data
-@Table(name="RegistrationRequest")
+@Table(name = "RegistrationRequest")
 public class RegistrationRequest extends DatabaseEntity {
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -26,10 +29,10 @@ public class RegistrationRequest extends DatabaseEntity {
     @JoinColumn(name = "boatOwner_id", referencedColumnName = "userId")
     private BoatOwner boatOwner;
 
-    @Column(name = "requestStatus",nullable = false)
-    private RequestApproval approved=RequestApproval.WAITING;
+    @Column(name = "requestStatus", nullable = false)
+    private RequestApproval approved = RequestApproval.WAITING;
 
-    @Column(name="causesOfRejection",nullable = true)
+    @Column(name = "causesOfRejection", nullable = true)
     private String causesOfRejection;
 
 }
