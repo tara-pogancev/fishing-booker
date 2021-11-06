@@ -79,11 +79,12 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
                     user = clientService.create(userDto);
                     break;
             }
-            //sendRegistrationConfirmationEmail(user);
+            sendRegistrationConfirmationEmail(user);
 
             Address userAddress = addressService.create(userDto);
             user.setUserAddress(userAddress);
             update(user);
+            System.out.println("User added!");
             return user;
         }
         return null;

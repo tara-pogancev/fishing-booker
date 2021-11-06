@@ -21,6 +21,11 @@ public class RegistrationController {
         return userService.create(userDto);
     }
 
+    @GetMapping("/isEmailUnique/{emailAddress}")
+    public Boolean isEmailUnique(@PathVariable String emailAddress) {
+        return (userService.findByEmail(emailAddress) == null);
+    }
+
     @GetMapping("/verify")
     public String verifyCustomer(@RequestParam(required = false) String token) throws Exception {
         if (StringUtils.isEmpty(token)) {
