@@ -39,8 +39,8 @@ public class Boat extends DatabaseEntity {
             inverseJoinColumns = @JoinColumn(name = "equipment_id"))
     private Set<NavigationalEquipment> navigationalEquipments;
 
-    @ManyToOne
-    @JoinColumn(name = "address")
+    @OneToOne
+    @JoinColumn(name = "address", referencedColumnName = "id")
     private Address address;
 
     @Column(name = "description", nullable = false)

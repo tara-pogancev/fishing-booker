@@ -1,6 +1,7 @@
 package com.fishingbooker.ftn.service.interfaces;
 
 import com.fishingbooker.ftn.bom.Address;
+import com.fishingbooker.ftn.dto.ApplicationUserDto;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ public interface AddressService {
 
     Address findById(Long id);
 
-    Address create(Address address);
+    Address create(ApplicationUserDto address);
 
     Address update(Address address);
 

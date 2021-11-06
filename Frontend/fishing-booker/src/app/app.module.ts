@@ -10,6 +10,10 @@ import { CottageCardComponent } from './components/cottage-card/cottage-card.com
 import { HeroTitleComponent } from './components/hero-title/hero-title.component';
 import { TruncatePipe } from './pipes/truncate-pipe';
 import { GapComponent } from './components/gap/gap.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { ThankYouRegistrationComponent } from './register/thank-you-registration/thank-you-registration.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +25,10 @@ import { GapComponent } from './components/gap/gap.component';
     CottageCardComponent,
     HeroTitleComponent,
     GapComponent,
-    //*Lista svih custom-made compotenti
+    NotFoundComponent,
+    LoginComponent,
+    RegisterComponent,
+    ThankYouRegistrationComponent
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],

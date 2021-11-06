@@ -17,7 +17,7 @@ public class ApplicationUserToDtoConverter implements Converter<ApplicationUser,
         dto.setName(source.getName());
         dto.setLastName(source.getLastName());
         dto.setEmail(source.getEmail());
-        dto.setUserAddress(source.getUserAddress().toString());
+        dto.setFullAddress(source.getUserAddress().toString());
         dto.setPhone(source.getPhone());
         dto.setRole(ApplicationRole.toString(source.getRole()));
         dto.setEnabled(source.getEnabled());

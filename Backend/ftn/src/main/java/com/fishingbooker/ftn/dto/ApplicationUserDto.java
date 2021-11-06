@@ -10,7 +10,10 @@ public class ApplicationUserDto {
     private String name;
     private String lastName;
     private String email;
-    private String userAddress;
+    private String fullAddress;
+    private String street;
+    private String city;
+    private String country;
     private String phone;
     private String role;
     private Boolean enabled = false;

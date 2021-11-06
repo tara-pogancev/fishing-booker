@@ -1,6 +1,8 @@
 package com.fishingbooker.ftn.service;
 
 import com.fishingbooker.ftn.bom.Address;
+import com.fishingbooker.ftn.conversion.DataConverter;
+import com.fishingbooker.ftn.dto.ApplicationUserDto;
 import com.fishingbooker.ftn.repository.AddressRepository;
 import com.fishingbooker.ftn.service.interfaces.AddressService;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AddressServiceImpl implements AddressService {
 
+    private final DataConverter converter;
     private final AddressRepository addressRepository;
 
     @Override
@@ -28,7 +31,8 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public Address create(Address address) {
+    public Address create(ApplicationUserDto dto) {
+        Address address = converter.convert(dto, Address.class);
         return addressRepository.save(address);
     }
 

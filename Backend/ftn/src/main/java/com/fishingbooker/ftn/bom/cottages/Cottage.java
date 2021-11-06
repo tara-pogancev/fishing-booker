@@ -19,8 +19,8 @@ public class Cottage extends DatabaseEntity {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "address")
+    @OneToOne
+    @JoinColumn(name = "address", referencedColumnName = "id")
     private Address address;
 
     @Column(name = "description", nullable = false)

@@ -1,5 +1,6 @@
 package com.fishingbooker.ftn.service;
 
+import com.fishingbooker.ftn.bom.Address;
 import com.fishingbooker.ftn.bom.users.ApplicationUser;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.ApplicationUserDto;
@@ -23,16 +24,17 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class ApplicationUserServiceImpl implements ApplicationUserService {
 
-    private final ApplicationUserRepository userRepository;
-    private final RegistrationTokenService tokenService;
-    private final RegistrationTokenRepository registrationTokenRepository;
-    private final EmailService emailService;
     private final DataConverter converter;
-    private final RegisteredClientService clientService;
-    private final AdministratorService administratorService;
+    private final EmailService emailService;
+    private final AddressService addressService;
     private final BoatOwnerService boatOwnerService;
+    private final RegistrationTokenService tokenService;
+    private final RegisteredClientService clientService;
     private final CottageOwnerService cottageOwnerService;
+    private final ApplicationUserRepository userRepository;
+    private final AdministratorService administratorService;
     private final FishingInstructorService fishingInstructorService;
+    private final RegistrationTokenRepository registrationTokenRepository;
 
     @Value("${site.base.url.https}")
     private String baseURL;
@@ -77,7 +79,11 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
                     user = clientService.create(userDto);
                     break;
             }
-            sendRegistrationConfirmationEmail(user);
+            //sendRegistrationConfirmationEmail(user);
+
+            Address userAddress = addressService.create(userDto);
+            user.setUserAddress(userAddress);
+            update(user);
             return user;
         }
         return null;

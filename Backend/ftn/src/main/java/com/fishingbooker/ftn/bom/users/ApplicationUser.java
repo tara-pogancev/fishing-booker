@@ -25,8 +25,8 @@ public class ApplicationUser extends DatabaseEntity {
     @Column(name = "email", unique = true, nullable = false)
     private String email;
 
-    @ManyToOne
-    @JoinColumn(name = "address")
+    @OneToOne
+    @JoinColumn(name = "address", referencedColumnName = "id")
     private Address userAddress;
 
     @Column(name = "phone", nullable = false)
