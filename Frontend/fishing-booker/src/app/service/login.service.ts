@@ -4,7 +4,7 @@ import {
   HttpResponse,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { server } from '../app-global';
 import { ActiveUser, AuthRequest } from '../model/user-model';
 import { Router } from '@angular/router';
@@ -22,10 +22,10 @@ export class LoginService {
     return this._http.post<any>(this.url, request);
   }
 
-  loginSetUser(user: ActiveUser) {
-    this.user = user;
+  loginSetUser(activeUser: ActiveUser) {
+    this.user = activeUser;
     console.log(this.user);
-    localStorage.setItem('currentUser', JSON.stringify(user));
+    localStorage.setItem('currentUser', JSON.stringify(this.user));
   }
 
   logout() {
