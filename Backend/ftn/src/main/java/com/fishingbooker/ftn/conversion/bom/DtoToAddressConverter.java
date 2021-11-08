@@ -1,7 +1,6 @@
 package com.fishingbooker.ftn.conversion.bom;
 
 import com.fishingbooker.ftn.bom.Address;
-import com.fishingbooker.ftn.bom.users.Administrator;
 import com.fishingbooker.ftn.dto.ApplicationUserDto;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;

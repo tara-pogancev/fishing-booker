@@ -14,8 +14,17 @@ export class UserModel {
 }
 
 export class AuthRequest {
+  constructor(public email: string = '', public password: string = '') {}
+}
+
+export class ActiveUser {
+  asObservable() {
+    throw new Error('Method not implemented.');
+  }
   constructor(
-    public email: string = '', 
-    public password: string = ''
+    public name: string = '',
+    public jwt: string = '',
+    public role: string = '',
+    public email: string = ''
   ) {}
 }

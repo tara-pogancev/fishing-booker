@@ -2,7 +2,6 @@ package com.fishingbooker.ftn.controller;
 
 
 import com.fishingbooker.ftn.bom.users.ApplicationUser;
-import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.security.JwtUtil;
 import com.fishingbooker.ftn.security.model.AuthenticationRequest;
 import com.fishingbooker.ftn.security.model.AuthenticationResponse;
@@ -16,7 +15,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -45,7 +43,7 @@ public class LoginController {
 
         final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getEmail());
         final String jwt = jwtUtil.generateToken(userDetails);
-        return ResponseEntity.ok(new AuthenticationResponse(jwt));
+        return ResponseEntity.ok(new AuthenticationResponse(jwt, user.getName(), user.getRole().toString(), user.getEmail()));
     }
 
 }

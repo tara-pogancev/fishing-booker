@@ -1,6 +1,5 @@
 package com.fishingbooker.ftn.conversion.bom;
 
-import com.fishingbooker.ftn.bom.Address;
 import com.fishingbooker.ftn.bom.users.Administrator;
 import com.fishingbooker.ftn.bom.users.ApplicationRole;
 import com.fishingbooker.ftn.dto.ApplicationUserDto;
