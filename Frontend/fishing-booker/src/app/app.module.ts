@@ -16,6 +16,8 @@ import { LoginComponent } from './components/pages/login/login.component';
 import { RegisterComponent } from './components/pages/register/register.component';
 import { ThankYouRegistrationComponent } from './components/pages/register/thank-you-registration/thank-you-registration.component';
 import { FormsModule } from '@angular/forms';
+import { UserHeaderComponent } from './components/header/user-header/user-header.component';
+import { NewUserHeaderComponent } from './components/header/new-user-header/new-user-header.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { FormsModule } from '@angular/forms';
     NotFoundComponent,
     LoginComponent,
     RegisterComponent,
-    ThankYouRegistrationComponent,    
+    ThankYouRegistrationComponent,
+    UserHeaderComponent,
+    NewUserHeaderComponent,    
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],

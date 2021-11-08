@@ -1,6 +1,6 @@
 <nav class="navbar container">
   <div class="navbar-brand">
-    <a class="navbar-item navbar-logo">
+    <a class="navbar-item navbar-logo" href="/">
       <img src="assets/icons/logo.png" height="50px" width="50px" />
       <!--<h1 class="logo-font">Fishing Booker</h1> -->
     </a>
@@ -38,16 +38,12 @@
 
     <div class="navbar-end">
       <div class="navbar-item">
-        <div class="field is-grouped">
-          <p class="control">
-            <a class="bd-tw-button button" href="/login">Login</a>
-          </p>
-          <p class="control">
-            <a class="button is-primary" href="/register"
-              ><b>REGISTER TODAY</b></a
-            >
-          </p>
+        <div *ngIf="!isActive; else activeUser">
+          <new-user-header></new-user-header>
         </div>
+        <ng-template #activeUser>
+          <user-header></user-header>
+        </ng-template>
       </div>
     </div>
   </div>

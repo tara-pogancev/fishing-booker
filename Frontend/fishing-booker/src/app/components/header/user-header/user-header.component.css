@@ -1,0 +1,7 @@
+.navbar {
+  min-height: 4rem;
+}
+
+.navbar-item img {
+  max-height: 5rem;
+}

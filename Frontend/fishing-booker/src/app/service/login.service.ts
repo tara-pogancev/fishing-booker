@@ -30,7 +30,7 @@ export class LoginService {
   }
 
   logout() {
-    this.user.role = 'LOGGED_OUT';
+    this.user = new ActiveUser();
     localStorage.setItem('currentUser', JSON.stringify(this.user));
     this.route.navigate(['']);
   }
