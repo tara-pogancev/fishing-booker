@@ -12,3 +12,10 @@ export class UserModel {
     public city: string = ''
   ) {}
 }
+
+export class AuthRequest {
+  constructor(
+    public email: string = '', 
+    public password: string = ''
+  ) {}
+}

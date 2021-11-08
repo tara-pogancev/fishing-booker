@@ -13,6 +13,7 @@ import com.fishingbooker.ftn.security.registration.RegistrationTokenService;
 import com.fishingbooker.ftn.service.interfaces.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.util.StringUtils;
 
@@ -83,6 +84,7 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
 
             Address userAddress = addressService.create(userDto);
             user.setUserAddress(userAddress);
+            user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
             update(user);
             System.out.println("User added!");
             return user;

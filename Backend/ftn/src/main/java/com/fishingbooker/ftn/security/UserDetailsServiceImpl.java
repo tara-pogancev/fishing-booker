@@ -24,14 +24,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     @Transactional
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        // todo: jwt
-        //var user = userRepository.get(username);
-        ApplicationUser user = null;
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        ApplicationUser user = userService.findByEmail(email);
         if (user == null) {
-            throw new UsernameNotFoundException(username);
+            throw new UsernameNotFoundException(email);
         }
-        return new User(username, user.getPassword(), getRole(user.getRole()));
+        return new User(email, user.getPassword(), getRole(user.getRole()));
     }
 
     private List<SimpleGrantedAuthority> getRole(ApplicationRole role) {

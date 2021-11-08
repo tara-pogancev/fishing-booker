@@ -2,7 +2,7 @@ import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit, ɵgetInjectableDef } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserModel } from '../../../model/user-model';
-import { RegistrationService } from '../../../service/registration/registration.service';
+import { RegistrationService } from '../../../service/registration.service';
 
 @Component({
   selector: 'app-register',
