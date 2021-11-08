@@ -7,7 +7,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { server } from '../app-global';
 import { ActiveUser, AuthRequest } from '../model/user-model';
-import { catchError, map, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 @Injectable({

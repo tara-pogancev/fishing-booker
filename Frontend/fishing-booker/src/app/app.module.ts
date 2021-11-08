@@ -18,6 +18,11 @@ import { ThankYouRegistrationComponent } from './components/pages/register/thank
 import { FormsModule } from '@angular/forms';
 import { UserHeaderComponent } from './components/header/user-header/user-header.component';
 import { NewUserHeaderComponent } from './components/header/new-user-header/new-user-header.component';
+import { ClientDashboardComponent } from './components/client/client-dashboard/client-dashboard.component';
+import { BoatOwnerDashboardComponent } from './components/boats/boat-owner-dashboard/boat-owner-dashboard.component';
+import { CottageOwnerDashboardComponent } from './components/cottages/cottage-owner-dashboard/cottage-owner-dashboard.component';
+import { FishingInstructorDashboardComponent } from './components/fishing/fishing-instructor-dashboard/fishing-instructor-dashboard.component';
+import { AdminDashboardComponent } from './components/admin/admin-dashboard/admin-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +39,12 @@ import { NewUserHeaderComponent } from './components/header/new-user-header/new-
     RegisterComponent,
     ThankYouRegistrationComponent,
     UserHeaderComponent,
-    NewUserHeaderComponent,    
+    NewUserHeaderComponent,
+    ClientDashboardComponent,
+    BoatOwnerDashboardComponent,
+    CottageOwnerDashboardComponent,
+    FishingInstructorDashboardComponent,
+    AdminDashboardComponent,    
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],

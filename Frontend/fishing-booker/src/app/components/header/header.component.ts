@@ -21,4 +21,7 @@ export class HeaderComponent implements OnInit {
     }
     this.isActive = this.user.role != 'LOGGED_OUT';
   }
+
+
+  
 }
