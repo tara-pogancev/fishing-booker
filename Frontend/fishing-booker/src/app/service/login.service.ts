@@ -26,11 +26,12 @@ export class LoginService {
     this.user = activeUser;
     console.log(this.user);
     localStorage.setItem('currentUser', JSON.stringify(this.user));
+    window.location.href = '/';
   }
 
   logout() {
     this.user = new ActiveUser();
     localStorage.setItem('currentUser', JSON.stringify(this.user));
-    this.route.navigate(['']);
+    window.location.href = '/';
   }
 }

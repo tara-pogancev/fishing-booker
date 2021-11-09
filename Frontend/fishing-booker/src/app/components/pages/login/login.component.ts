@@ -30,8 +30,6 @@ export class LoginComponent implements OnInit {
   successfulLogin(data: ActiveUser) {
     this.errorMessage = '';
     console.log(data);
-    alert('Success!');
     this.loginService.loginSetUser(data);
-    this.route.navigate(['']);
   }
 }
