@@ -9,7 +9,7 @@ export class CottageCardComponent implements OnInit {
   @Input() id: string = '';
   @Input() title: string = 'Title';
   @Input() owner: string = 'John Smith';
-  @Input() img: string = '/assets/images/boat.jpg';
+  @Input() img: string = '/assets/images/cottage-interior/interior1.jpeg';
   @Input() description: string = 'Description goes here';
 
   constructor() {}

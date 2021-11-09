@@ -23,6 +23,8 @@ import { BoatOwnerDashboardComponent } from './components/boats/boat-owner-dashb
 import { CottageOwnerDashboardComponent } from './components/cottages/cottage-owner-dashboard/cottage-owner-dashboard.component';
 import { FishingInstructorDashboardComponent } from './components/fishing/fishing-instructor-dashboard/fishing-instructor-dashboard.component';
 import { AdminDashboardComponent } from './components/admin/admin-dashboard/admin-dashboard.component';
+import { BoatCardComponent } from './components/boats/boat-card/boat-card.component';
+import { AdventureCardComponent } from './components/fishing/adventure-card/adventure-card.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { AdminDashboardComponent } from './components/admin/admin-dashboard/admi
     BoatOwnerDashboardComponent,
     CottageOwnerDashboardComponent,
     FishingInstructorDashboardComponent,
-    AdminDashboardComponent,    
+    AdminDashboardComponent,
+    BoatCardComponent,
+    AdventureCardComponent,    
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
