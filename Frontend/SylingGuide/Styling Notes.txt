@@ -2,7 +2,7 @@ Color palette
 ---------------
 White: FBF9F8
 Light Blue: 87C6F0
-Sky Blue: 459FBD
+Sky Blue: 459FDB
 Medium Blue: 37F0B4
 Gray Blue: 3A4E66
 Text Black: 191919

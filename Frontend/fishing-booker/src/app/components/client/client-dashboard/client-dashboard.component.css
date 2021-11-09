@@ -1,0 +1,25 @@
+.db-container {
+  height: calc(100vh - 66px);
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.side-menu {
+  background-color: #d6eeff;
+}
+
+.menu-label {
+  font-weight: 800;
+  font-size: large;
+}
+
+.is-active {
+  background-color: #459fdb !important;
+}
+
+.db-content {
+  width: 100%;
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: scroll;
+}
