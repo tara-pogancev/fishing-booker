@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Client } from 'src/app/model/client-model';
 import { UserModel } from 'src/app/model/user-model';
+import { ClientService } from 'src/app/service/client.service';
 import { UserHeaderComponent } from '../../header/user-header/user-header.component';
 
 @Component({
@@ -8,10 +10,18 @@ import { UserHeaderComponent } from '../../header/user-header/user-header.compon
   styleUrls: ['./client-dashboard.component.css'],
 })
 export class ClientDashboardComponent implements OnInit {
-  user: UserModel = new UserModel();
+  client: Client = new Client();
   activeTab: string = 'PERSONAL_INFO';
 
-  constructor() {}
+  constructor(private clientService: ClientService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.clientService
+      .getCurrentClient()
+      .subscribe((data: Client) => (this.client = data));
+  }
+
+  changeTab(tabName: string) {
+    this.activeTab = tabName;
+  }
 }

@@ -3,42 +3,129 @@
     <aside class="menu">
       <p class="menu-label">General</p>
       <ul class="menu-list">
-        <li><a>Dashboard</a></li>
-        <li><a>Customers</a></li>
-      </ul>
-      <p class="menu-label">Administration</p>
-      <ul class="menu-list">
-        <li><a>Team Settings</a></li>
         <li>
-          <a class="is-active">Manage Your Team</a>
+          <a
+            [ngClass]="{ 'is-active': activeTab === 'PERSONAL_INFO' }"
+            (click)="changeTab('PERSONAL_INFO')"
+            >Personal Info</a
+          >
+        </li>
+        <li>
+          <a
+            [ngClass]="{ 'is-active': activeTab === 'SUBSCRIPTIONS' }"
+            (click)="changeTab('SUBSCRIPTIONS')"
+            >My Subscriptions</a
+          >
+        </li>
+        <li>
+          <a
+            [ngClass]="{ 'is-active': activeTab === 'SETTINGS' }"
+            (click)="changeTab('SETTINGS')"
+            >Settings</a
+          >
+        </li>
+      </ul>
+      <p class="menu-label">Find Reservations</p>
+      <ul class="menu-list">
+        <li>
+          <a
+            [ngClass]="{ 'is-active': activeTab === 'COTTAGE_RESERVATIONS' }"
+            (click)="changeTab('COTTAGE_RESERVATIONS')"
+            >Cottage Reservations</a
+          >
+        </li>
+        <li>
+          <a
+            [ngClass]="{ 'is-active': activeTab === 'BOAT_RESERVATIONS' }"
+            (click)="changeTab('BOAT_RESERVATIONS')"
+            >Boat Reservations</a
+          >
+        </li>
+        <li>
+          <a
+            [ngClass]="{ 'is-active': activeTab === 'FISHING_RESERVATIONS' }"
+            (click)="changeTab('FISHING_RESERVATIONS')"
+            >Fishing Adventure Reservations</a
+          >
+        </li>
+        <li>
+          <a
+            [ngClass]="{ 'is-active': activeTab === 'SPECIAL_OFFERS' }"
+            (click)="changeTab('SPECIAL_OFFERS')"
+            >Special Offers</a
+          >
+        </li>
+        <li>
+          <a>Past Reservations</a>
           <ul>
-            <li><a>Members</a></li>
-            <li><a>Plugins</a></li>
-            <li><a>Add a member</a></li>
+            <li>
+              <a
+                [ngClass]="{ 'is-active': activeTab === 'PAST_COTTAGE' }"
+                (click)="changeTab('PAST_COTTAGE')"
+                >Cottage Reservations</a
+              >
+            </li>
+            <li>
+              <a
+                [ngClass]="{ 'is-active': activeTab === 'PAST_BOAT' }"
+                (click)="changeTab('PAST_BOAT')"
+                >Boat Reservations</a
+              >
+            </li>
+            <li>
+              <a
+                [ngClass]="{ 'is-active': activeTab === 'PAST_FISHING' }"
+                (click)="changeTab('PAST_FISHING')"
+                >Fishing Adventure Reservations</a
+              >
+            </li>
           </ul>
         </li>
-        <li><a>Invitations</a></li>
-        <li><a>Cloud Storage Environment Settings</a></li>
-        <li><a>Authentication</a></li>
       </ul>
-      <p class="menu-label">Transactions</p>
+      <p class="menu-label">My Account</p>
       <ul class="menu-list">
-        <li><a>Payments</a></li>
-        <li><a>Transfers</a></li>
-        <li><a>Balance</a></li>
+        <li>
+          <a
+            [ngClass]="{ 'is-active': activeTab === 'REVIEW' }"
+            (click)="changeTab('REVIEW')"
+            >Leave a Review</a
+          >
+        </li>
+        <li>
+          <a
+            [ngClass]="{ 'is-active': activeTab === 'COMPLAINT' }"
+            (click)="changeTab('COMPLAINT')"
+            >Leave a Complaint</a
+          >
+        </li>
+        <li>
+          <a
+            [ngClass]="{ 'is-active': activeTab === 'REVIEW_COMPLAINT' }"
+            (click)="changeTab('REVIEW_COMPLAINT')"
+            >My Reviews and Complaints</a
+          >
+        </li>
+        <li>
+          <a
+            [ngClass]="{ 'is-active': activeTab === 'DELETE_ACCOUNT' }"
+            (click)="changeTab('DELETE_ACCOUNT')"
+            >Delete my Account</a
+          >
+        </li>
       </ul>
     </aside>
   </div>
+
   <div class="column db-content">
     <div class="hero is-primary">
       <div class="hero-body">
-        <p class="title">Welcome, Tara</p>
+        <p class="title">Welcome, {{ client.name }} {{ client.lastName }}</p>
         <p class="subtitle">Client Dashboard</p>
       </div>
     </div>
     <div class="m-5">
       <div *ngIf="activeTab == 'PERSONAL_INFO'">
-        <app-personal-info></app-personal-info>
+        <app-personal-info [client]="client"></app-personal-info>
       </div>
     </div>
   </div>

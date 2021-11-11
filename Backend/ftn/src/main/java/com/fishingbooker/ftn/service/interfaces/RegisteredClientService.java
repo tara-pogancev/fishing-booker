@@ -2,15 +2,20 @@ package com.fishingbooker.ftn.service.interfaces;
 
 import com.fishingbooker.ftn.bom.users.RegisteredClient;
 import com.fishingbooker.ftn.dto.ApplicationUserDto;
+import com.fishingbooker.ftn.dto.RegisteredClientDto;
 
 import java.util.List;
 
 public interface RegisteredClientService {
 
-    List<RegisteredClient> findAll();
+    List<RegisteredClientDto> findAll();
 
-    RegisteredClient findById(Long id);
+    RegisteredClientDto findById(Long id);
+
+    RegisteredClientDto findByEmail(String email);
 
     RegisteredClient create(ApplicationUserDto userDto);
+
+    void update(RegisteredClientDto userDto);
 
 }

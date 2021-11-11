@@ -7,6 +7,7 @@ export class UserModel {
     public passwordConfirm: string = '',
     public phone: string = '',
     public role: string = 'Registered Client',
+    public fullAddress: string = '',
     public street: string = '',
     public country: string = '',
     public city: string = ''
@@ -22,6 +23,7 @@ export class ActiveUser {
     throw new Error('Method not implemented.');
   }
   constructor(
+    public id: number = -1,
     public name: string = '',
     public jwt: string = '',
     public role: string = 'LOGGED_OUT',

@@ -1,6 +1,7 @@
 import {
   HttpClient,
   HttpErrorResponse,
+  HttpHeaders,
   HttpResponse,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -33,5 +34,18 @@ export class LoginService {
     this.user = new ActiveUser();
     localStorage.setItem('currentUser', JSON.stringify(this.user));
     window.location.href = '/';
+  }
+
+  getCurrentUser(): ActiveUser {
+    return JSON.parse(localStorage.getItem('currentUser')!);
+  }
+
+  getHeaders() {
+    const jwt = this.getCurrentUser().jwt;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ` + jwt,
+    });
+    return headers;
   }
 }
