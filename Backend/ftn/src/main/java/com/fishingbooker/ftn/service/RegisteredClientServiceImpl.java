@@ -1,7 +1,6 @@
 package com.fishingbooker.ftn.service;
 
 import com.fishingbooker.ftn.bom.Address;
-import com.fishingbooker.ftn.bom.users.ApplicationRole;
 import com.fishingbooker.ftn.bom.users.RegisteredClient;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.ApplicationUserDto;
@@ -10,6 +9,7 @@ import com.fishingbooker.ftn.repository.AddressRepository;
 import com.fishingbooker.ftn.repository.RegisteredClientRepository;
 import com.fishingbooker.ftn.service.interfaces.RegisteredClientService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -57,7 +57,7 @@ public class RegisteredClientServiceImpl implements RegisteredClientService {
     @Override
     public void update(RegisteredClientDto userDto) {
         RegisteredClient client = clientRepository.get(userDto.getId());
-        client.setPassword(userDto.getPassword());
+        client.setPassword(new BCryptPasswordEncoder().encode(userDto.getPassword()));
         client.setName(userDto.getName());
         client.setLastName(userDto.getLastName());
         client.setPhone(userDto.getPhone());

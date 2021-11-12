@@ -36,7 +36,8 @@ export class RegisterComponent implements OnInit {
       this.user.city != '' &&
       this.user.country != '' &&
       this.user.password != '' &&
-      this.user.passwordConfirm != '';
+      this.user.passwordConfirm != '' &&
+      this.validPassword;
 
     if (this.validForm) {
       this.registrationService

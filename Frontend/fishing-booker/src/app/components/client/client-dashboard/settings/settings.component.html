@@ -1,46 +1,7 @@
-<gap></gap>
-<div class="is-flex content is-medium my-5 is-justify-content-center">
-  <div class="box p-6 max-width-800">
-    <h1 class="title">Register to Fishing Booker</h1>
-
-    <hr />
-    <h4>Contact Details</h4>
-
-    <div class="field">
-      <label class="label">Email:</label>
-      <div class="control">
-        <input
-          class="input"
-          type="text"
-          placeholder="Email input"
-          [(ngModel)]="user.email"
-          [class.is-danger]="!validEmail"
-        />
-      </div>
-      <p
-        class="help is-danger"
-        [ngStyle]="{
-          visibility: !validEmail ? 'visible' : 'hidden'
-        }"
-      >
-        This email is already taken!
-      </p>
-    </div>
-
-    <div class="field">
-      <label class="label">Contact Phone:</label>
-      <div class="control">
-        <input
-          class="input"
-          type="text"
-          placeholder="Phone input"
-          [(ngModel)]="user.phone"
-        />
-      </div>
-    </div>
-
-    <gap height="40"></gap>
-    <hr />
+<div class="content is-medium">
+  <h1 class="title">Settings</h1>
+  <hr />
+  <div class="box p-6">
     <h4>Personal Details</h4>
 
     <div class="columns">
@@ -66,6 +27,19 @@
               type="text"
               placeholder="Last name input"
               [(ngModel)]="user.lastName"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="field">
+          <label class="label">Contact Phone:</label>
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="Phone input"
+              [(ngModel)]="user.phone"
             />
           </div>
         </div>
@@ -117,11 +91,14 @@
     <gap height="40"></gap>
     <hr />
     <h4>Account Info</h4>
+    <p class="is-size-6 mb-5">
+      (enter your new password, or retype the current one)
+    </p>
 
     <div class="columns">
       <div class="column">
         <div class="field">
-          <label class="label">Enter Password:</label>
+          <label class="label">Enter New Password:</label>
           <div class="control">
             <input
               class="input"
@@ -154,21 +131,6 @@
           >
             Passwords do not match!
           </p>
-        </div>
-      </div>
-      <div class="column">
-        <div class="field">
-          <label class="label">Acount Type:</label>
-          <div class="control">
-            <div class="select">
-              <select [(ngModel)]="user.role">
-                <option value="Registered Client">Client</option>
-                <option value="Boat Owner">Cottage Owner</option>
-                <option value="Cottage Owner">Boat Owner</option>
-                <option value="Fishing Instructor">Fishing Instructor</option>
-              </select>
-            </div>
-          </div>
         </div>
       </div>
     </div>

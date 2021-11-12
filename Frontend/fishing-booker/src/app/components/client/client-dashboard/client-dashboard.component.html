@@ -12,16 +12,16 @@
         </li>
         <li>
           <a
-            [ngClass]="{ 'is-active': activeTab === 'SUBSCRIPTIONS' }"
-            (click)="changeTab('SUBSCRIPTIONS')"
-            >My Subscriptions</a
+            [ngClass]="{ 'is-active': activeTab === 'SETTINGS' }"
+            (click)="changeTab('SETTINGS')"
+            >Settings</a
           >
         </li>
         <li>
           <a
-            [ngClass]="{ 'is-active': activeTab === 'SETTINGS' }"
-            (click)="changeTab('SETTINGS')"
-            >Settings</a
+            [ngClass]="{ 'is-active': activeTab === 'SUBSCRIPTIONS' }"
+            (click)="changeTab('SUBSCRIPTIONS')"
+            >My Subscriptions</a
           >
         </li>
       </ul>
@@ -126,6 +126,9 @@
     <div class="m-5">
       <div *ngIf="activeTab == 'PERSONAL_INFO'">
         <app-personal-info [client]="client"></app-personal-info>
+      </div>
+      <div *ngIf="activeTab == 'SETTINGS'">
+        <app-settings [user]="client"></app-settings>
       </div>
     </div>
   </div>

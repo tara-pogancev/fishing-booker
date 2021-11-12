@@ -25,4 +25,9 @@ export class ClientService {
     const headers = this.loginService.getHeaders();
     return this._http.get<Client>(url, { headers: headers });
   }
+
+  updateClientData(client: Client) {
+    const headers = this.loginService.getHeaders();
+    return this._http.put<any>(this.url, client, { headers: headers });
+  }
 }

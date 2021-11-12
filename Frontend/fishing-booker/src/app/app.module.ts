@@ -26,6 +26,7 @@ import { AdminDashboardComponent } from './components/admin/admin-dashboard/admi
 import { BoatCardComponent } from './components/boats/boat-card/boat-card.component';
 import { AdventureCardComponent } from './components/fishing/adventure-card/adventure-card.component';
 import { PersonalInfoComponent } from './components/client/client-dashboard/personal-info/personal-info.component';
+import { SettingsComponent } from './components/client/client-dashboard/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { PersonalInfoComponent } from './components/client/client-dashboard/pers
     AdminDashboardComponent,
     BoatCardComponent,
     AdventureCardComponent,
-    PersonalInfoComponent,    
+    PersonalInfoComponent,
+    SettingsComponent,    
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],

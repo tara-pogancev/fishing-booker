@@ -1,11 +1,8 @@
 package com.fishingbooker.ftn.controller;
 
-import com.fishingbooker.ftn.bom.Address;
 import com.fishingbooker.ftn.dto.RegisteredClientDto;
 import com.fishingbooker.ftn.service.interfaces.RegisteredClientService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
