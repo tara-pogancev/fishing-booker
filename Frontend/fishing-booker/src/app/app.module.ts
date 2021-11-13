@@ -27,6 +27,19 @@ import { BoatCardComponent } from './components/boats/boat-card/boat-card.compon
 import { AdventureCardComponent } from './components/fishing/adventure-card/adventure-card.component';
 import { PersonalInfoComponent } from './components/client/client-dashboard/personal-info/personal-info.component';
 import { SettingsComponent } from './components/client/client-dashboard/settings/settings.component';
+import { SubscriptionsComponent } from './components/client/client-dashboard/subscriptions/subscriptions.component';
+import { CottageReservationsComponent } from './components/client/client-dashboard/cottage-reservations/cottage-reservations.component';
+import { BoatReservationsComponent } from './components/client/client-dashboard/boat-reservations/boat-reservations.component';
+import { FishingReservationsComponent } from './components/client/client-dashboard/fishing-reservations/fishing-reservations.component';
+import { SpecialOffersComponent } from './components/client/client-dashboard/special-offers/special-offers.component';
+import { PastCottageComponent } from './components/client/client-dashboard/past-cottage/past-cottage.component';
+import { PastBoatComponent } from './components/client/client-dashboard/past-boat/past-boat.component';
+import { PastFishingComponent } from './components/client/client-dashboard/past-fishing/past-fishing.component';
+import { ClientReviewsComponent } from './components/client/client-dashboard/client-reviews/client-reviews.component';
+import { ClientComplaintsComponent } from './components/client/client-dashboard/client-complaints/client-complaints.component';
+import { MyReviewsAndComplaintsComponent } from './components/client/client-dashboard/my-reviews-and-complaints/my-reviews-and-complaints.component';
+import { ClientDeleteAccountComponent } from './components/client/client-dashboard/client-delete-account/client-delete-account.component';
+import { SubscriptionComponentComponent } from './components/client/subscription-component/subscription-component.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +65,20 @@ import { SettingsComponent } from './components/client/client-dashboard/settings
     BoatCardComponent,
     AdventureCardComponent,
     PersonalInfoComponent,
-    SettingsComponent,    
+    SettingsComponent,
+    SubscriptionsComponent,
+    CottageReservationsComponent,
+    BoatReservationsComponent,
+    FishingReservationsComponent,
+    SpecialOffersComponent,
+    PastCottageComponent,
+    PastBoatComponent,
+    PastFishingComponent,
+    ClientReviewsComponent,
+    ClientComplaintsComponent,
+    MyReviewsAndComplaintsComponent,
+    ClientDeleteAccountComponent,
+    SubscriptionComponentComponent,    
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],

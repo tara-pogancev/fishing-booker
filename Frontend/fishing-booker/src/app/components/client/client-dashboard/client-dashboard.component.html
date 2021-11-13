@@ -56,30 +56,32 @@
           >
         </li>
         <li>
-          <a>Past Reservations</a>
-          <ul>
-            <li>
-              <a
-                [ngClass]="{ 'is-active': activeTab === 'PAST_COTTAGE' }"
-                (click)="changeTab('PAST_COTTAGE')"
-                >Cottage Reservations</a
-              >
-            </li>
-            <li>
-              <a
-                [ngClass]="{ 'is-active': activeTab === 'PAST_BOAT' }"
-                (click)="changeTab('PAST_BOAT')"
-                >Boat Reservations</a
-              >
-            </li>
-            <li>
-              <a
-                [ngClass]="{ 'is-active': activeTab === 'PAST_FISHING' }"
-                (click)="changeTab('PAST_FISHING')"
-                >Fishing Adventure Reservations</a
-              >
-            </li>
-          </ul>
+          <div class="mt-4">
+            <b>Past Reservations</b>
+            <ul>
+              <li>
+                <a
+                  [ngClass]="{ 'is-active': activeTab === 'PAST_COTTAGE' }"
+                  (click)="changeTab('PAST_COTTAGE')"
+                  >Cottage Reservations</a
+                >
+              </li>
+              <li>
+                <a
+                  [ngClass]="{ 'is-active': activeTab === 'PAST_BOAT' }"
+                  (click)="changeTab('PAST_BOAT')"
+                  >Boat Reservations</a
+                >
+              </li>
+              <li>
+                <a
+                  [ngClass]="{ 'is-active': activeTab === 'PAST_FISHING' }"
+                  (click)="changeTab('PAST_FISHING')"
+                  >Fishing Adventure Reservations</a
+                >
+              </li>
+            </ul>
+          </div>
         </li>
       </ul>
       <p class="menu-label">My Account</p>
@@ -129,6 +131,46 @@
       </div>
       <div *ngIf="activeTab == 'SETTINGS'">
         <app-settings [user]="client"></app-settings>
+      </div>
+      <div *ngIf="activeTab == 'SUBSCRIPTIONS'">
+        <app-subscriptions [user]="client"></app-subscriptions>
+      </div>
+      <div *ngIf="activeTab == 'COTTAGE_RESERVATIONS'">
+        <client-cottage-reservations
+          [user]="client"
+        ></client-cottage-reservations>
+      </div>
+      <div *ngIf="activeTab == 'BOAT_RESERVATIONS'">
+        <client-boat-reservations [user]="client"></client-boat-reservations>
+      </div>
+      <div *ngIf="activeTab == 'FISHING_RESERVATIONS'">
+        <client-fishing-reservations
+          [user]="client"
+        ></client-fishing-reservations>
+      </div>
+      <div *ngIf="activeTab == 'SPECIAL_OFFERS'">
+        <client-special-offers [user]="client"></client-special-offers>
+      </div>
+      <div *ngIf="activeTab == 'PAST_COTTAGE'">
+        <client-past-cottage [user]="client"></client-past-cottage>
+      </div>
+      <div *ngIf="activeTab == 'PAST_BOAT'">
+        <client-past-boat [user]="client"></client-past-boat>
+      </div>
+      <div *ngIf="activeTab == 'PAST_FISHING'">
+        <client-past-fishing [user]="client"></client-past-fishing>
+      </div>
+      <div *ngIf="activeTab == 'REVIEW'">
+        <client-reviews [user]="client"></client-reviews>
+      </div>
+      <div *ngIf="activeTab == 'COMPLAINT'">
+        <client-complaints [user]="client"></client-complaints>
+      </div>
+      <div *ngIf="activeTab == 'REVIEW_COMPLAINT'">
+        <my-reviews-and-complaints [user]="client"></my-reviews-and-complaints>
+      </div>
+      <div *ngIf="activeTab == 'DELETE_ACCOUNT'">
+        <client-delete-account [user]="client"></client-delete-account>
       </div>
     </div>
   </div>

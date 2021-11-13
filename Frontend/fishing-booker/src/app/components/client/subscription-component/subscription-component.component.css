@@ -1,0 +1,19 @@
+.subscription {
+  border: 1px black;
+  border-radius: 20px;
+  background-color: rgb(242, 247, 250);
+  min-height: 100px;
+}
+
+.media-left {
+  width: 48px;
+  height: 48px;
+}
+
+.image {
+  margin: 0 !important;
+}
+
+.tag {
+  margin-right: 10px;
+}
