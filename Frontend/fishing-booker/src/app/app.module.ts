@@ -40,6 +40,9 @@ import { ClientComplaintsComponent } from './components/client/client-dashboard/
 import { MyReviewsAndComplaintsComponent } from './components/client/client-dashboard/my-reviews-and-complaints/my-reviews-and-complaints.component';
 import { ClientDeleteAccountComponent } from './components/client/client-dashboard/client-delete-account/client-delete-account.component';
 import { SubscriptionComponentComponent } from './components/client/subscription-component/subscription-component.component';
+import { ReservationCardComponent } from './components/client/reservation-card/reservation-card.component';
+import { SearchFieldComponent } from './components/client/search-field/search-field.component';
+import { ReservationSearchComponent } from './components/client/reservation-search/reservation-search.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +81,10 @@ import { SubscriptionComponentComponent } from './components/client/subscription
     ClientComplaintsComponent,
     MyReviewsAndComplaintsComponent,
     ClientDeleteAccountComponent,
-    SubscriptionComponentComponent,    
+    SubscriptionComponentComponent,
+    ReservationCardComponent,
+    SearchFieldComponent,
+    ReservationSearchComponent,    
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],

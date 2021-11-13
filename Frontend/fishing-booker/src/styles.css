@@ -43,6 +43,7 @@ border: 1px solid #fff;
 ------------------------------------------------
 ----------------------------------------------*/
 @import "bulma/css/bulma.css";
+@import "~font-awesome/css/font-awesome.css";
 
 * {
   margin: 0;
@@ -120,6 +121,10 @@ html {
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 500px;
+}
+
+.tag {
+  margin-right: 10px;
 }
 
 /*----------------------------------------------

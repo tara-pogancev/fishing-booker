@@ -1,0 +1,21 @@
+.tag {
+  margin-right: 10px;
+}
+
+.button-tag {
+  padding: 0px !important;
+  font-size: 1rem;
+  height: auto !important;
+  border: 0px;
+  background-color: transparent;
+  color: white;
+}
+
+.button-tag .tag-icon {
+  color: white;
+  margin-left: 10px;
+}
+
+.unsellected {
+  background-color: rgb(187, 187, 187) !important;
+}
