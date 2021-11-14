@@ -10,7 +10,8 @@ export class UserModel {
     public fullAddress: string = '',
     public street: string = '',
     public country: string = '',
-    public city: string = ''
+    public city: string = '',
+    public registrationExplanation=''
   ) {}
 }
 

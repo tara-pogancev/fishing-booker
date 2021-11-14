@@ -13,6 +13,7 @@ export class RegisterComponent implements OnInit {
   validPassword: boolean = true;
   validEmail: boolean = true;
   validForm: boolean = true;
+  selectedClient:boolean=true;
 
   constructor(
     private registrationService: RegistrationService,
@@ -56,5 +57,13 @@ export class RegisterComponent implements OnInit {
       .register(this.user)
       .subscribe((data) => console.log(data));
     this.route.navigate(['thank-you-registration']);
+  }
+
+  changeRegistrationType(){
+    if (this.user.role==='Registered Client'){
+      this.selectedClient=true;
+    }else{
+      this.selectedClient=false;
+    }
   }
 }
