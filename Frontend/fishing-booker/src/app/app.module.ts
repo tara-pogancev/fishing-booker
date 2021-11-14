@@ -43,6 +43,13 @@ import { SubscriptionComponentComponent } from './components/client/subscription
 import { ReservationCardComponent } from './components/client/reservation-card/reservation-card.component';
 import { SearchFieldComponent } from './components/client/search-field/search-field.component';
 import { ReservationSearchComponent } from './components/client/reservation-search/reservation-search.component';
+import { BrowseBoatsComponent } from './components/pages/browse-boats/browse-boats.component';
+import { BrowseCottagesComponent } from './components/pages/browse-cottages/browse-cottages.component';
+import { BrowseFishingComponent } from './components/pages/browse-fishing/browse-fishing.component';
+import { BrowseSpecialOffersComponent } from './components/pages/browse-special-offers/browse-special-offers.component';
+import { SpecialOfferCardComponent } from './components/special-offer-card/special-offer-card.component';
+import { ReviewsPageComponent } from './components/pages/reviews-page/reviews-page.component';
+import { BrowseCardComponent } from './components/browse-card/browse-card.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +91,14 @@ import { ReservationSearchComponent } from './components/client/reservation-sear
     SubscriptionComponentComponent,
     ReservationCardComponent,
     SearchFieldComponent,
-    ReservationSearchComponent,    
+    ReservationSearchComponent,
+    BrowseBoatsComponent,
+    BrowseCottagesComponent,
+    BrowseFishingComponent,
+    BrowseSpecialOffersComponent,
+    SpecialOfferCardComponent,
+    ReviewsPageComponent,
+    BrowseCardComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],

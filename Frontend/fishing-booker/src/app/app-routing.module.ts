@@ -10,11 +10,21 @@ import { BoatOwnerDashboardComponent } from './components/boats/boat-owner-dashb
 import { ClientDashboardComponent } from './components/client/client-dashboard/client-dashboard.component';
 import { FishingInstructorDashboardComponent } from './components/fishing/fishing-instructor-dashboard/fishing-instructor-dashboard.component';
 import { CottageOwnerDashboardComponent } from './components/cottages/cottage-owner-dashboard/cottage-owner-dashboard.component';
+import { BrowseBoatsComponent } from './components/pages/browse-boats/browse-boats.component';
+import { BrowseCottagesComponent } from './components/pages/browse-cottages/browse-cottages.component';
+import { BrowseFishingComponent } from './components/pages/browse-fishing/browse-fishing.component';
+import { BrowseSpecialOffersComponent } from './components/pages/browse-special-offers/browse-special-offers.component';
+import { ReviewsPageComponent } from './components/pages/reviews-page/reviews-page.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'thank-you-registration', component: ThankYouRegistrationComponent },
+  { path: 'boats', component: BrowseBoatsComponent },
+  { path: 'cottages', component: BrowseCottagesComponent },
+  { path: 'fishing', component: BrowseFishingComponent },
+  { path: 'special-offers', component: BrowseSpecialOffersComponent },
+  { path: 'reviews', component: ReviewsPageComponent },
   { path: 'boat-owner-db', component: BoatOwnerDashboardComponent },
   { path: 'admin-db', component: AdminDashboardComponent },
   { path: 'client-db', component: ClientDashboardComponent },
