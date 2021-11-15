@@ -57,6 +57,7 @@ import { CottagePageComponent } from './components/cottages/cottage-page/cottage
 import { FishingPageComponent } from './components/fishing/fishing-page/fishing-page.component';
 import { RuleComponent } from './components/rule/rule.component';
 import { UtilityComponent } from './components/utility/utility.component';
+import { MapComponent } from './components/map/map.component';
 
 @NgModule({
   declarations: [
@@ -113,6 +114,7 @@ import { UtilityComponent } from './components/utility/utility.component';
     FishingPageComponent,
     RuleComponent,
     UtilityComponent,
+    MapComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
