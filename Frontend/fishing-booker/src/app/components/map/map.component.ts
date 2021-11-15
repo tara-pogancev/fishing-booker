@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Loader } from '@googlemaps/js-api-loader';
+import { MapService } from 'src/app/service/map.service';
+import { config } from 'src/config';
 
 @Component({
   selector: 'app-map',
@@ -7,17 +9,30 @@ import { Loader } from '@googlemaps/js-api-loader';
   styleUrls: ['./map.component.css'],
 })
 export class MapComponent implements OnInit {
-  constructor() {}
+  @Input() address: string = 'Bahami';
+  lat: number = 0;
+  lng: number = 0;
+  constructor(private mapService: MapService) {}
 
   ngOnInit(): void {
-    let loader = new Loader({
-      apiKey: 'AIzaSyCX5DQFPxHlQlEeFkkWzTJ41PU6FehGzVs',
-    });
+    this.mapService.getCoordinates(this.address).subscribe((data) => {
+      this.lat = data.results[0].geometry.location.lat;
+      this.lng = data.results[0].geometry.location.lng;
 
-    loader.load().then(() => {
-      new google.maps.Map(document.getElementById('map')!, {
-        center: { lat: 45.232593070379785, lng: 19.842512847955057 },
-        zoom: 14,
+      let loader = new Loader({
+        apiKey: config.API_TOKEN,
+      });
+
+      loader.load().then(() => {
+        const map = new google.maps.Map(document.getElementById('map')!, {
+          center: { lat: this.lat, lng: this.lng },
+          zoom: 14,
+        });
+
+        new google.maps.Marker({
+          position: { lat: this.lat, lng: this.lng },
+          map,
+        });
       });
     });
   }
