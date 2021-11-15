@@ -1,0 +1,104 @@
+<div class="body-wrapper">
+  <div class="container content my-6">
+    <h1>{{ fullAddress }}</h1>
+    <hr />
+    <div class="columns">
+      <div class="column figure"><img src="assets/images/boat.jpg" /></div>
+
+      <div class="column">
+        <h2>Boat Title</h2>
+        <hr />
+        <div><strong>Owner: </strong> John Brown</div>
+        <div><strong>Boat Type: </strong> Fishing</div>
+        <div><strong>Lenght: </strong> 12</div>
+        <div><strong>Number of Engines: </strong> 3</div>
+        <div><strong>Engine Power: </strong> 10</div>
+        <div><strong>Max Speed: </strong> 100</div>
+        <div><strong>Navigational Equipment: </strong> GPS</div>
+        <div><strong>Fishing Equipment: </strong> Good</div>
+        <hr />
+        <div class="columns is-vcentered">
+          <div class="column">
+            <div><strong>Guest Limit: </strong> 15</div>
+            <div>
+              <span class="tag is-large mt-5 rating"
+                >4.8 <i class="ml-1 fa fa-star"></i
+              ></span>
+            </div>
+            <gap height="20"></gap>
+            <div><h4>Price per day: $48</h4></div>
+          </div>
+          <div class="column">
+            <div class="mb-5">
+              <button class="button is-success is-large is-outlined">
+                Subscribe
+              </button>
+            </div>
+            <div>
+              <button class="button is-success is-large">Book now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <div>
+      <h2>Description:</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean a sem
+        pharetra, viverra tellus sed, vulputate augue. In lobortis risus vitae
+        ex tincidunt posuere. Ut dictum, augue vitae tempor tincidunt, mi dolor
+        gravida arcu, in tristique odio nibh non justo. Nulla facilisi. Sed
+        egestas rhoncus eros eget facilisis. Sed sit amet hendrerit lorem, id
+        lacinia urna. Nunc eleifend lorem augue, eu gravida enim auctor et.
+        Fusce orci sapien, sagittis ac massa sed, ornare viverra odio.
+        Vestibulum consequat auctor elit eu venenatis. <br /><br />
+        Aliquam vulputate nunc ligula, eu fringilla nisi scelerisque nec.
+        Aliquam erat volutpat. Aenean commodo mi odio, vitae suscipit nibh
+        scelerisque nec. Vestibulum placerat id purus eu dictum. Integer
+        hendrerit nunc eros. Morbi vitae cursus tellus. Cras ut nunc in nisi
+        consequat blandit. Fusce sed facilisis nisi. Sed ornare elit sed elit
+        gravida ullamcorper. Donec ex lacus, tincidunt consequat porta sed,
+        vehicula vel magna. Integer eleifend porttitor eros, sed fermentum nunc
+        laoreet non. Etiam fringilla pellentesque pellentesque. Maecenas feugiat
+        libero nisl, ac scelerisque enim pulvinar sed. Morbi interdum tortor
+        ligula. Nullam sollicitudin dolor non nunc luctus commodo. Cras non
+        neque porta, interdum dolor vitae, ullamcorper lacus. Nulla faucibus
+        cursus tortor, eget accumsan nunc molestie in. Mauris in eleifend
+        libero. Sed placerat, magna vitae interdum molestie, odio mauris porta
+        tortor, sed viverra ante nisl id ligula. Praesent eget felis id lacus
+        porttitor fringilla vel vel justo. Vivamus egestas sed mauris ac
+        blandit.
+      </p>
+    </div>
+    <hr />
+    <div class="columns">
+      <div class="column">
+        <h3>Boat Rules</h3>
+        <rule rule="No swimming"></rule>
+        <rule rule="No swimming"></rule>
+        <rule rule="No swimming"></rule>
+        <rule rule="No swimming"></rule>
+      </div>
+      <div class="column">
+        <h3>Boat Utilities</h3>
+        <utility utility="Free drinks" [price]="40"></utility>
+        <utility utility="Free drinks" [price]="40"></utility>
+        <utility utility="Free drinks" [price]="40"></utility>
+        <utility utility="Free drinks" [price]="40"></utility>
+      </div>
+    </div>
+    <hr />
+    <div class="columns">
+      <div class="column">mapa</div>
+    </div>
+    <hr />
+    <h3>Reviews</h3>
+    <review-card></review-card>
+    <review-card></review-card>
+    <review-card></review-card>
+    <review-card></review-card>
+  </div>
+</div>
+
+<app-footer></app-footer>

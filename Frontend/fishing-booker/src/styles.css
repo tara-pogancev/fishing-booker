@@ -81,6 +81,16 @@ html {
   line-height: 20px;
 }
 
+.rating {
+  background-color: rgb(252, 175, 76) !important;
+  color: white !important;
+  box-shadow: 0px 0px 20px rgba(250, 145, 60, 0.596);
+}
+
+.rating .fa-star {
+  color: white !important;
+}
+
 /*----------------------------------------------
   ------------------------------------------------
   3. Main Body Styles

@@ -15,6 +15,7 @@ import { BrowseCottagesComponent } from './components/pages/browse-cottages/brow
 import { BrowseFishingComponent } from './components/pages/browse-fishing/browse-fishing.component';
 import { BrowseSpecialOffersComponent } from './components/pages/browse-special-offers/browse-special-offers.component';
 import { ReviewsPageComponent } from './components/pages/reviews-page/reviews-page.component';
+import { BoatPageComponent } from './components/boats/boat-page/boat-page.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: 'client-db', component: ClientDashboardComponent },
   { path: 'instructor-db', component: FishingInstructorDashboardComponent },
   { path: 'cottage-owner-db', component: CottageOwnerDashboardComponent },
+  { path: 'boat/1', component: BoatPageComponent },
   { path: '', component: HomeComponent },
   { path: '**', component: NotFoundComponent },
 ];

@@ -52,6 +52,11 @@ import { ReviewsPageComponent } from './components/pages/reviews-page/reviews-pa
 import { BrowseCardComponent } from './components/browse-card/browse-card.component';
 import { ReviewCardComponent } from './components/review-card/review-card.component';
 import { ComplaintCardComponent } from './components/complaint-card/complaint-card.component';
+import { BoatPageComponent } from './components/boats/boat-page/boat-page.component';
+import { CottagePageComponent } from './components/cottages/cottage-page/cottage-page.component';
+import { FishingPageComponent } from './components/fishing/fishing-page/fishing-page.component';
+import { RuleComponent } from './components/rule/rule.component';
+import { UtilityComponent } from './components/utility/utility.component';
 
 @NgModule({
   declarations: [
@@ -103,6 +108,11 @@ import { ComplaintCardComponent } from './components/complaint-card/complaint-ca
     BrowseCardComponent,
     ReviewCardComponent,
     ComplaintCardComponent,
+    BoatPageComponent,
+    CottagePageComponent,
+    FishingPageComponent,
+    RuleComponent,
+    UtilityComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
