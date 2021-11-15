@@ -11,7 +11,7 @@ import { UserHeaderComponent } from '../../header/user-header/user-header.compon
 })
 export class ClientDashboardComponent implements OnInit {
   client: Client = new Client();
-  activeTab: string = 'COTTAGE_RESERVATIONS';
+  activeTab: string = 'SPECIAL_OFFERS';
 
   constructor(private clientService: ClientService) {}
 

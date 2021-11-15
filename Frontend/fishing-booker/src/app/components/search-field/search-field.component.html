@@ -1,21 +1,21 @@
-<div class="columns mb-5 is-vcentered">
-  <div class="column">
+<div class="columns is-multiline mb-5 is-vcentered">
+  <div class="column is-2">
     <input class="input is-link" type="text" placeholder="Search anything!" />
   </div>
 
-  <div class="column">
+  <div class="column is-2">
     <div class="select">
       <select>
-        <option>Select sorting</option>
-        <option>Price: Lower first</option>
-        <option>Price: Higher first</option>
-        <option>Name: Acsending</option>
-        <option>Name: Decsending</option>
+        <option value="NO_SORT">Select sorting:</option>
+        <option value="PRICE_LOWER">Price: Lower first</option>
+        <option value="PRICE_HIGHER">Price: Higher first</option>
+        <option value="NAME_ACS">Name: Acsending</option>
+        <option value="NAME_DES">Name: Descending</option>
       </select>
     </div>
   </div>
 
-  <div class="column is-three-fifths has-text-centered">
+  <div class="column has-text-centered is-full-mobile">
     <span class="tag is-link is-medium">
       <button class="button button-tag is-small">
         Pet-Friendly
@@ -52,7 +52,7 @@
     </span>
   </div>
 
-  <div class="column is-flex is-justify-content-flex-end">
+  <div class="column is-flex is-justify-content-flex-end is-1">
     <button class="button is-link">Search</button>
   </div>
 </div>

@@ -1,10 +1,13 @@
 package com.fishingbooker.ftn.bom.reservations;
 
-import javax.persistence.Column;
-import javax.persistence.MappedSuperclass;
+import lombok.Data;
+
+import javax.persistence.*;
 import java.time.LocalDate;
 
-@MappedSuperclass
+@Data
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class QuickReservation extends Reservation {
 
     @Column(name = "guestLimit", nullable = false)

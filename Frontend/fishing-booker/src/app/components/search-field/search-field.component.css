@@ -22,8 +22,15 @@
 
 .select select {
   font-size: 1rem;
+  width: 100%;
 }
 
 .select {
   height: 2.5rem;
+  min-width: 187px;
+  width: 100%;
+}
+
+.input {
+  min-width: 187px;
 }

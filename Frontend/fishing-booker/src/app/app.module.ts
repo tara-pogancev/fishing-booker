@@ -41,7 +41,7 @@ import { MyReviewsAndComplaintsComponent } from './components/client/client-dash
 import { ClientDeleteAccountComponent } from './components/client/client-dashboard/client-delete-account/client-delete-account.component';
 import { SubscriptionComponentComponent } from './components/client/subscription-component/subscription-component.component';
 import { ReservationCardComponent } from './components/client/reservation-card/reservation-card.component';
-import { SearchFieldComponent } from './components/client/search-field/search-field.component';
+import { SearchFieldComponent } from './components/search-field/search-field.component';
 import { ReservationSearchComponent } from './components/client/reservation-search/reservation-search.component';
 import { BrowseBoatsComponent } from './components/pages/browse-boats/browse-boats.component';
 import { BrowseCottagesComponent } from './components/pages/browse-cottages/browse-cottages.component';
@@ -50,6 +50,8 @@ import { BrowseSpecialOffersComponent } from './components/pages/browse-special-
 import { SpecialOfferCardComponent } from './components/special-offer-card/special-offer-card.component';
 import { ReviewsPageComponent } from './components/pages/reviews-page/reviews-page.component';
 import { BrowseCardComponent } from './components/browse-card/browse-card.component';
+import { ReviewCardComponent } from './components/review-card/review-card.component';
+import { ComplaintCardComponent } from './components/complaint-card/complaint-card.component';
 
 @NgModule({
   declarations: [
@@ -99,6 +101,8 @@ import { BrowseCardComponent } from './components/browse-card/browse-card.compon
     SpecialOfferCardComponent,
     ReviewsPageComponent,
     BrowseCardComponent,
+    ReviewCardComponent,
+    ComplaintCardComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],

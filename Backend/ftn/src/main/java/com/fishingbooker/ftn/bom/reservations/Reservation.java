@@ -2,14 +2,14 @@ package com.fishingbooker.ftn.bom.reservations;
 
 import com.fishingbooker.ftn.bom.DatabaseEntity;
 import com.fishingbooker.ftn.bom.users.RegisteredClient;
+import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.time.LocalDate;
 
-@MappedSuperclass
+@Data
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Reservation extends DatabaseEntity {
 
     @Column(name = "reservationStart", nullable = false)

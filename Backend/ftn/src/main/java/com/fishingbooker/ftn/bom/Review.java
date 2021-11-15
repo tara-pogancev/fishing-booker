@@ -3,11 +3,13 @@ package com.fishingbooker.ftn.bom;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
+import java.time.LocalDateTime;
 
-@MappedSuperclass
+
 @Data
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Review extends DatabaseEntity {
 
     @Column(name = "review")
@@ -15,6 +17,9 @@ public class Review extends DatabaseEntity {
 
     @Column(name = "rating", nullable = false)
     private Integer rating;
+
+    @Column(name = "date")
+    private LocalDateTime date;
 
     @Column(name = "isApproved", nullable = false)
     private Boolean isApproved = false;
