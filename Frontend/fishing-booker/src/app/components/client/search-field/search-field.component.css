@@ -19,3 +19,11 @@
 .unsellected {
   background-color: rgb(187, 187, 187) !important;
 }
+
+.select select {
+  font-size: 1rem;
+}
+
+.select {
+  height: 2.5rem;
+}
