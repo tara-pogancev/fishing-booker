@@ -1,34 +1,169 @@
-<aside class="menu">
-    <p class="menu-label">
-      General
-    </p>
-    <ul class="menu-list">
-      <li><a>Dashboard</a></li>
-      <li><a>Customers</a></li>
-    </ul>
-    <p class="menu-label">
-      Administration
-    </p>
-    <ul class="menu-list">
-      <li><a>Team Settings</a></li>
-      <li>
-        <a class="is-active">Manage Your Team</a>
-        <ul>
-          <li><a>Members</a></li>
-          <li><a>Plugins</a></li>
-          <li><a>Add a member</a></li>
-        </ul>
-      </li>
-      <li><a>Invitations</a></li>
-      <li><a>Cloud Storage Environment Settings</a></li>
-      <li><a>Authentication</a></li>
-    </ul>
-    <p class="menu-label">
-      Transactions
-    </p>
-    <ul class="menu-list">
-      <li><a>Payments</a></li>
-      <li><a>Transfers</a></li>
-      <li><a>Balance</a></li>
-    </ul>
-  </aside>
+<div class="columns db-container">
+  <div class="colum is-two-fifths px-6 pt-5 side-menu">
+    <aside class="menu">
+      <p class="menu-label">General</p>
+      <ul class="menu-list">
+        <li>
+          <a
+            [ngClass]="{ 'is-active': activeTab === 'PERSONAL_INFO' }"
+            (click)="changeTab('PERSONAL_INFO')"
+            >Personal Info</a
+          >
+        </li>
+        <li>
+          <a
+            [ngClass]="{ 'is-active': activeTab === 'SETTINGS' }"
+            (click)="changeTab('SETTINGS')"
+            >Profile</a
+          >
+        </li>
+        <li>
+          <a
+            [ngClass]="{ 'is-active': activeTab === 'COMMISION' }"
+            (click)="changeTab('COMMISION')"
+            >Commision precentage</a
+          >
+        </li>
+      </ul>
+      <p class="menu-label">Users</p>
+      <ul class="menu-list">
+        <li>
+          <a
+            [ngClass]="{ 'is-active': activeTab === 'COTTAGE_OWNERS' }"
+            (click)="changeTab('COTTAGE_OWNERS')"
+            >Cottage owners</a
+          >
+        </li>
+        <li>
+          <a
+            [ngClass]="{ 'is-active': activeTab === 'BOAT_OWNERS' }"
+            (click)="changeTab('BOAT_OWNERS')"
+            >Boat owners</a
+          >
+        </li>
+        <li>
+          <a
+            [ngClass]="{ 'is-active': activeTab === 'CLIENTS' }"
+            (click)="changeTab('CLIENTS')"
+            >Clients</a
+          >
+        </li>
+        <li>
+          <a
+            [ngClass]="{ 'is-active': activeTab === 'REGISTRATION_REQUESTS' }"
+            (click)="changeTab('REGISTRATION_REQUESTS')"
+            >Registration requests</a
+          >
+        </li>
+        <li>
+          <div class="mt-4">
+            <p class="menu-label">Rental Products</p>
+            <ul>
+              <li>
+                <a
+                  [ngClass]="{ 'is-active': activeTab === 'COTTAGES' }"
+                  (click)="changeTab('PAST_COTTAGE')"
+                  >Cottages</a
+                >
+              </li>
+              <li>
+                <a
+                  [ngClass]="{ 'is-active': activeTab === 'BOATS' }"
+                  (click)="changeTab('PAST_BOAT')"
+                  >Boats</a
+                >
+              </li>
+              
+            </ul>
+          </div>
+        </li>
+      </ul>
+      <!--<p class="menu-label">My Account</p>
+      <ul class="menu-list">
+        <li>
+          <a
+            [ngClass]="{ 'is-active': activeTab === 'REVIEW' }"
+            (click)="changeTab('REVIEW')"
+            >Leave a Review</a
+          >
+        </li>
+        <li>
+          <a
+            [ngClass]="{ 'is-active': activeTab === 'COMPLAINT' }"
+            (click)="changeTab('COMPLAINT')"
+            >Leave a Complaint</a
+          >
+        </li>
+        <li>
+          <a
+            [ngClass]="{ 'is-active': activeTab === 'REVIEW_COMPLAINT' }"
+            (click)="changeTab('REVIEW_COMPLAINT')"
+            >My Reviews and Complaints</a
+          >
+        </li>
+        <li>
+          <a
+            [ngClass]="{ 'is-active': activeTab === 'DELETE_ACCOUNT' }"
+            (click)="changeTab('DELETE_ACCOUNT')"
+            >Delete my Account</a
+          >
+        </li>
+        
+      </ul>
+      !-->
+    </aside>
+  </div>
+
+  <div class="column db-content">
+    <div class="hero is-primary">
+      <div class="hero-body">
+        <p class="title">Welcome, {{ client.name }} {{ client.lastName }}</p>
+        <p class="subtitle">Client Dashboard</p>
+      </div>
+    </div>
+    <div class="m-5">
+      <div *ngIf="activeTab == 'PERSONAL_INFO'">
+        <app-personal-info [client]="client"></app-personal-info>
+      </div>
+      <div *ngIf="activeTab == 'SETTINGS'">
+        <app-settings [user]="client"></app-settings>
+      </div>
+      <div *ngIf="activeTab == 'COMMISION'">
+        <app-commision-precentage></app-commision-precentage>
+      </div>
+      <div *ngIf="activeTab == 'COTTAGE_OWNERS'">
+        <app-cottage-owner-list></app-cottage-owner-list>
+      </div>
+      <div *ngIf="activeTab == 'BOAT_OWNERS'">
+        <app-boat-owners></app-boat-owners>
+      </div>
+      <div *ngIf="activeTab == 'CLIENTS'">
+        <app-clients></app-clients>
+      </div>
+      <div *ngIf="activeTab == 'REGISTRATION_REQUESTS'">
+        <app-registration-request></app-registration-request>
+      </div>
+      <div *ngIf="activeTab == 'PAST_COTTAGE'">
+        <client-past-cottage [user]="client"></client-past-cottage>
+      </div>
+      <div *ngIf="activeTab == 'PAST_BOAT'">
+        <client-past-boat [user]="client"></client-past-boat>
+      </div>
+      <div *ngIf="activeTab == 'PAST_FISHING'">
+        <client-past-fishing [user]="client"></client-past-fishing>
+      </div>
+      <div *ngIf="activeTab == 'REVIEW'">
+        <client-reviews [user]="client"></client-reviews>
+      </div>
+      <div *ngIf="activeTab == 'COMPLAINT'">
+        <client-complaints [user]="client"></client-complaints>
+      </div>
+      <div *ngIf="activeTab == 'REVIEW_COMPLAINT'">
+        <my-reviews-and-complaints [user]="client"></my-reviews-and-complaints>
+      </div>
+      <div *ngIf="activeTab == 'DELETE_ACCOUNT'">
+        <client-delete-account [user]="client"></client-delete-account>
+      </div>
+    </div>
+  </div>
+</div>

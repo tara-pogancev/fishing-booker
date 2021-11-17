@@ -1,4 +1,3 @@
-import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
@@ -24,11 +23,6 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'thank-you-registration', component: ThankYouRegistrationComponent },
-  { path: 'boats', component: BrowseBoatsComponent },
-  { path: 'cottages', component: BrowseCottagesComponent },
-  { path: 'fishing', component: BrowseFishingComponent },
-  { path: 'special-offers', component: BrowseSpecialOffersComponent },
-  { path: 'reviews', component: ReviewsPageComponent },
   { path: 'boat-owner-db', component: BoatOwnerDashboardComponent },
   { path: 'admin-db', component: AdminDashboardComponent },
   { path: 'client-db', component: ClientDashboardComponent },

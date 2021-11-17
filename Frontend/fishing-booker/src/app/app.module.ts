@@ -67,6 +67,11 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { CommonModule } from '@angular/common';
+import { CommisionPrecentageComponent } from './components/admin/admin-dashboard/commision-precentage/commision-precentage/commision-precentage.component';
+import { CottageOwnerListComponent } from './components/admin/admin-dashboard/cottage-owner-listing/cottage-owner-list/cottage-owner-list.component';
+import { BoatOwnersComponent } from './components/admin/admin-dashboard/boat-owners-list/boat-owners/boat-owners.component';
+import { ClientsComponent } from './components/admin/admin-dashboard/clients-list/clients/clients.component';
+import { RegistrationRequestComponent } from './components/admin/admin-dashboard/registration-request/registration-request/registration-request.component';
 
 @NgModule({
   declarations: [
@@ -141,6 +146,11 @@ import { CommonModule } from '@angular/common';
       useFactory: adapterFactory,
     }),
     CommonModule,
+    CommisionPrecentageComponent,
+    CottageOwnerListComponent,
+    BoatOwnersComponent,
+    ClientsComponent,
+    RegistrationRequestComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

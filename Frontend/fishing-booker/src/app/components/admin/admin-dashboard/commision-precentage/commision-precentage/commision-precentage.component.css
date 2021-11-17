@@ -1,0 +1,42 @@
+.cancelButton{
+    width: 20%;
+    height: 35px;
+    border:0px;
+    border-radius: 3px;
+    background-color: rgb(245, 120, 98);
+    font-size: medium;
+    cursor: pointer;
+    padding: 5px;
+    color: white;
+    margin-left: 30%;
+    display: inline-block;
+}
+
+.cancelButton:hover{
+    background-color: rgb(248, 103, 78);
+}
+
+.confirmButton{
+    width: 20%;
+    height: 35px;
+    border:0px;
+    border-radius: 3px;
+    background-color: rgb(7, 214, 69);
+    font-size: medium;
+    cursor: pointer;
+    padding: 5px;
+    color: white;
+    display: inline-block;
+}
+.confirmButton:hover{
+    background-color: rgb(7, 189, 61);
+}
+
+
+
+.buttonDiv{
+    width: 50%;
+    margin-top: 50px;
+    margin-left: 25%;
+    margin-right: 25%;
+}
