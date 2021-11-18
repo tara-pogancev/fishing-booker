@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RegistrationRequest } from 'src/app/model/registration-request-model';
+import { RegistrationRequestService } from 'src/app/service/registration-request.service';
 
 @Component({
   selector: 'app-registration-request',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistrationRequestComponent implements OnInit {
 
-  constructor() { }
+  registrationRequests:RegistrationRequest[]=[];
+  constructor(private requestService:RegistrationRequestService) { }
 
   ngOnInit(): void {
+    this.requestService.getRequests().subscribe(requests=>this.registrationRequests=requests) 
   }
 
 }

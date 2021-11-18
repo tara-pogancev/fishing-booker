@@ -3,6 +3,7 @@ package com.fishingbooker.ftn.bom.users;
 
 import com.fishingbooker.ftn.bom.Address;
 import com.fishingbooker.ftn.bom.DatabaseEntity;
+import com.fishingbooker.ftn.bom.RegistrationRequest;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -40,5 +41,8 @@ public class ApplicationUser extends DatabaseEntity {
 
     @Column(name = "enabled")
     private Boolean enabled = false;
+
+    @OneToOne(mappedBy = "user")
+    private RegistrationRequest request;
 
 }

@@ -24,7 +24,7 @@ public class RegistrationController {
         if(ApplicationRole.getRoleFromString(userDto.getRole())==ApplicationRole.REGISTERED_CLIENT){
             return userService.create(userDto);
         }else if(ApplicationRole.getRoleFromString((userDto.getRole()))==ApplicationRole.FISHING_INSTRUCTOR){
-            return fishingInstructorService.create((userDto));
+            return userService.createWithRequest(userDto);
         }
         //TODO: add registration for other types of user
         return null;

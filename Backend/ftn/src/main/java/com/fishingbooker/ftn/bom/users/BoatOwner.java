@@ -20,8 +20,7 @@ public class BoatOwner extends ApplicationUser {
     @OneToMany(mappedBy = "boatOwner")
     private Set<Boat> boats;
 
-    @OneToOne(mappedBy = "boatOwner")
-    private RegistrationRequest request;
+
 
     @ManyToOne()
     @JoinColumn(name = "rank")

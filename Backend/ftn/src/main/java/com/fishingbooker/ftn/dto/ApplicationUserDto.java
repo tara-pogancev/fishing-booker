@@ -17,6 +17,6 @@ public class ApplicationUserDto {
     private String phone;
     private String role;
     private Boolean enabled = false;
-    private String registrationExplain;
+    private String registrationDescription;
 
 }

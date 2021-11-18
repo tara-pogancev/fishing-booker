@@ -21,4 +21,5 @@ public interface ApplicationUserService {
 
     Boolean verifyUser(String token) throws Exception;
 
+    ApplicationUser createWithRequest(ApplicationUserDto userDto);
 }

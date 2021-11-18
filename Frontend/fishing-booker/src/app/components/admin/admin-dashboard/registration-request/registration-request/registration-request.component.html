@@ -1,15 +1,16 @@
 <div class="container">
-    <div class="column">
+
+    <div class="column" *ngFor='let request of registrationRequests'>
         <div class="card">
             <div class="card-content">
               <p class="subtitle">
                 User Details
               </p>
               <div>
-                  <p>Name:Marko</p>
-                  <p>Last Name:Markovic</p>
-                  <p>Mail:marko@1302.com</p>
-                  <p>User Type:Cottage Owner</p>
+                  <p>Name:{{request.name}}</p>
+                  <p>Last Name:{{request.lastName}}</p>
+                  <p>Mail:{{request.mail}}</p>
+                  <p>User Type:{{request.userType}}</p>
               </div>
               <div>
                 <div style="margin-top:20px"></div>
@@ -17,7 +18,7 @@
                     Registration description
                 </p>
                 <div style="word-wrap: break-word;">
-                    Registration descriptionRegistration descriptionRegistration descriptionRegistration descriptionRegistration descriptionRegistration descriptionRegistration description
+                    {{request.registrationDescription}}
                 </div>
               </div>
             </div>
@@ -35,114 +36,8 @@
             </footer>
           </div>
     </div>
-    <div class="column ">
-        <div class="card">
-            <div class="card-content">
-              <p class="subtitle">
-                User Details
-              </p>
-              <div>
-                  <p>Name:Marko</p>
-                  <p>Last Name:Markovic</p>
-                  <p>Mail:marko@1302.com</p>
-                  <p>User Type:Cottage Owner</p>
-              </div>
-              <div>
-                <div style="margin-top:20px"></div>
-                <p class="subtitle">
-                    Registration description
-                </p>
-                <div style="word-wrap: break-word;">
-                    Registration descriptionRegistration descriptionRegistration descriptionRegistration descriptionRegistration descriptionRegistration descriptionRegistration description
-                </div>
-              </div>
-            </div>
-            <footer class="card-footer">
-              <p class="card-footer-item">
-                <span>
-                  <button class="confirmButton">Accept Registration</button>
-                </span>
-              </p>
-              <p class="card-footer-item">
-                <span>
-                  <button class="cancelButton">Reject Registration</button>
-                </span>
-              </p>
-            </footer>
-          </div>
-    </div>
-    <div class="column">
-        <div class="card">
-            <div class="card-content">
-              <p class="subtitle">
-                User Details
-              </p>
-              <div>
-                  <p>Name:Marko</p>
-                  <p>Last Name:Markovic</p>
-                  <p>Mail:marko@1302.com</p>
-                  <p>User Type:Cottage Owner</p>
-              </div>
-              <div>
-                <div style="margin-top:20px"></div>
-                <p class="subtitle">
-                    Registration description
-                </p>
-                <div style="word-wrap: break-word;">
-                    Registration descriptionRegistration descriptionRegistration descriptionRegistration descriptionRegistration descriptionRegistration descriptionRegistration description
-                </div>
-              </div>
-            </div>
-            <footer class="card-footer">
-              <p class="card-footer-item">
-                <span>
-                  <button class="confirmButton">Accept Registration</button>
-                </span>
-              </p>
-              <p class="card-footer-item">
-                <span>
-                  <button class="cancelButton">Reject Registration</button>
-                </span>
-              </p>
-            </footer>
-          </div>
-    </div>
-    <div class="column ">
-        <div class="card">
-            <div class="card-content">
-              <p class="subtitle">
-                User Details
-              </p>
-              <div>
-                  <p>Name:Marko</p>
-                  <p>Last Name:Markovic</p>
-                  <p>Mail:marko@1302.com</p>
-                  <p>User Type:Cottage Owner</p>
-              </div>
-              <div>
-                <div style="margin-top:20px"></div>
-                <p class="subtitle">
-                    Registration description
-                </p>
-                <div style="word-wrap: break-word;">
-                    Registration descriptionRegistration descriptionRegistration descriptionRegistration descriptionRegistration descriptionRegistration descriptionRegistration description
-                </div>
-              </div>
-            </div>
-            <footer class="card-footer">
-              <p class="card-footer-item">
-                <span>
-                  <button class="confirmButton">Accept Registration</button>
-                </span>
-              </p>
-              <p class="card-footer-item">
-                <span>
-                  <button class="cancelButton">Reject Registration</button>
-                </span>
-              </p>
-            </footer>
-          </div>
-    </div>
+    
+    
     
   </div>
 

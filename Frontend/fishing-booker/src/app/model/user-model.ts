@@ -11,7 +11,7 @@ export class UserModel {
     public street: string = '',
     public country: string = '',
     public city: string = '',
-    public registrationExplanation=''
+    public registrationDescription=''
   ) {}
 }
 

@@ -1,12 +1,14 @@
 package com.fishingbooker.ftn.service;
 
 import com.fishingbooker.ftn.bom.Address;
+import com.fishingbooker.ftn.bom.RegistrationRequest;
 import com.fishingbooker.ftn.bom.users.ApplicationUser;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.ApplicationUserDto;
 import com.fishingbooker.ftn.email.context.AccountVerificationEmailContext;
 import com.fishingbooker.ftn.email.service.EmailService;
 import com.fishingbooker.ftn.repository.ApplicationUserRepository;
+import com.fishingbooker.ftn.repository.RegistrationRequestRepository;
 import com.fishingbooker.ftn.repository.RegistrationTokenRepository;
 import com.fishingbooker.ftn.security.registration.RegistrationToken;
 import com.fishingbooker.ftn.security.registration.RegistrationTokenService;
@@ -36,7 +38,7 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
     private final AdministratorService administratorService;
     private final FishingInstructorService fishingInstructorService;
     private final RegistrationTokenRepository registrationTokenRepository;
-
+    private final RegistrationRequestRepository registrationRequestRepository;
     @Value("${site.base.url.https}")
     private String baseURL;
 
@@ -120,6 +122,18 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
 
         tokenService.removeToken(secureToken);
         return true;
+    }
+
+    @Override
+    public ApplicationUser createWithRequest(ApplicationUserDto userDto) {
+        ApplicationUser user = converter.convert(userDto, ApplicationUser.class);
+        Address userAddress = addressService.create(userDto);
+        user.setUserAddress(userAddress);
+        RegistrationRequest request=new RegistrationRequest();
+        request.setRegistrationDescription(userDto.getRegistrationDescription());
+        request.setUser(user);
+        registrationRequestRepository.save(request);
+        return userRepository.save(user);
     }
 
     public void sendRegistrationConfirmationEmail(ApplicationUser user) {

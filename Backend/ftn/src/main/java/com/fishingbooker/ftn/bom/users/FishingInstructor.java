@@ -26,9 +26,6 @@ public class FishingInstructor extends ApplicationUser {
     @OneToMany(mappedBy = "instructor")
     private Set<AvailableInstructorTimePeriod> availableTimePeriods;
 
-    @OneToOne(mappedBy = "fishingInstructor")
-    private RegistrationRequest request;
-
     @ManyToOne()
     @JoinColumn(name = "rank")
     UserRank rank;
