@@ -1,21 +1,17 @@
 package com.fishingbooker.ftn.bom.boats;
 
 import com.fishingbooker.ftn.bom.DatabaseEntity;
+import com.fishingbooker.ftn.bom.Utility;
 import lombok.Data;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
 @Data
-@Table(name = "BoatUtility")
-public class BoatUtility extends DatabaseEntity {
-
-    @Column(name = "name", nullable = false)
-    private String name;
-
-    @Column(name = "price", nullable = false)
-    private Double price;
+@DiscriminatorValue("Boat")
+public class BoatUtility extends Utility {
 
 }
