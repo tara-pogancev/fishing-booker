@@ -22,6 +22,6 @@ public class BoatDto {
     private Set<String> rules;
     private String fishingEquipment;
     private Set<UtilityDto> utilities;
-    private String boatOwnerName;
+    private String boatOwnerName; 
 
 }

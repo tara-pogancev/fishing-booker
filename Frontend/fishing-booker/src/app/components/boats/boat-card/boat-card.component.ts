@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Boat } from 'src/app/model/boat-model';
+import { BoatService } from 'src/app/service/boat.service';
 
 @Component({
   selector: 'boat-card',
@@ -6,17 +8,19 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./boat-card.component.css'],
 })
 export class BoatCardComponent implements OnInit {
-  @Input() id: string = '';
-  @Input() title: string = 'Title';
-  @Input() owner: string = 'John Smith';
+  @Input() id: number = 0;
   @Input() img: string = '/assets/images/boat.jpg';
-  @Input() description: string = 'Description goes here';
+  boat: Boat = new Boat();
 
-  constructor() {}
+  constructor(private boatService: BoatService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.boatService.findById(this.id).subscribe((data) => {
+      this.boat = data;
+    });
+  }
 
   readMore() {
-    alert('New window');
+    window.location.href = 'boat/' + this.id;
   }
 }

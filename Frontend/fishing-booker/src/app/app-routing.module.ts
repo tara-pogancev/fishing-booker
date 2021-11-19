@@ -31,7 +31,7 @@ const routes: Routes = [
   { path: 'client-db', component: ClientDashboardComponent },
   { path: 'instructor-db', component: FishingInstructorDashboardComponent },
   { path: 'cottage-owner-db', component: CottageOwnerDashboardComponent },
-  { path: 'boat/1', component: BoatPageComponent },
+  { path: 'boat/:id', component: BoatPageComponent },
   { path: '', component: HomeComponent },
   { path: '**', component: NotFoundComponent },
 ];

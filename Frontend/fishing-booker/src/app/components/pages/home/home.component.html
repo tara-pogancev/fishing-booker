@@ -123,21 +123,9 @@
 </div>
 
 <div class="block my-6 mx-6">
-  <div class="columns">
+  <div class="columns" *ngFor="let boat of boats.slice(0, 4)">
     <div class="column">
-      <boat-card></boat-card>
-    </div>
-    <div class="column">
-      <boat-card></boat-card>
-    </div>
-    <div class="column">
-      <boat-card></boat-card>
-    </div>
-    <div class="column">
-      <boat-card></boat-card>
-    </div>
-    <div class="column">
-      <boat-card></boat-card>
+      <boat-card [id]="boat.id"></boat-card>
     </div>
   </div>
   <gap height="80"></gap>

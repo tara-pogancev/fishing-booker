@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Boat } from 'src/app/model/boat-model';
+import { BoatService } from 'src/app/service/boat.service';
 
 @Component({
   selector: 'app-boat-page',
@@ -6,9 +9,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./boat-page.component.css'],
 })
 export class BoatPageComponent implements OnInit {
-  fullAddress: string = 'Bulevar oslobodjenja 3, Novi Sad, Serbia';
+  id: number = 0;
+  boat: Boat = new Boat();
+  navEquipment: string = '';
 
-  constructor() {}
+  constructor(
+    private route: ActivatedRoute,
+    private boatService: BoatService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.id = +this.route.snapshot.paramMap.get('id')!;
+
+    this.boatService.findById(this.id).subscribe((data) => {
+      this.boat = data;
+    });
+
+    this.navEquipment = '';
+    this.boat.navigationalEquipments.forEach((equipment) => {
+      this.navEquipment += equipment + ', ';
+    });
+    this.navEquipment.slice(0, -2);
+  }
 }

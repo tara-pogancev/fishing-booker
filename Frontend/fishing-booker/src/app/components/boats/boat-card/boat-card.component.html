@@ -4,8 +4,8 @@
   </div>
 
   <div class="content p-4">
-    <h4>{{ title | truncate: [20] }}</h4>
-    <p>@{{ owner }}</p>
-    <p>{{ description | truncate: [30] }}</p>
+    <h4>{{ boat.name | truncate: [20] }}</h4>
+    <p>@{{ boat.boatOwnerName }}</p>
+    <p>{{ boat.description | truncate: [30] }}</p>
   </div>
 </div>
