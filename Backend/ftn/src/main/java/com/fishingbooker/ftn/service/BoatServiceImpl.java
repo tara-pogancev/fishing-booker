@@ -43,7 +43,7 @@ public class BoatServiceImpl implements BoatService {
 
     public void initBoats() {
         Boat boat = new Boat();
-        Address address = addressRepository.getById(1L);
+        Address address = addressRepository.findAll().get(0);
 
         BoatUtility utility = new BoatUtility();
         utility.setName("Free drinks");
@@ -53,7 +53,7 @@ public class BoatServiceImpl implements BoatService {
         Set<BoatUtility> utilities = new HashSet<>();
         utilities.add(utility);
 
-        BoatOwner owner = boatOwnerRepository.getById(3L);
+        BoatOwner owner = boatOwnerRepository.findAll().get(0);
         boat.setName("Boat name");
         boat.setBoatType(BoatType.BASS_BOAT);
         boat.setBoatLength(45.5);
@@ -61,7 +61,12 @@ public class BoatServiceImpl implements BoatService {
         boat.setEnginePower(37.0);
         boat.setMaxSpeed(250.3);
         boat.setAddress(address);
-        boat.setDescription("Lorem ipsum");
+        boat.setDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed enim nisl, malesuada at enim ut, vehicula consequat massa. In auctor id est ut semper. Nulla venenatis libero in ex porttitor, at tincidunt massa faucibus. Phasellus tincidunt mauris sed lectus placerat viverra. Aliquam leo urna, malesuada sit amet efficitur id, venenatis ut neque. Morbi et tempus orci, vel posuere dui. Sed placerat sapien aliquet mauris faucibus, a venenatis arcu fermentum. Nunc lacinia magna ligula, a lobortis augue accumsan vitae. Sed non justo auctor, varius tortor molestie, aliquam ligula. Duis mattis nisi neque, vel sollicitudin justo laoreet in.\n" +
+                "\n" +
+                "Suspendisse potenti. Maecenas augue dolor, faucibus vitae arcu nec, pretium efficitur nisi. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec eget lorem sed sem consequat fringilla a quis magna. Vestibulum vehicula a ante sed sagittis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse dignissim ultrices nunc vitae ornare. Suspendisse et urna rutrum, blandit magna ut, pharetra felis. Nulla tempus ex nisi.\n" +
+                "\n" +
+                "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vivamus nibh augue, congue sed venenatis nec, vestibulum eu erat. In tempus nunc risus, vitae gravida turpis rhoncus vel. Cras ut eros placerat, tempor tortor a, porttitor augue. Fusce arcu leo, vulputate et odio ut, consectetur feugiat quam. Vivamus laoreet fermentum nulla et imperdiet. Donec feugiat rutrum efficitur. Donec porta velit in augue malesuada pulvinar. Nam eget velit tempus, ullamcorper dui ut, facilisis nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n" +
+                "\n");
         boat.setGuestLimit(20);
         boat.setFishingEquipment("Dobar fishing equipment");
         boat.setBoatOwner(owner);

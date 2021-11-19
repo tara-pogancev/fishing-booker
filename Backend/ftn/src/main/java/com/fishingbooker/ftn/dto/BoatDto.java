@@ -9,6 +9,8 @@ import java.util.Set;
 public class BoatDto {
 
     private Long id;
+    private Double rating;
+    private Double price;
     private String name;
     private BoatType boatType;
     private Double boatLength;

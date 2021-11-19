@@ -24,6 +24,12 @@ public class Adventure extends DatabaseEntity {
     @Column(name = "description", nullable = false)
     private String description;
 
+    @Column(name = "rating")
+    private Double rating = 0.0;
+
+    @Column(name = "price", nullable = false)
+    private Double price = 0.0;
+
     // todo: photos
     // https://www.codejava.net/frameworks/spring-boot/spring-boot-file-upload-tutorial
 

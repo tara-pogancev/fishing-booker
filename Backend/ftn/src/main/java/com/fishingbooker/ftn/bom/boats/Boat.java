@@ -32,6 +32,12 @@ public class Boat extends DatabaseEntity {
     @Column(name = "maxSpeed", nullable = false)
     private Double maxSpeed;
 
+    @Column(name = "rating")
+    private Double rating = 0.0;
+
+    @Column(name = "price", nullable = false)
+    private Double price = 0.0;
+
     @ManyToMany
     @JoinTable(
             name = "boat_navigational_equipment",

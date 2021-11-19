@@ -9,8 +9,8 @@ import lombok.Data;
 import javax.persistence.*;
 import java.util.Set;
 
-@Entity
 @Data
+@Entity
 @Table(name = "Cottage")
 public class Cottage extends DatabaseEntity {
 
@@ -25,6 +25,12 @@ public class Cottage extends DatabaseEntity {
 
     @Column(name = "description", nullable = false)
     private String description;
+
+    @Column(name = "rating")
+    private Double rating = 0.0;
+
+    @Column(name = "price", nullable = false)
+    private Double price = 0.0;
 
     // todo: photos
     // https://www.codejava.net/frameworks/spring-boot/spring-boot-file-upload-tutorial
@@ -55,8 +61,5 @@ public class Cottage extends DatabaseEntity {
     @ManyToOne
     @JoinColumn(name = "cottageOwner")
     private CottageOwner cottageOwner;
-
-    @Column(name = "rating")
-    private Double rating = 0.0;
 
 }
