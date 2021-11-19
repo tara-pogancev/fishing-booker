@@ -3,7 +3,6 @@ package com.fishingbooker.ftn.conversion.dto;
 import com.fishingbooker.ftn.bom.Utility;
 import com.fishingbooker.ftn.bom.boats.Boat;
 import com.fishingbooker.ftn.bom.boats.BoatUtility;
-import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.BoatDto;
 import com.fishingbooker.ftn.dto.UtilityDto;
 import lombok.RequiredArgsConstructor;
@@ -11,9 +10,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Component
@@ -25,7 +22,7 @@ public class BoatToDto implements Converter<Boat, BoatDto> {
     @Override
     public BoatDto convert(Boat source) {
         BoatDto dto = modelMapper.map(source, BoatDto.class);
-        dto.setBoatOwnerName(source.getBoatOwner().getName() + " " + source.getBoatOwner().getLastName());
+        dto.setOwnerName(source.getBoatOwner().getName() + " " + source.getBoatOwner().getLastName());
         dto.setUtilities(getUtilityDtoList(source.getUtilities()));
         return dto;
     }
