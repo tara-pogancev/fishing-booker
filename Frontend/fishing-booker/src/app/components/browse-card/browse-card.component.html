@@ -14,7 +14,7 @@
             >
             <small>, @{{ ownerName }} </small>
             <br />
-            {{ description }}
+            {{ description | truncate: [200] }}
           </p>
 
           <div>

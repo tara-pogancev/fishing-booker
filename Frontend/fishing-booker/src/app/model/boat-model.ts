@@ -6,6 +6,8 @@ export class Boat {
     public name: string = '',
     public boatType: string = '',
     public boatLength: number = 0,
+    public rating: number = 0,
+    public price: number = 0,
     public numberOfEngines: number = 0,
     public enginePower: number = 0,
     public maxSpeed: number = 0,

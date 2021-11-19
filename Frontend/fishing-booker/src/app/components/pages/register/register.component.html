@@ -108,6 +108,7 @@
                 class="input"
                 type="text"
                 placeholder="Country"
+                autocomplete="country-name"
                 [(ngModel)]="user.country"
               />
             </div>
@@ -164,8 +165,8 @@
               <div class="select">
                 <select [(ngModel)]="user.role">
                   <option value="Registered Client">Client</option>
-                  <option value="Boat Owner">Cottage Owner</option>
-                  <option value="Cottage Owner">Boat Owner</option>
+                  <option value="Boat Owner">Boat Owner</option>
+                  <option value="Cottage Owner">Cottage Owner</option>
                   <option value="Fishing Instructor">Fishing Instructor</option>
                 </select>
               </div>
