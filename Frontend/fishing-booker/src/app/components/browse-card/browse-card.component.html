@@ -9,27 +9,22 @@
       <div class="content">
         <div>
           <p>
-            <strong><a href="#">Shinra's R&R</a></strong>
-            <small>, @Shinra Company </small>
+            <strong
+              ><a (click)="readMore()">{{ name }}</a></strong
+            >
+            <small>, @{{ ownerName }} </small>
             <br />
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
-            ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas
-            non massa sem. Etiam finibus odio quis feugiat facilisis.
+            {{ description }}
           </p>
 
           <div>
-            <strong
-              ><i class="fa fa-map-marker"></i> Bulevar Oslobodjenja 17, Novi
-              Sad, Serbia</strong
-            >
-            <h4>$54/day</h4>
+            <strong><i class="fa fa-map-marker"></i> {{ address }}</strong>
+            <h4>${{ price }}/day</h4>
           </div>
         </div>
         <div class="columns is-vcentered">
-          <div class="column">
-            <span class="tag is-success">WiFi</span>
-            <span class="tag is-success">Pet-Friendly</span>
-            <span class="tag is-success">Bar</span>
+          <div class="column" *ngFor="let utility of utilities.slice(0, 7)">
+            <span class="tag is-success">{{ utility.name }}</span>
           </div>
           <div
             class="
@@ -37,10 +32,12 @@
               is-flex is-justify-content-flex-end is-align-items-center
             "
           >
-            <strong class="mr-1 star-text">4.8 </strong>
+            <strong class="mr-1 star-text">{{ rating }} </strong>
             <i class="fa fa-star"></i>
-            <div class="buttons ml-5"> 
-              <button class="button is-success">Preview</button>
+            <div class="buttons ml-5">
+              <button class="button is-success" (click)="readMore()">
+                Preview
+              </button>
             </div>
           </div>
         </div>

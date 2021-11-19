@@ -5,10 +5,17 @@
     <div>
       <search-field></search-field>
       <hr />
-      <browse-card></browse-card>
-      <browse-card></browse-card>
-      <browse-card></browse-card>
-      <browse-card></browse-card>
+      <div *ngFor="let boat of boats">
+        <browse-card
+          [name]="boat.name"
+          [description]="boat.description"
+          [address]="boat.address"
+          [ownerName]="boat.boatOwnerName"
+          [utilities]="boat.utilities"
+          [id]="boat.id"
+          type="boat"
+        ></browse-card>
+      </div>
     </div>
   </div>
 </div>

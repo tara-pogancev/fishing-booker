@@ -9,7 +9,7 @@ import { BoatService } from 'src/app/service/boat.service';
 })
 export class HomeComponent implements OnInit {
   boats: Boat[] = [];
-
+ 
   constructor(private boatService: BoatService) {}
 
   ngOnInit(): void {
