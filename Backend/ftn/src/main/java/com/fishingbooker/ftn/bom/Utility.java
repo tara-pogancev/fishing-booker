@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Data
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="utility_type",
+@DiscriminatorColumn(name = "utility_type",
         discriminatorType = DiscriminatorType.STRING)
 public class Utility extends DatabaseEntity {
 

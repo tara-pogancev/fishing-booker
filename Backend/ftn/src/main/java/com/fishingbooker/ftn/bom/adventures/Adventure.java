@@ -4,6 +4,7 @@ import com.fishingbooker.ftn.bom.Address;
 import com.fishingbooker.ftn.bom.DatabaseEntity;
 import com.fishingbooker.ftn.bom.RuleOfConduct;
 import com.fishingbooker.ftn.bom.boats.NavigationalEquipment;
+import com.fishingbooker.ftn.bom.users.FishingInstructor;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -49,7 +50,7 @@ public class Adventure extends DatabaseEntity {
     @ManyToMany
     @JoinTable(
             name = "adventure_navigational_equipment",
-            joinColumns = @JoinColumn(name = "boat_id"),
+            joinColumns = @JoinColumn(name = "adventure_id"),
             inverseJoinColumns = @JoinColumn(name = "equipment_id"))
     private Set<NavigationalEquipment> navigationalEquipments;
 
@@ -62,5 +63,9 @@ public class Adventure extends DatabaseEntity {
             joinColumns = @JoinColumn(name = "adventure_reservation_id"),
             inverseJoinColumns = @JoinColumn(name = "adventure_utility_id"))
     private Set<AdventureUtility> utilities;
+
+    @ManyToOne
+    @JoinColumn(name = "instructor")
+    private FishingInstructor instructor;
 
 }

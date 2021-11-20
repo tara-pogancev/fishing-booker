@@ -16,7 +16,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Service
 @Transactional
@@ -62,7 +64,7 @@ public class BoatServiceImpl implements BoatService {
         boat.setMaxSpeed(250.3);
         boat.setAddress(address);
         boat.setDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed enim nisl, malesuada at enim ut."
-                );
+        );
         boat.setGuestLimit(20);
         boat.setFishingEquipment("Dobar fishing equipment");
         boat.setBoatOwner(owner);

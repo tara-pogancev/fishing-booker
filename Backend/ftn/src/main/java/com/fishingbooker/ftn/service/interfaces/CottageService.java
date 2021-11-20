@@ -1,6 +1,5 @@
 package com.fishingbooker.ftn.service.interfaces;
 
-import com.fishingbooker.ftn.dto.BoatDto;
 import com.fishingbooker.ftn.dto.CottageDto;
 
 import java.util.List;

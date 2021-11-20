@@ -1,9 +1,9 @@
 package com.fishingbooker.ftn.conversion.dto;
 
 import com.fishingbooker.ftn.bom.Utility;
-import com.fishingbooker.ftn.bom.boats.Boat;
-import com.fishingbooker.ftn.bom.boats.BoatUtility;
-import com.fishingbooker.ftn.dto.BoatDto;
+import com.fishingbooker.ftn.bom.adventures.Adventure;
+import com.fishingbooker.ftn.bom.adventures.AdventureUtility;
+import com.fishingbooker.ftn.dto.AdventureDto;
 import com.fishingbooker.ftn.dto.UtilityDto;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -15,19 +15,19 @@ import java.util.Set;
 
 @Component
 @RequiredArgsConstructor
-public class BoatToDto implements Converter<Boat, BoatDto> {
+public class AdventureToDto implements Converter<Adventure, AdventureDto> {
 
     private final ModelMapper modelMapper;
 
     @Override
-    public BoatDto convert(Boat source) {
-        BoatDto dto = modelMapper.map(source, BoatDto.class);
-        dto.setOwnerName(source.getBoatOwner().getName() + " " + source.getBoatOwner().getLastName());
+    public AdventureDto convert(Adventure source) {
+        AdventureDto dto = modelMapper.map(source, AdventureDto.class);
+        dto.setOwnerName(source.getInstructor().getName() + " " + source.getInstructor().getLastName());
         dto.setUtilities(getUtilityDtoList(source.getUtilities()));
         return dto;
     }
 
-    private Set<UtilityDto> getUtilityDtoList(Set<BoatUtility> source) {
+    private Set<UtilityDto> getUtilityDtoList(Set<AdventureUtility> source) {
         Set<UtilityDto> retVal = new HashSet<>();
         for (Utility utility : source) {
             retVal.add(modelMapper.map(utility, UtilityDto.class));

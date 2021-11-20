@@ -38,7 +38,7 @@ public class Cottage extends DatabaseEntity {
     // todo: photos
     // https://www.codejava.net/frameworks/spring-boot/spring-boot-file-upload-tutorial
 
-    @OneToMany(mappedBy = "cottage")
+    @OneToMany(mappedBy = "cottage", fetch = FetchType.LAZY)
     private Set<Room> rooms;
 
     @OneToMany(mappedBy = "cottage")

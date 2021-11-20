@@ -1,10 +1,7 @@
 package com.fishingbooker.ftn.service;
 
-import com.fishingbooker.ftn.bom.Address;
 import com.fishingbooker.ftn.bom.cottages.Cottage;
-import com.fishingbooker.ftn.bom.cottages.CottageUtility;
 import com.fishingbooker.ftn.bom.cottages.Room;
-import com.fishingbooker.ftn.bom.users.CottageOwner;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.CottageDto;
 import com.fishingbooker.ftn.repository.*;
@@ -13,10 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Service
 @Transactional
@@ -70,6 +64,7 @@ public class CottageServiceImpl implements CottageService {
         room.setNumberOfBeds(55);
         room.setCottage(cottage);
         room = roomRepository.save(room);
+
 //        cottage.getRooms().add(room);
 //        cottageRepository.save(cottage);
 

@@ -1,8 +1,6 @@
 package com.fishingbooker.ftn.controller;
 
-import com.fishingbooker.ftn.dto.BoatDto;
 import com.fishingbooker.ftn.dto.CottageDto;
-import com.fishingbooker.ftn.service.interfaces.BoatService;
 import com.fishingbooker.ftn.service.interfaces.CottageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

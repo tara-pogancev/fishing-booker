@@ -13,8 +13,8 @@ public class Room extends DatabaseEntity {
     @Column(name = "numberOfBeds", nullable = false)
     private Integer numberOfBeds;
 
-    @ManyToOne
-    @JoinColumn(name = "cottageId", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cottageId")
     private Cottage cottage;
 
 }
