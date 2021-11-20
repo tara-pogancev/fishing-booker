@@ -59,6 +59,7 @@ import { RuleComponent } from './components/rule/rule.component';
 import { UtilityComponent } from './components/utility/utility.component';
 import { MapComponent } from './components/map/map.component';
 import { RoomComponent } from './components/cottages/room/room.component';
+import { UpcomingReservationsComponent } from './components/client/client-dashboard/upcoming-reservations/upcoming-reservations.component';
 
 @NgModule({
   declarations: [
@@ -117,6 +118,7 @@ import { RoomComponent } from './components/cottages/room/room.component';
     UtilityComponent,
     MapComponent,
     RoomComponent,
+    UpcomingReservationsComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],

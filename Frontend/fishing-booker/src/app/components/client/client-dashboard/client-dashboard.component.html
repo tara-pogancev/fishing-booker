@@ -56,6 +56,13 @@
           >
         </li>
         <li>
+          <a
+            [ngClass]="{ 'is-active': activeTab === 'UPCOMING' }"
+            (click)="changeTab('UPCOMING')"
+            >Upcoming Reservations</a
+          >
+        </li>
+        <li>
           <div class="mt-4">
             <b>Past Reservations</b>
             <ul>
@@ -150,6 +157,11 @@
       </div>
       <div *ngIf="activeTab == 'SPECIAL_OFFERS'">
         <client-special-offers [user]="client"></client-special-offers>
+      </div>
+      <div *ngIf="activeTab == 'UPCOMING'">
+        <client-upcoming-reservations
+          [user]="client"
+        ></client-upcoming-reservations>
       </div>
       <div *ngIf="activeTab == 'PAST_COTTAGE'">
         <client-past-cottage [user]="client"></client-past-cottage>
