@@ -32,10 +32,13 @@ public class Cottage extends DatabaseEntity {
     @Column(name = "price", nullable = false)
     private Double price = 0.0;
 
+    @Column(name = "guestLimit", nullable = false)
+    private Integer guestLimit;
+
     // todo: photos
     // https://www.codejava.net/frameworks/spring-boot/spring-boot-file-upload-tutorial
 
-    @OneToMany(mappedBy = "cottage", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "cottage")
     private Set<Room> rooms;
 
     @OneToMany(mappedBy = "cottage")

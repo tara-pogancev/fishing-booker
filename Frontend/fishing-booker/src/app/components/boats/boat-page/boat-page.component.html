@@ -26,11 +26,13 @@
             <div><strong>Guest Limit: </strong> {{ boat.guestLimit }}</div>
             <div>
               <span class="tag is-large mt-5 rating"
-                >4.8 <i class="ml-1 fa fa-star"></i
+                >{{ boat.rating }} <i class="ml-1 fa fa-star"></i
               ></span>
             </div>
             <gap height="20"></gap>
-            <div><h4>Price per day: $48</h4></div>
+            <div>
+              <h4>Price per day: ${{ boat.price }}</h4>
+            </div>
           </div>
           <div class="column">
             <div class="mb-5">

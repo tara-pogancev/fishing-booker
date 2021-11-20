@@ -58,6 +58,7 @@ import { FishingPageComponent } from './components/fishing/fishing-page/fishing-
 import { RuleComponent } from './components/rule/rule.component';
 import { UtilityComponent } from './components/utility/utility.component';
 import { MapComponent } from './components/map/map.component';
+import { RoomComponent } from './components/cottages/room/room.component';
 
 @NgModule({
   declarations: [
@@ -115,6 +116,7 @@ import { MapComponent } from './components/map/map.component';
     RuleComponent,
     UtilityComponent,
     MapComponent,
+    RoomComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],

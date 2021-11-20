@@ -13,7 +13,7 @@ public class Room extends DatabaseEntity {
     @Column(name = "numberOfBeds", nullable = false)
     private Integer numberOfBeds;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "cottageId", referencedColumnName = "id")
     private Cottage cottage;
 

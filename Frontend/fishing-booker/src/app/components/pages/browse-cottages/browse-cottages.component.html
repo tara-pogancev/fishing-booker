@@ -5,10 +5,19 @@
     <div>
       <search-field></search-field>
       <hr />
-      <browse-card></browse-card>
-      <browse-card></browse-card>
-      <browse-card></browse-card>
-      <browse-card></browse-card>
+      <div *ngFor="let cottage of cottages">
+        <browse-card
+          [name]="cottage.name"
+          [description]="cottage.description"
+          [address]="cottage.address"
+          [ownerName]="cottage.ownerName"
+          [utilities]="cottage.utilities"
+          [price]="cottage.price"
+          [rating]="cottage.rating"
+          [id]="cottage.id"
+          type="cottage"
+        ></browse-card>
+      </div>
     </div>
   </div>
 </div>

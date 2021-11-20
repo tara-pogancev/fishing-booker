@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Cottage } from 'src/app/model/cottage-model';
+import { CottageService } from 'src/app/service/cottage.service';
 
 @Component({
   selector: 'cottage-card',
@@ -6,17 +8,19 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./cottage-card.component.css'],
 })
 export class CottageCardComponent implements OnInit {
-  @Input() id: string = '';
-  @Input() title: string = 'Title';
-  @Input() owner: string = 'John Smith';
+  @Input() id: number = 0;
+  @Input() cottage: Cottage = new Cottage();
   @Input() img: string = '/assets/images/cottage-interior/interior1.jpeg';
-  @Input() description: string = 'Description goes here';
 
-  constructor() {}
+  constructor(private cottageService: CottageService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.cottageService.findById(this.id).subscribe((data) => {
+      this.cottage = data;
+    });
+  }
 
   readMore() {
-    alert('New window');
+    window.location.href = 'cottage/' + this.id;
   }
 }
