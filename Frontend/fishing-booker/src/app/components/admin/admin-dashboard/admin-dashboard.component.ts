@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Client } from 'src/app/model/client-model';
+import { AdminService } from 'src/app/service/admin.service';
 import { ClientService } from 'src/app/service/client.service';
 
 @Component({
@@ -11,13 +12,13 @@ export class AdminDashboardComponent implements OnInit {
 
   
 
-  client: Client = new Client();
+  client: any = {};
   activeTab: string = 'PERSONAL_INFO';
 
-  constructor(private clientService: ClientService) {}
+  constructor(private adminService: AdminService) {}
 
   ngOnInit(): void {
-    this.clientService.getCurrentClient().subscribe((data: Client) => {
+   this.adminService.getCurrentClient().subscribe((data: Client) => {
       this.client = data;
       console.log(data);
     });
@@ -26,5 +27,7 @@ export class AdminDashboardComponent implements OnInit {
   changeTab(tabName: string) {
     this.activeTab = tabName;
   }
+
+  
 
 }

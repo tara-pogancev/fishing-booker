@@ -72,6 +72,7 @@ import { CottageOwnerListComponent } from './components/admin/admin-dashboard/co
 import { BoatOwnersComponent } from './components/admin/admin-dashboard/boat-owners-list/boat-owners/boat-owners.component';
 import { ClientsComponent } from './components/admin/admin-dashboard/clients-list/clients/clients.component';
 import { RegistrationRequestComponent } from './components/admin/admin-dashboard/registration-request/registration-request/registration-request.component';
+import { FishinInstructorsListComponent } from './components/admin/admin-dashboard/fishin-instructors-list/fishin-instructors-list.component';
 
 @NgModule({
   declarations: [
@@ -151,6 +152,7 @@ import { RegistrationRequestComponent } from './components/admin/admin-dashboard
     BoatOwnersComponent,
     ClientsComponent,
     RegistrationRequestComponent,
+    FishinInstructorsListComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -2,6 +2,7 @@ package com.fishingbooker.ftn.service;
 
 import com.fishingbooker.ftn.bom.Address;
 import com.fishingbooker.ftn.bom.RegistrationRequest;
+import com.fishingbooker.ftn.bom.users.ApplicationRole;
 import com.fishingbooker.ftn.bom.users.ApplicationUser;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.ApplicationUserDto;
@@ -126,14 +127,18 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
 
     @Override
     public ApplicationUser createWithRequest(ApplicationUserDto userDto) {
-        ApplicationUser user = converter.convert(userDto, ApplicationUser.class);
-        Address userAddress = addressService.create(userDto);
-        user.setUserAddress(userAddress);
+        ApplicationUser user=new ApplicationUser();
         RegistrationRequest request=new RegistrationRequest();
         request.setRegistrationDescription(userDto.getRegistrationDescription());
+        if (ApplicationRole.getRoleFromString(userDto.getRole())==ApplicationRole.FISHING_INSTRUCTOR)
+            user = fishingInstructorService.create(userDto);
+        else if(ApplicationRole.getRoleFromString(userDto.getRole())==ApplicationRole.BOAT_OWNER){
+            user = boatOwnerService.create(userDto);
+        }// todo add for other types of users
+
         request.setUser(user);
         registrationRequestRepository.save(request);
-        return userRepository.save(user);
+        return user;
     }
 
     public void sendRegistrationConfirmationEmail(ApplicationUser user) {

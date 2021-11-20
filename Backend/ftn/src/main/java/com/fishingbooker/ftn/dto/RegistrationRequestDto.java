@@ -1,9 +1,15 @@
 package com.fishingbooker.ftn.dto;
 
+import lombok.Data;
+
+@Data
 public class RegistrationRequestDto {
-    public  String name;
-    public String lastName;
-    public  String mail;
-    public String  userType;
-    public String  registrationDescription;
+
+    private Long id;
+    private  String name;
+    private String lastName;
+    private   String mail;
+    private  String  userType;
+    private String  registrationDescription;
+
 }

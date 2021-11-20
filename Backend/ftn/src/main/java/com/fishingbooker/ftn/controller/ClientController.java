@@ -1,5 +1,7 @@
 package com.fishingbooker.ftn.controller;
 
+import com.fishingbooker.ftn.bom.users.RegisteredClient;
+import com.fishingbooker.ftn.dto.AdminViewUserDto;
 import com.fishingbooker.ftn.dto.RegisteredClientDto;
 import com.fishingbooker.ftn.service.interfaces.RegisteredClientService;
 import lombok.RequiredArgsConstructor;
@@ -34,5 +36,7 @@ public class ClientController {
     public void update(@RequestBody RegisteredClientDto dto) {
         clientService.update(dto);
     }
+
+
 
 }

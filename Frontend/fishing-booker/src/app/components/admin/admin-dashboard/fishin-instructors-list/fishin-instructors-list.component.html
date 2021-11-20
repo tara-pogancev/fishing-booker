@@ -1,5 +1,5 @@
 <div class="content is-medium">
-    <h1 class="title">Clients</h1>
+    <h1 class="title">Fishing instructors</h1>
     <hr />
     <div>
       <table class="table">
@@ -15,13 +15,13 @@
           </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let client of clients">
-                <td>{{client.id}}</td>
-                <td>{{client.name}}</td>
-                <td>{{client.lastName}}</td>
-                <td>{{client.email}}</td>
-                <td>{{client.phone}}</td>
-                <td><button (click)="deleteClient(client)">Delete</button></td>
+            <tr *ngFor="let instructor of instructors">
+                <td>{{instructor.id}}</td>
+                <td>{{instructor.name}}</td>
+                <td>{{instructor.lastName}}</td>
+                <td>{{instructor.email}}</td>
+                <td>{{instructor.phone}}</td>
+                <td><button (click)="deleteInstructor(instructor)">Delete</button></td>
             </tr>
         </tbody>
         

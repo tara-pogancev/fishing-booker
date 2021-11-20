@@ -43,6 +43,13 @@
         </li>
         <li>
           <a
+            [ngClass]="{ 'is-active': activeTab === 'INSTRUCTORS' }"
+            (click)="changeTab('INSTRUCTORS')"
+            >Fishing instructors</a
+          >
+        </li>
+        <li>
+          <a
             [ngClass]="{ 'is-active': activeTab === 'CLIENTS' }"
             (click)="changeTab('CLIENTS')"
             >Clients</a
@@ -137,6 +144,9 @@
       <div *ngIf="activeTab == 'BOAT_OWNERS'">
         <app-boat-owners></app-boat-owners>
       </div>
+      <div *ngIf="activeTab == 'INSTRUCTORS'">
+        <app-fishin-instructors-list></app-fishin-instructors-list>
+      </div>
       <div *ngIf="activeTab == 'CLIENTS'">
         <app-clients></app-clients>
       </div>
@@ -162,6 +172,9 @@
         <my-reviews-and-complaints [user]="client"></my-reviews-and-complaints>
       </div>
       <div *ngIf="activeTab == 'DELETE_ACCOUNT'">
+        <client-delete-account [user]="client"></client-delete-account>
+      </div>
+      <div *ngIf="activeTab == 'DENIED_REGISTRATION'">
         <client-delete-account [user]="client"></client-delete-account>
       </div>
     </div>

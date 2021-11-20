@@ -25,16 +25,35 @@
             <footer class="card-footer">
               <p class="card-footer-item">
                 <span>
-                  <button class="confirmButton">Accept Registration</button>
+                  <button class="confirmButton" (click)="acceptRegistration(request)">Accept Registration</button>
                 </span>
               </p>
               <p class="card-footer-item">
                 <span>
-                  <button class="cancelButton">Reject Registration</button>
+                  <button class="cancelButton" (click)="openModalTab(request)">Reject Registration</button>
                 </span>
               </p>
             </footer>
           </div>
+    </div>
+    <div class="modal" id='modal'>
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Refuse Registration Request</p>
+          <button class="delete" aria-label="close" (click)="closeModalTab()"></button>
+        </header>
+        <section class="modal-card-body">
+          <h2>Enter your comment</h2>
+          <div>
+            <textarea class="textarea" placeholder="10 lines of textarea" rows="10" [(ngModel)]="comment"></textarea>
+          </div>
+        </section>
+        <footer class="modal-card-foot">
+          <button class="button is-success" (click)="rejectRequest()">Send mail</button>
+          
+        </footer>
+      </div>
     </div>
     
     

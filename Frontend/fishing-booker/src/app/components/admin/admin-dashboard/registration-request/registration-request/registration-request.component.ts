@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RegistrationRequest } from 'src/app/model/registration-request-model';
 import { RegistrationRequestService } from 'src/app/service/registration-request.service';
+import { Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-registration-request',
@@ -10,10 +11,38 @@ import { RegistrationRequestService } from 'src/app/service/registration-request
 export class RegistrationRequestComponent implements OnInit {
 
   registrationRequests:RegistrationRequest[]=[];
+  selectedRequest: RegistrationRequest=new RegistrationRequest();
+  comment:string='';
+  
   constructor(private requestService:RegistrationRequestService) { }
-
+  activeTab:string='';
   ngOnInit(): void {
     this.requestService.getRequests().subscribe(requests=>this.registrationRequests=requests) 
   }
 
+  acceptRegistration(request:RegistrationRequest):void{
+    this.requestService.approveRequest(request.id);
+    alert('Successfully approved');
+  }
+
+  openModalTab(request:RegistrationRequest):void{
+    this.selectedRequest=request;
+    document.getElementById('modal')?.classList.toggle('is-active');
+  }
+
+  closeModalTab():void{
+    document.getElementById('modal')?.classList.toggle('is-active');
+  }
+
+  rejectRequest():void{
+    if (this.comment==''){
+      alert('Insert your explanation');
+      return;
+    }
+    this.requestService.rejectRequest(this.selectedRequest.id,this.comment);
+    document.getElementById('modal')?.classList.toggle('is-active');
+    alert('Success');
+  }
+  
+  
 }

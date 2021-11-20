@@ -1,11 +1,14 @@
 package com.fishingbooker.ftn.service;
 
+import com.fishingbooker.ftn.bom.Address;
 import com.fishingbooker.ftn.bom.users.FishingInstructor;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.ApplicationUserDto;
 import com.fishingbooker.ftn.repository.FishingInstructorRepository;
+import com.fishingbooker.ftn.service.interfaces.AddressService;
 import com.fishingbooker.ftn.service.interfaces.FishingInstructorService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -18,6 +21,7 @@ public class FishingInstructorServiceImpl implements FishingInstructorService {
 
     private final DataConverter converter;
     private final FishingInstructorRepository instructorRepository;
+    private final AddressService addressService;
 
     @Override
     public List<FishingInstructor> findAll() {
@@ -32,6 +36,9 @@ public class FishingInstructorServiceImpl implements FishingInstructorService {
     @Override
     public FishingInstructor create(ApplicationUserDto userDto) {
         FishingInstructor instructor = converter.convert(userDto, FishingInstructor.class);
+        Address userAddress = addressService.create(userDto);
+        instructor.setPassword(new BCryptPasswordEncoder().encode(instructor.getPassword()));
+        instructor.setUserAddress(userAddress);
         return instructorRepository.save(instructor);
     }
 

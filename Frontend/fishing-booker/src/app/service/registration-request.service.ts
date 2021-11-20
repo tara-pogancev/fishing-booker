@@ -1,9 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { server } from '../app-global';
 import { RegistrationRequest } from '../model/registration-request-model';
 import { LoginService } from './login.service';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,20 @@ export class RegistrationRequestService {
   constructor(private _http: HttpClient,private loginService: LoginService) { }
 
   getRequests() : Observable<RegistrationRequest[]>{
-    const headers = this.loginService.getHeaders();
+    //const headers = this.loginService.getHeaders();
     return this._http.get<RegistrationRequest[]>(this.url);
+  }
+
+  approveRequest(id:string):void{
+    this._http.put<any>(this.url+'/approve/'+id,{}).subscribe(console.log);
+  }
+
+  rejectRequest(id:string,explanation:string){
+    this._http.put<any>(this.url+'/reject',{id:id,causeOfRejection:explanation}).subscribe(console.log);
+  }
+
+  erroHandler(error: HttpErrorResponse) {
+    return throwError(error.message || 'server Error');
   }
   
 }

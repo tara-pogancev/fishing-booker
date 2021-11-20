@@ -4,7 +4,8 @@ export class RegistrationRequest{
         public lastName: string = '',
         public mail: string = '',
         public userType:string='',
-        public registrationDescription:string=''
+        public registrationDescription:string='',
+        public id:string=''
     ){}
 
     

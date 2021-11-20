@@ -1,15 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { server } from '../app-global';
-import { Client } from '../model/client-model';
 import { LoginService } from './login.service';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class ClientService {
-  url = server + 'api/client';
+export class AdminService {
+
+  url = server + 'api/admin';
 
 
   constructor(private _http: HttpClient, private loginService: LoginService) {}
@@ -17,23 +16,22 @@ export class ClientService {
   getClient(id: number) {
     const url = this.url + '/' + id;
     const headers = this.loginService.getHeaders();
-    return this._http.get<Client>(url, { headers: headers });
+    return this._http.get<any>(url, { headers: headers });
   }
 
   getCurrentClient() {
     const id = this.loginService.getCurrentUser().id;
     const url = this.url + '/' + id;
     const headers = this.loginService.getHeaders();
-    return this._http.get<Client>(url, { headers: headers });
+    return this._http.get<any>(url, { headers: headers });
   }
 
-  updateClientData(client: Client) {
+  updateClientData(client: any) {
     const headers = this.loginService.getHeaders();
     return this._http.put<any>(this.url, client, { headers: headers });
   }
 
   loadClients(){
-    const headers = this.loginService.getHeaders();
-    return this._http.get<any>(this.url,{headers:headers});
+    return this._http.get<any>(this.url);
   }
 }
