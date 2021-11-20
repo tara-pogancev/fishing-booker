@@ -4,14 +4,17 @@ import { Client } from 'src/app/model/client-model';
 @Component({
   selector: 'app-subscriptions',
   templateUrl: './subscriptions.component.html',
-  styleUrls: ['./subscriptions.component.css']
+  styleUrls: ['./subscriptions.component.css'],
 })
 export class SubscriptionsComponent implements OnInit {
   @Input() user: Client = new Client();
+  hideNotification: boolean = false;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  closeNotification() {
+    this.hideNotification = true;
   }
-
 }

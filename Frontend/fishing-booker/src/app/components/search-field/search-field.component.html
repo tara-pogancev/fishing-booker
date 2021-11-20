@@ -18,36 +18,36 @@
   </div>
 
   <div class="column has-text-centered is-full-mobile">
-    <span class="tag is-link is-medium">
-      <button class="button button-tag is-small">
+    <span class="tag is-link is-medium" [class.unselected]="!pet">
+      <button class="button button-tag is-small" (click)="togglePet()">
         Pet-Friendly
         <i class="fa fa-paw tag-icon"></i>
       </button>
     </span>
 
-    <span class="tag is-link is-medium unsellected">
-      <button class="button button-tag is-small">
+    <span class="tag is-link is-medium" [class.unselected]="!wifi">
+      <button class="button button-tag is-small" (click)="toggleWifi()">
         WiFi Included
         <i class="fa fa-wifi tag-icon"></i>
       </button>
     </span>
 
-    <span class="tag is-link is-medium unsellected">
-      <button class="button button-tag is-small">
+    <span class="tag is-link is-medium" [class.unselected]="!drinks">
+      <button class="button button-tag is-small" (click)="toggleDrinks()">
         Drinks
         <i class="fa fa-glass tag-icon"></i>
       </button>
     </span>
 
-    <span class="tag is-link is-medium">
-      <button class="button button-tag is-small">
+    <span class="tag is-link is-medium" [class.unselected]="!medic">
+      <button class="button button-tag is-small" (click)="toggleMedic()">
         Health Support
         <i class="fa fa-ambulance tag-icon"></i>
       </button>
     </span>
 
-    <span class="tag is-link is-medium">
-      <button class="button button-tag is-small">
+    <span class="tag is-link is-medium" [class.unselected]="!exclusive">
+      <button class="button button-tag is-small" (click)="toggleExclusive()">
         Exclusive
         <i class="fa fa-star tag-icon"></i>
       </button>

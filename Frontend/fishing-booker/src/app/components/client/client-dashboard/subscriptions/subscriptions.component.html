@@ -67,8 +67,8 @@
         </div>
       </div>
 
-      <div class="notification is-success">
-        <button class="delete"></button>
+      <div class="notification is-success" *ngIf="!hideNotification">
+        <button class="delete" (click)="closeNotification()"></button>
         There is plenty to look at! Feel free to
         <strong>browse our offers</strong>, and find ones which suit you the
         most. Get notified right away about the newest offers via email.
