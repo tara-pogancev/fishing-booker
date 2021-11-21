@@ -5,12 +5,15 @@
     <div>
       <search-field></search-field>
       <hr />
+      <div *ngIf="boats.length == 0">
+        <p>No Boats Found.</p>
+      </div>
       <div *ngFor="let boat of boats">
         <browse-card
           [name]="boat.name"
           [description]="boat.description"
           [address]="boat.address"
-          [ownerName]="boat.boatOwnerName"
+          [ownerName]="boat.ownerName"
           [utilities]="boat.utilities"
           [price]="boat.price"
           [rating]="boat.rating"

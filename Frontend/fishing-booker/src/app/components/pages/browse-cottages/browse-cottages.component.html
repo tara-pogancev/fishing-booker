@@ -5,6 +5,9 @@
     <div>
       <search-field></search-field>
       <hr />
+      <div *ngIf="cottages.length == 0">
+        <p>No Cottages Found.</p>
+      </div>
       <div *ngFor="let cottage of cottages">
         <browse-card
           [name]="cottage.name"

@@ -64,6 +64,9 @@
   <div class="container content is-medium">
     <h1>Cottages</h1>
     <hr />
+    <div *ngIf="cottages.length == 0">
+      <p>No Cottages Found.</p>
+    </div>
     <div class="columns">
       <div class="column" *ngFor="let cottage of cottages.slice(0, 4)">
         <cottage-card [id]="cottage.id"></cottage-card>
@@ -115,6 +118,9 @@
 
 <div class="block my-6 mx-6">
   <div class="columns">
+    <div *ngIf="boats.length == 0">
+      <p>No Boats Found.</p>
+    </div>
     <div class="column" *ngFor="let boat of boats.slice(0, 4)">
       <boat-card [id]="boat.id"></boat-card>
     </div>

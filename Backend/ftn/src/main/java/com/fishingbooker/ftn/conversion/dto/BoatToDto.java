@@ -29,8 +29,8 @@ public class BoatToDto implements Converter<Boat, BoatDto> {
 
     private Set<UtilityDto> getUtilityDtoList(Set<BoatUtility> source) {
         Set<UtilityDto> retVal = new HashSet<>();
-        for (Utility utility : source) {
-            retVal.add(modelMapper.map(utility, UtilityDto.class));
+        for (BoatUtility utility : source) {
+            retVal.add(modelMapper.map(utility.getUtility(), UtilityDto.class));
         }
         return retVal;
     }

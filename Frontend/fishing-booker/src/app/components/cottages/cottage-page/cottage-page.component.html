@@ -48,12 +48,18 @@
     <div class="columns">
       <div class="column">
         <h3>Cottage Rules</h3>
+        <div *ngIf="cottage.rules.length == 0">
+          <p>No Rules Added.</p>
+        </div>
         <div *ngFor="let rule of cottage.rules">
           <rule [rule]="rule"></rule>
         </div>
       </div>
       <div class="column">
         <h3>Cottage Utilities</h3>
+        <div *ngIf="cottage.utilities.length == 0">
+          <p>No Utilities Added.</p>
+        </div>
         <div *ngFor="let utility of cottage.utilities">
           <utility [utility]="utility.name" [price]="utility.price"></utility>
         </div>

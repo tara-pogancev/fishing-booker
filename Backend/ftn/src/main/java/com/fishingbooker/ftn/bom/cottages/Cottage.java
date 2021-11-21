@@ -2,6 +2,7 @@ package com.fishingbooker.ftn.bom.cottages;
 
 import com.fishingbooker.ftn.bom.Address;
 import com.fishingbooker.ftn.bom.DatabaseEntity;
+import com.fishingbooker.ftn.bom.Image;
 import com.fishingbooker.ftn.bom.RuleOfConduct;
 import com.fishingbooker.ftn.bom.users.CottageOwner;
 import lombok.Data;
@@ -35,8 +36,12 @@ public class Cottage extends DatabaseEntity {
     @Column(name = "guestLimit", nullable = false)
     private Integer guestLimit;
 
-    // todo: photos
-    // https://www.codejava.net/frameworks/spring-boot/spring-boot-file-upload-tutorial
+    @ManyToMany
+    @JoinTable(
+            name = "cottage_images",
+            joinColumns = @JoinColumn(name = "cottage_id"),
+            inverseJoinColumns = @JoinColumn(name = "image_id"))
+    private Set<Image> images;
 
     @OneToMany(mappedBy = "cottage", fetch = FetchType.LAZY)
     private Set<Room> rooms;
@@ -51,11 +56,8 @@ public class Cottage extends DatabaseEntity {
             inverseJoinColumns = @JoinColumn(name = "rule_id"))
     private Set<RuleOfConduct> rules;
 
-    @ManyToMany
-    @JoinTable(
-            name = "cottage_utilities",
-            joinColumns = @JoinColumn(name = "cottage_reservation_id"),
-            inverseJoinColumns = @JoinColumn(name = "cottage_utility_id"))
+    @OneToMany
+    @JoinColumn(name = "cottage_id")
     private Set<CottageUtility> utilities;
 
     @OneToMany(mappedBy = "cottage")

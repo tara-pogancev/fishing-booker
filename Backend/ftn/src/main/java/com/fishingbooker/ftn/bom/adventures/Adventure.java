@@ -2,6 +2,7 @@ package com.fishingbooker.ftn.bom.adventures;
 
 import com.fishingbooker.ftn.bom.Address;
 import com.fishingbooker.ftn.bom.DatabaseEntity;
+import com.fishingbooker.ftn.bom.Image;
 import com.fishingbooker.ftn.bom.RuleOfConduct;
 import com.fishingbooker.ftn.bom.boats.NavigationalEquipment;
 import com.fishingbooker.ftn.bom.users.FishingInstructor;
@@ -31,8 +32,12 @@ public class Adventure extends DatabaseEntity {
     @Column(name = "price", nullable = false)
     private Double price = 0.0;
 
-    // todo: photos
-    // https://www.codejava.net/frameworks/spring-boot/spring-boot-file-upload-tutorial
+    @ManyToMany
+    @JoinTable(
+            name = "adventure_images",
+            joinColumns = @JoinColumn(name = "adventure_id"),
+            inverseJoinColumns = @JoinColumn(name = "image_id"))
+    private Set<Image> images;
 
     @Column(name = "guestLimit", nullable = false)
     private Integer guestLimit;
@@ -57,11 +62,8 @@ public class Adventure extends DatabaseEntity {
     @Column(name = "cancellationPercentageKeep", nullable = false)
     private Double cancellationPercentageKeep;
 
-    @ManyToMany
-    @JoinTable(
-            name = "adventure_utilities",
-            joinColumns = @JoinColumn(name = "adventure_reservation_id"),
-            inverseJoinColumns = @JoinColumn(name = "adventure_utility_id"))
+    @OneToMany
+    @JoinColumn(name = "adventure_id")
     private Set<AdventureUtility> utilities;
 
     @ManyToOne

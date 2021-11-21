@@ -29,8 +29,8 @@ public class AdventureToDto implements Converter<Adventure, AdventureDto> {
 
     private Set<UtilityDto> getUtilityDtoList(Set<AdventureUtility> source) {
         Set<UtilityDto> retVal = new HashSet<>();
-        for (Utility utility : source) {
-            retVal.add(modelMapper.map(utility, UtilityDto.class));
+        for (AdventureUtility utility : source) {
+            retVal.add(modelMapper.map(utility.getUtility(), UtilityDto.class));
         }
         return retVal;
     }

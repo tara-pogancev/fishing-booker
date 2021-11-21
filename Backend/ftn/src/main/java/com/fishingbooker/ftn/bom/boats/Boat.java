@@ -2,6 +2,7 @@ package com.fishingbooker.ftn.bom.boats;
 
 import com.fishingbooker.ftn.bom.Address;
 import com.fishingbooker.ftn.bom.DatabaseEntity;
+import com.fishingbooker.ftn.bom.Image;
 import com.fishingbooker.ftn.bom.RuleOfConduct;
 import com.fishingbooker.ftn.bom.users.BoatOwner;
 import lombok.Data;
@@ -52,8 +53,12 @@ public class Boat extends DatabaseEntity {
     @Column(name = "description", nullable = false)
     private String description;
 
-    // todo: photos
-    // https://www.codejava.net/frameworks/spring-boot/spring-boot-file-upload-tutorial
+    @ManyToMany
+    @JoinTable(
+            name = "boat_images",
+            joinColumns = @JoinColumn(name = "boat_id"),
+            inverseJoinColumns = @JoinColumn(name = "image_id"))
+    private Set<Image> images;
 
     @Column(name = "guestLimit", nullable = false)
     private Integer guestLimit;
@@ -71,11 +76,8 @@ public class Boat extends DatabaseEntity {
     @Column(name = "fishingEquipment", nullable = false)
     private String fishingEquipment;
 
-    @ManyToMany
-    @JoinTable(
-            name = "boat_utilities",
-            joinColumns = @JoinColumn(name = "boat_reservation_id"),
-            inverseJoinColumns = @JoinColumn(name = "boat_utility_id"))
+    @OneToMany
+    @JoinColumn(name = "boat_id")
     private Set<BoatUtility> utilities;
 
     @OneToMany(mappedBy = "boat")

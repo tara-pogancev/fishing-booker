@@ -43,8 +43,8 @@ public class CottageToDto implements Converter<Cottage, CottageDto> {
 
     private Set<UtilityDto> getUtilityDtoList(Set<CottageUtility> source) {
         Set<UtilityDto> retVal = new HashSet<>();
-        for (Utility utility : source) {
-            retVal.add(modelMapper.map(utility, UtilityDto.class));
+        for (CottageUtility utility : source) {
+            retVal.add(modelMapper.map(utility.getUtility(), UtilityDto.class));
         }
         return retVal;
     }

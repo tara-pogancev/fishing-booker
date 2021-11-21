@@ -18,6 +18,6 @@ export class Boat {
     public rules: string[] = [],
     public fishingEquipment: string = '',
     public utilities: Utility[] = [],
-    public boatOwnerName: string = ''
+    public ownerName: string = ''
   ) {}
 }
