@@ -13,7 +13,7 @@ export class BoatPageComponent implements OnInit {
   id: number = 0;
   boat: Boat = new Boat();
   navEquipment: string = '';
-  image: any;
+  image: any = 'assets/images/placeholder.jpg';
 
   constructor(
     private route: ActivatedRoute,

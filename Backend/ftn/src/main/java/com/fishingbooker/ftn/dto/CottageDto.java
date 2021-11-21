@@ -19,5 +19,6 @@ public class CottageDto {
     private Set<RoomDto> rooms;
     private String ownerName;
     private String roomOverview;
+    private Set<Long> imageIds;
 
 }

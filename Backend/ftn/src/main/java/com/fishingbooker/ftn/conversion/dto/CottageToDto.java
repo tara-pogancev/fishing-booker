@@ -1,9 +1,11 @@
 package com.fishingbooker.ftn.conversion.dto;
 
+import com.fishingbooker.ftn.bom.RuleOfConduct;
 import com.fishingbooker.ftn.bom.Utility;
 import com.fishingbooker.ftn.bom.cottages.Cottage;
 import com.fishingbooker.ftn.bom.cottages.CottageUtility;
 import com.fishingbooker.ftn.bom.cottages.Room;
+import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.CottageDto;
 import com.fishingbooker.ftn.dto.RoomDto;
 import com.fishingbooker.ftn.dto.UtilityDto;
@@ -25,8 +27,9 @@ public class CottageToDto implements Converter<Cottage, CottageDto> {
     public CottageDto convert(Cottage source) {
         CottageDto dto = modelMapper.map(source, CottageDto.class);
         dto.setOwnerName(source.getCottageOwner().getName() + " " + source.getCottageOwner().getLastName());
-        //dto.setRooms(getRoomDtoSet(source.getRooms()));
+        dto.setRules(DataConverter.getRules(source.getRules()));
         dto.setUtilities(getUtilityDtoList(source.getUtilities()));
+        dto.setImageIds(DataConverter.getImageIds(source.getImages()));
         return dto;
     }
 

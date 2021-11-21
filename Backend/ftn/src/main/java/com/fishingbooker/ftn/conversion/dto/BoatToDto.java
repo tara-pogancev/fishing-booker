@@ -7,6 +7,7 @@ import com.fishingbooker.ftn.bom.boats.Boat;
 import com.fishingbooker.ftn.bom.boats.BoatUtility;
 import com.fishingbooker.ftn.bom.boats.NavigationalEquipment;
 import com.fishingbooker.ftn.bom.boats.NavigationalEquipmentEnum;
+import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.BoatDto;
 import com.fishingbooker.ftn.dto.UtilityDto;
 import lombok.RequiredArgsConstructor;
@@ -30,9 +31,9 @@ public class BoatToDto implements Converter<Boat, BoatDto> {
         BoatDto dto = modelMapper.map(source, BoatDto.class);
         dto.setOwnerName(source.getBoatOwner().getName() + " " + source.getBoatOwner().getLastName());
         dto.setUtilities(getUtilityDtoList(source.getUtilities()));
-        dto.setRules(getRules(source.getRules()));
+        dto.setRules(DataConverter.getRules(source.getRules()));
         dto.setNavigationalEquipments(getNavEquipment(source.getNavigationalEquipments()));
-        dto.setImageIds(getImageIds(source.getImages()));
+        dto.setImageIds(DataConverter.getImageIds(source.getImages()));
         return dto;
     }
 
@@ -55,19 +56,4 @@ public class BoatToDto implements Converter<Boat, BoatDto> {
         return retVal;
     }
 
-    private Set<String> getRules(Set<RuleOfConduct> rules) {
-        Set<String> retVal = new HashSet<>();
-        for (RuleOfConduct rule : rules) {
-            retVal.add(rule.getRuleDescription());
-        }
-        return retVal;
-    }
-
-    private Set<Long> getImageIds(Set<Image> images) {
-        Set<Long> retVal = new HashSet<>();
-        for (Image image : images) {
-            retVal.add(image.getId());
-        }
-        return retVal;
-    }
 }

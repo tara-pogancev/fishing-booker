@@ -91,13 +91,13 @@ INSERT INTO public.boat(
 	VALUES (1, 30.5, 1, 15.0, 'Mauris volutpat molestie venentis. Phasellus lobortis bibendum est, et fringilla magna tempus tempor. Integer pellentesque sem ac tortor euismod finibus. In hac habitasse platea dictumst. Aliquam tincidunt consequat iaculis.', 58.5, 'Basic equipment', 8, 120.0, 'Laura', 4, 35.0, 3.9, 6, 3);
 INSERT INTO public.boat(
 	id, boat_length, boat_type, cancellation_percentage_keep, description, engine_power, fishing_equipment, guest_limit, max_speed, name, number_of_engines, price, rating, address, boat_owner)
-	VALUES (2, 45.8, 2, 10.0, 'Vivamus quam purus, tempus sit amet tristique at, commodo vitae nisl. Sed eleifend ornare massa, at mattis tellus gravida ac.', 65.5, 'Advanced equipment!', 5, 80.0, 'Sophia', 8, 42.0, 5.0, 10, 3);
+	VALUES (2, 45.8, 2, 10.0, 'Vivamus quam purus, tempus sit amet tristique at, commodo vitae nisl. Sed eleifend ornare massa, at mattis tellus gravida ac.', 65.5, 'Advanced equipment!', 5, 80.0, 'Sophia', 8, 42.0, 5.0, 7, 3);
 INSERT INTO public.boat(
 	id, boat_length, boat_type, cancellation_percentage_keep, description, engine_power, fishing_equipment, guest_limit, max_speed, name, number_of_engines, price, rating, address, boat_owner)
-	VALUES (3, 20.0, 3, 15.8, 'Fusce fermentum metus a finibus ultricies. Sed ullamcorper placerat felis quis consectetur. Donec sodales sem sit amet nisi tempus.', 20.1, 'Basic equipment!', 6, 75.0, 'Tifa', 7, 85.0, 0.0, 14, 3);
+	VALUES (3, 20.0, 3, 15.8, 'Fusce fermentum metus a finibus ultricies. Sed ullamcorper placerat felis quis consectetur. Donec sodales sem sit amet nisi tempus.', 20.1, 'Basic equipment!', 6, 75.0, 'Tifa', 7, 85.0, 0.0, 8, 3);
 INSERT INTO public.boat(
 	id, boat_length, boat_type, cancellation_percentage_keep, description, engine_power, fishing_equipment, guest_limit, max_speed, name, number_of_engines, price, rating, address, boat_owner)
-	VALUES (4, 85.6, 4, 7.2, 'Praesent auctor erat eros, nec egestas ante fringilla at. In ut enim feugiat, ultricies eros a, lacinia lorem. Aliquam pulvinar id lorem commodo bibendum.', 120.5, 'Premium equipment!', 15, 150.0, 'Scarlet', 10, 60.0, 4.8, 3, 3);
+	VALUES (4, 85.6, 4, 7.2, 'Praesent auctor erat eros, nec egestas ante fringilla at. In ut enim feugiat, ultricies eros a, lacinia lorem. Aliquam pulvinar id lorem commodo bibendum.', 120.5, 'Premium equipment!', 15, 150.0, 'Scarlet', 10, 60.0, 4.8, 9, 3);
 
 -- BOAT UTILITIES
 
@@ -143,4 +143,56 @@ INSERT INTO public.boat_images(boat_id, image_id)	VALUES (1, 10);
 INSERT INTO public.boat_images(boat_id, image_id)	VALUES (2, 6);
 
 -- COTTAGES
+
+INSERT INTO public.cottage(id, description, guest_limit, name, price, rating, address, cottage_owner)
+	VALUES (1, 'Ut aliquam magna congue pulvinar interdum. Vestibulum at risus pretium lectus rutrum fringilla non id mi.', 20, 'ShinRa RnR', 65.5, 5.0, 10, 2);
+INSERT INTO public.cottage(id, description, guest_limit, name, price, rating, address, cottage_owner)
+	VALUES (2, 'Quisque magna ante, molestie quis erat sit amet, interdum dignissim urna. Integer eget turpis varius, dapibus ex sed, finibus turpis. Fusce pharetra maximus purus eget blandit.', 15, 'Peace&Calm', 30.0, 4.5, 11, 2);
+INSERT INTO public.cottage(id, description, guest_limit, name, price, rating, address, cottage_owner)
+	VALUES (3, 'Praesent auctor erat eros, nec egestas ante fringilla at. In ut enim feugiat, ultricies eros a, lacinia lorem. Aliquam pulvinar id lorem commodo bibendum.', 8, 'Ocean Reset', 45.2, 3.7, 12, 2);
+INSERT INTO public.cottage(id, description, guest_limit, name, price, rating, address, cottage_owner)
+	VALUES (4, 'Vivamus pellentesque ex vel ligula lobortis, vel interdum libero pellentesque.', 9, 'Forest Dreams', 29.9, 4.6, 13, 2);
+
+-- ROOMS
+
+INSERT INTO public.room(id, number_of_beds, cottage_id)	VALUES (1, 3, 1);
+INSERT INTO public.room(id, number_of_beds, cottage_id)	VALUES (2, 4, 1);
+INSERT INTO public.room(id, number_of_beds, cottage_id)	VALUES (3, 3, 2);
+INSERT INTO public.room(id, number_of_beds, cottage_id)	VALUES (4, 6, 2);
+INSERT INTO public.room(id, number_of_beds, cottage_id)	VALUES (5, 2, 4);
+INSERT INTO public.room(id, number_of_beds, cottage_id)	VALUES (6, 1, 4);
+INSERT INTO public.room(id, number_of_beds, cottage_id)	VALUES (7, 8, 4);
+
+-- COTTAGE RULES OF CONDUCT
+
+INSERT INTO public.cottage_rules(cottage_id, rule_id)	VALUES (1, 1);
+INSERT INTO public.cottage_rules(cottage_id, rule_id)	VALUES (1, 2);
+INSERT INTO public.cottage_rules(cottage_id, rule_id)	VALUES (2, 3);
+INSERT INTO public.cottage_rules(cottage_id, rule_id)	VALUES (2, 4);
+INSERT INTO public.cottage_rules(cottage_id, rule_id)	VALUES (3, 2);
+INSERT INTO public.cottage_rules(cottage_id, rule_id)	VALUES (4, 1);
+INSERT INTO public.cottage_rules(cottage_id, rule_id)	VALUES (4, 5);
+
+-- COTTAGE UTILITIES
+
+INSERT INTO public.cottage_utility(id, price, cottage_id, utility_id)	VALUES (1, 0.0, 1, 1);
+INSERT INTO public.cottage_utility(id, price, cottage_id, utility_id)	VALUES (2, 0.0, 4, 1);
+INSERT INTO public.cottage_utility(id, price, cottage_id, utility_id)	VALUES (3, 5.0, 3, 2);
+INSERT INTO public.cottage_utility(id, price, cottage_id, utility_id)	VALUES (4, 5.0, 4, 2);
+INSERT INTO public.cottage_utility(id, price, cottage_id, utility_id)	VALUES (5, 0.0, 2, 3);
+INSERT INTO public.cottage_utility(id, price, cottage_id, utility_id)	VALUES (6, 8.0, 1, 4);
+INSERT INTO public.cottage_utility(id, price, cottage_id, utility_id)	VALUES (7, 8.0, 3, 4);
+INSERT INTO public.cottage_utility(id, price, cottage_id, utility_id)	VALUES (8, 35.0, 3, 5);
+INSERT INTO public.cottage_utility(id, price, cottage_id, utility_id)	VALUES (9, 25.0, 4, 5);
+INSERT INTO public.cottage_utility(id, price, cottage_id, utility_id)	VALUES (10, 5.5, 2, 6);
+INSERT INTO public.cottage_utility(id, price, cottage_id, utility_id)	VALUES (11, 0.0, 3, 7);
+INSERT INTO public.cottage_utility(id, price, cottage_id, utility_id)	VALUES (12, 20.0, 4, 8);
+
+-- COTTAGE IMAGES
+
+INSERT INTO public.cottage_images(cottage_id, image_id)	VALUES (1, 3);
+INSERT INTO public.cottage_images(cottage_id, image_id)	VALUES (2, 5);
+INSERT INTO public.cottage_images(cottage_id, image_id)	VALUES (3, 4);
+INSERT INTO public.cottage_images(cottage_id, image_id)	VALUES (4, 11);
+
 

@@ -12,7 +12,7 @@ export class BoatCardComponent implements OnInit {
   @Input() id: number = 0;
   @Input() img: string = '/assets/images/boat.jpg';
   boat: Boat = new Boat();
-  image: any;
+  image: any = 'assets/images/placeholder.jpg';
 
   constructor(
     private boatService: BoatService,

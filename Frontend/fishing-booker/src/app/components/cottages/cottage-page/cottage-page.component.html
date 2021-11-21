@@ -3,7 +3,7 @@
     <h1>{{ cottage.address }}</h1>
     <hr />
     <div class="columns">
-      <div class="column figure"><img src="assets/images/boat.jpg" /></div>
+      <div class="column figure"><img [src]="image" /></div>
 
       <div class="column">
         <h2>{{ cottage.name }}</h2>
@@ -66,6 +66,9 @@
       </div>
       <div class="column">
         <h3>Cottage Rooms</h3>
+        <div *ngIf="cottage.rooms.length == 0">
+          <p>No Rooms Added.</p>
+        </div>
         <div *ngFor="let room of cottage.rooms">
           <room [beds]="room.numberOfBeds"></room>
         </div>
