@@ -88,16 +88,16 @@ INSERT INTO public.navigational_equipment(id, name)	VALUES (5, 5);
 
 INSERT INTO public.boat(
 	id, boat_length, boat_type, cancellation_percentage_keep, description, engine_power, fishing_equipment, guest_limit, max_speed, name, number_of_engines, price, rating, address, boat_owner)
-	VALUES (1, 30.5, 1, 15.0, 'Great boat!', 58.5, 'Basic equipment', 8, 120.0, 'Laura', 4, 35.0, 3.9, 6, 3);
+	VALUES (1, 30.5, 1, 15.0, 'Mauris volutpat molestie venentis. Phasellus lobortis bibendum est, et fringilla magna tempus tempor. Integer pellentesque sem ac tortor euismod finibus. In hac habitasse platea dictumst. Aliquam tincidunt consequat iaculis.', 58.5, 'Basic equipment', 8, 120.0, 'Laura', 4, 35.0, 3.9, 6, 3);
 INSERT INTO public.boat(
 	id, boat_length, boat_type, cancellation_percentage_keep, description, engine_power, fishing_equipment, guest_limit, max_speed, name, number_of_engines, price, rating, address, boat_owner)
-	VALUES (2, 45.8, 2, 10.0, 'Amazing boat!', 65.5, 'Advanced equipment!', 5, 80.0, 'Sophia', 8, 42.0, 5.0, 10, 3);
+	VALUES (2, 45.8, 2, 10.0, 'Vivamus quam purus, tempus sit amet tristique at, commodo vitae nisl. Sed eleifend ornare massa, at mattis tellus gravida ac.', 65.5, 'Advanced equipment!', 5, 80.0, 'Sophia', 8, 42.0, 5.0, 10, 3);
 INSERT INTO public.boat(
 	id, boat_length, boat_type, cancellation_percentage_keep, description, engine_power, fishing_equipment, guest_limit, max_speed, name, number_of_engines, price, rating, address, boat_owner)
-	VALUES (3, 20.0, 3, 15.8, 'Awesome boat!', 20.1, 'Basic equipment!', 6, 75.0, 'Tifa', 7, 85.0, 0.0, 14, 3);
+	VALUES (3, 20.0, 3, 15.8, 'Fusce fermentum metus a finibus ultricies. Sed ullamcorper placerat felis quis consectetur. Donec sodales sem sit amet nisi tempus.', 20.1, 'Basic equipment!', 6, 75.0, 'Tifa', 7, 85.0, 0.0, 14, 3);
 INSERT INTO public.boat(
 	id, boat_length, boat_type, cancellation_percentage_keep, description, engine_power, fishing_equipment, guest_limit, max_speed, name, number_of_engines, price, rating, address, boat_owner)
-	VALUES (4, 85.6, 4, 7.2, 'Superb boat!', 120.5, 'Premium equipment!', 15, 150.0, 'Scarlet', 10, 60.0, 4.8, 3, 3);
+	VALUES (4, 85.6, 4, 7.2, 'Praesent auctor erat eros, nec egestas ante fringilla at. In ut enim feugiat, ultricies eros a, lacinia lorem. Aliquam pulvinar id lorem commodo bibendum.', 120.5, 'Premium equipment!', 15, 150.0, 'Scarlet', 10, 60.0, 4.8, 3, 3);
 
 -- BOAT UTILITIES
 
@@ -141,4 +141,6 @@ INSERT INTO public.boat_images(boat_id, image_id)	VALUES (3, 7);
 INSERT INTO public.boat_images(boat_id, image_id)	VALUES (4, 8);
 INSERT INTO public.boat_images(boat_id, image_id)	VALUES (1, 10);
 INSERT INTO public.boat_images(boat_id, image_id)	VALUES (2, 6);
+
+-- COTTAGES
 
