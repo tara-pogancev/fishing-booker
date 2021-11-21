@@ -136,10 +136,9 @@ INSERT INTO public.boat_rules(boat_id, rule_id)	VALUES (2, 8);
 
 -- BOAT IMAGES
 
-INSERT INTO public.boat_images(boat_id, image_id)	VALUES (1, 6);
-INSERT INTO public.boat_images(boat_id, image_id)	VALUES (2, 10);
+INSERT INTO public.boat_images(boat_id, image_id)	VALUES (2, 9);
 INSERT INTO public.boat_images(boat_id, image_id)	VALUES (3, 7);
 INSERT INTO public.boat_images(boat_id, image_id)	VALUES (4, 8);
-INSERT INTO public.boat_images(boat_id, image_id)	VALUES (1, 9);
+INSERT INTO public.boat_images(boat_id, image_id)	VALUES (1, 10);
 INSERT INTO public.boat_images(boat_id, image_id)	VALUES (2, 6);
 

@@ -1,5 +1,6 @@
 package com.fishingbooker.ftn.conversion.dto;
 
+import com.fishingbooker.ftn.bom.Image;
 import com.fishingbooker.ftn.bom.RuleOfConduct;
 import com.fishingbooker.ftn.bom.Utility;
 import com.fishingbooker.ftn.bom.boats.Boat;
@@ -31,6 +32,7 @@ public class BoatToDto implements Converter<Boat, BoatDto> {
         dto.setUtilities(getUtilityDtoList(source.getUtilities()));
         dto.setRules(getRules(source.getRules()));
         dto.setNavigationalEquipments(getNavEquipment(source.getNavigationalEquipments()));
+        dto.setImageIds(getImageIds(source.getImages()));
         return dto;
     }
 
@@ -57,6 +59,14 @@ public class BoatToDto implements Converter<Boat, BoatDto> {
         Set<String> retVal = new HashSet<>();
         for (RuleOfConduct rule : rules) {
             retVal.add(rule.getRuleDescription());
+        }
+        return retVal;
+    }
+
+    private Set<Long> getImageIds(Set<Image> images) {
+        Set<Long> retVal = new HashSet<>();
+        for (Image image : images) {
+            retVal.add(image.getId());
         }
         return retVal;
     }

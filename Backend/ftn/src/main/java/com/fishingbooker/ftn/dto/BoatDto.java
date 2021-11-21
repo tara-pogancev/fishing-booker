@@ -27,5 +27,6 @@ public class BoatDto {
     private String fishingEquipment;
     private Set<UtilityDto> utilities;
     private String ownerName;
+    private Set<Long> imageIds;
 
 }

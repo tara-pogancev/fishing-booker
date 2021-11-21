@@ -32,9 +32,13 @@ export class BoatPageComponent implements OnInit {
         this.navEquipment += equipment + ', ';
       });
       this.navEquipment = this.navEquipment.slice(0, -2);
-    });
 
-    this.getImageFromService();
+      if (this.boat.imageIds.length != 0) {
+        this.getImageFromService(this.boat.imageIds[0]);
+      } else {
+        this.image = 'assets/images/placeholder.jpg';
+      }
+    });
   }
 
   createImageFromBlob(image: Blob) {
@@ -52,8 +56,8 @@ export class BoatPageComponent implements OnInit {
     }
   }
 
-  getImageFromService() {
-    this.imageService.getImage(2).subscribe((data) => {
+  getImageFromService(id: number) {
+    this.imageService.getImage(id).subscribe((data) => {
       this.createImageFromBlob(data);
     });
   }

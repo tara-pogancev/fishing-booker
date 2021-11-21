@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Utility } from 'src/app/model/utility-model';
+import { ImageService } from 'src/app/service/image.service';
 
 @Component({
   selector: 'browse-card',
@@ -14,15 +15,44 @@ export class BrowseCardComponent implements OnInit {
   @Input() rating: number = 0;
   @Input() ownerName: string = '';
   @Input() utilities: Utility[] = [];
+  @Input() imageIds: number[] = [];
+  image: any;
 
   @Input() id: number = 0;
   @Input() type: string = 'entity';
 
-  constructor() {}
+  constructor(private imageService: ImageService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.imageIds.length != 0) {
+      this.getImageFromService(this.imageIds[0]);
+    } else {
+      this.image = 'assets/images/placeholder.jpg';
+    }
+  }
 
   readMore() {
     window.location.href = this.type + '/' + this.id;
+  }
+
+  createImageFromBlob(image: Blob) {
+    let reader = new FileReader();
+    reader.addEventListener(
+      'load',
+      () => {
+        this.image = reader.result;
+      },
+      false
+    );
+
+    if (image) {
+      reader.readAsDataURL(image);
+    }
+  }
+
+  getImageFromService(id: number) {
+    this.imageService.getImage(id).subscribe((data) => {
+      this.createImageFromBlob(data);
+    });
   }
 }
