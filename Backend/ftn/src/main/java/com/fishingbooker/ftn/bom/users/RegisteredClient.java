@@ -5,12 +5,15 @@ import com.fishingbooker.ftn.bom.UserRank;
 import com.fishingbooker.ftn.bom.boats.Boat;
 import com.fishingbooker.ftn.bom.cottages.Cottage;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name = "RegisteredClient")
 @PrimaryKeyJoinColumn(name = "userId")
 public class RegisteredClient extends ApplicationUser {

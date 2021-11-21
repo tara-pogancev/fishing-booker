@@ -3,6 +3,7 @@ package com.fishingbooker.ftn.dto;
 import com.fishingbooker.ftn.bom.boats.BoatType;
 import lombok.Data;
 
+import java.util.List;
 import java.util.Set;
 
 @Data

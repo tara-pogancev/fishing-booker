@@ -2,12 +2,15 @@ package com.fishingbooker.ftn.bom.boats;
 
 import com.fishingbooker.ftn.bom.reservations.QuickReservation;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name = "BoatQuickReservation")
 public class BoatQuickReservation extends QuickReservation {
 

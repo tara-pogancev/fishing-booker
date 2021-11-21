@@ -23,8 +23,12 @@
           </div>
         </div>
         <div class="columns is-vcentered">
-          <div class="column" *ngFor="let utility of utilities.slice(0, 7)">
-            <span class="tag is-success">{{ utility.name }}</span>
+          <div class="column">
+            <span
+              class="tag is-success"
+              *ngFor="let utility of utilities.slice(0, 7)"
+              >{{ utility.name }}</span
+            >
           </div>
           <div
             class="

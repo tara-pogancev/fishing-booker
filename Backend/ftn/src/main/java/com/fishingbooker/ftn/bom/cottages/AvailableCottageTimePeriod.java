@@ -2,6 +2,8 @@ package com.fishingbooker.ftn.bom.cottages;
 
 import com.fishingbooker.ftn.bom.AvailableTimePeriod;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -9,7 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name = "AvailableCottageTimePeriod")
 public class AvailableCottageTimePeriod extends AvailableTimePeriod {
 

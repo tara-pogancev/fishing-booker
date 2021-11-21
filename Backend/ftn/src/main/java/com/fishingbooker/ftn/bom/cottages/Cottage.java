@@ -6,11 +6,14 @@ import com.fishingbooker.ftn.bom.Image;
 import com.fishingbooker.ftn.bom.RuleOfConduct;
 import com.fishingbooker.ftn.bom.users.CottageOwner;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "Cottage")
 public class Cottage extends DatabaseEntity {

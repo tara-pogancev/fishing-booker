@@ -3,6 +3,8 @@ package com.fishingbooker.ftn.bom.complaints;
 
 import com.fishingbooker.ftn.bom.cottages.Cottage;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -10,7 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name = "ClientCottageComplaint")
 public class ClientCottageComplaint extends Complaint {
 

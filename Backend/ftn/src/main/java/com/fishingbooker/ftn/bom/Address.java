@@ -1,13 +1,16 @@
 package com.fishingbooker.ftn.bom;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name = "Address")
 public class Address extends DatabaseEntity {
 

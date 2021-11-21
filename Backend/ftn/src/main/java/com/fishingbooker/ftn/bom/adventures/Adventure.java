@@ -7,12 +7,15 @@ import com.fishingbooker.ftn.bom.RuleOfConduct;
 import com.fishingbooker.ftn.bom.boats.NavigationalEquipment;
 import com.fishingbooker.ftn.bom.users.FishingInstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name = "Adventure")
 public class Adventure extends DatabaseEntity {
 

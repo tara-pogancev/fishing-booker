@@ -1,6 +1,8 @@
 package com.fishingbooker.ftn.bom.reservations;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +11,8 @@ import javax.persistence.InheritanceType;
 import java.time.LocalDate;
 
 @Data
-@Entity
+@Getter
+@Setter
 @Inheritance(strategy = InheritanceType.JOINED)
 public class QuickReservation extends Reservation {
 

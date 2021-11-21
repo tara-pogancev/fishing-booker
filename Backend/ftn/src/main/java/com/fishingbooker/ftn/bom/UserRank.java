@@ -4,6 +4,8 @@ import com.fishingbooker.ftn.bom.users.BoatOwner;
 import com.fishingbooker.ftn.bom.users.CottageOwner;
 import com.fishingbooker.ftn.bom.users.FishingInstructor;
 import com.fishingbooker.ftn.bom.users.RegisteredClient;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +14,8 @@ import javax.persistence.Table;
 import java.util.Set;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "userRank")
 public class UserRank extends DatabaseEntity {
 

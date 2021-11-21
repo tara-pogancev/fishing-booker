@@ -3,13 +3,16 @@ package com.fishingbooker.ftn.bom.users;
 import com.fishingbooker.ftn.bom.DatabaseEntity;
 import com.fishingbooker.ftn.bom.RequestApproval;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name = "AccountRemovalRequest")
 public class AccountRemovalRequest extends DatabaseEntity {
 

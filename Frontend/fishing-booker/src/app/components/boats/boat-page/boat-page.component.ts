@@ -23,12 +23,12 @@ export class BoatPageComponent implements OnInit {
 
     this.boatService.findById(this.id).subscribe((data) => {
       this.boat = data;
-    });
 
-    this.navEquipment = '';
-    this.boat.navigationalEquipments.forEach((equipment) => {
-      this.navEquipment += equipment + ', ';
+      this.navEquipment = '';
+      this.boat.navigationalEquipments.forEach((equipment) => {
+        this.navEquipment += equipment + ', ';
+      });
+      this.navEquipment = this.navEquipment.slice(0, -2);
     });
-    this.navEquipment.slice(0, -2);
   }
 }

@@ -4,11 +4,14 @@ package com.fishingbooker.ftn.bom.users;
 import com.fishingbooker.ftn.bom.Address;
 import com.fishingbooker.ftn.bom.DatabaseEntity;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 
-@Data
+@Getter
+@Setter
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ApplicationUser extends DatabaseEntity {

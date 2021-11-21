@@ -76,13 +76,60 @@ INSERT INTO public.utility(id, name)	VALUES (6, 'TV');
 INSERT INTO public.utility(id, name)	VALUES (7, 'Food Included');
 INSERT INTO public.utility(id, name)	VALUES (8, 'Live Music');
 
+-- NAVIGATIONAL EQUIPMENT
+
+INSERT INTO public.navigational_equipment(id, name)	VALUES (1, 1);
+INSERT INTO public.navigational_equipment(id, name)	VALUES (2, 2);
+INSERT INTO public.navigational_equipment(id, name)	VALUES (3, 3);
+INSERT INTO public.navigational_equipment(id, name)	VALUES (4, 4);
+INSERT INTO public.navigational_equipment(id, name)	VALUES (5, 5);
+
 -- BOATS
 
 INSERT INTO public.boat(
 	id, boat_length, boat_type, cancellation_percentage_keep, description, engine_power, fishing_equipment, guest_limit, max_speed, name, number_of_engines, price, rating, address, boat_owner)
-	VALUES (1, 30.5, 1, 15.0, 'Great boat!', 58.5, 'The best equipment!', 8, 120.0, 'Laura', 4, 35.0, 3.9, 6, 3);
+	VALUES (1, 30.5, 1, 15.0, 'Great boat!', 58.5, 'Basic equipment', 8, 120.0, 'Laura', 4, 35.0, 3.9, 6, 3);
+INSERT INTO public.boat(
+	id, boat_length, boat_type, cancellation_percentage_keep, description, engine_power, fishing_equipment, guest_limit, max_speed, name, number_of_engines, price, rating, address, boat_owner)
+	VALUES (2, 45.8, 2, 10.0, 'Amazing boat!', 65.5, 'Advanced equipment!', 5, 80.0, 'Sophia', 8, 42.0, 5.0, 10, 3);
+INSERT INTO public.boat(
+	id, boat_length, boat_type, cancellation_percentage_keep, description, engine_power, fishing_equipment, guest_limit, max_speed, name, number_of_engines, price, rating, address, boat_owner)
+	VALUES (3, 20.0, 3, 15.8, 'Awesome boat!', 20.1, 'Basic equipment!', 6, 75.0, 'Tifa', 7, 85.0, 0.0, 14, 3);
+INSERT INTO public.boat(
+	id, boat_length, boat_type, cancellation_percentage_keep, description, engine_power, fishing_equipment, guest_limit, max_speed, name, number_of_engines, price, rating, address, boat_owner)
+	VALUES (4, 85.6, 4, 7.2, 'Superb boat!', 120.5, 'Premium equipment!', 15, 150.0, 'Scarlet', 10, 60.0, 4.8, 3, 3);
 
+-- BOAT UTILITIES
 
+INSERT INTO public.boat_utility(id, price, boat_id, utility_id)	VALUES (1, 0.0, 1, 1);
+INSERT INTO public.boat_utility(id, price, boat_id, utility_id)	VALUES (2, 0.0, 4, 1);
+INSERT INTO public.boat_utility(id, price, boat_id, utility_id)	VALUES (3, 5.0, 3, 2);
+INSERT INTO public.boat_utility(id, price, boat_id, utility_id)	VALUES (4, 5.0, 4, 2);
+INSERT INTO public.boat_utility(id, price, boat_id, utility_id)	VALUES (5, 0.0, 2, 3);
+INSERT INTO public.boat_utility(id, price, boat_id, utility_id)	VALUES (6, 8.0, 1, 4);
+INSERT INTO public.boat_utility(id, price, boat_id, utility_id)	VALUES (7, 8.0, 3, 4);
+INSERT INTO public.boat_utility(id, price, boat_id, utility_id)	VALUES (8, 35.0, 3, 5);
+INSERT INTO public.boat_utility(id, price, boat_id, utility_id)	VALUES (9, 25.0, 4, 5);
+INSERT INTO public.boat_utility(id, price, boat_id, utility_id)	VALUES (10, 5.5, 2, 6);
+INSERT INTO public.boat_utility(id, price, boat_id, utility_id)	VALUES (11, 0.0, 3, 7);
+INSERT INTO public.boat_utility(id, price, boat_id, utility_id)	VALUES (12, 20.0, 4, 8);
 
+-- BOAT NAVIGATIONAL EQUIPMENT
 
+INSERT INTO public.boat_navigational_equipment(boat_id, equipment_id)	VALUES (1, 1);
+INSERT INTO public.boat_navigational_equipment(boat_id, equipment_id)	VALUES (1, 2);
+INSERT INTO public.boat_navigational_equipment(boat_id, equipment_id)	VALUES (2, 3);
+INSERT INTO public.boat_navigational_equipment(boat_id, equipment_id)	VALUES (3, 4);
+INSERT INTO public.boat_navigational_equipment(boat_id, equipment_id)	VALUES (3, 5);
 
+-- BOAT RULES OF CONDUCT
+
+INSERT INTO public.boat_rules(boat_id, rule_id)	VALUES (1, 1);
+INSERT INTO public.boat_rules(boat_id, rule_id)	VALUES (1, 2);
+INSERT INTO public.boat_rules(boat_id, rule_id)	VALUES (2, 3);
+INSERT INTO public.boat_rules(boat_id, rule_id)	VALUES (2, 4);
+INSERT INTO public.boat_rules(boat_id, rule_id)	VALUES (1, 5);
+INSERT INTO public.boat_rules(boat_id, rule_id)	VALUES (4, 6);
+INSERT INTO public.boat_rules(boat_id, rule_id)	VALUES (4, 7);
+INSERT INTO public.boat_rules(boat_id, rule_id)	VALUES (2, 5);
+INSERT INTO public.boat_rules(boat_id, rule_id)	VALUES (2, 8);

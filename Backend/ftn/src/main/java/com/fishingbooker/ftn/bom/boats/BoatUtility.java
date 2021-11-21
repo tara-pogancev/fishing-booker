@@ -4,11 +4,14 @@ import com.fishingbooker.ftn.bom.DatabaseEntity;
 import com.fishingbooker.ftn.bom.Utility;
 import com.fishingbooker.ftn.bom.adventures.Adventure;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Table (name = "BoatUtility")
 public class BoatUtility extends DatabaseEntity {
 
