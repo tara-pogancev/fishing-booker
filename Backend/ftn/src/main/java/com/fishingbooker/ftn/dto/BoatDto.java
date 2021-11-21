@@ -2,6 +2,7 @@ package com.fishingbooker.ftn.dto;
 
 import com.fishingbooker.ftn.bom.boats.BoatType;
 import lombok.Data;
+import org.springframework.core.io.ByteArrayResource;
 
 import java.util.List;
 import java.util.Set;

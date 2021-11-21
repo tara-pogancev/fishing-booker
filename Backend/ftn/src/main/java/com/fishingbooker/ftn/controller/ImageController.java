@@ -13,7 +13,7 @@ import org.springframework.web.server.ResponseStatusException;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/browse/image")
-public class ImageTestController {
+public class ImageController {
 
     private final ImageRepository imageRepository;
 
