@@ -27,6 +27,31 @@ INSERT INTO public.address(
 INSERT INTO public.address(
 	id, city, country, street)
 	VALUES (9, 'Eustis', 'Florida', '845 Edgewater Cir');
+INSERT INTO public.address(
+	id, city, country, street)
+	VALUES (10, 'Somers Point', 'New Jersey', '1418 Massachusetts Ave');
+INSERT INTO public.address(
+	id, city, country, street)
+	VALUES (11, 'Olive Branch', 'Mississippi', '3379 College Rd');
+INSERT INTO public.address(
+	id, city, country, street)
+	VALUES (12, 'Fayette', 'Alabama', '5824 171st Hwy N');
+INSERT INTO public.address(
+	id, city, country, street)
+	VALUES (13, 'Warsaw', 'North Carolina', '716 Curtis Rd');
+INSERT INTO public.address(
+	id, city, country, street)
+	VALUES (14, 'Rockville', 'Maryland', '4712 Norbeck Rd');
+INSERT INTO public.address(
+	id, city, country, street)
+	VALUES (15, 'Napoleonville', 'Louisiana', '704 Jefferson St');
+INSERT INTO public.address(
+	id, city, country, street)
+	VALUES (16, 'Johnstown', 'Pennsylvania', '180 Kenesaw Ln');
+INSERT INTO public.address(
+	id, city, country, street)
+	VALUES (17, 'Hanover', 'Indiana', '5748 W Hensler Rd');
+
 
 -- USERS
 INSERT INTO public.application_user(
@@ -61,4 +86,4 @@ INSERT INTO public.administrator(
 	user_id)
 	VALUES (5);
 
---
+-- BOATS
