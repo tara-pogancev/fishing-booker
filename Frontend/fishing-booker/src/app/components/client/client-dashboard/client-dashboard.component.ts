@@ -16,10 +16,16 @@ export class ClientDashboardComponent implements OnInit {
   constructor(private clientService: ClientService) {}
 
   ngOnInit(): void {
-    this.clientService.getCurrentClient().subscribe((data: Client) => {
-      this.client = data;
-      console.log(data);
-    });
+    this.clientService.getCurrentClient().subscribe(
+      (data: Client) => {
+        this.client = data;
+      },
+      (err) => {
+        if (err.status == 401) {
+          window.location.href = '/401';
+        }
+      }
+    );
   }
 
   changeTab(tabName: string) {

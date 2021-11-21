@@ -60,6 +60,7 @@ import { UtilityComponent } from './components/utility/utility.component';
 import { MapComponent } from './components/map/map.component';
 import { RoomComponent } from './components/cottages/room/room.component';
 import { UpcomingReservationsComponent } from './components/client/client-dashboard/upcoming-reservations/upcoming-reservations.component';
+import { NotAllowedComponent } from './components/pages/not-allowed/not-allowed.component';
 
 @NgModule({
   declarations: [
@@ -119,6 +120,7 @@ import { UpcomingReservationsComponent } from './components/client/client-dashbo
     MapComponent,
     RoomComponent,
     UpcomingReservationsComponent,
+    NotAllowedComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],

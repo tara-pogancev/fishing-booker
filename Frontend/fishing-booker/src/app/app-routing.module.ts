@@ -18,6 +18,7 @@ import { ReviewsPageComponent } from './components/pages/reviews-page/reviews-pa
 import { BoatPageComponent } from './components/boats/boat-page/boat-page.component';
 import { CottagePageComponent } from './components/cottages/cottage-page/cottage-page.component';
 import { FishingPageComponent } from './components/fishing/fishing-page/fishing-page.component';
+import { NotAllowedComponent } from './components/pages/not-allowed/not-allowed.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -37,6 +38,7 @@ const routes: Routes = [
   { path: 'cottage/:id', component: CottagePageComponent },
   { path: 'adventure/:id', component: FishingPageComponent },
   { path: '', component: HomeComponent },
+  { path: '401', component: NotAllowedComponent },
   { path: '**', component: NotFoundComponent },
 ];
 
