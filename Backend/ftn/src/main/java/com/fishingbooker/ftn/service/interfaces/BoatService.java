@@ -10,6 +10,4 @@ public interface BoatService {
 
     BoatDto findById(long id);
 
-    void initBoats();
-
 }

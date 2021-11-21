@@ -24,8 +24,4 @@ public class BrowseAdventuresController {
         return adventureService.findById(id);
     }
 
-    @PostMapping
-    public void initAdventures() {
-        adventureService.initAdventures();
-    }
 }

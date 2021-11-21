@@ -24,9 +24,4 @@ public class BrowseBoatsController {
         return boatService.findById(id);
     }
 
-    @PostMapping
-    public void initBoat() {
-        boatService.initBoats();
-    }
-
 }

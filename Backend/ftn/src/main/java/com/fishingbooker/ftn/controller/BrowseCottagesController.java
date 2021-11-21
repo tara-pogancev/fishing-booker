@@ -24,8 +24,4 @@ public class BrowseCottagesController {
         return cottageService.findById(id);
     }
 
-    @PostMapping
-    public void initCottages() {
-        cottageService.initCottages();
-    }
 }

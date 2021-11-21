@@ -10,6 +10,4 @@ public interface CottageService {
 
     CottageDto findById(long id);
 
-    void initCottages();
-
 }

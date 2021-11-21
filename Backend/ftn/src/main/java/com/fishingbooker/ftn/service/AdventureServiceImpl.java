@@ -31,9 +31,4 @@ public class AdventureServiceImpl implements AdventureService {
         return converter.convert(adventure, AdventureDto.class);
     }
 
-    @Override
-    public void initAdventures() {
-
-    }
-
 }

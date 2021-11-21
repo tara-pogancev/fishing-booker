@@ -10,6 +10,4 @@ public interface AdventureService {
 
     AdventureDto findById(long id);
 
-    void initAdventures();
-
 }

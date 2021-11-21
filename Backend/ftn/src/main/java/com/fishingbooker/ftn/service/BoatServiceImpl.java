@@ -43,35 +43,4 @@ public class BoatServiceImpl implements BoatService {
         return converter.convert(boat, BoatDto.class);
     }
 
-    public void initBoats() {
-        Boat boat = new Boat();
-        Address address = addressRepository.findAll().get(0);
-
-        BoatUtility utility = new BoatUtility();
-        utility.setName("Free drinks");
-        utility.setPrice(40.0);
-        utilityRepository.save(utility);
-
-        Set<BoatUtility> utilities = new HashSet<>();
-        utilities.add(utility);
-
-        BoatOwner owner = boatOwnerRepository.findAll().get(0);
-        boat.setName("Boat name");
-        boat.setBoatType(BoatType.BASS_BOAT);
-        boat.setBoatLength(45.5);
-        boat.setNumberOfEngines(8);
-        boat.setEnginePower(37.0);
-        boat.setMaxSpeed(250.3);
-        boat.setAddress(address);
-        boat.setDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed enim nisl, malesuada at enim ut."
-        );
-        boat.setGuestLimit(20);
-        boat.setFishingEquipment("Dobar fishing equipment");
-        boat.setBoatOwner(owner);
-        boat.setUtilities(utilities);
-        boat.setCancellationPercentageKeep(12.1);
-
-        boatRepository.save(boat);
-
-    }
 }

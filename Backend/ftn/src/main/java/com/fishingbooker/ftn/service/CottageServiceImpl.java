@@ -35,49 +35,4 @@ public class CottageServiceImpl implements CottageService {
         return converter.convert(cottageRepository.getById(id), CottageDto.class);
     }
 
-    @Override
-    public void initCottages() {
-//        CottageOwner owner = cottageOwnerRepository.findAll().get(0);
-//
-//        Address address = new Address();
-//        address.setStreet("R. Pte. do Arquinho");
-//        address.setCity("Porto");
-//        address.setCountry("Portugal");
-//        address = addressRepository.save(address);
-//
-//        CottageUtility utility1 = new CottageUtility();
-//        utility1.setName("Pets Allowed");
-//        utility1.setPrice(0.0);
-//        utility1 = utilityRepository.save(utility1);
-//
-//        CottageUtility utility2 = new CottageUtility();
-//        utility2.setName("Bar");
-//        utility2.setPrice(35.5);
-//        utility2 = utilityRepository.save(utility2);
-//
-//        Set<CottageUtility> utilities = new HashSet<>();
-//        utilities.add(utility1);
-//        utilities.add(utility2);
-
-        Cottage cottage = cottageRepository.getById(4L);
-        Room room = new Room();
-        room.setNumberOfBeds(55);
-        room.setCottage(cottage);
-        room = roomRepository.save(room);
-
-//        cottage.getRooms().add(room);
-//        cottageRepository.save(cottage);
-
-//        Cottage cottage = new Cottage();
-//        cottage.setCottageOwner(owner);
-//        cottage.setGuestLimit(8);
-//        cottage.setPrice(45.0);
-//        cottage.setName("Parque do Arquinho II");
-//        cottage.setAddress(address);
-//        cottage.setRooms(rooms);
-//        cottage.setDescription("Lorem ipsum ipsum ipsum!");
-//        cottage.setUtilities(utilities);
-//        cottageRepository.save(cottage);
-
-    }
 }
