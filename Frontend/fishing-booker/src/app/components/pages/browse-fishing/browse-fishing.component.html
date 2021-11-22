@@ -5,10 +5,23 @@
     <div>
       <search-field></search-field>
       <hr />
-      <browse-card></browse-card>
-      <browse-card></browse-card>
-      <browse-card></browse-card>
-      <browse-card></browse-card>
+      <div *ngIf="adventures.length == 0">
+        <p>No Fishing Adventures Found.</p>
+      </div>
+      <div *ngFor="let adventure of adventures">
+        <browse-card
+          [name]="adventure.name"
+          [description]="adventure.description"
+          [address]="adventure.address"
+          [ownerName]="adventure.ownerName"
+          [utilities]="adventure.utilities"
+          [price]="adventure.price"
+          [rating]="adventure.rating"
+          [id]="adventure.id"
+          [imageIds]="adventure.imageIds"
+          type="adventure"
+        ></browse-card>
+      </div>
     </div>
   </div>
 </div>

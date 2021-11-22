@@ -1,11 +1,11 @@
 <div class="card zoom" (click)="readMore()">
   <div class="card-image">
-    <img class="adventure-image" src="{{ img }}" />
+    <img class="adventure-image" [src]="image" />
   </div>
 
   <div class="content p-4">
-    <h4>{{ title | truncate: [20] }}</h4>
-    <p>@{{ owner }}</p>
-    <p>{{ description | truncate: [30] }}</p>
+    <h4>{{ adventure.name | truncate: [20] }}</h4>
+    <p>@{{ adventure.ownerName }}</p>
+    <p>{{ adventure.description | truncate: [25] }}</p>
   </div>
 </div>

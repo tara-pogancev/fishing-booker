@@ -10,7 +10,6 @@ import { ImageService } from 'src/app/service/image.service';
 })
 export class BoatCardComponent implements OnInit {
   @Input() id: number = 0;
-  @Input() img: string = '/assets/images/boat.jpg';
   boat: Boat = new Boat();
   image: any = 'assets/images/placeholder.jpg';
 

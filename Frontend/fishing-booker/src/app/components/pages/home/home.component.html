@@ -160,14 +160,26 @@
         </div>
         <div class="column columns">
           <div class="column">
-            <adventure-card></adventure-card>
+            <adventure-card
+              *ngIf="boats[0]"
+              [id]="boats[0].id"
+            ></adventure-card>
             <gap height="20"></gap>
-            <adventure-card></adventure-card>
+            <adventure-card
+              *ngIf="boats[1]"
+              [id]="boats[1].id"
+            ></adventure-card>
           </div>
           <div class="column">
-            <adventure-card></adventure-card>
+            <adventure-card
+              *ngIf="boats[2]"
+              [id]="boats[2].id"
+            ></adventure-card>
             <gap height="20"></gap>
-            <adventure-card></adventure-card>
+            <adventure-card
+              *ngIf="boats[3]"
+              [id]="boats[3].id"
+            ></adventure-card>
           </div>
         </div>
       </div>
