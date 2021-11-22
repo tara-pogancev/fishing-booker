@@ -1,9 +1,9 @@
 -- ADDRESSES
-INSERT INTO address(id, city, country, street)	VALUES (1, 'Eastbourne', 'UK', 'Marine Parade 22');
-INSERT INTO address(id, city, country, street)  VALUES (2, 'Novi Sad', 'Serbia', 'Bulevar Oslobodjenja 85');
-INSERT INTO address(id, city, country, street)	VALUES (3, 'Brighton', 'UK', 'Kingsway 30');
-INSERT INTO address(id, city, country, street)	VALUES (4, 'San Francisco', 'USA', 'Jauss St 7');
-INSERT INTO address(id, city, country, street)	VALUES (5, 'Winnipeg', 'Canada', 'Main St 62');
+INSERT INTO public.address(id, city, country, street)	VALUES (1, 'Eastbourne', 'UK', 'Marine Parade 22');
+INSERT INTO public.address(id, city, country, street)  VALUES (2, 'Novi Sad', 'Serbia', 'Bulevar Oslobodjenja 85');
+INSERT INTO public.address(id, city, country, street)	VALUES (3, 'Brighton', 'UK', 'Kingsway 30');
+INSERT INTO public.address(id, city, country, street)	VALUES (4, 'San Francisco', 'USA', 'Jauss St 7');
+INSERT INTO public.address(id, city, country, street)	VALUES (5, 'Winnipeg', 'Canada', 'Main St 62');
 
 INSERT INTO public.address(id, city, country, street)   VALUES (6, 'Camden', 'Mississippi', '2141 17th Hwy');
 INSERT INTO public.address(id, city, country, street)	VALUES (7, 'Bowling Green', 'Kentucky', '2105 Robin Rd #T4');
