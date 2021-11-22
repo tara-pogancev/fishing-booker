@@ -31,10 +31,6 @@ export class BrowseCardComponent implements OnInit {
     }
   }
 
-  readMore() {
-    window.location.href = this.type + '/' + this.id;
-  }
-
   createImageFromBlob(image: Blob) {
     let reader = new FileReader();
     reader.addEventListener(

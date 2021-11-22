@@ -5,10 +5,22 @@
     <reservation-search></reservation-search>
     <search-field></search-field>
     <hr />
-    <reservation-card></reservation-card>
-    <special-offer-card></special-offer-card>
-    <reservation-card></reservation-card>
-    <reservation-card></reservation-card>
-    <reservation-card></reservation-card>
+    <div *ngIf="boats.length == 0">
+      <p>No Boats Found.</p>
+    </div>
+    <div *ngFor="let boat of boats">
+      <reservation-card
+        [name]="boat.name"
+        [description]="boat.description"
+        [address]="boat.address"
+        [ownerName]="boat.ownerName"
+        [utilities]="boat.utilities"
+        [price]="boat.price"
+        [rating]="boat.rating"
+        [id]="boat.id"
+        [imageIds]="boat.imageIds"
+        type="boat"
+      ></reservation-card>
+    </div>
   </div>
 </div>

@@ -10,7 +10,7 @@
         <div>
           <p>
             <strong
-              ><a (click)="readMore()">{{ name }}</a></strong
+              ><a href="{{ type }}/{{ id }}">{{ name }}</a></strong
             >
             <small>, @{{ ownerName }} </small>
             <br />
@@ -39,9 +39,9 @@
             <strong class="mr-1 star-text">{{ rating }} </strong>
             <i class="fa fa-star"></i>
             <div class="buttons ml-5">
-              <button class="button is-success" (click)="readMore()">
+              <a class="button is-success" href="{{ type }}/{{ id }}">
                 Preview
-              </button>
+              </a>
             </div>
           </div>
         </div>

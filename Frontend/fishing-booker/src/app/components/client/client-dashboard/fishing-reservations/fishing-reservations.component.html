@@ -5,9 +5,22 @@
     <reservation-search></reservation-search>
     <search-field></search-field>
     <hr />
-    <reservation-card></reservation-card>
-    <reservation-card></reservation-card>
-    <reservation-card></reservation-card>
-    <reservation-card></reservation-card>
+    <div *ngIf="adventures.length == 0">
+      <p>No Fishing Adventures Found.</p>
+    </div>
+    <div *ngFor="let adventure of adventures">
+      <reservation-card
+        [name]="adventure.name"
+        [description]="adventure.description"
+        [address]="adventure.address"
+        [ownerName]="adventure.ownerName"
+        [utilities]="adventure.utilities"
+        [price]="adventure.price"
+        [rating]="adventure.rating"
+        [id]="adventure.id"
+        [imageIds]="adventure.imageIds"
+        type="adventure"
+      ></reservation-card>
+    </div>
   </div>
 </div>

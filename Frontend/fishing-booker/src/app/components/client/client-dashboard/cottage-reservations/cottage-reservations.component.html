@@ -5,10 +5,22 @@
     <reservation-search></reservation-search>
     <search-field></search-field>
     <hr />
-    <reservation-card></reservation-card>
-    <special-offer-card></special-offer-card>
-    <reservation-card></reservation-card>
-    <reservation-card></reservation-card>
-    <reservation-card></reservation-card>
+    <div *ngIf="cottages.length == 0">
+      <p>No Cottages Found.</p>
+    </div>
+    <div *ngFor="let cottage of cottages">
+      <reservation-card
+        [name]="cottage.name"
+        [description]="cottage.description"
+        [address]="cottage.address"
+        [ownerName]="cottage.ownerName"
+        [utilities]="cottage.utilities"
+        [price]="cottage.price"
+        [rating]="cottage.rating"
+        [id]="cottage.id"
+        [imageIds]="cottage.imageIds"
+        type="cottage"
+      ></reservation-card>
+    </div>
   </div>
 </div>
