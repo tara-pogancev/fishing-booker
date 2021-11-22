@@ -195,4 +195,59 @@ INSERT INTO public.cottage_images(cottage_id, image_id)	VALUES (2, 5);
 INSERT INTO public.cottage_images(cottage_id, image_id)	VALUES (3, 4);
 INSERT INTO public.cottage_images(cottage_id, image_id)	VALUES (4, 11);
 
+-- ADVENTURES
 
+INSERT INTO public.adventure(id, cancellation_percentage_keep, description, guest_limit, name, price, rating, address, instructor)
+	VALUES (1, 5.5, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu nibh consequat, accumsan tortor id, pretium dolor. Aenean eget interdum nisl, nec tempor dolor.', 10, 'Wild Fishing', 25.6, 4.4, 14, 4);
+INSERT INTO public.adventure(id, cancellation_percentage_keep, description, guest_limit, name, price, rating, address, instructor)
+	VALUES (2, 2.5, 'Nunc nec commodo lacus, pretium elementum dui. Quisque pellentesque elementum laoreet. Etiam viverra libero libero, vel fermentum odio.', 8, 'Outdoor Retreat', 30.9, 4.6, 15, 4);
+INSERT INTO public.adventure(id, cancellation_percentage_keep, description, guest_limit, name, price, rating, address, instructor)
+	VALUES (3, 10.0, 'Proin sodales lobortis pharetra. Curabitur lacus nisl, sagittis ut pretium a, scelerisque sed turpis. Fusce varius laoreet orci a posuere.', 12, 'Calm Rivers', 39.9, 5.0, 16, 4);
+INSERT INTO public.adventure(id, cancellation_percentage_keep, description, guest_limit, name, price, rating, address, instructor)
+	VALUES (4, 5.8, 'Nam congue, eros at porttitor porta, justo eros congue mauris, vitae suscipit augue nulla vel mi. Sed vel ante egestas, scelerisque neque a.', 6, 'Fishing With Friends', 45.0, 3.8, 17, 4);
+
+-- ADVENTURE RULES
+
+INSERT INTO public.adventure_rules(adventure_id, rule_id)	VALUES (1, 1);
+INSERT INTO public.adventure_rules(adventure_id, rule_id)	VALUES (1, 2);
+INSERT INTO public.adventure_rules(adventure_id, rule_id)	VALUES (2, 3);
+INSERT INTO public.adventure_rules(adventure_id, rule_id)	VALUES (2, 4);
+INSERT INTO public.adventure_rules(adventure_id, rule_id)	VALUES (1, 5);
+INSERT INTO public.adventure_rules(adventure_id, rule_id)	VALUES (4, 6);
+INSERT INTO public.adventure_rules(adventure_id, rule_id)	VALUES (4, 7);
+INSERT INTO public.adventure_rules(adventure_id, rule_id)	VALUES (2, 5);
+INSERT INTO public.adventure_rules(adventure_id, rule_id)	VALUES (2, 8);
+
+-- ADVENTURE UTILITIES
+
+INSERT INTO public.adventure_utility(id, price, adventure_id, utility_id)	VALUES (1, 0.0, 1, 1);
+INSERT INTO public.adventure_utility(id, price, adventure_id, utility_id)	VALUES (2, 0.0, 4, 1);
+INSERT INTO public.adventure_utility(id, price, adventure_id, utility_id)	VALUES (3, 5.0, 3, 2);
+INSERT INTO public.adventure_utility(id, price, adventure_id, utility_id)	VALUES (4, 5.0, 4, 2);
+INSERT INTO public.adventure_utility(id, price, adventure_id, utility_id)	VALUES (5, 0.0, 2, 3);
+INSERT INTO public.adventure_utility(id, price, adventure_id, utility_id)	VALUES (6, 8.0, 1, 4);
+INSERT INTO public.adventure_utility(id, price, adventure_id, utility_id)	VALUES (7, 8.0, 3, 4);
+INSERT INTO public.adventure_utility(id, price, adventure_id, utility_id)	VALUES (8, 35.0, 3, 5);
+INSERT INTO public.adventure_utility(id, price, adventure_id, utility_id)	VALUES (9, 25.0, 4, 5);
+INSERT INTO public.adventure_utility(id, price, adventure_id, utility_id)	VALUES (10, 5.5, 2, 6);
+INSERT INTO public.adventure_utility(id, price, adventure_id, utility_id)	VALUES (11, 0.0, 3, 7);
+INSERT INTO public.adventure_utility(id, price, adventure_id, utility_id)	VALUES (12, 20.0, 4, 8);
+
+-- ADVENTURE EQUIPMENT
+
+INSERT INTO public.adventure_navigational_equipment(adventure_id, equipment_id)	VALUES (1, 1);
+INSERT INTO public.adventure_navigational_equipment(adventure_id, equipment_id)	VALUES (1, 2);
+INSERT INTO public.adventure_navigational_equipment(adventure_id, equipment_id)	VALUES (2, 3);
+INSERT INTO public.adventure_navigational_equipment(adventure_id, equipment_id)	VALUES (3, 4);
+INSERT INTO public.adventure_navigational_equipment(adventure_id, equipment_id)	VALUES (3, 5);
+
+-- ADVENTURE IMAGES
+
+INSERT INTO public.adventure_images(adventure_id, image_id)	VALUES (1, 12);
+INSERT INTO public.adventure_images(adventure_id, image_id)	VALUES (1, 13);
+INSERT INTO public.adventure_images(adventure_id, image_id)	VALUES (2, 14);
+INSERT INTO public.adventure_images(adventure_id, image_id)	VALUES (2, 15);
+INSERT INTO public.adventure_images(adventure_id, image_id)	VALUES (3, 16);
+INSERT INTO public.adventure_images(adventure_id, image_id)	VALUES (3, 17);
+INSERT INTO public.adventure_images(adventure_id, image_id)	VALUES (4, 18);
+INSERT INTO public.adventure_images(adventure_id, image_id)	VALUES (4, 19);

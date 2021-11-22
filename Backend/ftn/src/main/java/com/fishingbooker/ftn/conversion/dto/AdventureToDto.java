@@ -3,6 +3,7 @@ package com.fishingbooker.ftn.conversion.dto;
 import com.fishingbooker.ftn.bom.Utility;
 import com.fishingbooker.ftn.bom.adventures.Adventure;
 import com.fishingbooker.ftn.bom.adventures.AdventureUtility;
+import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.AdventureDto;
 import com.fishingbooker.ftn.dto.UtilityDto;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,9 @@ public class AdventureToDto implements Converter<Adventure, AdventureDto> {
         AdventureDto dto = modelMapper.map(source, AdventureDto.class);
         dto.setOwnerName(source.getInstructor().getName() + " " + source.getInstructor().getLastName());
         dto.setUtilities(getUtilityDtoList(source.getUtilities()));
+        dto.setRules(DataConverter.getRules(source.getRules()));
+        dto.setNavigationalEquipments(DataConverter.getNavEquipment(source.getNavigationalEquipments()));
+        dto.setImageIds(DataConverter.getImageIds(source.getImages()));
         return dto;
     }
 
@@ -37,4 +41,5 @@ public class AdventureToDto implements Converter<Adventure, AdventureDto> {
         }
         return retVal;
     }
+
 }

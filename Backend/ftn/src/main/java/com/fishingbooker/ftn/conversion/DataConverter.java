@@ -3,6 +3,7 @@ package com.fishingbooker.ftn.conversion;
 
 import com.fishingbooker.ftn.bom.Image;
 import com.fishingbooker.ftn.bom.RuleOfConduct;
+import com.fishingbooker.ftn.bom.boats.NavigationalEquipment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.convert.ConversionService;
@@ -44,6 +45,15 @@ public class DataConverter {
         Set<Long> retVal = new HashSet<>();
         for (Image image : images) {
             retVal.add(image.getId());
+        }
+        return retVal;
+    }
+
+
+    public static Set<String> getNavEquipment(Set<NavigationalEquipment> equipments) {
+        Set<String> retVal = new HashSet<>();
+        for (NavigationalEquipment nav : equipments) {
+            retVal.add(nav.getName().toString());
         }
         return retVal;
     }

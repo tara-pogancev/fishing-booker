@@ -16,6 +16,8 @@ public class AdventureDto {
     private Integer guestLimit;
     private Set<String> rules;
     private Set<UtilityDto> utilities;
+    private Set<String> navigationalEquipments;
     private String ownerName;
+    private Set<Long> imageIds;
 
 }

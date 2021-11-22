@@ -32,7 +32,7 @@ public class BoatToDto implements Converter<Boat, BoatDto> {
         dto.setOwnerName(source.getBoatOwner().getName() + " " + source.getBoatOwner().getLastName());
         dto.setUtilities(getUtilityDtoList(source.getUtilities()));
         dto.setRules(DataConverter.getRules(source.getRules()));
-        dto.setNavigationalEquipments(getNavEquipment(source.getNavigationalEquipments()));
+        dto.setNavigationalEquipments(DataConverter.getNavEquipment(source.getNavigationalEquipments()));
         dto.setImageIds(DataConverter.getImageIds(source.getImages()));
         return dto;
     }
@@ -44,14 +44,6 @@ public class BoatToDto implements Converter<Boat, BoatDto> {
             dto.setName(utility.getUtility().getName());
             dto.setPrice(utility.getPrice());
             retVal.add(dto);
-        }
-        return retVal;
-    }
-
-    private Set<String> getNavEquipment(Set<NavigationalEquipment> equipments) {
-        Set<String> retVal = new HashSet<>();
-        for (NavigationalEquipment nav : equipments) {
-            retVal.add(nav.getName().toString());
         }
         return retVal;
     }
