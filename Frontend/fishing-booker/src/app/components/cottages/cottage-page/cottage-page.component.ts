@@ -25,33 +25,7 @@ export class CottagePageComponent implements OnInit {
 
     this.cottageService.findById(this.id).subscribe((data) => {
       this.cottage = data;
-
-      if (this.cottage.imageIds.length != 0) {
-        this.getImageFromService(this.cottage.imageIds[0]);
-      } else {
-        this.image = 'assets/images/placeholder.jpg';
-      }
     });
   }
 
-  createImageFromBlob(image: Blob) {
-    let reader = new FileReader();
-    reader.addEventListener(
-      'load',
-      () => {
-        this.image = reader.result;
-      },
-      false
-    );
-
-    if (image) {
-      reader.readAsDataURL(image);
-    }
-  }
-
-  getImageFromService(id: number) {
-    this.imageService.getImage(id).subscribe((data) => {
-      this.createImageFromBlob(data);
-    });
-  }
 }

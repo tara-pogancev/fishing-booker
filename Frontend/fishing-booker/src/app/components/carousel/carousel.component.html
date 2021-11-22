@@ -1,0 +1,13 @@
+<carousel
+  [cellsToShow]="1"
+  [autoplay]="true"
+  [autoplayInterval]="5000"
+  [transitionDuration]="600"
+  [margin]="0"
+  [counter]="true"
+  style="width: 100%; min-height: 500px"
+>
+  <div class="carousel-cell" *ngFor="let image of images">
+    <img [src]="image" class="center-cropped" />
+  </div>
+</carousel>

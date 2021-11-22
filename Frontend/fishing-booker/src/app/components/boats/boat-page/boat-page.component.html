@@ -3,8 +3,8 @@
     <h1>{{ boat.address }}</h1>
     <hr />
     <div class="columns">
-      <div class="figure column max-height-600">
-        <img [src]="image" class="center-cropped" />
+      <div class="figure column max-height-600" *ngIf="boat.id != 0">
+        <image-carousel [imageIds]="boat.imageIds"></image-carousel>
       </div>
 
       <div class="column">

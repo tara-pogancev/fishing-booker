@@ -7,7 +7,7 @@ import { ImageService } from 'src/app/service/image.service';
 @Component({
   selector: 'app-fishing-page',
   templateUrl: './fishing-page.component.html',
-  styleUrls: ['./fishing-page.component.css']
+  styleUrls: ['./fishing-page.component.css'],
 })
 export class FishingPageComponent implements OnInit {
   id: number = 0;
@@ -18,7 +18,8 @@ export class FishingPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private adventureService: AdvetnureService,
-    private imageService: ImageService) { }
+    private imageService: ImageService
+  ) {}
 
   ngOnInit(): void {
     this.id = +this.route.snapshot.paramMap.get('id')!;
@@ -31,33 +32,6 @@ export class FishingPageComponent implements OnInit {
         this.navEquipment += equipment + ', ';
       });
       this.navEquipment = this.navEquipment.slice(0, -2);
-
-      if (this.adventure.imageIds.length != 0) {
-        this.getImageFromService(this.adventure.imageIds[0]);
-      } else {
-        this.image = 'assets/images/placeholder.jpg';
-      }
-    });
-  }
-
-  createImageFromBlob(image: Blob) {
-    let reader = new FileReader();
-    reader.addEventListener(
-      'load',
-      () => {
-        this.image = reader.result;
-      },
-      false
-    );
-
-    if (image) {
-      reader.readAsDataURL(image);
-    }
-  }
-
-  getImageFromService(id: number) {
-    this.imageService.getImage(id).subscribe((data) => {
-      this.createImageFromBlob(data);
     });
   }
 }

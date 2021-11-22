@@ -3,7 +3,9 @@
     <h1>{{ cottage.address }}</h1>
     <hr />
     <div class="columns">
-      <div class="figure column max-height-600"><img [src]="image" class="center-cropped"/></div>
+      <div class="figure column max-height-600" *ngIf="cottage.id != 0">
+        <image-carousel [imageIds]="cottage.imageIds"></image-carousel>
+      </div>
 
       <div class="column">
         <h2>{{ cottage.name }}</h2>

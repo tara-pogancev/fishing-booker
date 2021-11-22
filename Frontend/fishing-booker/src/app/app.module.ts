@@ -61,6 +61,8 @@ import { MapComponent } from './components/map/map.component';
 import { RoomComponent } from './components/cottages/room/room.component';
 import { UpcomingReservationsComponent } from './components/client/client-dashboard/upcoming-reservations/upcoming-reservations.component';
 import { NotAllowedComponent } from './components/pages/not-allowed/not-allowed.component';
+import { CarouselComponent } from './components/carousel/carousel.component';
+import { IvyCarouselModule } from 'angular-responsive-carousel';
 
 @NgModule({
   declarations: [
@@ -121,8 +123,15 @@ import { NotAllowedComponent } from './components/pages/not-allowed/not-allowed.
     RoomComponent,
     UpcomingReservationsComponent,
     NotAllowedComponent,
+    CarouselComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    IvyCarouselModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

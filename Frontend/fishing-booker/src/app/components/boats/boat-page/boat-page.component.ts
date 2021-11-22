@@ -33,32 +33,6 @@ export class BoatPageComponent implements OnInit {
       });
       this.navEquipment = this.navEquipment.slice(0, -2);
 
-      if (this.boat.imageIds.length != 0) {
-        this.getImageFromService(this.boat.imageIds[0]);
-      } else {
-        this.image = 'assets/images/placeholder.jpg';
-      }
-    });
-  }
-
-  createImageFromBlob(image: Blob) {
-    let reader = new FileReader();
-    reader.addEventListener(
-      'load',
-      () => {
-        this.image = reader.result;
-      },
-      false
-    );
-
-    if (image) {
-      reader.readAsDataURL(image);
-    }
-  }
-
-  getImageFromService(id: number) {
-    this.imageService.getImage(id).subscribe((data) => {
-      this.createImageFromBlob(data);
     });
   }
 }
