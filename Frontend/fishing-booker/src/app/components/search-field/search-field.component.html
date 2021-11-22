@@ -1,11 +1,16 @@
 <div class="columns is-multiline mb-5 is-vcentered">
   <div class="column is-2">
-    <input class="input is-link" type="text" placeholder="Search anything!" />
+    <input
+      class="input is-link"
+      type="text"
+      placeholder="Search anything!"
+      [(ngModel)]="searchFilter.text"
+    />
   </div>
 
   <div class="column is-2">
     <div class="select">
-      <select>
+      <select [(ngModel)]="searchFilter.sort">
         <option value="NO_SORT">Select sorting:</option>
         <option value="PRICE_LOWER">Price: Lower first</option>
         <option value="PRICE_HIGHER">Price: Higher first</option>
@@ -13,6 +18,8 @@
         <option value="RATING_LOWER">Rating: Lower first</option>
         <option value="NAME_ACS">Name: Acsending</option>
         <option value="NAME_DES">Name: Descending</option>
+        <option value="ADDR_ACS">Address: Acsending</option>
+        <option value="ADDR_DES">Address: Descending</option>
       </select>
     </div>
   </div>
@@ -55,6 +62,6 @@
   </div>
 
   <div class="column is-flex is-justify-content-flex-end is-1">
-    <button class="button is-link">Search</button>
+    <button class="button is-link" (click)="search()">Search</button>
   </div>
 </div>

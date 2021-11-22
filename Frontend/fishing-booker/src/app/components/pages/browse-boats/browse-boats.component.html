@@ -3,7 +3,7 @@
     <h1 class="title">Boat Reservations</h1>
     <hr />
     <div>
-      <search-field></search-field>
+      <search-field (doSearch)="search($event)"></search-field>
       <hr />
       <div *ngIf="boats.length == 0">
         <p>No Boats Found.</p>

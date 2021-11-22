@@ -3,7 +3,7 @@
   <hr />
   <div>
     <reservation-search></reservation-search>
-    <search-field></search-field>
+    <search-field (doSearch)="search($event)"></search-field>
     <hr />
     <div *ngIf="adventures.length == 0">
       <p>No Fishing Adventures Found.</p>
