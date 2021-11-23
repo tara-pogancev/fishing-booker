@@ -3,7 +3,6 @@
     <h1>{{ adventure.address }}</h1>
     <hr />
     <div class="columns">
-      
       <div class="figure column max-height-600" *ngIf="adventure.id != 0">
         <image-carousel [imageIds]="adventure.imageIds"></image-carousel>
       </div>
@@ -75,6 +74,9 @@
       </div>
     </div>
     <hr />
+    <div>
+      <entity-calendar></entity-calendar>
+    </div>
     <h3>Reviews</h3>
     <review-card></review-card>
     <review-card></review-card>

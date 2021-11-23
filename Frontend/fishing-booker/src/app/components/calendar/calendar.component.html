@@ -1,13 +1,27 @@
 <div [ngSwitch]="view">
-  <h3>
+  <h2>
     {{ viewDate | calendarDate: view + "ViewTitle":"en" }}, Available Dates
-  </h3>
+  </h2>
+
+  <ng-template #customCellTemplate let-day="day" let-locale="locale">
+    <div
+      class="cal-cell-top"
+      [ngClass]="{
+        available: day.events.length > 0,
+        unavailable: day.events.length == 0
+      }"
+    >
+      <span class="cal-day-number">{{
+        day.date | calendarDate: "monthViewDayNumber":locale
+      }}</span>
+    </div>
+  </ng-template>
+
   <mwl-calendar-month-view
     *ngSwitchCase="'month'"
     [viewDate]="viewDate"
     [events]="events"
-    [activeDayIsOpen]="true"
-    (beforeViewRender)="beforeViewRender($event)"
+    [cellTemplate]="customCellTemplate"
   >
   </mwl-calendar-month-view>
 </div>

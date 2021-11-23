@@ -1,5 +1,15 @@
-.cal-month-view .bg-pink,
-.cal-week-view .cal-day-columns .bg-pink,
-.cal-day-view .bg-pink {
-  background-color: hotpink !important;
+.unavailable {
+  color: rgb(145, 145, 145);
+  opacity: 0.35;
 }
+
+.available {
+  background-color: rgba(151, 252, 205, 0.377) !important;
+  color: black;
+  font-weight: 900;
+}
+
+.cal-cell-top {
+  background-color: white;
+}
+

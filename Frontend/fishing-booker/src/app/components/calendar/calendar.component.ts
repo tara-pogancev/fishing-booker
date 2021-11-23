@@ -1,13 +1,8 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   CalendarEvent,
-  CalendarMonthViewBeforeRenderEvent,
-  CalendarWeekViewBeforeRenderEvent,
-  CalendarDayViewBeforeRenderEvent,
   CalendarView,
 } from 'angular-calendar';
-import { setDate } from 'date-fns';
-import { start } from 'repl';
 
 @Component({
   selector: 'entity-calendar',
@@ -28,12 +23,14 @@ export class CalendarComponent {
       title: 'Available',
       start: new Date('11/05/2021'),
       end: new Date('11/20/2021'),
+    },    
+    {
+      title: 'Available',
+      start: new Date('11/05/2020'),
+      end: new Date('11/1/2021'),
     },
   ];
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor() {}
 
-  beforeViewRender(event: CalendarMonthViewBeforeRenderEvent) {
-    this.cdr.detectChanges();
-  }
 }
