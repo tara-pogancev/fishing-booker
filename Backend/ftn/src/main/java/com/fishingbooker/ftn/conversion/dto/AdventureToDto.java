@@ -1,6 +1,5 @@
 package com.fishingbooker.ftn.conversion.dto;
 
-import com.fishingbooker.ftn.bom.Utility;
 import com.fishingbooker.ftn.bom.adventures.Adventure;
 import com.fishingbooker.ftn.bom.adventures.AdventureUtility;
 import com.fishingbooker.ftn.conversion.DataConverter;
@@ -28,6 +27,7 @@ public class AdventureToDto implements Converter<Adventure, AdventureDto> {
         dto.setRules(DataConverter.getRules(source.getRules()));
         dto.setNavigationalEquipments(DataConverter.getNavEquipment(source.getNavigationalEquipments()));
         dto.setImageIds(DataConverter.getImageIds(source.getImages()));
+        dto.setInstructorBiography(source.getInstructor().getBiography());
         return dto;
     }
 

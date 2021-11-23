@@ -13,6 +13,7 @@ export class Adventure {
     public rules: string[] = [],
     public utilities: Utility[] = [],
     public ownerName: string = '',
+    public instructorBiography: string = '',
     public imageIds: number[] = []
   ) {}
 }
