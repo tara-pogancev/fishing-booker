@@ -4,17 +4,17 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './components/pages/home/home.component';
+import { HomeComponent } from './pages/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CottageCardComponent } from './components/cottages/cottage-card/cottage-card.component';
 import { HeroTitleComponent } from './components/hero-title/hero-title.component';
 import { TruncatePipe } from './pipes/truncate-pipe';
 import { GapComponent } from './components/gap/gap.component';
-import { NotFoundComponent } from './components/pages/not-found/not-found.component';
-import { LoginComponent } from './components/pages/login/login.component';
-import { RegisterComponent } from './components/pages/register/register.component';
-import { ThankYouRegistrationComponent } from './components/pages/register/thank-you-registration/thank-you-registration.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { ThankYouRegistrationComponent } from './pages/register/thank-you-registration/thank-you-registration.component';
 import { FormsModule } from '@angular/forms';
 import { UserHeaderComponent } from './components/header/user-header/user-header.component';
 import { NewUserHeaderComponent } from './components/header/new-user-header/new-user-header.component';
@@ -43,12 +43,12 @@ import { SubscriptionComponentComponent } from './components/client/subscription
 import { ReservationCardComponent } from './components/client/reservation-card/reservation-card.component';
 import { SearchFieldComponent } from './components/search-field/search-field.component';
 import { ReservationSearchComponent } from './components/client/reservation-search/reservation-search.component';
-import { BrowseBoatsComponent } from './components/pages/browse-boats/browse-boats.component';
-import { BrowseCottagesComponent } from './components/pages/browse-cottages/browse-cottages.component';
-import { BrowseFishingComponent } from './components/pages/browse-fishing/browse-fishing.component';
-import { BrowseSpecialOffersComponent } from './components/pages/browse-special-offers/browse-special-offers.component';
+import { BrowseBoatsComponent } from './pages/browse-boats/browse-boats.component';
+import { BrowseCottagesComponent } from './pages/browse-cottages/browse-cottages.component';
+import { BrowseFishingComponent } from './pages/browse-fishing/browse-fishing.component';
+import { BrowseSpecialOffersComponent } from './pages/browse-special-offers/browse-special-offers.component';
 import { SpecialOfferCardComponent } from './components/special-offer-card/special-offer-card.component';
-import { ReviewsPageComponent } from './components/pages/reviews-page/reviews-page.component';
+import { ReviewsPageComponent } from './pages/reviews-page/reviews-page.component';
 import { BrowseCardComponent } from './components/browse-card/browse-card.component';
 import { ReviewCardComponent } from './components/review-card/review-card.component';
 import { ComplaintCardComponent } from './components/complaint-card/complaint-card.component';
@@ -60,9 +60,13 @@ import { UtilityComponent } from './components/utility/utility.component';
 import { MapComponent } from './components/map/map.component';
 import { RoomComponent } from './components/cottages/room/room.component';
 import { UpcomingReservationsComponent } from './components/client/client-dashboard/upcoming-reservations/upcoming-reservations.component';
-import { NotAllowedComponent } from './components/pages/not-allowed/not-allowed.component';
+import { NotAllowedComponent } from './pages/not-allowed/not-allowed.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { CalendarComponent } from './components/calendar/calendar.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -124,6 +128,7 @@ import { IvyCarouselModule } from 'angular-responsive-carousel';
     UpcomingReservationsComponent,
     NotAllowedComponent,
     CarouselComponent,
+    CalendarComponent,
   ],
   imports: [
     BrowserModule,
@@ -131,6 +136,11 @@ import { IvyCarouselModule } from 'angular-responsive-carousel';
     HttpClientModule,
     FormsModule,
     IvyCarouselModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
+    CommonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

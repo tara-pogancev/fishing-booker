@@ -1,24 +1,24 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './components/pages/login/login.component';
-import { NotFoundComponent } from './components/pages/not-found/not-found.component';
-import { HomeComponent } from './components/pages/home/home.component';
-import { RegisterComponent } from './components/pages/register/register.component';
-import { ThankYouRegistrationComponent } from './components/pages/register/thank-you-registration/thank-you-registration.component';
+import { LoginComponent } from './pages/login/login.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { HomeComponent } from './pages/home/home.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { ThankYouRegistrationComponent } from './pages/register/thank-you-registration/thank-you-registration.component';
 import { AdminDashboardComponent } from './components/admin/admin-dashboard/admin-dashboard.component';
 import { BoatOwnerDashboardComponent } from './components/boats/boat-owner-dashboard/boat-owner-dashboard.component';
 import { ClientDashboardComponent } from './components/client/client-dashboard/client-dashboard.component';
 import { FishingInstructorDashboardComponent } from './components/fishing/fishing-instructor-dashboard/fishing-instructor-dashboard.component';
 import { CottageOwnerDashboardComponent } from './components/cottages/cottage-owner-dashboard/cottage-owner-dashboard.component';
-import { BrowseBoatsComponent } from './components/pages/browse-boats/browse-boats.component';
-import { BrowseCottagesComponent } from './components/pages/browse-cottages/browse-cottages.component';
-import { BrowseFishingComponent } from './components/pages/browse-fishing/browse-fishing.component';
-import { BrowseSpecialOffersComponent } from './components/pages/browse-special-offers/browse-special-offers.component';
-import { ReviewsPageComponent } from './components/pages/reviews-page/reviews-page.component';
+import { BrowseBoatsComponent } from './pages/browse-boats/browse-boats.component';
+import { BrowseCottagesComponent } from './pages/browse-cottages/browse-cottages.component';
+import { BrowseFishingComponent } from './pages/browse-fishing/browse-fishing.component';
+import { BrowseSpecialOffersComponent } from './pages/browse-special-offers/browse-special-offers.component';
+import { ReviewsPageComponent } from './pages/reviews-page/reviews-page.component';
 import { BoatPageComponent } from './components/boats/boat-page/boat-page.component';
 import { CottagePageComponent } from './components/cottages/cottage-page/cottage-page.component';
 import { FishingPageComponent } from './components/fishing/fishing-page/fishing-page.component';
-import { NotAllowedComponent } from './components/pages/not-allowed/not-allowed.component';
+import { NotAllowedComponent } from './pages/not-allowed/not-allowed.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
