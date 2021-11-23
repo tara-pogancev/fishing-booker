@@ -6,7 +6,7 @@ INSERT INTO public.address(city, country, street)	VALUES ('San Francisco', 'USA'
 INSERT INTO public.address(city, country, street)	VALUES ('Winnipeg', 'Canada', 'Main St 62');
 
 INSERT INTO public.address(city, country, street)   VALUES ('Camden', 'Mississippi', '2141 17th Hwy');
-INSERT INTO public.address(city, country, street)	VALUES ('Bowling Green', 'Kentucky', '2105 Robin Rd #T4');
+INSERT INTO public.address(city, country, street)	VALUES ('Bowling Green', 'Kentucky', '2105 Robin Rd T4');
 INSERT INTO public.address(city, country, street)	VALUES ('Chenoa', 'Illinois', '601 Emma St');
 INSERT INTO public.address(city, country, street)	VALUES ('Eustis', 'Florida', '845 Edgewater Cir');
 INSERT INTO public.address(city, country, street)	VALUES ('Somers Point', 'New Jersey', '1418 Massachusetts Ave');
