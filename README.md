@@ -3,35 +3,38 @@
 Full stack academic ISA project. Web application for renting fishing equipment, boats and instructors.
 Project made for Faculty of Technical Sciences' course Internet Software Architectures.
 
-
 ## Testing Accounts' Info
 
 ### Client:
- `client.email@fishing.com`
- `pass: 123`
- 
- ### Cottage Owner:
- `cottage@fishing.com`
- `pass: 123`
- 
- ### Boat Owner:
- `boat@fishing.com`
- `pass: 123`
- 
- ### Fishing Instructor:
- `adventures@fishing.com`
- `pass: 123`
- 
- ### Administrator:
- `admin@fishing.com`
- `pass: 123`
+
+`client.email@fishing.com`
+`pass: 123`
+
+### Cottage Owner:
+
+`cottage@fishing.com`
+`pass: 123`
+
+### Boat Owner:
+
+`boat@fishing.com`
+`pass: 123`
+
+### Fishing Instructor:
+
+`adventures@fishing.com`
+`pass: 123`
+
+### Administrator:
+
+`admin@fishing.com`
+`pass: 123`
 
 ## Tools Used
 
 - Spring Boot
 - Angular
 - PostgreSQL
-
 
 ## Resources
 
@@ -42,7 +45,6 @@ Project made for Faculty of Technical Sciences' course Internet Software Archite
 - [ManyPixels](https://www.manypixels.co/gallery)
 - [FreePik](https://www.freepik.com/vectors/illustrations)
 
-
 ## Authors
 
 ► Tara Pogančev, RA80/2018 (student 1)
@@ -51,9 +53,7 @@ Project made for Faculty of Technical Sciences' course Internet Software Archite
 
 ► Đorđe Krsmanović, RA71/2018 (student 3)
 
-
-
-
 ## Screenshots
-![fishing-booker](Frontend/StylingGuide/img/screenshot1.png)
-![fishing-booker](Frontend/StylingGuide/img/screenshot2.png)
+
+![fishingBooker](img/screenshot1.jpg)
+![fishingBooker](img/screenshot2.jpg)
