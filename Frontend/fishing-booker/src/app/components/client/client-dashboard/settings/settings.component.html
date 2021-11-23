@@ -13,7 +13,7 @@
               class="input"
               type="text"
               placeholder="First name input"
-              [(ngModel)]="user.name"
+              [(ngModel)]="newUser.name"
             />
           </div>
         </div>
@@ -26,7 +26,7 @@
               class="input"
               type="text"
               placeholder="Last name input"
-              [(ngModel)]="user.lastName"
+              [(ngModel)]="newUser.lastName"
             />
           </div>
         </div>
@@ -39,7 +39,7 @@
               class="input"
               type="text"
               placeholder="Phone input"
-              [(ngModel)]="user.phone"
+              [(ngModel)]="newUser.phone"
             />
           </div>
         </div>
@@ -55,7 +55,7 @@
               class="input"
               type="text"
               placeholder="Street"
-              [(ngModel)]="user.street"
+              [(ngModel)]="newUser.street"
             />
           </div>
         </div>
@@ -68,7 +68,7 @@
               class="input"
               type="text"
               placeholder="City"
-              [(ngModel)]="user.city"
+              [(ngModel)]="newUser.city"
             />
           </div>
         </div>
@@ -81,7 +81,7 @@
               class="input"
               type="text"
               placeholder="Country"
-              [(ngModel)]="user.country"
+              [(ngModel)]="newUser.country"
             />
           </div>
         </div>
@@ -105,7 +105,7 @@
               type="password"
               placeholder="Enter your password"
               (input)="validatePassword()"
-              [(ngModel)]="user.password"
+              [(ngModel)]="newUser.password"
             />
           </div>
         </div>
@@ -118,7 +118,7 @@
               class="input"
               type="password"
               placeholder="Confirm password"
-              [(ngModel)]="user.passwordConfirm"
+              [(ngModel)]="newUser.passwordConfirm"
               (input)="validatePassword()"
               [class.is-danger]="!validPassword"
             />

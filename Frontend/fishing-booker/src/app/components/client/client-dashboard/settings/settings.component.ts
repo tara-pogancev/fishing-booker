@@ -9,30 +9,34 @@ import { ClientService } from 'src/app/service/client.service';
 })
 export class SettingsComponent implements OnInit {
   @Input() user: Client = new Client();
+  newUser: Client = new Client();
   validPassword: boolean = true;
   validForm: boolean = true;
 
   constructor(private clientService: ClientService) {}
 
   ngOnInit(): void {
-    this.user.password = '';
-    this.user.passwordConfirm = '';
+    this.clientService.getCurrentClient().subscribe((data: Client) => {
+      this.newUser = data;
+      this.newUser.password = '';
+      this.newUser.passwordConfirm = '';
+    });
   }
 
   validatePassword() {
-    this.validPassword = this.user.password == this.user.passwordConfirm;
+    this.validPassword = this.newUser.password == this.newUser.passwordConfirm;
   }
 
   validateForm() {
     this.validForm =
-      this.user.name != '' &&
-      this.user.lastName != '' &&
-      this.user.phone != '' &&
-      this.user.street != '' &&
-      this.user.city != '' &&
-      this.user.country != '' &&
-      this.user.password != '' &&
-      this.user.passwordConfirm != '' &&
+      this.newUser.name != '' &&
+      this.newUser.lastName != '' &&
+      this.newUser.phone != '' &&
+      this.newUser.street != '' &&
+      this.newUser.city != '' &&
+      this.newUser.country != '' &&
+      this.newUser.password != '' &&
+      this.newUser.passwordConfirm != '' &&
       this.validPassword;
 
     if (this.validForm == true) {
@@ -41,10 +45,10 @@ export class SettingsComponent implements OnInit {
   }
 
   updateClient() {
-    this.clientService.updateClientData(this.user).subscribe((data) => {
+    this.clientService.updateClientData(this.newUser).subscribe((data) => {
       console.log(data);
       window.location.href = '/client-db';
-      this.user.passwordConfirm = '';
+      this.newUser.passwordConfirm = '';
       alert('Changes saved!');
     });
   }

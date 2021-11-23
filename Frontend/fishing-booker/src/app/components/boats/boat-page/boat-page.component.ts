@@ -17,8 +17,7 @@ export class BoatPageComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private boatService: BoatService,
-    private imageService: ImageService
+    private boatService: BoatService
   ) {}
 
   ngOnInit(): void {
@@ -32,7 +31,7 @@ export class BoatPageComponent implements OnInit {
         this.navEquipment += equipment + ', ';
       });
       this.navEquipment = this.navEquipment.slice(0, -2);
-
+      if (this.navEquipment == '') this.navEquipment = 'None';
     });
   }
 }
