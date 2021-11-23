@@ -6,7 +6,25 @@ Project made for Faculty of Technical Sciences' course Internet Software Archite
 
 ## Testing Accounts' Info
 
-...
+### Client:
+ `client.email@fishing.com`
+ `pass: 123`
+ 
+ ### Cottage Owner:
+ `cottage@fishing.com`
+ `pass: 123`
+ 
+ ### Boat Owner:
+ `boat@fishing.com`
+ `pass: 123`
+ 
+ ### Fishing Instructor:
+ `adventures@fishing.com`
+ `pass: 123`
+ 
+ ### Administrator:
+ `admin@fishing.com`
+ `pass: 123`
 
 ## Tools Used
 
@@ -37,5 +55,5 @@ Project made for Faculty of Technical Sciences' course Internet Software Archite
 
 
 ## Screenshots
-...
-
+![fishing-booker](Frontend/StylingGuide/img/screenshot1.png)
+![fishing-booker](Frontend/StylingGuide/img/screenshot2.png)
