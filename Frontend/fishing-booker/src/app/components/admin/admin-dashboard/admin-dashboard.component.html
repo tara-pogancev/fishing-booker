@@ -124,16 +124,16 @@
   <div class="column db-content">
     <div class="hero is-primary">
       <div class="hero-body">
-        <p class="title">Welcome, {{ client.name }} {{ client.lastName }}</p>
-        <p class="subtitle">Client Dashboard</p>
+        <p class="title">Welcome, {{ admin.name }} {{ admin.lastName }}</p>
+        <p class="subtitle">Admin Dashboard</p>
       </div>
     </div>
     <div class="m-5">
       <div *ngIf="activeTab == 'PERSONAL_INFO'">
-        <app-personal-info [client]="client"></app-personal-info>
+        <app-admin-persona-info ></app-admin-persona-info>
       </div>
       <div *ngIf="activeTab == 'SETTINGS'">
-        <app-settings [user]="client"></app-settings>
+        <app-settings [user]="admin"></app-settings>
       </div>
       <div *ngIf="activeTab == 'COMMISION'">
         <app-commision-precentage></app-commision-precentage>
@@ -154,28 +154,28 @@
         <app-registration-request></app-registration-request>
       </div>
       <div *ngIf="activeTab == 'PAST_COTTAGE'">
-        <client-past-cottage [user]="client"></client-past-cottage>
+        <client-past-cottage [user]="admin"></client-past-cottage>
       </div>
       <div *ngIf="activeTab == 'PAST_BOAT'">
-        <client-past-boat [user]="client"></client-past-boat>
+        <client-past-boat [user]="admin"></client-past-boat>
       </div>
       <div *ngIf="activeTab == 'PAST_FISHING'">
-        <client-past-fishing [user]="client"></client-past-fishing>
+        <client-past-fishing [user]="admin"></client-past-fishing>
       </div>
       <div *ngIf="activeTab == 'REVIEW'">
-        <client-reviews [user]="client"></client-reviews>
+        <client-reviews [user]="admin"></client-reviews>
       </div>
       <div *ngIf="activeTab == 'COMPLAINT'">
-        <client-complaints [user]="client"></client-complaints>
+        <client-complaints [user]="admin"></client-complaints>
       </div>
       <div *ngIf="activeTab == 'REVIEW_COMPLAINT'">
-        <my-reviews-and-complaints [user]="client"></my-reviews-and-complaints>
+        <my-reviews-and-complaints [user]="admin"></my-reviews-and-complaints>
       </div>
       <div *ngIf="activeTab == 'DELETE_ACCOUNT'">
-        <client-delete-account [user]="client"></client-delete-account>
+        <client-delete-account [user]="admin"></client-delete-account>
       </div>
       <div *ngIf="activeTab == 'DENIED_REGISTRATION'">
-        <client-delete-account [user]="client"></client-delete-account>
+        <client-delete-account [user]="admin"></client-delete-account>
       </div>
     </div>
   </div>

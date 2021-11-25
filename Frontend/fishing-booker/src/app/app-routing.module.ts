@@ -18,6 +18,7 @@ import { BoatPageComponent } from './components/boats/boat-page/boat-page.compon
 import { CottagePageComponent } from './components/cottages/cottage-page/cottage-page.component';
 import { FishingPageComponent } from './components/fishing/fishing-page/fishing-page.component';
 import { NotAllowedComponent } from './pages/not-allowed/not-allowed.component';
+import { NgModule } from '@angular/core';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },

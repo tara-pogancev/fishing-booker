@@ -73,6 +73,7 @@ import { BoatOwnersComponent } from './components/admin/admin-dashboard/boat-own
 import { ClientsComponent } from './components/admin/admin-dashboard/clients-list/clients/clients.component';
 import { RegistrationRequestComponent } from './components/admin/admin-dashboard/registration-request/registration-request/registration-request.component';
 import { FishinInstructorsListComponent } from './components/admin/admin-dashboard/fishin-instructors-list/fishin-instructors-list.component';
+import { AdminPersonaInfoComponent } from './components/admin/admin-dashboard/admin-persona-info/admin-persona-info.component';
 
 @NgModule({
   declarations: [
@@ -153,6 +154,7 @@ import { FishinInstructorsListComponent } from './components/admin/admin-dashboa
     ClientsComponent,
     RegistrationRequestComponent,
     FishinInstructorsListComponent,
+    AdminPersonaInfoComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

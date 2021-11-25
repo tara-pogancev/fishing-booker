@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { server } from '../app-global';
+import { LoginService } from './login.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,9 +9,10 @@ import { server } from '../app-global';
 export class FishingInstructorService {
 
   url = server + 'api/fishing-instructor';
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient,private loginService: LoginService) { }
 
   loadInstructors():any{
-      return this._http.get<any>(this.url);
+      const headers = this.loginService.getHeaders();
+      return this._http.get<any>(this.url,{headers:headers});
   }
 }

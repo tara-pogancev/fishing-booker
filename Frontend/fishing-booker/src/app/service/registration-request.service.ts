@@ -15,16 +15,18 @@ export class RegistrationRequestService {
   constructor(private _http: HttpClient,private loginService: LoginService) { }
 
   getRequests() : Observable<RegistrationRequest[]>{
-    //const headers = this.loginService.getHeaders();
-    return this._http.get<RegistrationRequest[]>(this.url);
+    const headers = this.loginService.getHeaders();
+    return this._http.get<RegistrationRequest[]>(this.url,{headers:headers});
   }
 
   approveRequest(id:string):void{
-    this._http.put<any>(this.url+'/approve/'+id,{}).subscribe(console.log);
+    const headers = this.loginService.getHeaders();
+    this._http.put<any>(this.url+'/approve/'+id,{},{headers:headers}).subscribe(console.log);
   }
 
   rejectRequest(id:string,explanation:string){
-    this._http.put<any>(this.url+'/reject',{id:id,causeOfRejection:explanation}).subscribe(console.log);
+    const headers = this.loginService.getHeaders();
+    this._http.put<any>(this.url+'/reject',{id:id,causeOfRejection:explanation},{headers:headers}).subscribe(console.log);
   }
 
   erroHandler(error: HttpErrorResponse) {
