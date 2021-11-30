@@ -2,6 +2,7 @@ package com.fishingbooker.ftn.bom.users;
 
 import com.fishingbooker.ftn.bom.RegistrationRequest;
 import com.fishingbooker.ftn.bom.UserRank;
+import com.fishingbooker.ftn.bom.adventures.Adventure;
 import com.fishingbooker.ftn.bom.adventures.AvailableInstructorTimePeriod;
 import lombok.Data;
 import lombok.Getter;
@@ -29,5 +30,9 @@ public class FishingInstructor extends ApplicationUser {
     @ManyToOne()
     @JoinColumn(name = "rank")
     UserRank rank;
+
+    @OneToMany(mappedBy = "instructor",cascade = CascadeType.ALL)
+    private Set<Adventure> adventures;
+
 
 }

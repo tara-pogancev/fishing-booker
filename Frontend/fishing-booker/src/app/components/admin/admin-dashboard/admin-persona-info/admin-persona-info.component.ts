@@ -13,7 +13,7 @@ export class AdminPersonaInfoComponent implements OnInit {
   constructor(private adminService: AdminService) { }
 
   ngOnInit(): void {
-    this.adminService.getCurrentClient().subscribe((data: any) => {
+    this.adminService.getCurrentAdmin().subscribe((data: any) => {
       this.admin = data;
       this.fullAddress=this.admin.userAddress.city+' '+this.admin.userAddress.street;
       console.log(data);

@@ -14,12 +14,15 @@ export class ClientsComponent implements OnInit {
    }
   
   ngOnInit(): void {
-    this.clientService.loadClients().subscribe(clients=>this.clients=clients);
+    this.clientService.loadEnabledClients().subscribe(clients=>this.clients=clients);
   }
 
   deleteClient(client:any){
+    this.clientService.deleteClient(client.id).subscribe();
+
     const index = this.clients.indexOf(client);
     this.clients.splice(index, 1);
+    
   }
 
 }

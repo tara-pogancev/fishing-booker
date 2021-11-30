@@ -1,6 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+
 import { server } from '../app-global';
 import { Client } from '../model/client-model';
 import { LoginService } from './login.service';
@@ -32,8 +34,18 @@ export class ClientService {
     return this._http.put<any>(this.url, client, { headers: headers });
   }
 
-  loadClients(){
+  loadEnabledClients(){
     const headers = this.loginService.getHeaders();
-    return this._http.get<any>(this.url,{headers:headers});
+    return this._http.get<any>(this.url+'/get-enabled',{headers:headers});
+  }
+
+  deleteClient(id:string){
+    const headers = this.loginService.getHeaders();
+    return this._http.delete<any>(this.url+'/delete-client/'+id,{headers:headers});//.pipe(catchError(this.erroHandler));
+  }
+
+  erroHandler(error: HttpErrorResponse) {
+    alert('Error');
+    return throwError(error.message || 'server Error');
   }
 }

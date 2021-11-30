@@ -19,7 +19,7 @@ export class AdminService {
     return this._http.get<any>(url, { headers: headers });
   }
 
-  getCurrentClient() {
+  getCurrentAdmin() {
     const id = this.loginService.getCurrentUser().id;
     const url = this.url + '/' + id;
     const headers = this.loginService.getHeaders();

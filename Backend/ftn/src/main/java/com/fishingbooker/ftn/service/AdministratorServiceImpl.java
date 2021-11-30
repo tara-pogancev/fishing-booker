@@ -35,4 +35,10 @@ public class AdministratorServiceImpl implements AdministratorService {
         return administratorRepository.save(administrator);
     }
 
+    @Override
+    public Administrator save(Administrator admin) {
+        admin.setEnabled(true);
+        return administratorRepository.save(admin);
+    }
+
 }

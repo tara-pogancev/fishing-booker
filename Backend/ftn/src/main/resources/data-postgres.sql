@@ -252,3 +252,6 @@ INSERT INTO public.adventure_images(adventure_id, image_id)	VALUES (3, 16);
 INSERT INTO public.adventure_images(adventure_id, image_id)	VALUES (3, 17);
 INSERT INTO public.adventure_images(adventure_id, image_id)	VALUES (4, 18);
 INSERT INTO public.adventure_images(adventure_id, image_id)	VALUES (4, 19);
+
+--System properties
+INSERT INTO public.system_properties(gold_points, income_percentage, reservation_points, silver_points) VALUES (1500, 10, 15, 750);

@@ -42,4 +42,15 @@ public class FishingInstructorServiceImpl implements FishingInstructorService {
         return instructorRepository.save(instructor);
     }
 
+    @Override
+    public List<FishingInstructor> getEnabledInstructors() {
+        return instructorRepository.getEnabledInstructors();
+    }
+
+    @Override
+    public Long delete(Long id) {
+        instructorRepository.deleteById(id);
+        return id;
+    }
+
 }

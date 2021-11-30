@@ -7,11 +7,11 @@
       <b>Enter commision precentage</b><br />
       <div style="width:150px">
         <div class="control">
-            <input class="input is-success" type="number" placeholder="Input precentage"> 
+            <input class="input is-success" type="number" [(ngModel)]="commissionPercentage" placeholder="Input precentage"> 
         </div>
       </div>
       <div class="column">
-          <button class="confirmButton">Confirm</button>
+          <button class="confirmButton" (click)="setPercentage()">Confirm</button>
           
       </div>
     </div>

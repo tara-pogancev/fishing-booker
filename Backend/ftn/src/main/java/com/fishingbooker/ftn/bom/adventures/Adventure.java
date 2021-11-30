@@ -69,7 +69,7 @@ public class Adventure extends DatabaseEntity {
     @JoinColumn(name = "adventure_id")
     private Set<AdventureUtility> utilities;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "instructor")
     private FishingInstructor instructor;
 

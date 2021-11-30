@@ -18,4 +18,7 @@ public interface RegisteredClientService {
 
     void update(RegisteredClientDto userDto);
 
+    List<RegisteredClient> getEnabledClients();
+
+    RegisteredClient delete(Long id);
 }

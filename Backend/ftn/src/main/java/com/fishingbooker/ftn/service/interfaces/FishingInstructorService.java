@@ -13,4 +13,7 @@ public interface FishingInstructorService {
 
     FishingInstructor create(ApplicationUserDto userDto);
 
+    List<FishingInstructor> getEnabledInstructors();
+
+    Long delete(Long id);
 }

@@ -14,11 +14,13 @@ export class AdminDashboardComponent implements OnInit {
 
   admin: any = {};
   activeTab: string = 'PERSONAL_INFO';
+  newAdmin:any={};
+  passwordConfirm='';
 
   constructor(private adminService: AdminService) {}
 
   ngOnInit(): void {
-   this.adminService.getCurrentClient().subscribe((data: Client) => {
+   this.adminService.getCurrentAdmin().subscribe((data: Client) => {
       this.admin = data;
       console.log(data);
     });
@@ -29,5 +31,8 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   
-
 }
+
+  
+
+

@@ -16,6 +16,7 @@ export class FishinInstructorsListComponent implements OnInit {
   }
 
   deleteInstructor(instructor:any){
+    this.instructorService.deleteInstructor(instructor.id).subscribe();
     const index = this.instructors.indexOf(instructor);
     this.instructors.splice(index, 1);
   }

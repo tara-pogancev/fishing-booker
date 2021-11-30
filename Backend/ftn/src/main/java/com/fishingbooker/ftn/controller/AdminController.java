@@ -1,14 +1,14 @@
 package com.fishingbooker.ftn.controller;
 
+import com.fishingbooker.ftn.bom.Address;
 import com.fishingbooker.ftn.bom.users.Administrator;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.AdministratorDto;
+import com.fishingbooker.ftn.dto.ApplicationUserDto;
 import com.fishingbooker.ftn.service.interfaces.AdministratorService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -16,11 +16,26 @@ import org.springframework.web.bind.annotation.RestController;
 public class AdminController {
 
     private final AdministratorService adminService;
-    private DataConverter converter;
+    private final DataConverter converter;
 
     @GetMapping("/{id}")
     public Administrator get(@PathVariable("id") Long id){
         Administrator administrator=adminService.findById(id);
         return administrator;
+    }
+
+    @PutMapping()
+    public Administrator update(@RequestBody ApplicationUserDto adminDto){
+        Administrator admin=adminService.findById(adminDto.getId());
+        Address address=admin.getUserAddress();
+        address.setCity(adminDto.getCity());
+        address.setStreet(adminDto.getStreet());
+        address.setCountry(adminDto.getCountry());
+        admin.setUserAddress(address);
+        admin.setPassword(new BCryptPasswordEncoder().encode(adminDto.getPassword()));
+        admin.setName(adminDto.getName());
+        admin.setLastName(adminDto.getLastName());
+        admin.setPhone(adminDto.getPhone());
+        return adminService.save(admin);
     }
 }

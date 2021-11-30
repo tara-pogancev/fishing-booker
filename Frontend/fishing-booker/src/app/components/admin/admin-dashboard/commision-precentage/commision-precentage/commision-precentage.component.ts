@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SystemPropertiesService } from 'src/app/service/system-properties.service';
 
 @Component({
   selector: 'app-commision-precentage',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CommisionPrecentageComponent implements OnInit {
 
-  constructor() { }
+
+  commissionPercentage:Number=0;
+  constructor(private systemPropertiesService:SystemPropertiesService) { }
 
   ngOnInit(): void {
+    this.systemPropertiesService.getPercentage().subscribe(percentage=>this.commissionPercentage=percentage);
+  }
+
+  setPercentage(){
+    
+    this.systemPropertiesService.setPercentage(this.commissionPercentage).subscribe(
+      data=>alert('Successfully changed'),
+      error =>console.log('Error')
+    );
+    
   }
 
 }

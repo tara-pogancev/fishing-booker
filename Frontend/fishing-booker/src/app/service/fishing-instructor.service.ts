@@ -15,4 +15,9 @@ export class FishingInstructorService {
       const headers = this.loginService.getHeaders();
       return this._http.get<any>(this.url,{headers:headers});
   }
+
+  deleteInstructor(id:Number){
+    const headers = this.loginService.getHeaders();
+    return this._http.delete<any>(this.url+'/'+id,{headers:headers});
+  }
 }

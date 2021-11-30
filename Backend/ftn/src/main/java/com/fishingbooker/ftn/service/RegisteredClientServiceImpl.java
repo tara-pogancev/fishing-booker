@@ -69,4 +69,16 @@ public class RegisteredClientServiceImpl implements RegisteredClientService {
         clientRepository.save(client);
     }
 
+    @Override
+    public List<RegisteredClient> getEnabledClients() {
+        return clientRepository.getEnabledClients();
+    }
+
+    @Override
+    public RegisteredClient delete(Long id) {
+        RegisteredClient client=clientRepository.get(id);
+        clientRepository.delete(client);
+        return client;
+    }
+
 }

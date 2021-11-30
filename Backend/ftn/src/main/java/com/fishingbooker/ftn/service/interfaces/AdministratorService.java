@@ -13,4 +13,6 @@ public interface AdministratorService {
 
     Administrator create(ApplicationUserDto userDto);
 
+    public Administrator save(Administrator admin);
+
 }

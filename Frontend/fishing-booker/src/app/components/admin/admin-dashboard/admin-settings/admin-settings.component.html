@@ -1,0 +1,153 @@
+<div class="content is-medium">
+    <h1 class="title">Settings</h1>
+    <hr />
+    <div class="box p-6">
+      <h4>Personal Details</h4>
+  
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <label class="label">First Name:</label>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                placeholder="First name input"
+                [(ngModel)]="admin.name"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="field">
+            <label class="label">Last Name:</label>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                placeholder="Last name input"
+                [(ngModel)]="admin.lastName"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="field">
+            <label class="label">Contact Phone:</label>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                placeholder="Phone input"
+                [(ngModel)]="admin.phone"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <label class="label">Street:</label>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                placeholder="Street"
+                [(ngModel)]="street"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="field">
+            <label class="label">City:</label>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                placeholder="City"
+                [(ngModel)]="city"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="field">
+            <label class="label">Country:</label>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                placeholder="Country"
+                [(ngModel)]="country"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <gap height="40"></gap>
+      <hr />
+      <h4>Account Info</h4>
+      <p class="is-size-6 mb-5">
+        (enter your new password, or retype the current one to confirm changes)
+      </p>
+  
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <label class="label">Enter New Password:</label>
+            <div class="control">
+              <input
+                class="input"
+                type="password"
+                placeholder="Enter your password"
+                (input)="validatePassword()"
+                [(ngModel)]="admin.password"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="field">
+            <label class="label">Confirm Password:</label>
+            <div class="control">
+              <input
+                class="input"
+                type="password"
+                placeholder="Confirm password"
+                [(ngModel)]="passwordConfirm"
+                (input)="validatePassword()"
+                [class.is-danger]="!validPassword"
+              />
+            </div>
+            <p
+              class="help is-danger"
+              [ngStyle]="{
+                visibility: !validPassword ? 'visible' : 'hidden'
+              }"
+            >
+              Passwords do not match!
+            </p>
+          </div>
+        </div>
+      </div>
+  
+      <gap height="30"></gap>
+      <div class="field">
+        <div class="control">
+          <button class="button is-link" (click)="validateForm()">Submit</button>
+          <p
+            class="help is-danger mt-5"
+            [ngStyle]="{
+              visibility: !validForm ? 'visible' : 'hidden'
+            }"
+          >
+            Please fill in all the form fields!
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>

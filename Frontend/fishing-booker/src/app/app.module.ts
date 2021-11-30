@@ -74,6 +74,7 @@ import { ClientsComponent } from './components/admin/admin-dashboard/clients-lis
 import { RegistrationRequestComponent } from './components/admin/admin-dashboard/registration-request/registration-request/registration-request.component';
 import { FishinInstructorsListComponent } from './components/admin/admin-dashboard/fishin-instructors-list/fishin-instructors-list.component';
 import { AdminPersonaInfoComponent } from './components/admin/admin-dashboard/admin-persona-info/admin-persona-info.component';
+import { AdminSettingsComponent } from './components/admin/admin-dashboard/admin-settings/admin-settings.component';
 
 @NgModule({
   declarations: [
@@ -136,6 +137,14 @@ import { AdminPersonaInfoComponent } from './components/admin/admin-dashboard/ad
     NotAllowedComponent,
     CarouselComponent,
     CalendarComponent,
+    CommisionPrecentageComponent,
+    CottageOwnerListComponent,
+    BoatOwnersComponent,
+    ClientsComponent,
+    RegistrationRequestComponent,
+    FishinInstructorsListComponent,
+    AdminPersonaInfoComponent,
+    AdminSettingsComponent,
   ],
   imports: [
     BrowserModule,
@@ -148,13 +157,7 @@ import { AdminPersonaInfoComponent } from './components/admin/admin-dashboard/ad
       useFactory: adapterFactory,
     }),
     CommonModule,
-    CommisionPrecentageComponent,
-    CottageOwnerListComponent,
-    BoatOwnersComponent,
-    ClientsComponent,
-    RegistrationRequestComponent,
-    FishinInstructorsListComponent,
-    AdminPersonaInfoComponent,
+    
   ],
   providers: [],
   bootstrap: [AppComponent],
