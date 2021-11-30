@@ -69,14 +69,14 @@
               <li>
                 <a
                   [ngClass]="{ 'is-active': activeTab === 'COTTAGES' }"
-                  (click)="changeTab('PAST_COTTAGE')"
+                  (click)="changeTab('COTTAGES')"
                   >Cottages</a
                 >
               </li>
               <li>
                 <a
                   [ngClass]="{ 'is-active': activeTab === 'BOATS' }"
-                  (click)="changeTab('PAST_BOAT')"
+                  (click)="changeTab('BOATS')"
                   >Boats</a
                 >
               </li>
@@ -153,11 +153,11 @@
       <div *ngIf="activeTab == 'REGISTRATION_REQUESTS'">
         <app-registration-request></app-registration-request>
       </div>
-      <div *ngIf="activeTab == 'PAST_COTTAGE'">
-        <client-past-cottage [user]="admin"></client-past-cottage>
+      <div *ngIf="activeTab == 'COTTAGES'">
+        <app-cottage-list></app-cottage-list>
       </div>
-      <div *ngIf="activeTab == 'PAST_BOAT'">
-        <client-past-boat [user]="admin"></client-past-boat>
+      <div *ngIf="activeTab == 'BOATS'">
+        <app-boat-list></app-boat-list>
       </div>
       <div *ngIf="activeTab == 'PAST_FISHING'">
         <client-past-fishing [user]="admin"></client-past-fishing>

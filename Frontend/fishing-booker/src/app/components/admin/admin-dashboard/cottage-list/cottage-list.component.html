@@ -1,0 +1,32 @@
+<div class="content is-medium">
+    <h1 class="title">Cottage owners</h1>
+    <hr />
+    <div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th><abbr title="Cottage name">Cottage name</abbr></th>
+            <th><abbr title="Address">Address</abbr></th>
+            <th><abbr title="Price">Price</abbr></th>
+            <th><abbr title="Rating">Rating</abbr></th>
+            <th><abbr title="Owner Name">Owner Name</abbr></th>
+            <th><abbr title="Delete">Delete</abbr></th>
+            
+          </tr>
+        </thead>
+        
+            <tbody>
+                <tr *ngFor="let cottage of cottages">
+                    <td>{{cottage.name}}</td>
+                    <td>{{cottage.address}}</td>
+                    <td>{{cottage.price}}</td>
+                    <td>{{cottage.rating}}</td>
+                    <td>{{cottage.ownerName}}</td>
+                    <td><button (click)="deleteCottage(cottage)">Delete</button></td>
+                </tr>
+            </tbody>
+        
+        
+      </table>
+    </div>
+  </div>

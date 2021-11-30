@@ -11,21 +11,22 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/browse/cottages")
-public class BrowseCottagesController {
+@RequestMapping("/api/cottages")
+public class CottageController {
 
-    private final CottageService cottageService;
     private final DataConverter converter;
-    @GetMapping
-    public List<CottageDto> findAll() {
+    private final CottageService cottageService;
+
+    @GetMapping()
+    public List<CottageDto> get(){
         List<Cottage> cottages=cottageService.findAll();
-        List<CottageDto> cottageDtos=converter.convert(cottages, CottageDto.class);
-        return cottageDtos;
+        return converter.convert(cottages,CottageDto.class);
     }
 
-    @GetMapping("{id}")
-    public CottageDto findById(@PathVariable Long id) {
-        return cottageService.findById(id);
+    @DeleteMapping("/{id}")
+    public Long delete(@PathVariable("id") Long id){
+        return cottageService.delete(id);
     }
+
 
 }

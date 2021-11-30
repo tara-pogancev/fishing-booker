@@ -25,14 +25,20 @@ public class CottageServiceImpl implements CottageService {
     private final DataConverter converter;
 
     @Override
-    public List<CottageDto> findAll() {
-        List<Cottage> list = cottageRepository.findAll();
-        return converter.convert(list, CottageDto.class);
+    public List<Cottage> findAll() {
+        return cottageRepository.findAll();
+
     }
 
     @Override
     public CottageDto findById(long id) {
         return converter.convert(cottageRepository.getById(id), CottageDto.class);
+    }
+
+    @Override
+    public Long delete(Long id) {
+        cottageRepository.deleteById(id);
+        return id;
     }
 
 }

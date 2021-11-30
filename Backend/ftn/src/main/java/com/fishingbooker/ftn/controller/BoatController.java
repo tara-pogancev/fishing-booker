@@ -11,21 +11,20 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/browse/boats")
-public class BrowseBoatsController {
+@RequestMapping("api/boats")
+public class BoatController {
 
     private final BoatService boatService;
     private final DataConverter converter;
-    @GetMapping
-    public List<BoatDto> findAll() {
+
+    @GetMapping()
+    public List<BoatDto> get(){
         List<Boat> boats=boatService.findAll();
-        List<BoatDto> boatsDtos=converter.convert(boats,BoatDto.class);
-        return boatsDtos;
+        return converter.convert(boats,BoatDto.class);
     }
 
-    @GetMapping("{id}")
-    public BoatDto findById(@PathVariable Long id) {
-        return boatService.findById(id);
+    @DeleteMapping("/{id}")
+    public Long delete(@PathVariable("id") Long id){
+        return boatService.delete(id);
     }
-
 }

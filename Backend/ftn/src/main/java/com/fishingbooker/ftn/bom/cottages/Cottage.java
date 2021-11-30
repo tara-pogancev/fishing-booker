@@ -46,7 +46,7 @@ public class Cottage extends DatabaseEntity {
             inverseJoinColumns = @JoinColumn(name = "image_id"))
     private Set<Image> images;
 
-    @OneToMany(mappedBy = "cottage", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cottage", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Room> rooms;
 
     @OneToMany(mappedBy = "cottage")

@@ -1,0 +1,34 @@
+<div class="content is-medium">
+    <h1 class="title">Cottage owners</h1>
+    <hr />
+    <div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th><abbr title="Boat name">Cottage name</abbr></th>
+            <th><abbr title="Address">Address</abbr></th>
+            <th><abbr title="Price">Price</abbr></th>
+            <th><abbr title="Rating">Rating</abbr></th>
+            <th><abbr title="Owner Name">Owner Name</abbr></th>
+            <th><abbr title="Guest Limit">GuestLimit</abbr></th>
+            <th><abbr title="Delete">Delete</abbr></th>
+            
+          </tr>
+        </thead>
+        
+            <tbody>
+                <tr *ngFor="let boat of boats">
+                    <td>{{boat.name}}</td>
+                    <td>{{boat.address}}</td>
+                    <td>{{boat.price}}</td>
+                    <td>{{boat.rating}}</td>
+                    <td>{{boat.ownerName}}</td>
+                    <td>{{boat.GuestLimit}}</td>
+                    <td><button (click)="deleteBoat(boat)">Delete</button></td>
+                </tr>
+            </tbody>
+        
+        
+      </table>
+    </div>
+  </div>

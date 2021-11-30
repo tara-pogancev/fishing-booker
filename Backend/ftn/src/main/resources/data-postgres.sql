@@ -137,11 +137,11 @@ INSERT INTO public.boat_rules(boat_id, rule_id)	VALUES (2, 8);
 
 -- BOAT IMAGES
 
-INSERT INTO public.boat_images(boat_id, image_id)	VALUES (2, 9);
-INSERT INTO public.boat_images(boat_id, image_id)	VALUES (3, 7);
-INSERT INTO public.boat_images(boat_id, image_id)	VALUES (4, 8);
-INSERT INTO public.boat_images(boat_id, image_id)	VALUES (1, 10);
-INSERT INTO public.boat_images(boat_id, image_id)	VALUES (2, 6);
+--INSERT INTO public.boat_images(boat_id, image_id)	VALUES (2, 9);
+--INSERT INTO public.boat_images(boat_id, image_id)	VALUES (3, 7);
+--INSERT INTO public.boat_images(boat_id, image_id)	VALUES (4, 8);
+--INSERT INTO public.boat_images(boat_id, image_id)	VALUES (1, 10);
+--INSERT INTO public.boat_images(boat_id, image_id)	VALUES (2, 6);
 
 -- COTTAGES
 
@@ -191,10 +191,10 @@ INSERT INTO public.cottage_utility(price, cottage_id, utility_id)	VALUES (20.0, 
 
 -- COTTAGE IMAGES
 
-INSERT INTO public.cottage_images(cottage_id, image_id)	VALUES (1, 3);
-INSERT INTO public.cottage_images(cottage_id, image_id)	VALUES (2, 5);
-INSERT INTO public.cottage_images(cottage_id, image_id)	VALUES (3, 4);
-INSERT INTO public.cottage_images(cottage_id, image_id)	VALUES (4, 11);
+--INSERT INTO public.cottage_images(cottage_id, image_id)	VALUES (1, 3);
+--INSERT INTO public.cottage_images(cottage_id, image_id)	VALUES (2, 5);
+--INSERT INTO public.cottage_images(cottage_id, image_id)	VALUES (3, 4);
+--INSERT INTO public.cottage_images(cottage_id, image_id)	VALUES (4, 11);
 
 -- ADVENTURES
 
