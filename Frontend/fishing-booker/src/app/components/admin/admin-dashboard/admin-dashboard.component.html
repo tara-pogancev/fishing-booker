@@ -62,6 +62,13 @@
             >Registration requests</a
           >
         </li>
+        <li *ngIf="admin.email=='admin@fishing.com'">
+          <a
+            [ngClass]="{ 'is-active': activeTab === 'ADD_ADMIN' }"
+            (click)="changeTab('ADD_ADMIN')"
+            >Add administrator</a
+          >
+        </li>
         <li>
           <div class="mt-4">
             <p class="menu-label">Rental Products</p>
@@ -161,6 +168,9 @@
       </div>
       <div *ngIf="activeTab == 'PAST_FISHING'">
         <client-past-fishing [user]="admin"></client-past-fishing>
+      </div>
+      <div *ngIf="activeTab=='ADD_ADMIN' && admin.email=='admin@fishing.com'">
+        <app-add-admin></app-add-admin>
       </div>
       <div *ngIf="activeTab == 'REVIEW'">
         <client-reviews [user]="admin"></client-reviews>

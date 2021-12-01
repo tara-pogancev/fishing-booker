@@ -7,6 +7,7 @@ import { LoginService } from './login.service';
   providedIn: 'root'
 })
 export class AdminService {
+  
 
   url = server + 'api/admin';
 
@@ -33,5 +34,15 @@ export class AdminService {
 
   loadClients(){
     return this._http.get<any>(this.url);
+  }
+
+  createAdmin(administrator:any){
+    const headers=this.loginService.getHeaders();
+    return this._http.post<any>(this.url,administrator,{headers:headers});
+  }
+
+  changePassword(id: any, password: string) {
+    const headers=this.loginService.getHeaders();
+    this._http.put<any>(this.url+'/change-password',{id:id,password:password},{headers:headers}).subscribe();
   }
 }

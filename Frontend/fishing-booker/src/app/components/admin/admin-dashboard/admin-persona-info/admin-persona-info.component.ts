@@ -10,6 +10,10 @@ export class AdminPersonaInfoComponent implements OnInit {
 
   admin:any;
   fullAddress:string='';
+  password="";
+  passwordConfirm="";
+  validPassword=true;
+
   constructor(private adminService: AdminService) { }
 
   ngOnInit(): void {
@@ -17,8 +21,27 @@ export class AdminPersonaInfoComponent implements OnInit {
       this.admin = data;
       this.fullAddress=this.admin.userAddress.city+' '+this.admin.userAddress.street;
       console.log(data);
+      this.openModalTab();
     });
     
+  }
+
+  openModalTab():void{
+    if (this.admin.firstTimeLoggedIn==true){
+      document.getElementById('modal')?.classList.toggle('is-active');
+    }
+  }
+
+  closeModalTab():void{
+    if (this.validPassword){
+      document.getElementById('modal')?.classList.toggle('is-active');
+      this.adminService.changePassword(this.admin.id,this.password);
+    }
+    
+  }
+
+  validatePassword() {
+    this.validPassword = this.password == this.passwordConfirm;
   }
 
 }

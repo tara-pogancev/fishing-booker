@@ -3,6 +3,7 @@ package com.fishingbooker.ftn.controller;
 import com.fishingbooker.ftn.bom.Address;
 import com.fishingbooker.ftn.bom.users.Administrator;
 import com.fishingbooker.ftn.conversion.DataConverter;
+import com.fishingbooker.ftn.dto.AdminChangePasswordDto;
 import com.fishingbooker.ftn.dto.AdministratorDto;
 import com.fishingbooker.ftn.dto.ApplicationUserDto;
 import com.fishingbooker.ftn.service.interfaces.AdministratorService;
@@ -37,5 +38,19 @@ public class AdminController {
         admin.setLastName(adminDto.getLastName());
         admin.setPhone(adminDto.getPhone());
         return adminService.save(admin);
+    }
+    @PostMapping()
+    public Long addAdministrator(@RequestBody AdministratorDto administratorDto){
+        administratorDto.setRole("Administrator");
+        Administrator administrator=converter.convert(administratorDto,Administrator.class);
+        administrator.setFirstTimeLoggedIn(true);
+        administrator.setEnabled(true);
+        Administrator admin=adminService.save(administrator);
+        return admin.getId();
+    }
+
+    @PutMapping("/change-password")
+    public void changePassword(@RequestBody AdminChangePasswordDto adminDto){
+        adminService.changePassword(adminDto);
     }
 }

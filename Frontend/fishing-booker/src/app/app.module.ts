@@ -77,6 +77,7 @@ import { AdminPersonaInfoComponent } from './components/admin/admin-dashboard/ad
 import { AdminSettingsComponent } from './components/admin/admin-dashboard/admin-settings/admin-settings.component';
 import { CottageListComponent } from './components/admin/admin-dashboard/cottage-list/cottage-list.component';
 import { BoatListComponent } from './components/admin/admin-dashboard/boat-list/boat-list.component';
+import { AddAdminComponent } from './components/admin/admin-dashboard/add-admin/add-admin.component';
 
 @NgModule({
   declarations: [
@@ -149,6 +150,7 @@ import { BoatListComponent } from './components/admin/admin-dashboard/boat-list/
     AdminSettingsComponent,
     CottageListComponent,
     BoatListComponent,
+    AddAdminComponent,
   ],
   imports: [
     BrowserModule,

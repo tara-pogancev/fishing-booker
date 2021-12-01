@@ -14,5 +14,5 @@ import javax.persistence.Table;
 @Table(name = "Administrator")
 @PrimaryKeyJoinColumn(name = "userId")
 public class Administrator extends ApplicationUser {
-
+    private Boolean firstTimeLoggedIn;
 }
