@@ -13,4 +13,7 @@ public interface BoatOwnerService {
 
     BoatOwner create(ApplicationUserDto userDto);
 
+    List<BoatOwner> getRegisteredBoatOwners();
+
+    Long delete(Long id);
 }

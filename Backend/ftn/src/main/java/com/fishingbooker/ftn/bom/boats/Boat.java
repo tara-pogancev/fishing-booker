@@ -91,7 +91,7 @@ public class Boat extends DatabaseEntity {
     @Column(name = "cancellationPercentageKeep", nullable = false)
     private Double cancellationPercentageKeep;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "boatOwner")
     private BoatOwner boatOwner;
 

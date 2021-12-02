@@ -10,13 +10,19 @@
             <th><abbr title="Last Name">Last Name</abbr></th>
             <th><abbr title="Email">Email</abbr></th>
             <th><abbr title="Phone">Phone</abbr></th>
-            <th><abbr title="Rank">Rank</abbr></th>
             <th><abbr title="Delete">Delete</abbr></th>
             
           </tr>
         </thead>
         <tbody>
-            
+          <tr *ngFor="let cottageOwner of cottageOwners">
+            <td>{{cottageOwner.id}}</td>
+            <td>{{cottageOwner.name}}</td>
+            <td>{{cottageOwner.lastName}}</td>
+            <td>{{cottageOwner.email}}</td>
+            <td>{{cottageOwner.phone}}</td>
+            <td><button (click)="deleteOwner(cottageOwner)">Delete</button></td>
+        </tr>
         </tbody>
         
       </table>

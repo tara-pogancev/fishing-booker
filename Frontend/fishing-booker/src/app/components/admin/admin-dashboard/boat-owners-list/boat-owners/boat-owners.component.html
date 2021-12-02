@@ -10,20 +10,18 @@
             <th><abbr title="Last Name">Last Name</abbr></th>
             <th><abbr title="Email">Email</abbr></th>
             <th><abbr title="Phone">Phone</abbr></th>
-            <th><abbr title="Rank">Rank</abbr></th>
             <th><abbr title="Delete">Delete</abbr></th>
             
           </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>Ana</td>
-                <td>Markovic</td>
-                <td>Ana@gmail.com</td>
-                <td>06522322</td>
-                <td>5522</td>
-                <td><button>Delete</button></td>
+            <tr *ngFor="let boatOwner of boatOwners">
+              <td>{{boatOwner.id}}</td>
+                <td>{{boatOwner.name}}</td>
+                <td>{{boatOwner.lastName}}</td>
+                <td>{{boatOwner.email}}</td>
+                <td>{{boatOwner.phone}}</td>
+              <td><button (click)="deleteOwner(boatOwner)">Delete</button></td>
             </tr>
         </tbody>
         

@@ -13,4 +13,7 @@ public interface CottageOwnerService {
 
     CottageOwner create(ApplicationUserDto userDto);
 
+    List<CottageOwner> getRegisteredOwners();
+
+    Long delete(Long id);
 }

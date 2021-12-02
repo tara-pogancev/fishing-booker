@@ -35,4 +35,15 @@ public class CottageOwnerServiceImpl implements CottageOwnerService {
         CottageOwner cottageOwner = converter.convert(userDto, CottageOwner.class);
         return cottageOwnerRepository.save(cottageOwner);
     }
+
+    @Override
+    public List<CottageOwner> getRegisteredOwners() {
+        return cottageOwnerRepository.getRegisteredOwners();
+    }
+
+    @Override
+    public Long delete(Long id) {
+        cottageOwnerRepository.deleteById(id);
+        return id;
+    }
 }

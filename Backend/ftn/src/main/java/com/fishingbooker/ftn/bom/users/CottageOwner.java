@@ -17,7 +17,7 @@ import java.util.Set;
 @PrimaryKeyJoinColumn(name = "userId")
 public class CottageOwner extends ApplicationUser {
 
-    @OneToMany(mappedBy = "cottageOwner")
+    @OneToMany(mappedBy = "cottageOwner",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Set<Cottage> cottages;
 
 

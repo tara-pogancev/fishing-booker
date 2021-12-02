@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BoatOwnerService } from 'src/app/service/boat-owner.service';
 
 @Component({
   selector: 'app-boat-owners',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BoatOwnersComponent implements OnInit {
 
-  constructor() { }
+  boatOwners:any=[];
+  constructor(private boatOwnerService:BoatOwnerService) { }
 
   ngOnInit(): void {
+    this.boatOwnerService.getEnabledOwners().subscribe((data:any)=>this.boatOwners=data);
+  }
+
+  deleteOwner(boatOwner:any){
+    this.boatOwnerService.deleteBoatOwner(boatOwner.id).subscribe();
+    const index=this.boatOwners.indexOf(boatOwner);
+    this.boatOwners.splice(index,1);
   }
 
 }

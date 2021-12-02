@@ -66,7 +66,7 @@ public class Cottage extends DatabaseEntity {
     @OneToMany(mappedBy = "cottage")
     private Set<AvailableCottageTimePeriod> availableTimePeriods;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.REFRESH)
     @JoinColumn(name = "cottageOwner")
     private CottageOwner cottageOwner;
 

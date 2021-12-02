@@ -35,4 +35,15 @@ public class BoatOwnerServiceImpl implements BoatOwnerService {
         return boatOwnerRepository.save(boatOwner);
     }
 
+    @Override
+    public List<BoatOwner> getRegisteredBoatOwners() {
+        return boatOwnerRepository.getRegisteredBoatOwners();
+    }
+
+    @Override
+    public Long delete(Long id) {
+        boatOwnerRepository.deleteById(id);
+        return id;
+    }
+
 }
