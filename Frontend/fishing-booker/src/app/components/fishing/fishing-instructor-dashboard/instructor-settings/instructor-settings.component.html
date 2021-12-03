@@ -1,0 +1,184 @@
+<div class="content is-medium">
+    <h1 class="title">Profile</h1>
+    <hr />
+    <div class="box p-6">
+      <h4>Personal Details</h4>
+  
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <label class="label">First Name:</label>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                placeholder="First name input"
+                [(ngModel)]="instructor.name"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="field">
+            <label class="label">Last Name:</label>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                placeholder="Last name input"
+                [(ngModel)]="instructor.lastName"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="field">
+            <label class="label">Contact Phone:</label>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                placeholder="Phone input"
+                [(ngModel)]="instructor.phone"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <label class="label">Street:</label>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                placeholder="Street"
+                [(ngModel)]="instructor.street"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="field">
+            <label class="label">City:</label>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                placeholder="City"
+                [(ngModel)]="instructor.city"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="field">
+            <label class="label">Country:</label>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                placeholder="Country"
+                [(ngModel)]="instructor.country"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <gap height="40"></gap>
+      <hr />
+      <h4>Account Info</h4>
+      <p class="is-size-6 mb-5">
+        (enter your new password, or retype the current one to confirm changes)
+      </p>
+  
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <label class="label">Enter New Password:</label>
+            <div class="control">
+              <input
+                class="input"
+                type="password"
+                placeholder="Enter your password"
+                (input)="validatePassword()"
+                [(ngModel)]="instructor.password"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="field">
+            <label class="label">Confirm Password:</label>
+            <div class="control">
+              <input
+                class="input"
+                type="password"
+                placeholder="Confirm password"
+                [(ngModel)]="passwordConfirm"
+                (input)="validatePassword()"
+                [class.is-danger]="!validPassword"
+              />
+            </div>
+            <p
+              class="help is-danger"
+              [ngStyle]="{
+                visibility: !validPassword ? 'visible' : 'hidden'
+              }"
+            >
+              Passwords do not match!
+            </p>
+          </div>
+        </div>
+      </div>
+  
+      <gap height="30"></gap>
+      <div class="field">
+        <div class="control">
+          <button class="button is-link" (click)="validateForm()">Submit</button>
+          <p
+            class="help is-danger mt-5"
+            [ngStyle]="{
+              visibility: !validForm ? 'visible' : 'hidden'
+            }"
+          >
+            Please fill in all the form fields!
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="box p-6">
+    <h4 class="title">Delete my Account</h4>
+    <hr />
+    <div>
+      <div class="field">
+        <label class="label">Message</label>
+        <div class="control">
+          <textarea [(ngModel)]="requestText"
+            class="textarea"
+            placeholder="Why do you wish to delete your account?"
+          ></textarea>
+        </div>
+      </div>
+  
+      <div class="field is-grouped">
+        <div class="control">
+          <button class="button is-link" (click)=sendRequest()>Submit</button>
+        </div>
+      </div>
+  
+      <div [ngClass]="{ 'visible': requestSent === false }">
+      <div class="notification is-danger mt-6">
+        <button class="delete"></button>
+        Your account deletion request has been sent. You will recieve any updates
+        via email notification. If you wish to cancel your request, please contact
+        as at <b>fishing.booker.service@gmail.com</b>.
+      </div>
+    </div>
+    </div>
+  </div>

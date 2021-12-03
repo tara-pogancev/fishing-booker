@@ -48,6 +48,9 @@ public class Adventure extends DatabaseEntity {
     @OneToMany(mappedBy = "adventure")
     private Set<AdventureQuickReservation> adventureQuickReservations;
 
+    @OneToMany(mappedBy = "adventure")
+    private Set<AdventureReservation> adventureReservations;
+
     @ManyToMany
     @JoinTable(
             name = "adventure_rules",

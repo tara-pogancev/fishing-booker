@@ -1,1 +1,127 @@
-<p>fishing-instructor-dashboard works!</p>
+<div class="columns db-container">
+    <div class="colum is-two-fifths px-6 pt-5 side-menu">
+      <aside class="menu">
+        <p class="menu-label">General</p>
+        <ul class="menu-list">
+          <li>
+            <a
+              [ngClass]="{ 'is-active': activeTab === 'PERSONAL_INFO' }"
+              (click)="changeTab('PERSONAL_INFO')"
+              >Personal Info</a
+            >
+          </li>
+          <li>
+            <a
+              [ngClass]="{ 'is-active': activeTab === 'SETTINGS' }"
+              (click)="changeTab('SETTINGS')"
+              >Profile</a
+            >
+          </li>
+          
+        </ul>
+        <p class="menu-label">Reservations</p>
+        <ul class="menu-list">
+          <li>
+            <a
+              [ngClass]="{ 'is-active': activeTab === 'COTTAGE_OWNERS' }"
+              (click)="changeTab('COTTAGE_OWNERS')"
+              >Reservations History</a
+            >
+          </li>
+          <li>
+            <a
+              [ngClass]="{ 'is-active': activeTab === 'BOAT_OWNERS' }"
+              (click)="changeTab('BOAT_OWNERS')"
+              >Quick Reservations</a
+            >
+          </li>
+          <li>
+            <a
+              [ngClass]="{ 'is-active': activeTab === 'INSTRUCTORS' }"
+              (click)="changeTab('INSTRUCTORS')"
+              >Create Reservation</a
+            >
+          </li>
+
+          <li>
+            <a
+              [ngClass]="{ 'is-active': activeTab === 'AVAILIBILITY_CALENDAR' }"
+              (click)="changeTab('AVAILIBILITY_CALENDAR')"
+              >Availibility Calendar</a
+            >
+          </li>
+          
+          
+        </ul>
+        <p class="menu-label">Adventures</p>
+        <ul class="menu-list">
+          <li>
+            <a
+              [ngClass]="{ 'is-active': activeTab === 'MY_ADVENTURES' }"
+              (click)="changeTab('MY_ADVENTURES')"
+              >My Adventures</a
+            >
+          </li>
+          <li>
+            <a
+              [ngClass]="{ 'is-active': activeTab === 'ADD_ADVENTURES' }"
+              (click)="changeTab('ADD_ADVENTURES')"
+              >Add adventure</a
+            >
+          </li>
+          
+          
+        </ul>
+        
+      </aside>
+    </div>
+  
+    <div class="column db-content">
+      <div class="hero is-primary">
+        <div class="hero-body">
+          <p class="title">Welcome, {{ instructor.name }} {{ instructor.lastName }}</p>
+          <p class="subtitle">Fishing Instructor Dashboard</p>
+        </div>
+      </div>
+      <div class="m-5">
+        
+        <div *ngIf="activeTab == 'PERSONAL_INFO'">
+          <app-fishing-instructor-personal-info></app-fishing-instructor-personal-info>
+        </div>
+        
+        <div *ngIf="activeTab == 'SETTINGS'">
+          <app-instructor-settings></app-instructor-settings>
+        </div>
+        <div *ngIf="activeTab == 'ADD_ADVENTURES'">
+          <app-add-adventure></app-add-adventure>
+        </div>
+        <div *ngIf="activeTab == 'COTTAGE_OWNERS'">
+          <app-cottage-owner-list></app-cottage-owner-list>
+        </div>
+        <div *ngIf="activeTab == 'BOAT_OWNERS'">
+          <app-boat-owners></app-boat-owners>
+        </div>
+        <div *ngIf="activeTab == 'INSTRUCTORS'">
+          <app-fishin-instructors-list></app-fishin-instructors-list>
+        </div>
+        <div *ngIf="activeTab == 'CLIENTS'">
+          <app-clients></app-clients>
+        </div>
+        <div *ngIf="activeTab == 'REGISTRATION_REQUESTS'">
+          <app-registration-request></app-registration-request>
+        </div>
+        <div *ngIf="activeTab == 'COTTAGES'">
+          <app-cottage-list></app-cottage-list>
+        </div>
+        <div *ngIf="activeTab == 'BOATS'">
+          <app-boat-list></app-boat-list>
+        </div>
+        
+        
+        
+        
+        
+        
+      </div>
+    </div>
+  </div>

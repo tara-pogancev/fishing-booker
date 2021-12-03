@@ -29,7 +29,7 @@ public class ApplicationUser extends DatabaseEntity {
     @Column(name = "email", unique = true, nullable = false)
     private String email;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinColumn(name = "address", referencedColumnName = "id")
     private Address userAddress;
 

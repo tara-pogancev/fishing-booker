@@ -7,6 +7,7 @@ import com.fishingbooker.ftn.dto.FishingInstructorDto;
 import com.fishingbooker.ftn.dto.RegisteredClientDto;
 import com.fishingbooker.ftn.service.interfaces.FishingInstructorService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -42,5 +43,18 @@ public class FishingInstructorController {
     @DeleteMapping("/{id}")
     public Long delete(@PathVariable("id") Long id){
         return fishingInstructorService.delete(id);
+    }
+
+    @PutMapping()
+    public FishingInstructorDto changePersonalInfo(@RequestBody FishingInstructorDto instructorDto){
+        FishingInstructor instructor=fishingInstructorService.findById(instructorDto.getId());
+        instructor.setPassword(new BCryptPasswordEncoder().encode(instructorDto.getPassword()));
+        instructor.getUserAddress().setCountry(instructorDto.getCountry());
+        instructor.getUserAddress().setStreet(instructorDto.getStreet());
+        instructor.getUserAddress().setCity(instructorDto.getCity());
+        instructor.setName(instructorDto.getName());
+        instructor.setLastName(instructorDto.getLastName());
+        instructor.setPhone(instructorDto.getPhone());
+        return converter.convert(fishingInstructorService.update(instructor),FishingInstructorDto.class);
     }
 }

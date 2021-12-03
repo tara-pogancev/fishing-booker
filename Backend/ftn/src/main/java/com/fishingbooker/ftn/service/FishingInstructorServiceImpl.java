@@ -37,7 +37,7 @@ public class FishingInstructorServiceImpl implements FishingInstructorService {
     public FishingInstructor create(ApplicationUserDto userDto) {
         FishingInstructor instructor = converter.convert(userDto, FishingInstructor.class);
         Address userAddress = addressService.create(userDto);
-        instructor.setPassword(new BCryptPasswordEncoder().encode(instructor.getPassword()));
+        instructor.setPassword(new BCryptPasswordEncoder().encode(userDto.getPassword()));
         instructor.setUserAddress(userAddress);
         return instructorRepository.save(instructor);
     }
@@ -51,6 +51,11 @@ public class FishingInstructorServiceImpl implements FishingInstructorService {
     public Long delete(Long id) {
         instructorRepository.deleteById(id);
         return id;
+    }
+
+    @Override
+    public FishingInstructor update(FishingInstructor instructor) {
+        return instructorRepository.save(instructor);
     }
 
 }

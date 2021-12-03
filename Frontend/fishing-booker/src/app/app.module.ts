@@ -78,6 +78,10 @@ import { AdminSettingsComponent } from './components/admin/admin-dashboard/admin
 import { CottageListComponent } from './components/admin/admin-dashboard/cottage-list/cottage-list.component';
 import { BoatListComponent } from './components/admin/admin-dashboard/boat-list/boat-list.component';
 import { AddAdminComponent } from './components/admin/admin-dashboard/add-admin/add-admin.component';
+import { InstructorSettingsComponent } from './components/fishing/fishing-instructor-dashboard/instructor-settings/instructor-settings.component';
+import { FishingInstructorPersonalInfoComponent } from './components/fishing/fishing-instructor-dashboard/fishing-instructor-personal-info/fishing-instructor-personal-info.component';
+import { AddAdventureComponent } from './components/fishing/fishing-instructor-dashboard/add-adventure/add-adventure.component';
+
 
 @NgModule({
   declarations: [
@@ -151,6 +155,9 @@ import { AddAdminComponent } from './components/admin/admin-dashboard/add-admin/
     CottageListComponent,
     BoatListComponent,
     AddAdminComponent,
+    InstructorSettingsComponent,
+    FishingInstructorPersonalInfoComponent,
+    AddAdventureComponent,
   ],
   imports: [
     BrowserModule,

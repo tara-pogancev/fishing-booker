@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { subscribeOn } from 'rxjs/operators';
 import { AdminService } from 'src/app/service/admin.service';
 
 @Component({

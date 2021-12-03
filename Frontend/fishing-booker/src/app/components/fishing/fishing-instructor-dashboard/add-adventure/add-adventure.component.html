@@ -1,0 +1,316 @@
+<div class="content is-medium">
+    <h1 class="title">Add adventure</h1>
+    <hr />
+    <div class="box p-6">
+      <h4>Adventure details</h4>
+  
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <label class="label">Adventure name:</label>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                placeholder="First name input"
+                [(ngModel)]="adventure.name"
+              />
+            </div>
+          </div>
+          
+      </div>
+      </div>
+
+      <div class="columns">
+        <div class="column">
+            <div class="field">
+              <label class="label">Adventure description</label>
+              <div class="control">
+                <textarea [(ngModel)]="adventure.description"
+                  class="textarea"
+                  placeholder="Adventure description"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+       </div>
+  
+       <div class="columns">
+        <div class="column">
+          <div class="field">
+            <label class="label">Street:</label>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                placeholder="Street"
+                [(ngModel)]="adventure.street"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="field">
+            <label class="label">City:</label>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                placeholder="City"
+                [(ngModel)]="adventure.city"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="field">
+            <label class="label">Country:</label>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                placeholder="Country"
+                [(ngModel)]="adventure.country"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+  
+       <div class="columns">
+        <div class="column">
+            <div class="field">
+              <label class="label">Maximum nuber of persons:</label>
+              <div class="control">
+                <input
+                  class="input"
+                  type="text"
+                  placeholder="Maximum number of persons"
+                  [(ngModel)]="adventure.guestLimit"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="field">
+              <label class="label">Price:</label>
+              <div class="control">
+                <input
+                  class="input"
+                  type="text"
+                  placeholder="Price"
+                  [(ngModel)]="adventure.price"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="field">
+              <label class="label">Cancelation fee(in percents):</label>
+              <div class="control">
+                <input
+                  class="input"
+                  type="text"
+                  placeholder="Cancelation fee"
+                  [(ngModel)]="adventure.cancelationFee"
+                />
+              </div>
+            </div>
+          </div>
+       </div>
+
+      <gap height="40"></gap>
+      <hr />
+      <h4>Conduct rules</h4>
+      
+  
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <label class="label">Enter Rule of cunduct</label>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                placeholder="Enter your rule"
+                [(ngModel)]="rule"
+              />
+            </div>
+          </div>
+          
+        </div>
+        <div class="column"> 
+            <div class="addDiv">
+                <button class="button is-success" (click)=addConductRule()>Add</button>
+            </div>
+        </div>
+      </div>
+
+      <div class="columns"> 
+        <div class="column">
+            <div class="tags">
+                <span class="tag is-danger is-medium" *ngFor="let rule of adventure.rules">
+                    {{rule}}
+                    <button class="delete is-small" (click)="removeConductRule(rule)"></button>
+                </span>
+                
+                
+                
+              </div>  
+    
+          </div>
+      </div>
+
+      
+
+      <gap height="40"></gap>
+      <hr />
+      <h4>Fishing equipment</h4>
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <label class="label">Enter fishing equipment</label>
+            <div class="control">
+              <input
+                class="input"
+                type="password"
+                placeholder="Enter your equipment"
+                
+                [(ngModel)]="equipment"
+              />
+            </div>
+          </div>
+          
+        </div>
+        <div class="column"> 
+            <div class="addDiv">
+                <button class="button is-success" (click)=addFishingEquipment()>Add</button>
+            </div>
+        </div>
+      </div>
+
+      <div class="columns"> 
+        <div class="column">
+            <div class="tags">
+                <span class="tag is-success is-medium" *ngFor="let equipment of  adventure.fishingEquipment">
+                    {{equipment}}
+                    <button class="delete is-small" (click)=removeFishingEquipment(equipment)></button>
+                </span>
+                
+              </div>  
+    
+          </div>
+      </div>
+
+      <gap height="40"></gap>
+      <hr />
+      <h4>Addition services</h4>
+      <div class="columns">
+        
+        <div class="column">
+            <div class="field">
+              <label class="label">Chose existing </label>
+              
+                <select style="height:40px;width: 200px;" [(ngModel)]=selectedService>
+                  <option value="">Select dropdown</option>
+                  <option *ngFor="let utility of utilities" value={{utility.name}}>{{utility.name}}</option>
+                  
+                </select>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="field">
+                <label class="label">Enter new one </label>
+              <div class="control">
+                <input
+                  class="input"
+                  type="text"
+                  placeholder="Enter your equipment"
+                  
+                  [(ngModel)]="newService"
+                />
+              </div>
+            </div>
+            
+          </div>
+
+          
+        <div class="column">
+            <div class="field">
+                <label class="label">Price</label>
+              <div class="control">
+                <input
+                  class="input"
+                  type="number"
+                  placeholder="Enter your equipment"
+                  [(ngModel)]="price"
+                />
+              </div>
+            </div>
+            
+          </div>
+    
+        <div class="column"> 
+            <div class="addDiv">
+                <button class="button is-success" (click)="addService()">Add</button>
+            </div>
+        </div>
+      </div>
+
+      <div class="columns"> 
+        <div class="column">
+            <div class="tags" >
+                <span class="tag is-warning is-medium" *ngFor="let service of adventure.additionalServices">
+                    Name:{{service.name}} &nbsp; &nbsp; &nbsp;Price:{{service.price}}
+                    <button class="delete is-small" (click)="removeService(service)"></button>
+                </span>
+              </div>  
+    
+          </div>
+      </div>
+      
+  
+      <gap height="30"></gap>
+
+    
+   
+    
+    <gap height="40"></gap>
+      <hr />
+    <h4>Upload images of your adventure</h4>
+      <p>(click on image to delete it)</p>
+  
+      <div class="columns">
+        <div class="column">
+            <div>
+                <label for="file">File</label>
+                <input 
+                    id="file" 
+                    type="file" 
+                    (change)="onFileChange($event)">
+            </div>
+            <div class="block">
+                <img *ngFor='let image of adventure.images'  [src]="image.content" height="150" width="200px" style="margin: 3px;" (click)=deleteImage(image)> <br/>
+                  
+                </div>
+        </div>
+        
+      </div>
+
+      <gap height="30"></gap>
+      <div class="field">
+        <div class="control">
+          <button class="button is-link" (click)="validateForm()">Submit</button>
+          <p
+            class="help is-danger mt-5"
+            [ngStyle]="{
+              visibility: !validForm ? 'visible' : 'hidden'
+            }"
+          >
+            Please fill in all the form fields!
+          </p>
+        </div>
+      </div>
+    </div>
+

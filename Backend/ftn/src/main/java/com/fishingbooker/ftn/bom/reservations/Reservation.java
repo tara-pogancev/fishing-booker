@@ -24,7 +24,7 @@ public class Reservation extends DatabaseEntity {
     @Column(name = "price", nullable = false)
     private Double price;
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "reservationClient", referencedColumnName = "userId")
     private RegisteredClient reservationClient;
 

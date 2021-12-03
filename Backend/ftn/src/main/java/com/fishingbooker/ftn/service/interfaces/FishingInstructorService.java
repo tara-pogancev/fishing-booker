@@ -16,4 +16,6 @@ public interface FishingInstructorService {
     List<FishingInstructor> getEnabledInstructors();
 
     Long delete(Long id);
+
+    FishingInstructor update(FishingInstructor instructor);
 }
