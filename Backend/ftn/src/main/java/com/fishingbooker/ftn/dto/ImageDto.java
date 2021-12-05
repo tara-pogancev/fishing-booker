@@ -3,10 +3,9 @@ package com.fishingbooker.ftn.dto;
 import lombok.Data;
 
 @Data
-public class UtilityDto {
+public class ImageDto {
 
-    private Long id;
     private String name;
-    private Double price;
-
+    private String extension;
+    private String content;
 }

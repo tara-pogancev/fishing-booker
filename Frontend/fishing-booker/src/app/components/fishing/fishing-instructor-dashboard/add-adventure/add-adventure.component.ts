@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CreateAdventureModel } from 'src/app/model/create-adventure-model';
 import { Image } from 'src/app/model/image-model';
 import { Utility } from 'src/app/model/utility-model';
+import { AdvetnureService } from 'src/app/service/adventure-service';
 import { UtilityService } from 'src/app/service/utility.service';
 
 @Component({
@@ -26,7 +27,7 @@ export class AddAdventureComponent implements OnInit {
   price=0;
   validForm=true;
   utilities:any=[];
-  constructor(private http: HttpClient,private utilityService:UtilityService) { }
+  constructor(private http: HttpClient,private utilityService:UtilityService,private adventureService:AdvetnureService) { }
 
   ngOnInit(): void {
     this.utilityService.getUtilities().subscribe((data:any)=>this.utilities=data);
@@ -145,8 +146,9 @@ export class AddAdventureComponent implements OnInit {
   }
 
   validateForm(){
-    if (this.adventure.name!="" && this.adventure.guestLimit<=0 && this.adventure.description!="" && this.adventure.city!="" && this.adventure.country!="" && this.adventure.price<=0 && this.adventure.street!=""){
+    if (this.adventure.name!="" && this.adventure.guestLimit>0 && this.adventure.description!="" && this.adventure.city!="" && this.adventure.country!="" && this.adventure.price>=0 && this.adventure.street!=""){
       this.validForm=true;
+      this.adventureService.createAdventure(this.adventure).subscribe();
     }else{
       this.validForm=false;
     }

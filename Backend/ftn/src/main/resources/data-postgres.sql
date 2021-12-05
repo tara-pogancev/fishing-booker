@@ -30,30 +30,30 @@ INSERT INTO public.application_user(email, enabled, last_name, first_name, passw
 INSERT INTO public.registered_client(is_blocked, penalties, user_id, rank)	VALUES (false, 0, 1, null);
 INSERT INTO public.cottage_owner(user_id, rank)	VALUES (2, null);
 INSERT INTO public.boat_owner(user_id, rank)	VALUES (3, null);
-INSERT INTO public.fishing_instructor(biography, rating, user_id, rank)	VALUES ('Lorem ipsum dolor sit amet, consectetur adipiscing elit. In blandit leo sed nibh ultrices tincidunt. Donec vulputate sapien ut mauris sagittis laoreet. Phasellus viverra nibh et eros consectetur, id facilisis est lacinia.', 0.0, 4, null);
+INSERT INTO public.fishing_instructor(biography, rating, id, rank)	VALUES ('Lorem ipsum dolor sit amet, consectetur adipiscing elit. In blandit leo sed nibh ultrices tincidunt. Donec vulputate sapien ut mauris sagittis laoreet. Phasellus viverra nibh et eros consectetur, id facilisis est lacinia.', 0.0, 4, null);
 INSERT INTO public.administrator(user_id)	VALUES (5);
 
 -- IMAGES
 
-INSERT INTO public.image (content, name) VALUES (93231, 'boat');
-INSERT INTO public.image (content, name) VALUES (93232, 'boat');
-INSERT INTO public.image (content, name) VALUES (93233, 'cottage');
-INSERT INTO public.image (content, name) VALUES (93234, 'cottage');
-INSERT INTO public.image (content, name) VALUES (93235, 'cottage');
-INSERT INTO public.image (content, name) VALUES (93236, 'boat');
-INSERT INTO public.image (content, name) VALUES (93237, 'boat');
-INSERT INTO public.image (content, name) VALUES (93238, 'boat');
-INSERT INTO public.image (content, name) VALUES (93239, 'boat');
-INSERT INTO public.image (content, name) VALUES (93240, 'boat');
-INSERT INTO public.image (content, name) VALUES (93241, 'cottage');
-INSERT INTO public.image (content, name) VALUES (93243, 'fishing');
-INSERT INTO public.image (content, name) VALUES (93244, 'fishing');
-INSERT INTO public.image (content, name) VALUES (93245, 'fishing');
-INSERT INTO public.image (content, name) VALUES (93246, 'fishing');
-INSERT INTO public.image (content, name) VALUES (93247, 'fishing');
-INSERT INTO public.image (content, name) VALUES (93248, 'fishing');
-INSERT INTO public.image (content, name) VALUES (93249, 'fishing');
-INSERT INTO public.image (content, name) VALUES (93250, 'fishing');
+--INSERT INTO public.image (content, name) VALUES (93231, 'boat');
+--INSERT INTO public.image (content, name) VALUES (93232, 'boat');
+--INSERT INTO public.image (content, name) VALUES (93233, 'cottage');
+--INSERT INTO public.image (content, name) VALUES (93234, 'cottage');
+--INSERT INTO public.image (content, name) VALUES (93235, 'cottage');
+--INSERT INTO public.image (content, name) VALUES (93236, 'boat');
+--INSERT INTO public.image (content, name) VALUES (93237, 'boat');
+--INSERT INTO public.image (content, name) VALUES (93238, 'boat');
+--INSERT INTO public.image (content, name) VALUES (93239, 'boat');
+--INSERT INTO public.image (content, name) VALUES (93240, 'boat');
+--INSERT INTO public.image (content, name) VALUES (93241, 'cottage');
+--INSERT INTO public.image (content, name) VALUES (93243, 'fishing');
+--INSERT INTO public.image (content, name) VALUES (93244, 'fishing');
+--INSERT INTO public.image (content, name) VALUES (93245, 'fishing');
+--INSERT INTO public.image (content, name) VALUES (93246, 'fishing');
+--INSERT INTO public.image (content, name) VALUES (93247, 'fishing');
+--INSERT INTO public.image (content, name) VALUES (93248, 'fishing');
+--INSERT INTO public.image (content, name) VALUES (93249, 'fishing');
+--INSERT INTO public.image (content, name) VALUES (93250, 'fishing');
 
 -- RULES OF CONDUCT
 
@@ -244,14 +244,14 @@ INSERT INTO public.adventure_navigational_equipment(adventure_id, equipment_id)	
 
 -- ADVENTURE IMAGES
 
-INSERT INTO public.adventure_images(adventure_id, image_id)	VALUES (1, 12);
-INSERT INTO public.adventure_images(adventure_id, image_id)	VALUES (1, 13);
-INSERT INTO public.adventure_images(adventure_id, image_id)	VALUES (2, 14);
-INSERT INTO public.adventure_images(adventure_id, image_id)	VALUES (2, 15);
-INSERT INTO public.adventure_images(adventure_id, image_id)	VALUES (3, 16);
-INSERT INTO public.adventure_images(adventure_id, image_id)	VALUES (3, 17);
-INSERT INTO public.adventure_images(adventure_id, image_id)	VALUES (4, 18);
-INSERT INTO public.adventure_images(adventure_id, image_id)	VALUES (4, 19);
+--INSERT INTO public.adventure_images(adventure_id, image_id)	VALUES (1, 12);
+--INSERT INTO public.adventure_images(adventure_id, image_id)	VALUES (1, 13);
+--INSERT INTO public.adventure_images(adventure_id, image_id)	VALUES (2, 14);
+--INSERT INTO public.adventure_images(adventure_id, image_id)	VALUES (2, 15);
+--INSERT INTO public.adventure_images(adventure_id, image_id)	VALUES (3, 16);
+--INSERT INTO public.adventure_images(adventure_id, image_id)	VALUES (3, 17);
+--INSERT INTO public.adventure_images(adventure_id, image_id)	VALUES (4, 18);
+--INSERT INTO public.adventure_images(adventure_id, image_id)	VALUES (4, 19);
 
 --System properties
 INSERT INTO public.system_properties(gold_points, income_percentage, reservation_points, silver_points) VALUES (1500, 10, 15, 750);

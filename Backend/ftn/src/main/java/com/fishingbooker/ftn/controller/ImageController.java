@@ -17,23 +17,23 @@ public class ImageController {
 
     private final ImageRepository imageRepository;
 
-    @PostMapping
+    /*@PostMapping
     Long uploadImage(@RequestParam MultipartFile multipartImage) throws Exception {
-        Image dbImage = new Image();
+        /*Image dbImage = new Image();
         dbImage.setName(multipartImage.getName());
         dbImage.setContent(multipartImage.getBytes());
 
         return imageRepository.save(dbImage)
                 .getId();
-    }
+    }*/
 
-    @GetMapping(value = "/{imageId}", produces = MediaType.IMAGE_JPEG_VALUE)
+    /*@GetMapping(value = "/{imageId}", produces = MediaType.IMAGE_JPEG_VALUE)
     ByteArrayResource downloadImage(@PathVariable Long imageId) {
-        byte[] image = imageRepository.findById(imageId)
+        /*byte[] image = imageRepository.findById(imageId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND))
                 .getContent();
 
         return new ByteArrayResource(image);
-    }
+    }*/
 
 }

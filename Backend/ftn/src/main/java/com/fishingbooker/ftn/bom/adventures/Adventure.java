@@ -22,7 +22,7 @@ public class Adventure extends DatabaseEntity {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "address", referencedColumnName = "id")
     private Address address;
 
@@ -35,7 +35,7 @@ public class Adventure extends DatabaseEntity {
     @Column(name = "price", nullable = false)
     private Double price = 0.0;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "adventure_images",
             joinColumns = @JoinColumn(name = "adventure_id"),
@@ -45,20 +45,20 @@ public class Adventure extends DatabaseEntity {
     @Column(name = "guestLimit", nullable = false)
     private Integer guestLimit;
 
-    @OneToMany(mappedBy = "adventure")
+    @OneToMany(mappedBy = "adventure",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private Set<AdventureQuickReservation> adventureQuickReservations;
 
-    @OneToMany(mappedBy = "adventure")
+    @OneToMany(mappedBy = "adventure",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private Set<AdventureReservation> adventureReservations;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinTable(
             name = "adventure_rules",
             joinColumns = @JoinColumn(name = "adventure_id"),
             inverseJoinColumns = @JoinColumn(name = "rule_id"))
     private Set<RuleOfConduct> rules;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "adventure_navigational_equipment",
             joinColumns = @JoinColumn(name = "adventure_id"),
@@ -68,7 +68,7 @@ public class Adventure extends DatabaseEntity {
     @Column(name = "cancellationPercentageKeep", nullable = false)
     private Double cancellationPercentageKeep;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "adventure_id")
     private Set<AdventureUtility> utilities;
 

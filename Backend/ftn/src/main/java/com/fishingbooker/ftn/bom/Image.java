@@ -1,8 +1,6 @@
 package com.fishingbooker.ftn.bom;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Lob;
@@ -11,12 +9,9 @@ import javax.persistence.Table;
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
 @Table(name = "Image")
+@RequiredArgsConstructor
 public class Image extends DatabaseEntity {
-
-    @Lob
-    byte[] content;
-
-    String name;
-
+    String url;
 }
