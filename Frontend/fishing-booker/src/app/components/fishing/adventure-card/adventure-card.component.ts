@@ -22,8 +22,8 @@ export class AdventureCardComponent implements OnInit {
     this.adventureService.findById(this.id).subscribe((data) => {
       this.adventure = data;
 
-      if (this.adventure.imageIds.length != 0) {
-        this.getImageFromService(this.adventure.imageIds[0]);
+      if (this.adventure.imageUrls.length != 0) {
+        this.image=this.adventure.imageUrls[0];
       } else {
         this.image = 'assets/images/placeholder.jpg';
       }

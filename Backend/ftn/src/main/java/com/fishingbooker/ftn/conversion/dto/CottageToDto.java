@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
@@ -29,7 +30,7 @@ public class CottageToDto implements Converter<Cottage, CottageDto> {
         dto.setOwnerName(source.getCottageOwner().getName() + " " + source.getCottageOwner().getLastName());
         dto.setRules(DataConverter.getRules(source.getRules()));
         dto.setUtilities(getUtilityDtoList(source.getUtilities()));
-        dto.setImageIds(DataConverter.getImageIds(source.getImages()));
+        dto.setImageUrls(source.getImages().stream().map(image -> image.getUrl()).collect(Collectors.toSet()));
         return dto;
     }
 

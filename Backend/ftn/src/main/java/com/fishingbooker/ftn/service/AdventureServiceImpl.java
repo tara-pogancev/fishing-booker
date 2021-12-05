@@ -59,6 +59,7 @@ public class AdventureServiceImpl implements AdventureService {
         address.setCountry(adventureDto.getCountry());
         address.setStreet(adventureDto.getStreet());
         adventure.setAddress(address);
+        adventure.setPrice(adventureDto.getPrice());
         adventure.setInstructor(instructor);
         List<RuleOfConduct> rules=ruleOfConductService.createRulesFromString(adventureDto.getRules());
         adventure.setRules(new HashSet<>(rules));
@@ -74,6 +75,11 @@ public class AdventureServiceImpl implements AdventureService {
         Set<AdventureUtility> utilities=utilityService.convertStringToUtility(adventureDto.getAdditionalServices(),savedAdventure);
         savedAdventure.setUtilities(utilities);
         return adventureRepository.save(savedAdventure).getId();
+    }
+
+    @Override
+    public List<Adventure> getInstructorAdventures(Long id) {
+        return adventureRepository.getInstructorAdventures(id);
     }
 
 }

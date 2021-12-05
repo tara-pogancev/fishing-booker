@@ -19,6 +19,6 @@ public class AdventureDto {
     private Set<String> navigationalEquipments;
     private String ownerName;
     private String instructorBiography;
-    private Set<Long> imageIds;
+    private Set<String> imageUrls;
 
 }

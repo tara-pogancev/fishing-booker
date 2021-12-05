@@ -22,8 +22,8 @@ export class CottageCardComponent implements OnInit {
     this.cottageService.findById(this.id).subscribe((data) => {
       this.cottage = data;
 
-      if (this.cottage.imageIds.length != 0) {
-        this.getImageFromService(this.cottage.imageIds[0]);
+      if (this.cottage.imageUrls.length != 0) {
+        this.image=this.cottage.imageUrls[0];
       } else {
         this.image = 'assets/images/placeholder.jpg';
       }

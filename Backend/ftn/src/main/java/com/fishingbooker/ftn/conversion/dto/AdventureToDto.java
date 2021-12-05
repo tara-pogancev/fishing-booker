@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
@@ -26,7 +27,7 @@ public class AdventureToDto implements Converter<Adventure, AdventureDto> {
         dto.setUtilities(getUtilityDtoList(source.getUtilities()));
         dto.setRules(DataConverter.getRules(source.getRules()));
         dto.setNavigationalEquipments(DataConverter.getNavEquipment(source.getNavigationalEquipments()));
-        dto.setImageIds(DataConverter.getImageIds(source.getImages()));
+        dto.setImageUrls(source.getImages().stream().map(image -> image.getUrl()).collect(Collectors.toSet()));
         dto.setInstructorBiography(source.getInstructor().getBiography());
         return dto;
     }

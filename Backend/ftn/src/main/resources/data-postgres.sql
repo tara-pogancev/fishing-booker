@@ -35,25 +35,15 @@ INSERT INTO public.administrator(user_id)	VALUES (5);
 
 -- IMAGES
 
---INSERT INTO public.image (content, name) VALUES (93231, 'boat');
---INSERT INTO public.image (content, name) VALUES (93232, 'boat');
---INSERT INTO public.image (content, name) VALUES (93233, 'cottage');
---INSERT INTO public.image (content, name) VALUES (93234, 'cottage');
---INSERT INTO public.image (content, name) VALUES (93235, 'cottage');
---INSERT INTO public.image (content, name) VALUES (93236, 'boat');
---INSERT INTO public.image (content, name) VALUES (93237, 'boat');
---INSERT INTO public.image (content, name) VALUES (93238, 'boat');
---INSERT INTO public.image (content, name) VALUES (93239, 'boat');
---INSERT INTO public.image (content, name) VALUES (93240, 'boat');
---INSERT INTO public.image (content, name) VALUES (93241, 'cottage');
---INSERT INTO public.image (content, name) VALUES (93243, 'fishing');
---INSERT INTO public.image (content, name) VALUES (93244, 'fishing');
---INSERT INTO public.image (content, name) VALUES (93245, 'fishing');
---INSERT INTO public.image (content, name) VALUES (93246, 'fishing');
---INSERT INTO public.image (content, name) VALUES (93247, 'fishing');
---INSERT INTO public.image (content, name) VALUES (93248, 'fishing');
---INSERT INTO public.image (content, name) VALUES (93249, 'fishing');
---INSERT INTO public.image (content, name) VALUES (93250, 'fishing');
+INSERT INTO public.image (url) VALUES ('assets/images/boat.jpg');
+INSERT INTO public.image (url) VALUES ('assets/images/boat2.jpg');
+INSERT INTO public.image (url) VALUES ('assets/images/boat3.jpg');
+INSERT INTO public.image (url) VALUES ('assets/images/boat4.jpg');
+INSERT INTO public.image (url) VALUES ('assets/images/boat5.jpg');
+INSERT INTO public.image (url) VALUES ('assets/images/boat6.jpg');
+INSERT INTO public.image (url) VALUES ('assets/images/cottage.jpg');
+INSERT INTO public.image (url) VALUES ('assets/images/fish.jpg');
+
 
 -- RULES OF CONDUCT
 
@@ -137,11 +127,11 @@ INSERT INTO public.boat_rules(boat_id, rule_id)	VALUES (2, 8);
 
 -- BOAT IMAGES
 
---INSERT INTO public.boat_images(boat_id, image_id)	VALUES (2, 9);
---INSERT INTO public.boat_images(boat_id, image_id)	VALUES (3, 7);
---INSERT INTO public.boat_images(boat_id, image_id)	VALUES (4, 8);
---INSERT INTO public.boat_images(boat_id, image_id)	VALUES (1, 10);
---INSERT INTO public.boat_images(boat_id, image_id)	VALUES (2, 6);
+INSERT INTO public.boat_images(boat_id, image_id)	VALUES (2, 1);
+INSERT INTO public.boat_images(boat_id, image_id)	VALUES (3, 2);
+INSERT INTO public.boat_images(boat_id, image_id)	VALUES (4, 3);
+INSERT INTO public.boat_images(boat_id, image_id)	VALUES (1, 4);
+INSERT INTO public.boat_images(boat_id, image_id)	VALUES (2, 5);
 
 -- COTTAGES
 

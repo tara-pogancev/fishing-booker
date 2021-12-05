@@ -145,4 +145,16 @@ export class SearchService {
       }
     });
   }
+
+  filterAdventures(entities: any[], filter: SearchFilter){ //filter is used by Instructor
+    var retVal: any = [];
+
+    for (let entity of entities) {
+      if (this.matchName(entity.name, filter.text)) {
+        retVal.push(entity);
+      }
+    }
+
+    return retVal;
+  }
 }

@@ -22,8 +22,8 @@ export class BoatCardComponent implements OnInit {
     this.boatService.findById(this.id).subscribe((data) => {
       this.boat = data;
 
-      if (this.boat.imageIds.length != 0) {
-        this.getImageFromService(this.boat.imageIds[0]);
+      if (this.boat.imageUrls.length != 0) {
+        this.image=this.boat.imageUrls[0];
       } else {
         this.image = 'assets/images/placeholder.jpg';
       }

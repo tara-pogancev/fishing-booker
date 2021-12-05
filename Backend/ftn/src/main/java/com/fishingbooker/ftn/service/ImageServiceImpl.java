@@ -26,7 +26,8 @@ public class ImageServiceImpl implements ImageService {
             return null;
         }
         for (ImageDto image:images){
-            String imageUrl=saveImage(image);
+            String imageName=saveImage(image);
+            String imageUrl="assets/images/"+imageName;
             savedImages.add(new Image(imageUrl));
         }
 
@@ -54,6 +55,6 @@ public class ImageServiceImpl implements ImageService {
             e.printStackTrace();
         }
         System.out.println("Image " + ".png" + " uploaded.");
-        return photoPath;
+        return name;
     }
 }

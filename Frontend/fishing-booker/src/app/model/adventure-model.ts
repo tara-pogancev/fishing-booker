@@ -14,6 +14,6 @@ export class Adventure {
     public utilities: Utility[] = [],
     public ownerName: string = '',
     public instructorBiography: string = '',
-    public imageIds: number[] = []
+    public imageUrls: string[] = []
   ) {}
 }

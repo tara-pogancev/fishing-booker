@@ -7,15 +7,15 @@ import { ImageService } from 'src/app/service/image.service';
   styleUrls: ['./carousel.component.css'],
 })
 export class CarouselComponent implements OnInit {
-  @Input() imageIds: number[] = [];
+  @Input() imageUrls: string[] = [];
   images: any = [];
 
   constructor(private imageService: ImageService) {}
 
   ngOnInit(): void {
-    if (this.imageIds.length != 0) {
-      for (let imageId of this.imageIds)
-        this.getImageFromService(imageId);
+    if (this.imageUrls.length != 0) {
+      for (let imageId of this.imageUrls)
+        break;
     } else {
       this.images.push('assets/images/placeholder.jpg');
     }

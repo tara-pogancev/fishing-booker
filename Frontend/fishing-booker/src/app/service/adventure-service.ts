@@ -26,4 +26,11 @@ export class AdvetnureService {
     adventure.ownerId=this.loginService.getCurrentUser().id;
     return this._http.post<any>(url,adventure,{headers:headers});
   }
+
+  getInstructorAdventures(){
+    const url=server+'api/adventures/get-instructor-adventures';
+    const headers=this.loginService.getHeaders();
+    const instructorId=this.loginService.getCurrentUser().id;
+    return this._http.get<any>(url+'/'+instructorId,{headers:headers});
+  }
 }

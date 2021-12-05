@@ -1,0 +1,88 @@
+<div class="content is-medium">
+    <h1 class="title">Fishing Adventures</h1>
+    <hr />
+    <div>
+      
+      <div class="columns">
+        <div class="column">
+          <input
+          class="input is-link"
+          type="text"
+          placeholder="Search anything!"
+          [(ngModel)]="text"
+        />
+        </div>
+
+        <div class="column">
+          <button class="button is-link" (click)="search()">Search</button>
+        </div>
+
+      </div>
+      <div class="column is-flex is-justify-content-flex-end is-1">
+        
+      </div>
+      <hr />
+      <div *ngIf="adventures.length == 0">
+        <p>No Fishing Adventures Found.</p>
+      </div>
+      <div *ngFor="let adventure of adventures">
+        
+
+          <div class="my-5" >
+            <article class="media shadow p-4">
+              <figure class="media-left">
+                <p class="image">
+                  <img class="image center-cropped" [src]="getImage(adventure)" />
+                </p>
+              </figure>
+              <div class="media-content">
+                <div class="content">
+                  <div>
+                    <p>
+                      <strong
+                        ><a href="{edit-adventure/{{ adventure.id}}">{{adventure.name}}</a></strong
+                      >
+                      <br />
+                      {{ adventure.description | truncate: [200] }}
+                    </p>
+          
+                    <div>
+                      <strong><i class="fa fa-map-marker"></i> {{adventure.address}}</strong>
+                      <h4>${{ adventure.price }}/day</h4>
+                    </div>
+                  </div>
+                  <div class="columns is-vcentered">
+                    <div class="column">
+                      <span
+                        class="tag is-success"
+                        *ngFor="let utility of adventure.utilities.slice(0, 7)"
+                        >{{ utility.name }}</span
+                      >
+                    </div>
+                    <div
+                      class="
+                        column
+                        is-flex is-justify-content-flex-end is-align-items-center
+                      "
+                    >
+                      <strong class="mr-1 star-text">{{ adventure.rating }} </strong>
+                      <i class="fa fa-star"></i>
+                      <div class="buttons ml-5">
+                        <a
+                          class="button is-success is-outlined"
+                          href=" edit-adventure/{{ adventure.id }}"
+                        >
+                          Preview
+                        </a>
+                        <button class="button is-success">Book Now</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        
+      </div>
+    </div>
+  </div>

@@ -19,6 +19,6 @@ export class Boat {
     public fishingEquipment: string = '',
     public utilities: Utility[] = [],
     public ownerName: string = '',
-    public imageIds: number[] = []
+    public imageUrls: string[] = []
   ) {}
 }

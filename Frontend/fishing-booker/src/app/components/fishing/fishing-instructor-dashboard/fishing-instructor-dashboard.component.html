@@ -66,7 +66,7 @@
             <a
               [ngClass]="{ 'is-active': activeTab === 'ADD_ADVENTURES' }"
               (click)="changeTab('ADD_ADVENTURES')"
-              >Add adventure</a
+              >Add Adventure</a
             >
           </li>
           
@@ -95,8 +95,8 @@
         <div *ngIf="activeTab == 'ADD_ADVENTURES'">
           <app-add-adventure></app-add-adventure>
         </div>
-        <div *ngIf="activeTab == 'COTTAGE_OWNERS'">
-          <app-cottage-owner-list></app-cottage-owner-list>
+        <div *ngIf="activeTab == 'MY_ADVENTURES'">
+          <app-my-adventures></app-my-adventures>
         </div>
         <div *ngIf="activeTab == 'BOAT_OWNERS'">
           <app-boat-owners></app-boat-owners>

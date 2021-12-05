@@ -15,7 +15,7 @@ export class ReservationCardComponent implements OnInit {
   @Input() rating: number = 0;
   @Input() ownerName: string = '';
   @Input() utilities: Utility[] = [];
-  @Input() imageIds: number[] = [];
+  @Input() imageUrls: string[] = [];
   image: any;
 
   @Input() id: number = 0;
@@ -24,8 +24,8 @@ export class ReservationCardComponent implements OnInit {
   constructor(private imageService: ImageService) {}
 
   ngOnInit(): void {
-    if (this.imageIds.length != 0) {
-      this.getImageFromService(this.imageIds[0]);
+    if (this.imageUrls.length != 0) {
+      this.image=this.imageUrls[0];
     } else {
       this.image = 'assets/images/placeholder.jpg';
     }

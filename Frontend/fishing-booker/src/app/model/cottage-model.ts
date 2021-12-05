@@ -14,7 +14,7 @@ export class Cottage {
     public rooms: Room[] = [],
     public ownerName: string = '',
     public roomOverview: string = '',
-    public imageIds: number[] = []
+    public imageUrls: string[] = []
   ) {}
 }
 

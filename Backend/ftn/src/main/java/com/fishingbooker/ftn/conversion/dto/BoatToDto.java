@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
@@ -33,7 +34,7 @@ public class BoatToDto implements Converter<Boat, BoatDto> {
         dto.setUtilities(getUtilityDtoList(source.getUtilities()));
         dto.setRules(DataConverter.getRules(source.getRules()));
         dto.setNavigationalEquipments(DataConverter.getNavEquipment(source.getNavigationalEquipments()));
-        dto.setImageIds(DataConverter.getImageIds(source.getImages()));
+        dto.setImageUrls(source.getImages().stream().map(image -> image.getUrl()).collect(Collectors.toSet()));
         return dto;
     }
 

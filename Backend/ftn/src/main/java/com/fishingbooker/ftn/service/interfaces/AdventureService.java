@@ -1,5 +1,6 @@
 package com.fishingbooker.ftn.service.interfaces;
 
+import com.fishingbooker.ftn.bom.adventures.Adventure;
 import com.fishingbooker.ftn.dto.AdventureCreationDto;
 import com.fishingbooker.ftn.dto.AdventureDto;
 
@@ -12,4 +13,6 @@ public interface AdventureService {
     AdventureDto findById(long id);
 
     Long create(AdventureCreationDto adventureDto);
+
+    List<Adventure> getInstructorAdventures(Long id);
 }

@@ -24,7 +24,6 @@ import { CottageOwnerDashboardComponent } from './components/cottages/cottage-ow
 import { FishingInstructorDashboardComponent } from './components/fishing/fishing-instructor-dashboard/fishing-instructor-dashboard.component';
 import { AdminDashboardComponent } from './components/admin/admin-dashboard/admin-dashboard.component';
 import { BoatCardComponent } from './components/boats/boat-card/boat-card.component';
-import { AdventureCardComponent } from './components/fishing/adventure-card/adventure-card.component';
 import { PersonalInfoComponent } from './components/client/client-dashboard/personal-info/personal-info.component';
 import { SettingsComponent } from './components/client/client-dashboard/settings/settings.component';
 import { SubscriptionsComponent } from './components/client/client-dashboard/subscriptions/subscriptions.component';
@@ -81,6 +80,9 @@ import { AddAdminComponent } from './components/admin/admin-dashboard/add-admin/
 import { InstructorSettingsComponent } from './components/fishing/fishing-instructor-dashboard/instructor-settings/instructor-settings.component';
 import { FishingInstructorPersonalInfoComponent } from './components/fishing/fishing-instructor-dashboard/fishing-instructor-personal-info/fishing-instructor-personal-info.component';
 import { AddAdventureComponent } from './components/fishing/fishing-instructor-dashboard/add-adventure/add-adventure.component';
+import { MyAdventuresComponent } from './components/fishing/fishing-instructor-dashboard/my-adventures/my-adventures.component';
+import { AdventureCardComponent } from './components/fishing/adventure-card/adventure-card.component';
+import { EditAdventureComponent } from './components/fishing/fishing-instructor-dashboard/edit-adventure/edit-adventure.component';
 
 
 @NgModule({
@@ -158,6 +160,9 @@ import { AddAdventureComponent } from './components/fishing/fishing-instructor-d
     InstructorSettingsComponent,
     FishingInstructorPersonalInfoComponent,
     AddAdventureComponent,
+    MyAdventuresComponent,
+    AdventureCardComponent,
+    EditAdventureComponent
   ],
   imports: [
     BrowserModule,

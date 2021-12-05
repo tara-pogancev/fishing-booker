@@ -19,6 +19,7 @@ import { CottagePageComponent } from './components/cottages/cottage-page/cottage
 import { FishingPageComponent } from './components/fishing/fishing-page/fishing-page.component';
 import { NotAllowedComponent } from './pages/not-allowed/not-allowed.component';
 import { NgModule } from '@angular/core';
+import { EditAdventureComponent } from './components/fishing/fishing-instructor-dashboard/edit-adventure/edit-adventure.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -32,6 +33,7 @@ const routes: Routes = [
   { path: 'boat/:id', component: BoatPageComponent },
   { path: 'cottage/:id', component: CottagePageComponent },
   { path: 'adventure/:id', component: FishingPageComponent },
+  { path: 'edit-adventure/:id', component: EditAdventureComponent },
   { path: '', component: HomeComponent },
   { path: '401', component: NotAllowedComponent },
   { path: '**', component: NotFoundComponent },
