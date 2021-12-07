@@ -40,7 +40,7 @@
                   <div>
                     <p>
                       <strong
-                        ><a href="{edit-adventure/{{ adventure.id}}">{{adventure.name}}</a></strong
+                        ><a href="{preview-adventure/{{ adventure.id}}">{{adventure.name}}</a></strong
                       >
                       <br />
                       {{ adventure.description | truncate: [200] }}
@@ -70,11 +70,11 @@
                       <div class="buttons ml-5">
                         <a
                           class="button is-success is-outlined"
-                          href=" edit-adventure/{{ adventure.id }}"
+                          href=" preview-adventure/{{ adventure.id }}"
                         >
                           Preview
                         </a>
-                        <button class="button is-success">Book Now</button>
+                        <button class="button is-danger" (click)=deleteAdventure(adventure)>Delete</button>
                       </div>
                     </div>
                   </div>

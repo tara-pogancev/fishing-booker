@@ -5,8 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class AdventureCreationDto {
-
+public class EditAdventureDto {
     private Long id;
     private String name;
     private String description;

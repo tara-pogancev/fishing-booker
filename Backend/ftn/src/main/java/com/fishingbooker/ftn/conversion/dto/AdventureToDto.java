@@ -26,7 +26,7 @@ public class AdventureToDto implements Converter<Adventure, AdventureDto> {
         dto.setOwnerName(source.getInstructor().getName() + " " + source.getInstructor().getLastName());
         dto.setUtilities(getUtilityDtoList(source.getUtilities()));
         dto.setRules(DataConverter.getRules(source.getRules()));
-        dto.setNavigationalEquipments(DataConverter.getNavEquipment(source.getNavigationalEquipments()));
+        dto.setNavigationalEquipments(source.getFishingEquipments().stream().map(fishingEquipment -> fishingEquipment.getFishingEquipmentName()).collect(Collectors.toSet()));
         dto.setImageUrls(source.getImages().stream().map(image -> image.getUrl()).collect(Collectors.toSet()));
         dto.setInstructorBiography(source.getInstructor().getBiography());
         return dto;

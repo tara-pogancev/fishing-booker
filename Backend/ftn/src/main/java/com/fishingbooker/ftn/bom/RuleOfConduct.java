@@ -16,5 +16,4 @@ public class RuleOfConduct extends DatabaseEntity {
 
     @Column(name = "ruleDescription", nullable = false)
     private String ruleDescription;
-
 }

@@ -26,8 +26,7 @@ public class ImageServiceImpl implements ImageService {
             return null;
         }
         for (ImageDto image:images){
-            String imageName=saveImage(image);
-            String imageUrl="assets/images/"+imageName;
+            String imageUrl=saveImage(image);
             savedImages.add(new Image(imageUrl));
         }
 
@@ -35,6 +34,9 @@ public class ImageServiceImpl implements ImageService {
     }
 
     private String saveImage(ImageDto imageDto){
+        if (imageDto.getContent().equalsIgnoreCase("exists")){ //ukoliko se prilikom editvanje vikendice prosljedi slka koja je vec sacuvana na serveru nemoj je opet cuvati
+            return imageDto.getName(); //ime sadrzi url slike koji se skladisti u bazu
+        }
         String[] parts = imageDto.getContent().split(",");
         String imageString = parts[1];
         byte[] decodedBytes = Base64.getDecoder().decode(imageString);
@@ -55,6 +57,7 @@ public class ImageServiceImpl implements ImageService {
             e.printStackTrace();
         }
         System.out.println("Image " + ".png" + " uploaded.");
-        return name;
+
+        return "assets/images/"+name;
     }
 }

@@ -226,11 +226,11 @@ INSERT INTO public.adventure_utility(price, adventure_id, utility_id)	VALUES (20
 
 -- ADVENTURE EQUIPMENT
 
-INSERT INTO public.adventure_navigational_equipment(adventure_id, equipment_id)	VALUES (1, 1);
-INSERT INTO public.adventure_navigational_equipment(adventure_id, equipment_id)	VALUES (1, 2);
-INSERT INTO public.adventure_navigational_equipment(adventure_id, equipment_id)	VALUES (2, 3);
-INSERT INTO public.adventure_navigational_equipment(adventure_id, equipment_id)	VALUES (3, 4);
-INSERT INTO public.adventure_navigational_equipment(adventure_id, equipment_id)	VALUES (3, 5);
+--INSERT INTO public.adventure_navigational_equipment(adventure_id, equipment_id)	VALUES (1, 1);
+--INSERT INTO public.adventure_navigational_equipment(adventure_id, equipment_id)	VALUES (1, 2);
+--INSERT INTO public.adventure_navigational_equipment(adventure_id, equipment_id)	VALUES (2, 3);
+--INSERT INTO public.adventure_navigational_equipment(adventure_id, equipment_id)	VALUES (3, 4);
+--INSERT INTO public.adventure_navigational_equipment(adventure_id, equipment_id)	VALUES (3, 5);
 
 -- ADVENTURE IMAGES
 

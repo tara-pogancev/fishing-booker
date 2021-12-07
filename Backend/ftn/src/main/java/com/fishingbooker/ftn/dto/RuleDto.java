@@ -7,10 +7,7 @@ import lombok.RequiredArgsConstructor;
 @Data
 @RequiredArgsConstructor
 @AllArgsConstructor
-public class UtilityDto {
-
+public class RuleDto {
     private Long id;
-    private String name;
-    private Double price;
-
+    private String ruleDescription;
 }

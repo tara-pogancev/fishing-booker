@@ -4,11 +4,13 @@ import com.fishingbooker.ftn.bom.Address;
 import com.fishingbooker.ftn.bom.RuleOfConduct;
 import com.fishingbooker.ftn.bom.adventures.Adventure;
 import com.fishingbooker.ftn.bom.adventures.AdventureUtility;
+import com.fishingbooker.ftn.bom.adventures.FishingEquipment;
 import com.fishingbooker.ftn.bom.users.ApplicationUser;
 import com.fishingbooker.ftn.bom.users.FishingInstructor;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.AdventureCreationDto;
 import com.fishingbooker.ftn.dto.AdventureDto;
+import com.fishingbooker.ftn.dto.FishingEquipmentDto;
 import com.fishingbooker.ftn.repository.AdventureRepository;
 import com.fishingbooker.ftn.repository.ApplicationUserRepository;
 import com.fishingbooker.ftn.repository.FishingInstructorRepository;
@@ -24,6 +26,7 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -45,13 +48,23 @@ public class AdventureServiceImpl implements AdventureService {
 
     @Override
     public AdventureDto findById(long id) {
-        Adventure adventure = adventureRepository.getById(id);
-        return converter.convert(adventure, AdventureDto.class);
+
+        if (adventureRepository.exists(id)){
+            Adventure adventure = adventureRepository.getById(id);
+            return converter.convert(adventure, AdventureDto.class);
+        }
+        return null;
     }
 
     @Override
     public Long create(AdventureCreationDto adventureDto) {
-        Adventure adventure=new Adventure();
+        Adventure adventure;
+        if (adventureDto.getId()==-1){
+            adventure=new Adventure();
+        }else{
+            adventure=adventureRepository.getById(adventureDto.getId());
+        }
+
         FishingInstructor instructor=instructorRepository.getInstructorById(adventureDto.getOwnerId());
         Address address=new Address();
         adventure.setName(adventureDto.getName());
@@ -63,6 +76,7 @@ public class AdventureServiceImpl implements AdventureService {
         adventure.setInstructor(instructor);
         List<RuleOfConduct> rules=ruleOfConductService.createRulesFromString(adventureDto.getRules());
         adventure.setRules(new HashSet<>(rules));
+        adventure.setFishingEquipments(convertDtoToModel(adventureDto.getFishingEquipment()));
         adventure.setDescription(adventureDto.getDescription());
         adventure.setCancellationPercentageKeep(adventureDto.getCancellationFee());
         adventure.setGuestLimit(adventureDto.getGuestLimit());
@@ -77,9 +91,48 @@ public class AdventureServiceImpl implements AdventureService {
         return adventureRepository.save(savedAdventure).getId();
     }
 
+    private Set<FishingEquipment> convertDtoToModel(List<FishingEquipmentDto> fishingEquipment) {
+        return fishingEquipment.stream().map(fishingEquipmentDto -> createEquipment(fishingEquipmentDto)).collect(Collectors.toSet());
+
+    }
+
+    private FishingEquipment createEquipment(FishingEquipmentDto fishingEquipmentDto) {
+        if (fishingEquipmentDto.getId()==-1){
+            return new FishingEquipment(fishingEquipmentDto.getFishingEquipmentName());
+        }else{
+            FishingEquipment equipment=new FishingEquipment();
+            equipment.setId(fishingEquipmentDto.getId());
+            equipment.setFishingEquipmentName(fishingEquipmentDto.getFishingEquipmentName());
+            return equipment;
+        }
+    }
+
     @Override
     public List<Adventure> getInstructorAdventures(Long id) {
         return adventureRepository.getInstructorAdventures(id);
     }
+
+    @Override
+    public Adventure get(Long id) {
+        return adventureRepository.getById(id);
+    }
+
+    @Override
+    public Long save(AdventureCreationDto adventureDto) {
+        return 1l;
+    }
+
+    @Override
+    public boolean deleteAdventure(Long id) {
+        Adventure adventure=adventureRepository.getById(id);
+        if ((adventure.getAdventureReservations()==null || adventure.getAdventureReservations().size()==0)  && (adventure.getAdventureQuickReservations()==null || adventure.getAdventureQuickReservations().size()==0)){
+            adventureRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+
+
+
 
 }

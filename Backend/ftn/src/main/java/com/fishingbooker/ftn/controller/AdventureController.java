@@ -5,6 +5,7 @@ import com.fishingbooker.ftn.bom.adventures.Adventure;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.AdventureCreationDto;
 import com.fishingbooker.ftn.dto.AdventureDto;
+import com.fishingbooker.ftn.dto.EditAdventureDto;
 import com.fishingbooker.ftn.service.interfaces.AdventureService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -28,5 +29,17 @@ public class AdventureController {
         List<Adventure> adventures=adventureService.getInstructorAdventures(id);
         List<AdventureDto> adventureDtos=converter.convert(adventures,AdventureDto.class);
         return adventureDtos;
+    }
+
+    @GetMapping("/{id}")
+    public EditAdventureDto getAdventure(@PathVariable("id") Long id){
+        Adventure adventure=adventureService.get(id);
+        EditAdventureDto dto=converter.convert(adventure, EditAdventureDto.class);
+        return dto;
+    }
+
+    @DeleteMapping("/{id}")
+    public boolean deleteAdventure(@PathVariable("id") Long id){
+        return adventureService.deleteAdventure(id);
     }
 }

@@ -71,4 +71,20 @@ export class MyAdventuresComponent implements OnInit {
     });
   }
 
+  deleteAdventure(adventure:Adventure){
+    let canDelete=true;
+    this.adventureService.deleteAdventure(adventure.id).subscribe(
+      data=>{
+       canDelete=data
+       if (canDelete==true){
+        const index=this.adventures.indexOf(adventure);
+        this.adventures.splice(index,1);
+      }else{
+        alert('You can not delete reserved adventure');
+      }
+      });
+    
+    
+  }
+
 }

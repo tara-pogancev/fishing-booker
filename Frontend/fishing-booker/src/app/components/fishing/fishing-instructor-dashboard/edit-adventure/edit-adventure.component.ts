@@ -16,6 +16,7 @@ export class EditAdventureComponent implements OnInit {
   adventure: Adventure = new Adventure();
   navEquipment: string = '';
   image: any = 'assets/images/placeholder.jpg';
+  editMode=true;
 
   constructor(
     private route: ActivatedRoute,
@@ -36,6 +37,10 @@ export class EditAdventureComponent implements OnInit {
       this.navEquipment = this.navEquipment.slice(0, -2);
       if (this.navEquipment == '') this.navEquipment = 'None';
     });
+  }
+
+  editAdventure(){
+    location.href="edit-adventure/"+this.id;
   }
 
 }

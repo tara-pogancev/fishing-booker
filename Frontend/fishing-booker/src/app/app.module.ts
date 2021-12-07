@@ -83,6 +83,8 @@ import { AddAdventureComponent } from './components/fishing/fishing-instructor-d
 import { MyAdventuresComponent } from './components/fishing/fishing-instructor-dashboard/my-adventures/my-adventures.component';
 import { AdventureCardComponent } from './components/fishing/adventure-card/adventure-card.component';
 import { EditAdventureComponent } from './components/fishing/fishing-instructor-dashboard/edit-adventure/edit-adventure.component';
+import { ChangeAdventureComponent } from './components/fishing/fishing-instructor-dashboard/change-adventure/change-adventure.component';
+import { ReservationsHistoryComponent } from './components/fishing/fishing-instructor-dashboard/reservations-history/reservations-history.component';
 
 
 @NgModule({
@@ -162,7 +164,9 @@ import { EditAdventureComponent } from './components/fishing/fishing-instructor-
     AddAdventureComponent,
     MyAdventuresComponent,
     AdventureCardComponent,
-    EditAdventureComponent
+    EditAdventureComponent,
+    ChangeAdventureComponent,
+    ReservationsHistoryComponent
   ],
   imports: [
     BrowserModule,

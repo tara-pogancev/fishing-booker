@@ -26,6 +26,8 @@ public class FishingInstructorToDtoConverter implements Converter<FishingInstruc
         dto.setStreet(source.getUserAddress().getStreet());
         dto.setCountry(source.getUserAddress().getCountry());
         dto.setCity(source.getUserAddress().getCity());
+        dto.setBiography(source.getBiography());
+        dto.setRating(source.getRating());
         return dto;
     }
 }

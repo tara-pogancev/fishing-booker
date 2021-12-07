@@ -51,7 +51,7 @@ public class Adventure extends DatabaseEntity {
     @OneToMany(mappedBy = "adventure",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private Set<AdventureReservation> adventureReservations;
 
-    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
     @JoinTable(
             name = "adventure_rules",
             joinColumns = @JoinColumn(name = "adventure_id"),
@@ -60,10 +60,10 @@ public class Adventure extends DatabaseEntity {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
-            name = "adventure_navigational_equipment",
+            name = "adventure_fishing_equipment",
             joinColumns = @JoinColumn(name = "adventure_id"),
             inverseJoinColumns = @JoinColumn(name = "equipment_id"))
-    private Set<NavigationalEquipment> navigationalEquipments;
+    private Set<FishingEquipment> fishingEquipments;
 
     @Column(name = "cancellationPercentageKeep", nullable = false)
     private Double cancellationPercentageKeep;

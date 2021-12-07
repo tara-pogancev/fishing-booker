@@ -87,6 +87,17 @@
           </div>
         </div>
       </div>
+
+      <div class="column">
+        <label class="label">Instructor Biography</label>
+        <div class="control">
+          <textarea [(ngModel)]="requestText"
+            class="textarea"
+            placeholder="Enter Biograpy"
+            [(ngModel)]="instructor.biography"
+          ></textarea>
+        </div>
+      </div>
   
       <gap height="40"></gap>
       <hr />

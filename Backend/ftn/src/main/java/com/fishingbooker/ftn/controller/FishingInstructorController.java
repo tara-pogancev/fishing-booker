@@ -31,7 +31,8 @@ public class FishingInstructorController {
     public FishingInstructorDto get(@PathVariable String id) {
         Long idNum = Long.parseLong(id);
         FishingInstructor instructor=fishingInstructorService.findById(idNum);
-        return converter.convert(instructor,FishingInstructorDto.class);
+        FishingInstructorDto dto=converter.convert(instructor,FishingInstructorDto.class);
+        return dto;
     }
 
     @GetMapping("/get-enabled")
@@ -55,6 +56,7 @@ public class FishingInstructorController {
         instructor.setName(instructorDto.getName());
         instructor.setLastName(instructorDto.getLastName());
         instructor.setPhone(instructorDto.getPhone());
+        instructor.setBiography(instructorDto.getBiography());
         return converter.convert(fishingInstructorService.update(instructor),FishingInstructorDto.class);
     }
 }

@@ -23,8 +23,8 @@
         <ul class="menu-list">
           <li>
             <a
-              [ngClass]="{ 'is-active': activeTab === 'COTTAGE_OWNERS' }"
-              (click)="changeTab('COTTAGE_OWNERS')"
+              [ngClass]="{ 'is-active': activeTab === 'RESERVATIONS_HISTORY' }"
+              (click)="changeTab('RESERVATIONS_HISTORY')"
               >Reservations History</a
             >
           </li>
@@ -104,12 +104,10 @@
         <div *ngIf="activeTab == 'INSTRUCTORS'">
           <app-fishin-instructors-list></app-fishin-instructors-list>
         </div>
-        <div *ngIf="activeTab == 'CLIENTS'">
-          <app-clients></app-clients>
+        <div *ngIf="activeTab == 'RESERVATIONS_HISTORY'">
+          <app-reservations-history></app-reservations-history>
         </div>
-        <div *ngIf="activeTab == 'REGISTRATION_REQUESTS'">
-          <app-registration-request></app-registration-request>
-        </div>
+        
         <div *ngIf="activeTab == 'COTTAGES'">
           <app-cottage-list></app-cottage-list>
         </div>

@@ -20,6 +20,7 @@ import { FishingPageComponent } from './components/fishing/fishing-page/fishing-
 import { NotAllowedComponent } from './pages/not-allowed/not-allowed.component';
 import { NgModule } from '@angular/core';
 import { EditAdventureComponent } from './components/fishing/fishing-instructor-dashboard/edit-adventure/edit-adventure.component';
+import { ChangeAdventureComponent } from './components/fishing/fishing-instructor-dashboard/change-adventure/change-adventure.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -33,7 +34,8 @@ const routes: Routes = [
   { path: 'boat/:id', component: BoatPageComponent },
   { path: 'cottage/:id', component: CottagePageComponent },
   { path: 'adventure/:id', component: FishingPageComponent },
-  { path: 'edit-adventure/:id', component: EditAdventureComponent },
+  { path: 'preview-adventure/:id', component: EditAdventureComponent },
+  { path: 'edit-adventure/:id', component: ChangeAdventureComponent },
   { path: '', component: HomeComponent },
   { path: '401', component: NotAllowedComponent },
   { path: '**', component: NotFoundComponent },

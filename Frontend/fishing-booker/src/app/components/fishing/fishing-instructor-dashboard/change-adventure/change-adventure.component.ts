@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { CreateAdventureModel } from 'src/app/model/create-adventure-model';
 import { FishingEquipment } from 'src/app/model/fishing-equipment-model';
 import { Image } from 'src/app/model/image-model';
@@ -10,11 +11,11 @@ import { AdvetnureService } from 'src/app/service/adventure-service';
 import { UtilityService } from 'src/app/service/utility.service';
 
 @Component({
-  selector: 'app-add-adventure',
-  templateUrl: './add-adventure.component.html',
-  styleUrls: ['./add-adventure.component.css']
+  selector: 'app-change-adventure',
+  templateUrl: './change-adventure.component.html',
+  styleUrls: ['./change-adventure.component.css']
 })
-export class AddAdventureComponent implements OnInit {
+export class ChangeAdventureComponent implements OnInit {
 
   adventure:CreateAdventureModel=new CreateAdventureModel();
   myForm = new FormGroup({
@@ -29,10 +30,14 @@ export class AddAdventureComponent implements OnInit {
   price=0;
   validForm=true;
   utilities:any=[];
-  constructor(private http: HttpClient,private utilityService:UtilityService,private adventureService:AdvetnureService) { }
+  id:any=-1;
+  constructor(private http: HttpClient,private utilityService:UtilityService,private adventureService:AdvetnureService,private route: ActivatedRoute,) { }
 
   ngOnInit(): void {
+    this.id = +this.route.snapshot.paramMap.get('id')!;
     this.utilityService.getUtilities().subscribe((data:any)=>this.utilities=data);
+    this.adventureService.getAdventure(this.id).subscribe(data=>{this.adventure=data;console.log(this.adventure);});
+    
   }
 
   get f(){
@@ -157,7 +162,6 @@ export class AddAdventureComponent implements OnInit {
       index++;
     }
   }
-
   validateForm(){
     if (this.adventure.name!="" && this.adventure.guestLimit>0 && this.adventure.description!="" && this.adventure.city!="" && this.adventure.country!="" && this.adventure.price>=0 && this.adventure.street!=""){
       this.validForm=true;
@@ -167,7 +171,4 @@ export class AddAdventureComponent implements OnInit {
     }
   }
 
-  
 }
-
-

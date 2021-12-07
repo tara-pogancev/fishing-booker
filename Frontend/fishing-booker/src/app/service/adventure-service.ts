@@ -8,6 +8,8 @@ import { LoginService } from './login.service';
   providedIn: 'root',
 })
 export class AdvetnureService {
+  
+  
   url = server + 'browse/adventures';
 
   constructor(private _http: HttpClient,private loginService:LoginService) {}
@@ -32,5 +34,17 @@ export class AdvetnureService {
     const headers=this.loginService.getHeaders();
     const instructorId=this.loginService.getCurrentUser().id;
     return this._http.get<any>(url+'/'+instructorId,{headers:headers});
+  }
+
+  getAdventure(id: any) {
+    const url=server+'api/adventures/'
+    const headers=this.loginService.getHeaders();
+    return this._http.get<any>(url + id,{headers:headers});
+  }
+
+  deleteAdventure(id: number) {
+    const localurl=server+'api/adventures/'+id;
+    const headers=this.loginService.getHeaders();
+    return this._http.delete<any>(localurl,{headers:headers});
   }
 }

@@ -1,5 +1,6 @@
+<div style="margin:7%"> 
 <div class="content is-medium">
-    <h1 class="title">Add adventure</h1>
+    <h1 class="title">Edit adventure</h1>
     <hr />
     <div class="box p-6">
       <h4>Adventure details</h4>
@@ -153,7 +154,11 @@
                     {{rule.ruleDescription}}
                     <button class="delete is-small" (click)="removeConductRule(rule.ruleDescription)"></button>
                 </span>
+                
+                
+                
               </div>  
+    
           </div>
       </div>
 
@@ -169,7 +174,7 @@
             <div class="control">
               <input
                 class="input"
-                type="text"
+                type="password"
                 placeholder="Enter your equipment"
                 
                 [(ngModel)]="equipment"
@@ -189,7 +194,7 @@
         <div class="column">
             <div class="tags">
                 <span class="tag is-success is-medium" *ngFor="let equipment of  adventure.fishingEquipment">
-                    {{equipment.fishingEquipmentName}}
+                    {{equipment}}
                     <button class="delete is-small" (click)=removeFishingEquipment(equipment.fishingEquipmentName)></button>
                 </span>
                 
@@ -287,7 +292,7 @@
                     (change)="onFileChange($event)">
             </div>
             <div class="block">
-                <img *ngFor='let image of adventure.images'  [src]="image.content" height="150" width="200px" style="margin: 3px;" (click)=deleteImage(image)> <br/>
+                <img *ngFor='let image of adventure.images'  [src]="image.name" height="150" width="200px" style="margin: 3px;" (click)=deleteImage(image)> <br/>
                   
                 </div>
         </div>
@@ -309,4 +314,4 @@
         </div>
       </div>
     </div>
-
+</div>

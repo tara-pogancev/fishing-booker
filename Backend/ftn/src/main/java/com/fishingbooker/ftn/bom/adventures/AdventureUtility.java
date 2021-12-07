@@ -14,7 +14,7 @@ import javax.persistence.*;
 @RequiredArgsConstructor
 public class AdventureUtility extends DatabaseEntity {
 
-    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.REFRESH,fetch = FetchType.EAGER)
     @JoinColumn(name = "utility_id")
     private Utility utility;
 

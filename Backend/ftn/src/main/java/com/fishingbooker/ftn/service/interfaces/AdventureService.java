@@ -15,4 +15,10 @@ public interface AdventureService {
     Long create(AdventureCreationDto adventureDto);
 
     List<Adventure> getInstructorAdventures(Long id);
+
+    Adventure get(Long id);
+
+    Long save(AdventureCreationDto adventureDto);
+
+    boolean deleteAdventure(Long id);
 }
