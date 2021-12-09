@@ -8,6 +8,7 @@ import com.fishingbooker.ftn.dto.AdventureDto;
 import com.fishingbooker.ftn.dto.EditAdventureDto;
 import com.fishingbooker.ftn.service.interfaces.AdventureService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/adventures")
+@PreAuthorize("hasRole('FISHING_INSTRUCTOR')")
 public class AdventureController {
 
     private final AdventureService adventureService;

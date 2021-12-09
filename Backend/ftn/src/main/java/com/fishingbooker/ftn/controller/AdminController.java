@@ -8,24 +8,28 @@ import com.fishingbooker.ftn.dto.AdministratorDto;
 import com.fishingbooker.ftn.dto.ApplicationUserDto;
 import com.fishingbooker.ftn.service.interfaces.AdministratorService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/admin")
+@PreAuthorize("hasRole('ADMINISTRATOR')")
 public class AdminController {
 
     private final AdministratorService adminService;
     private final DataConverter converter;
 
     @GetMapping("/{id}")
+
     public Administrator get(@PathVariable("id") Long id){
         Administrator administrator=adminService.findById(id);
         return administrator;
     }
 
     @PutMapping()
+
     public Administrator update(@RequestBody ApplicationUserDto adminDto){
         Administrator admin=adminService.findById(adminDto.getId());
         Address address=admin.getUserAddress();
@@ -39,6 +43,7 @@ public class AdminController {
         admin.setPhone(adminDto.getPhone());
         return adminService.save(admin);
     }
+
     @PostMapping()
     public Long addAdministrator(@RequestBody AdministratorDto administratorDto){
         administratorDto.setRole("Administrator");
@@ -48,7 +53,6 @@ public class AdminController {
         Administrator admin=adminService.save(administrator);
         return admin.getId();
     }
-
     @PutMapping("/change-password")
     public void changePassword(@RequestBody AdminChangePasswordDto adminDto){
         adminService.changePassword(adminDto);

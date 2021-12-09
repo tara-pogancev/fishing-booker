@@ -28,4 +28,7 @@ public class Reservation extends DatabaseEntity {
     @JoinColumn(name = "reservationClient", referencedColumnName = "userId")
     private RegisteredClient reservationClient;
 
+    @Column(name="guestNumber",nullable = false)
+    private Integer guestNumber;
+
 }

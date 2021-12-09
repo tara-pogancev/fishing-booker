@@ -16,19 +16,15 @@ export class CalendarComponent {
   events: CalendarEvent[] = [
     {
       title: 'Available',
-      start: new Date('11/30/2021'),
-      end: new Date('12/15/2021'),
+      start: new Date('12/15/2021'),
+      end: new Date('12/16/2021'),
     },
     {
       title: 'Available',
-      start: new Date('11/05/2021'),
-      end: new Date('11/20/2021'),
+      start: new Date('12/18/2021'),
+      end: new Date('12/21/2021'),
     },    
-    {
-      title: 'Available',
-      start: new Date('11/05/2020'),
-      end: new Date('11/1/2021'),
-    },
+    
   ];
 
   constructor() {}

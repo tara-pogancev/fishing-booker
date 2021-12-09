@@ -2,6 +2,8 @@ package com.fishingbooker.ftn.bom.users;
 
 import com.fishingbooker.ftn.bom.RegistrationRequest;
 import com.fishingbooker.ftn.bom.UserRank;
+import com.fishingbooker.ftn.bom.adventures.AdventureQuickReservation;
+import com.fishingbooker.ftn.bom.adventures.AdventureReservation;
 import com.fishingbooker.ftn.bom.boats.Boat;
 import com.fishingbooker.ftn.bom.cottages.Cottage;
 import lombok.Data;
@@ -51,4 +53,9 @@ public class RegisteredClient extends ApplicationUser {
     @ManyToOne()
     @JoinColumn(name = "rank")
     UserRank rank;
+
+
+
+
+
 }

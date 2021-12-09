@@ -162,6 +162,8 @@ export class AddAdventureComponent implements OnInit {
     if (this.adventure.name!="" && this.adventure.guestLimit>0 && this.adventure.description!="" && this.adventure.city!="" && this.adventure.country!="" && this.adventure.price>=0 && this.adventure.street!=""){
       this.validForm=true;
       this.adventureService.createAdventure(this.adventure).subscribe();
+      alert('Adventure successfully added!');
+      this.adventure=new CreateAdventureModel();
     }else{
       this.validForm=false;
     }

@@ -30,15 +30,15 @@
           </li>
           <li>
             <a
-              [ngClass]="{ 'is-active': activeTab === 'BOAT_OWNERS' }"
-              (click)="changeTab('BOAT_OWNERS')"
+              [ngClass]="{ 'is-active': activeTab === 'QUICK_RESERVATIONS' }"
+              (click)="changeTab('QUICK_RESERVATIONS')"
               >Quick Reservations</a
             >
           </li>
           <li>
             <a
-              [ngClass]="{ 'is-active': activeTab === 'INSTRUCTORS' }"
-              (click)="changeTab('INSTRUCTORS')"
+              [ngClass]="{ 'is-active': activeTab === 'CREATE_RESERVATION' }"
+              (click)="changeTab('CREATE_RESERVATION')"
               >Create Reservation</a
             >
           </li>
@@ -98,22 +98,23 @@
         <div *ngIf="activeTab == 'MY_ADVENTURES'">
           <app-my-adventures></app-my-adventures>
         </div>
-        <div *ngIf="activeTab == 'BOAT_OWNERS'">
-          <app-boat-owners></app-boat-owners>
+        <div *ngIf="activeTab == 'QUICK_RESERVATIONS'">
+          <app-quick-reservations></app-quick-reservations>
         </div>
-        <div *ngIf="activeTab == 'INSTRUCTORS'">
-          <app-fishin-instructors-list></app-fishin-instructors-list>
+
+        <div *ngIf="activeTab == 'CREATE_RESERVATION'">
+          <app-create-reservation></app-create-reservation>
+        </div>
+        
+        <div *ngIf="activeTab == 'AVAILIBILITY_CALENDAR'">
+          <app-instructor-calendar> </app-instructor-calendar>
         </div>
         <div *ngIf="activeTab == 'RESERVATIONS_HISTORY'">
           <app-reservations-history></app-reservations-history>
         </div>
         
-        <div *ngIf="activeTab == 'COTTAGES'">
-          <app-cottage-list></app-cottage-list>
-        </div>
-        <div *ngIf="activeTab == 'BOATS'">
-          <app-boat-list></app-boat-list>
-        </div>
+        
+        
         
         
         
