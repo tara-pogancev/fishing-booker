@@ -174,7 +174,7 @@
             <div class="control">
               <input
                 class="input"
-                type="password"
+                type="text"
                 placeholder="Enter your equipment"
                 
                 [(ngModel)]="equipment"
@@ -194,7 +194,7 @@
         <div class="column">
             <div class="tags">
                 <span class="tag is-success is-medium" *ngFor="let equipment of  adventure.fishingEquipment">
-                    {{equipment}}
+                    {{equipment.fishingEquipmentName}}
                     <button class="delete is-small" (click)=removeFishingEquipment(equipment.fishingEquipmentName)></button>
                 </span>
                 
