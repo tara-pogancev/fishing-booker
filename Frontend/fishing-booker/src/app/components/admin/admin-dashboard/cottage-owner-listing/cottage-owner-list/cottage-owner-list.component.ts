@@ -15,9 +15,9 @@ export class CottageOwnerListComponent implements OnInit {
     this.cottageOwnerService.getEnabledOwners().subscribe((data:any)=>this.cottageOwners=data);
   }
 
-  deleteOwner(boatOwner:any){
-    this.cottageOwnerService.deleteBoatOwner(boatOwner.id).subscribe();
-    const index=this.cottageOwners.indexOf(boatOwner);
+  deleteOwner(cottageOwner:any){
+    this.cottageOwnerService.deleteCottageOwner(cottageOwner.id).subscribe();
+    const index=this.cottageOwners.indexOf(cottageOwner);
     this.cottageOwners.splice(index,1);
   }
 

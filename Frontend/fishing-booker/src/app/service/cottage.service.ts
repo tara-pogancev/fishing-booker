@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { server } from '../app-global';
+import { CreateCottageModel } from '../model/create-cottage-model';
 import { LoginService } from './login.service';
 
 @Injectable({
@@ -25,9 +26,28 @@ export class CottageService {
     return this._http.get<any>(url,{headers:headers});
   }
 
+  getCottage(id: any) {
+    const url=server+'api/cottages/'
+    const headers=this.loginService.getHeaders();
+    return this._http.get<any>(url + id,{headers:headers});
+  }
+
   deleteCottage(id:any){
     const url=server+'api/cottages/'+id;
     const headers = this.loginService.getHeaders();
     return this._http.delete<any>(url,{headers:headers});
+  }
+
+  findByCottageOwnerId(id: any) {
+    const url=server+'api/cottages/findByCottageOwnerId/'+id;
+    const headers = this.loginService.getHeaders();
+    return this._http.get<any>(url, {headers: headers});
+  }
+  
+  createCottage(cottage: CreateCottageModel) {
+    const url=server+'api/cottages/add-cottage';
+    const headers=this.loginService.getHeaders();
+    cottage.ownerId=this.loginService.getCurrentUser().id;
+    return this._http.post<any>(url,cottage,{headers:headers});
   }
 }

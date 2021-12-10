@@ -136,6 +136,7 @@ export class AddAdventureComponent implements OnInit {
           this.adventure.fishingEquipment.splice(index,1);
           return;
         }
+        index++;
     }
   }
 

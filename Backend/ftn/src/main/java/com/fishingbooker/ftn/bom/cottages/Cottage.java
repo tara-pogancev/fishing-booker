@@ -23,7 +23,7 @@ public class Cottage extends DatabaseEntity {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "address", referencedColumnName = "id")
     private Address address;
 
@@ -39,7 +39,7 @@ public class Cottage extends DatabaseEntity {
     @Column(name = "guestLimit", nullable = false)
     private Integer guestLimit;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "cottage_images",
             joinColumns = @JoinColumn(name = "cottage_id"),
@@ -51,6 +51,9 @@ public class Cottage extends DatabaseEntity {
 
     @OneToMany(mappedBy = "cottage")
     private Set<CottageQuickReservation> cottageQuickReservations;
+
+    @OneToMany(mappedBy = "cottage")
+    private Set<CottageReservation> cottageReservations;
 
     @ManyToMany
     @JoinTable(

@@ -4,12 +4,12 @@ package com.fishingbooker.ftn.bom.cottages;
 import com.fishingbooker.ftn.bom.DatabaseEntity;
 import com.fishingbooker.ftn.bom.Utility;
 import com.fishingbooker.ftn.bom.adventures.Adventure;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
+@AllArgsConstructor
+@RequiredArgsConstructor
 @Entity
 @Getter
 @Setter

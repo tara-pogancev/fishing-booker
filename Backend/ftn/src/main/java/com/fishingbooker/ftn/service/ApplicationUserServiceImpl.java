@@ -132,9 +132,13 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
         request.setRegistrationDescription(userDto.getRegistrationDescription());
         if (ApplicationRole.getRoleFromString(userDto.getRole())==ApplicationRole.FISHING_INSTRUCTOR)
             user = fishingInstructorService.create(userDto);
+        else if(ApplicationRole.getRoleFromString(userDto.getRole())==ApplicationRole.COTTAGE_OWNER){
+            user = cottageOwnerService.create(userDto);
+        }
         else if(ApplicationRole.getRoleFromString(userDto.getRole())==ApplicationRole.BOAT_OWNER){
             user = boatOwnerService.create(userDto);
         }// todo add for other types of users
+
 
         request.setUser(user);
         registrationRequestRepository.save(request);

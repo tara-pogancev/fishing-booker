@@ -1,1 +1,54 @@
-<p>cottage-owner-dashboard works!</p>
+<div class="columns db-container">
+  <div class="colum is-two-fifths px-6 pt-5 side-menu">
+    <aside class="menu">
+      <p class="menu-label">General</p>
+      <ul class="menu-list">
+        <li>
+          <a [ngClass]="{ 'is-active': activeTab === 'PERSONAL_INFO' }" (click)="changeTab('PERSONAL_INFO')">Personal
+            Info</a>
+        </li>
+        <li>
+          <a [ngClass]="{ 'is-active': activeTab === 'SETTINGS' }" (click)="changeTab('SETTINGS')">Settings</a>
+        </li>
+      </ul>
+      <p class="menu-label">Cottages</p>
+      <ul class="menu-list">
+        <li>
+          <a [ngClass]="{ 'is-active': activeTab === 'MY_COTTAGES' }" (click)="changeTab('MY_COTTAGES')">My Cottages</a>
+        </li>
+      </ul>
+      <p class="menu-label">Reservations</p>
+      <ul class="menu-list">
+        <li>
+          <a [ngClass]="{ 'is-active': activeTab === 'RESERVATION_HISTORY' }" (click)="changeTab('RESERVATION_HISTORY')">Reservation History</a>
+        </li>
+      </ul>
+    </aside>
+  </div>
+
+  <div class="column db-content">
+    <div class="hero is-primary">
+      <div class="hero-body">
+        <p class="title">Welcome, {{ cottageOwner.name }} {{ cottageOwner.lastName }}</p>
+        <p class="subtitle">Cottage Owner Dashboard</p>
+      </div>
+    </div>
+    <div class="m-5">
+      <div *ngIf="activeTab == 'PERSONAL_INFO'">
+        <app-cottage-owner-personal-info [cottageOwner]="cottageOwner"></app-cottage-owner-personal-info>
+      </div>
+      <div *ngIf="activeTab == 'SETTINGS'">
+        <app-cottage-owner-settings [cottageOwner]="cottageOwner"></app-cottage-owner-settings>
+      </div>
+      <div *ngIf="activeTab == 'MY_COTTAGES'">
+        <app-cottage-owner-cottages [cottageOwner]="cottageOwner"></app-cottage-owner-cottages>
+      </div>
+      <div *ngIf="activeTab == 'ADD_COTTAGE'">
+        <app-cottage-owner-add-cottage [cottageOwner]="cottageOwner"></app-cottage-owner-add-cottage>
+      </div>
+      <div *ngIf="activeTab == 'RESERVATION_HISTORY'">
+        <app-cottage-owner-reservation-history [cottageOwner]="cottageOwner"></app-cottage-owner-reservation-history>
+      </div>
+    </div>
+  </div>
+</div>

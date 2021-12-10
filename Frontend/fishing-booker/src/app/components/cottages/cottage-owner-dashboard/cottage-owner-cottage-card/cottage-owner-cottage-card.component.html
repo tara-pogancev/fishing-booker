@@ -1,0 +1,55 @@
+<div class="my-5">
+    <article class="media shadow p-4">
+      <figure class="media-left">
+        <p class="image">
+          <img class="image center-cropped" [src]="image" />
+        </p>
+      </figure>
+      <div class="media-content">
+        <div class="content">
+          <div>
+            <p>
+              <strong
+                ><a href="preview-cottage/{{ id }}">{{ name }}</a></strong
+              ><small>, @{{ ownerName }} </small>
+              <br />
+              {{ description | truncate: [200] }}
+            </p>
+  
+            <div>
+              <strong><i class="fa fa-map-marker"></i> {{ address }}</strong>
+              <h4>${{ price }}/day</h4>
+            </div>
+          </div>
+          <div class="columns is-vcentered">
+            <div class="column">
+              <span
+                class="tag is-success"
+                *ngFor="let utility of utilities.slice(0, 7)"
+                >{{ utility.name }}</span
+              >
+            </div>
+            <div
+              class="
+                column
+                is-flex is-justify-content-flex-end is-align-items-center
+              "
+            >
+              <strong class="mr-1 star-text">{{ rating }} </strong>
+              <i class="fa fa-star"></i>
+              <div class="buttons ml-5">
+                <a
+                  class="button is-success is-outlined"
+                  href="preview-cottage/{{ id }}"
+                >
+                  Preview
+                </a>
+                <button class="button is-danger" (click)=deleteCottage(id)>Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+  

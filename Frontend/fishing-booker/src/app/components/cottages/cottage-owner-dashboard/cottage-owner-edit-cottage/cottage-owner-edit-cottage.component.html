@@ -1,0 +1,299 @@
+<div class="content is-medium">
+    <h1 class="title">Edit Cottage</h1>
+    <hr />
+    <div class="box p-6">
+      <h4>Cottage Details</h4>
+  
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <label class="label">Cottage Name:</label>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                placeholder="Cottage name"
+                [(ngModel)]="cottage.name"
+              />
+            </div>
+          </div>
+          
+      </div>
+      </div>
+
+      <div class="columns">
+        <div class="column">
+            <div class="field">
+              <label class="label">Cottage Description</label>
+              <div class="control">
+                <textarea [(ngModel)]="cottage.description"
+                  class="textarea"
+                  placeholder="Cottage description"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+       </div>
+  
+       <div class="columns">
+        <div class="column">
+          <div class="field">
+            <label class="label">Street:</label>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                placeholder="Street"
+                [(ngModel)]="cottage.street"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="field">
+            <label class="label">City:</label>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                placeholder="City"
+                [(ngModel)]="cottage.city"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="field">
+            <label class="label">Country:</label>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                placeholder="Country"
+                [(ngModel)]="cottage.country"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+  
+       <div class="columns">
+        <div class="column">
+            <div class="field">
+              <label class="label">Maximum nuber of persons:</label>
+              <div class="control">
+                <input
+                  class="input"
+                  type="text"
+                  placeholder="Maximum number of persons"
+                  [(ngModel)]="cottage.guestLimit"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="field">
+              <label class="label">Price:</label>
+              <div class="control">
+                <input
+                  class="input"
+                  type="text"
+                  placeholder="Price"
+                  [(ngModel)]="cottage.price"
+                />
+              </div>
+            </div>
+          </div>
+       </div>
+
+      <gap height="40"></gap>
+      <hr />
+      <h4>Conduct rules</h4>
+      
+  
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <label class="label">Enter Rule of cunduct</label>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                placeholder="Enter your rule"
+                [(ngModel)]="rule"
+              />
+            </div>
+          </div>
+          
+        </div>
+        <div class="column"> 
+            <div class="addDiv">
+                <button class="button is-success" (click)=addConductRule()>Add</button>
+            </div>
+        </div>
+      </div>
+
+      <div class="columns"> 
+        <div class="column">
+            <div class="tags">
+                <span class="tag is-danger is-medium" *ngFor="let rule of cottage.rules">
+                    {{rule.ruleDescription}}
+                    <button class="delete is-small" (click)="removeConductRule(rule.ruleDescription)"></button>
+                </span>
+              </div>  
+          </div>
+      </div>
+
+      
+
+      <gap height="40"></gap>
+      <hr />
+      <h4>Cottage rooms</h4>
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <label class="label">Enter rooms for cottage</label>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                placeholder="Enter number of beds"
+                
+                [(ngModel)]="room"
+              />
+            </div>
+          </div>
+          
+        </div>
+        <div class="column"> 
+            <div class="addDiv">
+                <button class="button is-success" (click)=addRoom()>Add</button>
+            </div>
+        </div>
+      </div>
+
+      <div class="columns"> 
+        <div class="column">
+            <div class="tags">
+                <span class="tag is-success is-medium" *ngFor="let room of  cottage.rooms">
+                    {{room.numberOfBeds}}
+                    <button class="delete is-small" (click)=removeRoom(room.numberOfBeds)></button>
+                </span>
+                
+              </div>  
+    
+          </div>
+      </div>
+
+      <gap height="40"></gap>
+      <hr />
+      <h4>Addition services</h4>
+      <div class="columns">
+        
+        <div class="column">
+            <div class="field">
+              <label class="label">Choose existing </label>
+              
+                <select style="height:40px;width: 200px;" [(ngModel)]=selectedService>
+                  <option value="">Select dropdown</option>
+                  <option *ngFor="let utility of utilities" value={{utility.name}}>{{utility.name}}</option>
+                  
+                </select>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="field">
+                <label class="label">Enter new one </label>
+              <div class="control">
+                <input
+                  class="input"
+                  type="text"
+                  placeholder="Enter your service"
+                  
+                  [(ngModel)]="newService"
+                />
+              </div>
+            </div>
+            
+          </div>
+
+          
+        <div class="column">
+            <div class="field">
+                <label class="label">Price</label>
+              <div class="control">
+                <input
+                  class="input"
+                  type="number"
+                  placeholder="Enter your price"
+                  [(ngModel)]="price"
+                />
+              </div>
+            </div>
+            
+          </div>
+    
+        <div class="column"> 
+            <div class="addDiv">
+                <button class="button is-success" (click)="addService()">Add</button>
+            </div>
+        </div>
+      </div>
+
+      <div class="columns"> 
+        <div class="column">
+            <div class="tags" >
+                <span class="tag is-warning is-medium" *ngFor="let service of cottage.additionalServices">
+                    Name:{{service.name}} &nbsp; &nbsp; &nbsp;Price:{{service.price}}
+                    <button class="delete is-small" (click)="removeService(service)"></button>
+                </span>
+              </div>  
+    
+          </div>
+      </div>
+      
+  
+      <gap height="30"></gap>
+
+    
+   
+    
+    <gap height="40"></gap>
+      <hr />
+    <h4>Upload images of your cottage</h4>
+      <p>(click on image to delete it)</p>
+  
+      <div class="columns">
+        <div class="column">
+            <div>
+                <label for="file">File</label>
+                <input 
+                    id="file" 
+                    type="file" 
+                    (change)="onFileChange($event)">
+            </div>
+            <div class="block">
+                <img *ngFor='let image of cottage.images'  [src]="image.name" height="150" width="200px" style="margin: 3px;" (click)=deleteImage(image)> <br/>
+                  
+                </div>
+        </div>
+        
+      </div>
+
+      <gap height="30"></gap>
+      <div class="field">
+        <div class="control">
+          <button class="button is-link" (click)="validateForm()">Submit</button>
+          <p
+            class="help is-danger mt-5"
+            [ngStyle]="{
+              visibility: !validForm ? 'visible' : 'hidden'
+            }"
+          >
+            Please fill in all the form fields!
+          </p>
+        </div>
+      </div>
+    </div>
+

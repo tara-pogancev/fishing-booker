@@ -1,0 +1,87 @@
+<div class="content is-medium">
+    <h1 class="title">Past Cottage Reservations</h1>
+    <hr />
+    <div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th><abbr title="Fishing Adventure">Cottage</abbr></th>
+            <th><abbr title="Client">Client</abbr></th>
+            <th><abbr title="Start Date">Start Date</abbr></th>
+            <th><abbr title="End Date">End Date</abbr></th>
+            <th><abbr title="No. of People">No. of People</abbr></th>
+            <th><abbr title="Price">Price</abbr></th>
+          </tr>
+        </thead>
+  
+        <tr>
+          
+          <td>
+            <a href="preview-cottage/2">Peace&Calm</a>
+          </td>
+          <td><a (click)=openModalUser()>John Smith</a></td>
+          <td>23/04/2021</td>
+          <td>25/04/2021</td>
+          <td>3</td>
+          <td>$60</td>
+        </tr>
+  
+        <tr>
+          <td>
+            <a href="preview-cottage/4">Forest Dreams</a>
+          </td>
+          <td><a (click)=openModalUser()>John Smith</a> </td>
+          <td>03/06/2021</td>
+          <td>06/06/2021</td>
+          <td>2</td>
+          <td>$135.6</td>
+        </tr>
+  
+        
+      </table>
+    </div>
+    <div class="modal" id='modalUser'>
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Client</p>
+          <button class="delete" aria-label="close" (click)="closeModalUser()"></button>
+        </header>
+        <section class="modal-card-body">
+          <div class="columns p-5">
+            <div class="column">
+              <div class="mb-6">
+                <h4>First Name:</h4>
+                <p>John</p>
+              </div>
+              <div class="mb-6">
+                <h4>Last Name:</h4>
+                <p>Smith</p>
+              </div>
+        
+              <div class="mb-6">
+                <h4>Phone:</h4>
+                <p>004568424845</p>
+              </div>
+              <div class="mb-6">
+                <h4>Address:</h4>
+                <p>Alekse Santica 4, Novi Sad
+                </p>
+              </div>
+            </div>
+            <div class="column">
+              <div class="mb-6">
+                <h4>Email:</h4>
+                <p>john.smith@gmail.com</p>
+              </div>
+            </div>
+          </div>
+        
+        </section>
+        <footer class="modal-card-foot">
+         
+          
+        </footer>
+      </div>
+    </div>
+  </div>

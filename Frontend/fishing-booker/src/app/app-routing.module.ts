@@ -21,6 +21,8 @@ import { NotAllowedComponent } from './pages/not-allowed/not-allowed.component';
 import { NgModule } from '@angular/core';
 import { EditAdventureComponent } from './components/fishing/fishing-instructor-dashboard/edit-adventure/edit-adventure.component';
 import { ChangeAdventureComponent } from './components/fishing/fishing-instructor-dashboard/change-adventure/change-adventure.component';
+import { CottageOwnerCottagePreviewComponent } from './components/cottages/cottage-owner-dashboard/cottage-owner-cottage-preview/cottage-owner-cottage-preview.component';
+import { CottageOwnerEditCottageComponent } from './components/cottages/cottage-owner-dashboard/cottage-owner-edit-cottage/cottage-owner-edit-cottage.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -36,6 +38,8 @@ const routes: Routes = [
   { path: 'adventure/:id', component: FishingPageComponent },
   { path: 'preview-adventure/:id', component: EditAdventureComponent },
   { path: 'edit-adventure/:id', component: ChangeAdventureComponent },
+  { path: 'preview-cottage/:id', component: CottageOwnerCottagePreviewComponent },
+  { path: 'edit-cottage/:id', component: CottageOwnerEditCottageComponent },
   { path: '', component: HomeComponent },
   { path: '401', component: NotAllowedComponent },
   { path: '**', component: NotFoundComponent },

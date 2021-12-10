@@ -88,6 +88,14 @@ import { ReservationsHistoryComponent } from './components/fishing/fishing-instr
 import { QuickReservationsComponent } from './components/fishing/fishing-instructor-dashboard/quick-reservations/quick-reservations.component';
 import { CreateReservationComponent } from './components/fishing/fishing-instructor-dashboard/create-reservation/create-reservation.component';
 import { InstructorCalendarComponent } from './components/fishing/fishing-instructor-dashboard/instructor-calendar/instructor-calendar.component';
+import { CottageOwnerPersonalInfoComponent } from './components/cottages/cottage-owner-dashboard/cottage-owner-personal-info/cottage-owner-personal-info.component';
+import { CottageOwnerSettingsComponent } from './components/cottages/cottage-owner-dashboard/cottage-owner-settings/cottage-owner-settings.component';
+import { CottageOwnerCottagesComponent } from './components/cottages/cottage-owner-dashboard/cottage-owner-cottages/cottage-owner-cottages.component';
+import { CottageOwnerCottageCardComponent } from './components/cottages/cottage-owner-dashboard/cottage-owner-cottage-card/cottage-owner-cottage-card.component';
+import { CottageOwnerAddCottageComponent } from './components/cottages/cottage-owner-dashboard/cottage-owner-add-cottage/cottage-owner-add-cottage.component';
+import { CottageOwnerCottagePreviewComponent } from './components/cottages/cottage-owner-dashboard/cottage-owner-cottage-preview/cottage-owner-cottage-preview.component';
+import { CottageOwnerEditCottageComponent } from './components/cottages/cottage-owner-dashboard/cottage-owner-edit-cottage/cottage-owner-edit-cottage.component';
+import { CottageOwnerReservationHistoryComponent } from './components/cottages/cottage-owner-dashboard/cottage-owner-reservation-history/cottage-owner-reservation-history.component';
 
 
 @NgModule({
@@ -172,7 +180,15 @@ import { InstructorCalendarComponent } from './components/fishing/fishing-instru
     ReservationsHistoryComponent,
     QuickReservationsComponent,
     CreateReservationComponent,
-    InstructorCalendarComponent
+    InstructorCalendarComponent,
+    CottageOwnerPersonalInfoComponent,
+    CottageOwnerSettingsComponent,
+    CottageOwnerCottagesComponent,
+    CottageOwnerCottageCardComponent,
+    CottageOwnerAddCottageComponent,
+    CottageOwnerCottagePreviewComponent,
+    CottageOwnerEditCottageComponent,
+    CottageOwnerReservationHistoryComponent
   ],
   imports: [
     BrowserModule,
