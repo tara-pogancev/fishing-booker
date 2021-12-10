@@ -1,5 +1,6 @@
 package com.fishingbooker.ftn.bom.cottages;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fishingbooker.ftn.bom.DatabaseEntity;
 import lombok.*;
 
@@ -18,6 +19,7 @@ public class Room extends DatabaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cottageId")
+    @JsonBackReference
     private Cottage cottage;
 
 }

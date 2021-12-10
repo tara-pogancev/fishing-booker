@@ -21,4 +21,8 @@ export class CottageOwnerReservationHistoryComponent implements OnInit {
     document.getElementById('modalUser')?.classList.toggle('is-active');
   }
 
+  createRapport() {
+    alert("Rapport Creation");
+  }
+
 }

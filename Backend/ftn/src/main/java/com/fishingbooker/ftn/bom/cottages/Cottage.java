@@ -1,5 +1,6 @@
 package com.fishingbooker.ftn.bom.cottages;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fishingbooker.ftn.bom.Address;
 import com.fishingbooker.ftn.bom.DatabaseEntity;
 import com.fishingbooker.ftn.bom.Image;
@@ -47,12 +48,15 @@ public class Cottage extends DatabaseEntity {
     private Set<Image> images;
 
     @OneToMany(mappedBy = "cottage", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonManagedReference
     private Set<Room> rooms;
 
     @OneToMany(mappedBy = "cottage")
+    @JsonManagedReference
     private Set<CottageQuickReservation> cottageQuickReservations;
 
     @OneToMany(mappedBy = "cottage")
+    @JsonManagedReference
     private Set<CottageReservation> cottageReservations;
 
     @ManyToMany
@@ -64,9 +68,11 @@ public class Cottage extends DatabaseEntity {
 
     @OneToMany
     @JoinColumn(name = "cottage_id")
+    @JsonManagedReference
     private Set<CottageUtility> utilities;
 
     @OneToMany(mappedBy = "cottage")
+    @JsonManagedReference
     private Set<AvailableCottageTimePeriod> availableTimePeriods;
 
     @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.REFRESH)

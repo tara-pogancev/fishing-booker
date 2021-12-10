@@ -1,5 +1,6 @@
 package com.fishingbooker.ftn.bom.cottages;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fishingbooker.ftn.bom.reservations.QuickReservation;
 import lombok.Data;
 import lombok.Getter;
@@ -23,6 +24,7 @@ public class CottageQuickReservation extends QuickReservation {
 
     @ManyToOne
     @JoinColumn(name = "cottage_id")
+    @JsonBackReference
     private Cottage cottage;
 
 }

@@ -1,6 +1,7 @@
 package com.fishingbooker.ftn.bom.cottages;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fishingbooker.ftn.bom.DatabaseEntity;
 import com.fishingbooker.ftn.bom.Utility;
 import com.fishingbooker.ftn.bom.adventures.Adventure;
@@ -25,6 +26,7 @@ public class CottageUtility extends DatabaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "cottage_id")
+    @JsonBackReference
     private Cottage cottage;
 
 }
