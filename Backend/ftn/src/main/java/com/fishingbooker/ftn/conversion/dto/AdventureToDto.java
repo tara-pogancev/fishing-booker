@@ -4,6 +4,7 @@ import com.fishingbooker.ftn.bom.adventures.Adventure;
 import com.fishingbooker.ftn.bom.adventures.AdventureUtility;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.AdventureDto;
+import com.fishingbooker.ftn.dto.FishingEquipmentDto;
 import com.fishingbooker.ftn.dto.UtilityDto;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -29,6 +30,7 @@ public class AdventureToDto implements Converter<Adventure, AdventureDto> {
         dto.setNavigationalEquipments(source.getFishingEquipments().stream().map(fishingEquipment -> fishingEquipment.getFishingEquipmentName()).collect(Collectors.toSet()));
         dto.setImageUrls(source.getImages().stream().map(image -> image.getUrl()).collect(Collectors.toSet()));
         dto.setInstructorBiography(source.getInstructor().getBiography());
+        dto.setFishingEquipments(source.getFishingEquipments().stream().map(fishingEquipment -> new FishingEquipmentDto(fishingEquipment.getId(),fishingEquipment.getFishingEquipmentName())).collect(Collectors.toList()));
         return dto;
     }
 

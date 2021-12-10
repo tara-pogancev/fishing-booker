@@ -2,6 +2,7 @@ package com.fishingbooker.ftn.dto;
 
 import lombok.Data;
 
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -20,5 +21,6 @@ public class AdventureDto {
     private String ownerName;
     private String instructorBiography;
     private Set<String> imageUrls;
+    private List<FishingEquipmentDto> fishingEquipments;
 
 }

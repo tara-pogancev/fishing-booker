@@ -31,8 +31,8 @@ export class EditAdventureComponent implements OnInit {
       this.adventure = data;
 
       this.navEquipment = '';
-      this.adventure.navigationalEquipments.forEach((equipment) => {
-        this.navEquipment += equipment + ', ';
+      this.adventure.fishingEquipments.forEach((equipment) => {
+        this.navEquipment += equipment.fishingEquipmentName + ', ';
       });
       this.navEquipment = this.navEquipment.slice(0, -2);
       if (this.navEquipment == '') this.navEquipment = 'None';

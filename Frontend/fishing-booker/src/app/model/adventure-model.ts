@@ -1,3 +1,4 @@
+import { FishingEquipment } from './fishing-equipment-model';
 import { Utility } from './utility-model';
 
 export class Adventure {
@@ -14,6 +15,7 @@ export class Adventure {
     public utilities: Utility[] = [],
     public ownerName: string = '',
     public instructorBiography: string = '',
-    public imageUrls: string[] = []
+    public imageUrls: string[] = [],
+    public fishingEquipments:FishingEquipment[]=[]
   ) {}
 }
