@@ -51,7 +51,7 @@ public class Adventure extends DatabaseEntity {
     @OneToMany(mappedBy = "adventure",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private Set<AdventureReservation> adventureReservations;
 
-    @ManyToMany(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.REFRESH,fetch = FetchType.EAGER)
     @JoinTable(
             name = "adventure_rules",
             joinColumns = @JoinColumn(name = "adventure_id"),

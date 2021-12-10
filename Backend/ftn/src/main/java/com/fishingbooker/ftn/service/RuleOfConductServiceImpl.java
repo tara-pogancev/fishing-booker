@@ -2,6 +2,7 @@ package com.fishingbooker.ftn.service;
 
 import com.fishingbooker.ftn.bom.RuleOfConduct;
 import com.fishingbooker.ftn.dto.RuleDto;
+import com.fishingbooker.ftn.repository.RuleOfConductRepository;
 import com.fishingbooker.ftn.service.interfaces.RuleOfConductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,8 @@ import java.util.stream.Collectors;
 @Transactional
 @RequiredArgsConstructor
 public class RuleOfConductServiceImpl implements RuleOfConductService {
+
+    private final RuleOfConductRepository ruleRepository;
     @Override
     public List<RuleOfConduct> createRulesFromString(List<RuleDto> rules) {
         if (rules==null){
@@ -25,11 +28,13 @@ public class RuleOfConductServiceImpl implements RuleOfConductService {
     }
     private RuleOfConduct createRuleObject(RuleDto ruleDto){
         if (ruleDto.getId()==-1){
-            return new RuleOfConduct(ruleDto.getRuleDescription());
+            RuleOfConduct ruleOfConduct=new RuleOfConduct(ruleDto.getRuleDescription());
+            return ruleRepository.save(ruleOfConduct);
         }else{
             RuleOfConduct ruleOfConduct=new RuleOfConduct();
             ruleOfConduct.setId(ruleDto.getId());
             ruleOfConduct.setRuleDescription(ruleDto.getRuleDescription());
+            ruleRepository.save(ruleOfConduct);
             return ruleOfConduct;
         }
 
