@@ -1,0 +1,10 @@
+.table tr td button {
+    color: #f87171;
+    cursor: pointer;
+    border: 0px;
+    background-color:transparent;
+    font-size: large;
+  }
+.table tbody tr td button:hover{
+    color: #f83b3b;
+  }
