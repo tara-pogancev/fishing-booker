@@ -1,31 +1,51 @@
-<div class="columns">
-<div class="column">
-    <div class="field">
-        <label class="label">Choose Cottage </label>
-        <select style="height:40px;width: 200px;" [(ngModel)]="selectedCottageId">
-            <option value="-1">Select Cottage</option>
-            <option *ngFor="let cottage of cottages" value={{cottage.id}}>{{cottage.name}}</option>
-        </select>
-    </div>
-</div></div>
-
-<div class="columns">
-    <div class="column is-4">
-        <div class="field">
-            <label class="label">Select Start Date </label>
-            <input type="date" style="height:40px;width: 200px;" [(ngModel)]="startDate"/>
+<div class="content is-medium">
+    <h1 class="title">Available Time Periods</h1>
+    <div class="columns">
+        <div class="column">
+            <div class="field">
+                <label class="label">Choose Cottage </label>
+                <select style="height:40px;width: 200px;" [(ngModel)]="selectedCottageId" (change)="onChange($event)">
+                    <option value="-1">Select Cottage</option>
+                    <option *ngFor="let cottage of cottages" value={{cottage.id}}>{{cottage.name}}</option>
+                </select>
+            </div>
         </div>
     </div>
 
-    <div class="column">
-        <div class="field">
-            <label class="label">Select End Date </label>
-            <input type="date" style="height:40px;width: 200px;" [(ngModel)]="endDate"/>
+    <div class="columns">
+        <div class="column is-4">
+            <div class="field">
+                <label class="label">Select Start Date </label>
+                <input type="date" style="height:40px;width: 200px;" [(ngModel)]="startDate" />
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="field">
+                <label class="label">Select End Date </label>
+                <input type="date" style="height:40px;width: 200px;" [(ngModel)]="endDate" />
+            </div>
+        </div>
+        <div class="column mt-5">
+            <button class="button is-success" (click)="createAvailablePeriod()">Create Available Period</button>
         </div>
     </div>
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th><abbr title="Cottage">Cottage</abbr></th>
+            <th><abbr title="Start Date">Start Date</abbr></th>
+            <th><abbr title="End Date">End Date</abbr></th>
+          </tr>
+        </thead>
+  
+        <tr *ngFor="let availablePeriod of availablePeriods">
+          <td>
+            <a href="preview-cottage/{{ selectedCottageId }}">{{ selectedCottage.name }}</a>
+          </td>
+          <td>{{ this.pipe.transform(availablePeriod.startDate, 'dd/MM/yyyy') }}</td>
+          <td>{{ this.pipe.transform(availablePeriod.endDate, 'dd/MM/yyyy') }}</td>
+        </tr>
+    </table>
 </div>
-
-<div class="columns is-mobile">
-<div class="column mt-6 is-offset-4">
-    <button class="button is-success" (click)="createAvailablePeriod()">Create Available Period</button>
-</div></div>

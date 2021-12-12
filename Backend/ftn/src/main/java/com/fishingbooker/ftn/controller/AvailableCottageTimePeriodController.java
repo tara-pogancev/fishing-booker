@@ -18,7 +18,7 @@ public class AvailableCottageTimePeriodController {
     private final AvailableCottageTimePeriodService availableCottageTimePeriodService;
 
     @GetMapping()
-    public List<AvailableCottageTimePeriod> get(){
+    public List<AvailableCottageTimePeriodDto> get(){
         return availableCottageTimePeriodService.findAll();
     }
 

@@ -6,7 +6,7 @@ import com.fishingbooker.ftn.dto.AvailableCottageTimePeriodDto;
 import java.util.List;
 
 public interface AvailableCottageTimePeriodService {
-    List<AvailableCottageTimePeriod> findAll();
+    List<AvailableCottageTimePeriodDto> findAll();
 
     AvailableCottageTimePeriod create(AvailableCottageTimePeriodDto availableCottageTimePeriodDto);
 }

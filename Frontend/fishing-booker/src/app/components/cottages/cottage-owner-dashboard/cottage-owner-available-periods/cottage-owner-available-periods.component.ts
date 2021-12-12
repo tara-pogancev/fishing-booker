@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit, Input } from '@angular/core';
 import { AvailableCottageTimePeriod } from 'src/app/model/available-cottage-time-period';
 import { Cottage } from 'src/app/model/cottage-model';
@@ -13,8 +14,12 @@ export class CottageOwnerAvailablePeriodsComponent implements OnInit {
   @Input() cottageOwner: any;
   cottages: Cottage[] = [];
   selectedCottageId: number = -1;
+  selectedCottage: Cottage = new Cottage;
   startDate: any = null;
   endDate: any = null;
+  availablePeriods: AvailableCottageTimePeriod[] = [];
+  allAvailablePeriods: AvailableCottageTimePeriod[] = [];
+  pipe = new DatePipe('en-US');
 
   constructor(private cottageService: CottageService, private availableCottageTimePeriodService: AvailableCottageTimePeriodService) { }
 
@@ -23,7 +28,13 @@ export class CottageOwnerAvailablePeriodsComponent implements OnInit {
       (data) => {
         this.cottages = data;
       }
-    )
+    );
+    this.availableCottageTimePeriodService.findAll().subscribe(
+      (data) => {
+        //this.availablePeriods = data;
+        this.allAvailablePeriods = data;
+      }
+    );
   }
 
   createAvailablePeriod() {
@@ -31,11 +42,7 @@ export class CottageOwnerAvailablePeriodsComponent implements OnInit {
       alert('Please fill in all fields.')
       return;
     }
-    let selectedCottage = this.cottages.find(x => x.id == this.selectedCottageId);
-    if (selectedCottage == undefined) {
-      selectedCottage = new Cottage;
-    }
-
+    
     let startDate = new Date(this.startDate);
     let endDate = new Date(this.endDate);
     if (startDate > endDate) {
@@ -44,6 +51,22 @@ export class CottageOwnerAvailablePeriodsComponent implements OnInit {
     }
     let availableCottageTimePeriod: AvailableCottageTimePeriod = new AvailableCottageTimePeriod(this.selectedCottageId, startDate, endDate);
     this.availableCottageTimePeriodService.addAvailableCottageTimePeriod(availableCottageTimePeriod).subscribe();
+    this.allAvailablePeriods.push(availableCottageTimePeriod);
+    this.availablePeriods.push(availableCottageTimePeriod);
+    alert('Available period successfuly added');
   }
 
+  onChange(event: any) {
+    let selectedCottage = this.cottages.find(x => x.id == this.selectedCottageId);
+    if (selectedCottage == undefined) {
+      this.selectedCottage = new Cottage;
+    }
+    else {
+      this.selectedCottage = selectedCottage;
+    }
+
+    this.availablePeriods = this.allAvailablePeriods.filter(x => x.cottageId == this.selectedCottageId);
+    console.log(this.allAvailablePeriods);
+    console.log(this.allAvailablePeriods.filter(x => x.cottageId == this.selectedCottageId));
+  }
 }

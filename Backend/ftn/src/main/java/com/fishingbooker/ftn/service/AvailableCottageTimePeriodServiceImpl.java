@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -18,10 +19,11 @@ import java.util.List;
 public class AvailableCottageTimePeriodServiceImpl implements AvailableCottageTimePeriodService {
     private final AvailableCottageTimePeriodRepository availableCottageTimePeriodRepository;
     private final CottageService cottageService;
+    private final DataConverter converter;
 
     @Override
-    public List<AvailableCottageTimePeriod> findAll() {
-        return availableCottageTimePeriodRepository.findAll();
+    public List<AvailableCottageTimePeriodDto> findAll() {
+        return converter.convert(availableCottageTimePeriodRepository.findAll(), AvailableCottageTimePeriodDto.class);
     }
 
     @Override
