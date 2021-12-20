@@ -1,10 +1,8 @@
 package com.fishingbooker.ftn.dto;
 
+import com.fishingbooker.ftn.bom.AvailableTimePeriod;
 import com.fishingbooker.ftn.bom.boats.BoatType;
 import lombok.Data;
-import org.springframework.core.io.ByteArrayResource;
-
-import java.util.List;
 import java.util.Set;
 
 @Data
@@ -28,5 +26,6 @@ public class BoatDto {
     private Set<UtilityDto> utilities;
     private String ownerName;
     private Set<String> imageUrls;
+    private Set<AvailableTimePeriod> availableTimePeriods;
 
 }

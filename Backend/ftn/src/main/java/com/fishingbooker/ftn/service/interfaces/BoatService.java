@@ -3,6 +3,7 @@ package com.fishingbooker.ftn.service.interfaces;
 import com.fishingbooker.ftn.bom.boats.Boat;
 import com.fishingbooker.ftn.dto.BoatDto;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface BoatService {
@@ -12,4 +13,7 @@ public interface BoatService {
     BoatDto findById(long id);
 
     Long delete(Long id);
+
+    List<Boat> filterByDate(LocalDate startDate, LocalDate endDate);
+
 }

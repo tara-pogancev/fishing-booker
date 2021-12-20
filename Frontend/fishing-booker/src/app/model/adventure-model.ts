@@ -1,3 +1,4 @@
+import { AvailableTimePeriod } from './available-time-period';
 import { FishingEquipment } from './fishing-equipment-model';
 import { Utility } from './utility-model';
 
@@ -16,6 +17,7 @@ export class Adventure {
     public ownerName: string = '',
     public instructorBiography: string = '',
     public imageUrls: string[] = [],
-    public fishingEquipments:FishingEquipment[]=[]
+    public fishingEquipments: FishingEquipment[] = [],
+    public availableTimePeriods: AvailableTimePeriod[] = []
   ) {}
 }

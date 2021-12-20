@@ -33,6 +33,7 @@ export class FishingPageComponent implements OnInit {
       });
       this.navEquipment = this.navEquipment.slice(0, -2);
       if (this.navEquipment == '') this.navEquipment = 'None';
+
     });
   }
 }

@@ -1,5 +1,6 @@
 package com.fishingbooker.ftn.dto;
 
+import com.fishingbooker.ftn.bom.AvailableTimePeriod;
 import lombok.Data;
 
 import java.util.Set;
@@ -20,5 +21,6 @@ public class CottageDto {
     private String ownerName;
     private String roomOverview;
     private Set<String> imageUrls;
+    private Set<AvailableTimePeriod> availableTimePeriods;
 
 }

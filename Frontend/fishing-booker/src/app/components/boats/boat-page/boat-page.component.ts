@@ -32,6 +32,8 @@ export class BoatPageComponent implements OnInit {
       });
       this.navEquipment = this.navEquipment.slice(0, -2);
       if (this.navEquipment == '') this.navEquipment = 'None';
+
+      console.log(data);
     });
   }
 }

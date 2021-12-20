@@ -1,3 +1,4 @@
+import { AvailableTimePeriod } from './available-time-period';
 import { Utility } from './utility-model';
 
 export class Boat {
@@ -19,6 +20,7 @@ export class Boat {
     public fishingEquipment: string = '',
     public utilities: Utility[] = [],
     public ownerName: string = '',
-    public imageUrls: string[] = []
+    public imageUrls: string[] = [],
+    public availableTimePeriods: AvailableTimePeriod[] = []
   ) {}
 }

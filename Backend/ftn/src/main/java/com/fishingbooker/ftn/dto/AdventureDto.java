@@ -1,5 +1,7 @@
 package com.fishingbooker.ftn.dto;
 
+import com.fishingbooker.ftn.bom.AvailableTimePeriod;
+import com.fishingbooker.ftn.bom.adventures.AvailableInstructorTimePeriod;
 import lombok.Data;
 
 import java.util.List;
@@ -22,5 +24,6 @@ public class AdventureDto {
     private String instructorBiography;
     private Set<String> imageUrls;
     private List<FishingEquipmentDto> fishingEquipments;
+    private Set<AvailableTimePeriod> availableTimePeriods;
 
 }

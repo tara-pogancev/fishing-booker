@@ -1,6 +1,7 @@
 package com.fishingbooker.ftn.bom.adventures;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fishingbooker.ftn.bom.AvailableTimePeriod;
 import com.fishingbooker.ftn.bom.users.FishingInstructor;
 import lombok.Data;
@@ -20,6 +21,7 @@ public class AvailableInstructorTimePeriod extends AvailableTimePeriod {
 
     @ManyToOne
     @JoinColumn(name = "instructor", nullable = false)
+    @JsonBackReference
     private FishingInstructor instructor;
 
 }

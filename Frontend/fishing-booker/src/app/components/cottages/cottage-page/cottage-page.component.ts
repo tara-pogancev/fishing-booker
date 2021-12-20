@@ -16,8 +16,7 @@ export class CottagePageComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private cottageService: CottageService,
-    private imageService: ImageService
+    private cottageService: CottageService
   ) {}
 
   ngOnInit(): void {
@@ -27,5 +26,4 @@ export class CottagePageComponent implements OnInit {
       this.cottage = data;
     });
   }
-
 }

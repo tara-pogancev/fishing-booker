@@ -33,7 +33,11 @@
               </button>
             </div>
             <div>
-              <button class="button is-success is-large">Book now</button>
+              <a
+                class="button is-success is-large"
+                href="/client-db/FISHING_RESERVATIONS"
+                >Book now</a
+              >
             </div>
           </div>
         </div>
@@ -85,7 +89,10 @@
     </div>
     <hr />
     <div>
-      <entity-calendar></entity-calendar>
+      <entity-calendar
+        *ngIf="adventure.id != 0"
+        [availableDates]="adventure.availableTimePeriods"
+      ></entity-calendar>
     </div>
     <h3>Reviews</h3>
     <review-card></review-card>

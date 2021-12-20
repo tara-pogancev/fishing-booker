@@ -1,12 +1,10 @@
 package com.fishingbooker.ftn.conversion.dto;
 
+import com.fishingbooker.ftn.bom.AvailableTimePeriod;
 import com.fishingbooker.ftn.bom.Image;
 import com.fishingbooker.ftn.bom.RuleOfConduct;
 import com.fishingbooker.ftn.bom.Utility;
-import com.fishingbooker.ftn.bom.boats.Boat;
-import com.fishingbooker.ftn.bom.boats.BoatUtility;
-import com.fishingbooker.ftn.bom.boats.NavigationalEquipment;
-import com.fishingbooker.ftn.bom.boats.NavigationalEquipmentEnum;
+import com.fishingbooker.ftn.bom.boats.*;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.BoatDto;
 import com.fishingbooker.ftn.dto.UtilityDto;

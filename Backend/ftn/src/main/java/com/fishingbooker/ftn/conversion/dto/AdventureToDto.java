@@ -1,7 +1,9 @@
 package com.fishingbooker.ftn.conversion.dto;
 
+import com.fishingbooker.ftn.bom.AvailableTimePeriod;
 import com.fishingbooker.ftn.bom.adventures.Adventure;
 import com.fishingbooker.ftn.bom.adventures.AdventureUtility;
+import com.fishingbooker.ftn.bom.users.FishingInstructor;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.AdventureDto;
 import com.fishingbooker.ftn.dto.FishingEquipmentDto;
@@ -31,7 +33,16 @@ public class AdventureToDto implements Converter<Adventure, AdventureDto> {
         dto.setImageUrls(source.getImages().stream().map(image -> image.getUrl()).collect(Collectors.toSet()));
         dto.setInstructorBiography(source.getInstructor().getBiography());
         dto.setFishingEquipments(source.getFishingEquipments().stream().map(fishingEquipment -> new FishingEquipmentDto(fishingEquipment.getId(),fishingEquipment.getFishingEquipmentName())).collect(Collectors.toList()));
+        dto.setAvailableTimePeriods(getAvailableTimePeriods(source.getInstructor()));
         return dto;
+    }
+
+    private Set<AvailableTimePeriod> getAvailableTimePeriods(FishingInstructor instructor) {
+        Set<AvailableTimePeriod> periods = new HashSet<>();
+        for (AvailableTimePeriod period : instructor.getAvailableTimePeriods()) {
+            periods.add(period);
+        }
+        return periods;
     }
 
     private Set<UtilityDto> getUtilityDtoList(Set<AdventureUtility> source) {

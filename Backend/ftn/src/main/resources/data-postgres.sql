@@ -264,5 +264,42 @@ INSERT INTO public.adventure_images(adventure_id, image_id)	VALUES (3, 18);
 INSERT INTO public.adventure_images(adventure_id, image_id)	VALUES (4, 19);
 INSERT INTO public.adventure_images(adventure_id, image_id)	VALUES (4, 20);
 
---System properties
+-- SYSTEM PROPERTIES
+
 INSERT INTO public.system_properties(gold_points, income_percentage, reservation_points, silver_points) VALUES (1500, 10, 15, 750);
+
+-- AVAILABLE TIME PERIOD
+
+INSERT INTO public.available_time_period(start_date, end_date)	VALUES ('20211205 10:00:00 AM', '20211225 10:00:00 AM');
+INSERT INTO public.available_time_period(start_date, end_date)	VALUES ('20220105 10:00:00 AM', '20220125 10:00:00 AM');
+INSERT INTO public.available_time_period(start_date, end_date)	VALUES ('20220105 10:00:00 AM', '20220125 10:00:00 AM');
+INSERT INTO public.available_time_period(start_date, end_date)	VALUES ('20211205 10:00:00 AM', '20211225 10:00:00 AM');
+INSERT INTO public.available_time_period(start_date, end_date)	VALUES ('20211205 10:00:00 AM', '20211225 10:00:00 AM');
+INSERT INTO public.available_time_period(start_date, end_date)	VALUES ('20220105 10:00:00 AM', '20220125 10:00:00 AM');
+INSERT INTO public.available_time_period(start_date, end_date)	VALUES ('20220105 10:00:00 AM', '20220125 10:00:00 AM');
+INSERT INTO public.available_time_period(start_date, end_date)	VALUES ('20211205 10:00:00 AM', '20211225 10:00:00 AM');
+INSERT INTO public.available_time_period(start_date, end_date)	VALUES ('20211205 10:00:00 AM', '20211210 10:00:00 AM');
+INSERT INTO public.available_time_period(start_date, end_date)	VALUES ('20211225 10:00:00 AM', '20211230 10:00:00 AM');
+INSERT INTO public.available_time_period(start_date, end_date)	VALUES ('20220105 10:00:00 AM', '20220110 10:00:00 AM');
+INSERT INTO public.available_time_period(start_date, end_date)	VALUES ('20220113 10:00:00 AM', '20220124 10:00:00 AM');
+
+-- BOAT AVAILABILITY
+
+INSERT INTO public.available_boat_time_period(id, boat)	VALUES (1, 1);
+--INSERT INTO public.available_boat_time_period(id, boat)	VALUES (2, 2);
+--INSERT INTO public.available_boat_time_period(id, boat)	VALUES (3, 3);
+--INSERT INTO public.available_boat_time_period(id, boat)	VALUES (4, 4);
+
+-- COTTAGE AVAILABILITY
+
+INSERT INTO public.available_cottage_time_period(id, cottage)	VALUES (5, 1);
+INSERT INTO public.available_cottage_time_period(id, cottage)	VALUES (6, 2);
+INSERT INTO public.available_cottage_time_period(id, cottage)	VALUES (7, 3);
+INSERT INTO public.available_cottage_time_period(id, cottage)	VALUES (8, 4);
+
+-- FISHING AVAILABILITY
+
+INSERT INTO public.available_instructor_time_period(id, instructor)	VALUES (9, 4);
+INSERT INTO public.available_instructor_time_period(id, instructor)	VALUES (10, 4);
+INSERT INTO public.available_instructor_time_period(id, instructor)	VALUES (11, 4);
+INSERT INTO public.available_instructor_time_period(id, instructor)	VALUES (12, 4);

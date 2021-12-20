@@ -1,4 +1,6 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Client } from 'src/app/model/client-model';
 import { UserModel } from 'src/app/model/user-model';
 import { ClientService } from 'src/app/service/client.service';
@@ -16,20 +18,21 @@ export class ClientDashboardComponent implements OnInit {
 
   constructor(
     private clientService: ClientService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private route: ActivatedRoute,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
     this.clientService.getCurrentClient().subscribe(
       (data: Client) => {
         this.client = data;
+        if (this.route.snapshot.paramMap.get('page')) {
+          this.activeTab = this.route.snapshot.paramMap.get('page')!;
+        }
       },
       (err) => {
-        if (err.status == 401) {
-          window.location.href = '/401';
-        }
-        if (err.status == 404) {
-          this.loginService.logout();
+        if (err.status == 403 || err.status == 401) {
           window.location.href = '/login';
         }
       }
@@ -38,5 +41,6 @@ export class ClientDashboardComponent implements OnInit {
 
   changeTab(tabName: string) {
     this.activeTab = tabName;
+    this.location.go('/client-db/' + tabName);
   }
 }

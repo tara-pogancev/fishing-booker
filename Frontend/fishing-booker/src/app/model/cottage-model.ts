@@ -1,3 +1,5 @@
+import { NONE_TYPE } from '@angular/compiler';
+import { AvailableTimePeriod } from './available-time-period';
 import { Utility } from './utility-model';
 
 export class Cottage {
@@ -14,7 +16,8 @@ export class Cottage {
     public rooms: Room[] = [],
     public ownerName: string = '',
     public roomOverview: string = '',
-    public imageUrls: string[] = []
+    public imageUrls: string[] = [],
+    public availableTimePeriods: AvailableTimePeriod[] = []
   ) {}
 }
 

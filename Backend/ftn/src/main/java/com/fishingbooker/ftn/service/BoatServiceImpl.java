@@ -1,5 +1,6 @@
 package com.fishingbooker.ftn.service;
 
+import com.fishingbooker.ftn.bom.AvailableTimePeriod;
 import com.fishingbooker.ftn.bom.boats.Boat;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.BoatDto;
@@ -12,6 +13,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -41,5 +44,20 @@ public class BoatServiceImpl implements BoatService {
         boatRepository.deleteById(id);
         return id;
     }
+
+    @Override
+    public List<Boat> filterByDate(LocalDate startDate, LocalDate endDate) {
+        List<Boat> boats = new ArrayList<>();
+        for (Boat boat : findAll()) {
+            for (AvailableTimePeriod period : boat.getAvailableTimePeriods()) {
+                if (period.getStartDate().isBefore(startDate) && period.getEndDate().isAfter(endDate)) {
+                    boats.add(boat);
+                    break;
+                }
+            }
+        }
+        return boats;
+    }
+
 
 }
