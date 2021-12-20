@@ -27,6 +27,11 @@ import { CottageOwnerEditCottageComponent } from './components/cottages/cottage-
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'boats', component: BrowseBoatsComponent },
+  { path: 'cottages', component: BrowseCottagesComponent },
+  { path: 'fishing', component: BrowseFishingComponent },
+  { path: 'special-offers', component: BrowseSpecialOffersComponent },
+  { path: 'reviews', component: ReviewsPageComponent },
   { path: 'thank-you-registration', component: ThankYouRegistrationComponent },
   { path: 'boat-owner-db', component: BoatOwnerDashboardComponent },
   { path: 'admin-db', component: AdminDashboardComponent },
