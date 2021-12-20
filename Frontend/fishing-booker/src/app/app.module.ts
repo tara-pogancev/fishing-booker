@@ -97,6 +97,9 @@ import { CottageOwnerCottagePreviewComponent } from './components/cottages/cotta
 import { CottageOwnerEditCottageComponent } from './components/cottages/cottage-owner-dashboard/cottage-owner-edit-cottage/cottage-owner-edit-cottage.component';
 import { CottageOwnerReservationHistoryComponent } from './components/cottages/cottage-owner-dashboard/cottage-owner-reservation-history/cottage-owner-reservation-history.component';
 import { CottageOwnerAvailablePeriodsComponent } from './components/cottages/cottage-owner-dashboard/cottage-owner-available-periods/cottage-owner-available-periods.component';
+import { NewBoatReservationComponent } from './components/client/new-boat-reservation/new-boat-reservation.component';
+import { NewCottageReservationComponent } from './components/client/new-cottage-reservation/new-cottage-reservation.component';
+import { NewAdventureReservationComponent } from './components/client/new-adventure-reservation/new-adventure-reservation.component';
 
 
 @NgModule({
@@ -190,7 +193,10 @@ import { CottageOwnerAvailablePeriodsComponent } from './components/cottages/cot
     CottageOwnerCottagePreviewComponent,
     CottageOwnerEditCottageComponent,
     CottageOwnerReservationHistoryComponent,
-    CottageOwnerAvailablePeriodsComponent
+    CottageOwnerAvailablePeriodsComponent,
+    NewBoatReservationComponent,
+    NewCottageReservationComponent,
+    NewAdventureReservationComponent
   ],
   imports: [
     BrowserModule,

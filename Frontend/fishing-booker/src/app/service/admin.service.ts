@@ -8,9 +8,7 @@ import { LoginService } from './login.service';
 })
 export class AdminService {
   
-
   url = server + 'api/admin';
-
 
   constructor(private _http: HttpClient, private loginService: LoginService) {}
 

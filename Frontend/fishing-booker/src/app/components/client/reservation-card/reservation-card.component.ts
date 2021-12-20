@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { EntityModel } from 'src/app/model/entity-moedl';
 import { Utility } from 'src/app/model/utility-model';
 import { ImageService } from 'src/app/service/image.service';
 
@@ -8,6 +9,8 @@ import { ImageService } from 'src/app/service/image.service';
   styleUrls: ['./reservation-card.component.css'],
 })
 export class ReservationCardComponent implements OnInit {
+  @Output() doNewReservation: EventEmitter<EntityModel> = new EventEmitter();
+
   @Input() name: string = '';
   @Input() description: string = '';
   @Input() address: string = '';
@@ -25,7 +28,7 @@ export class ReservationCardComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.imageUrls.length != 0) {
-      this.image=this.imageUrls[0];
+      this.image = this.imageUrls[0];
     } else {
       this.image = 'assets/images/placeholder.jpg';
     }
@@ -50,5 +53,10 @@ export class ReservationCardComponent implements OnInit {
     this.imageService.getImage(id).subscribe((data) => {
       this.createImageFromBlob(data);
     });
+  }
+
+  newReservation() {
+    let entity = new EntityModel(this.id, this.type);
+    this.doNewReservation.emit(entity);
   }
 }

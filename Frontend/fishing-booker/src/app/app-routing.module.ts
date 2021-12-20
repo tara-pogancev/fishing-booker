@@ -23,11 +23,26 @@ import { EditAdventureComponent } from './components/fishing/fishing-instructor-
 import { ChangeAdventureComponent } from './components/fishing/fishing-instructor-dashboard/change-adventure/change-adventure.component';
 import { CottageOwnerCottagePreviewComponent } from './components/cottages/cottage-owner-dashboard/cottage-owner-cottage-preview/cottage-owner-cottage-preview.component';
 import { CottageOwnerEditCottageComponent } from './components/cottages/cottage-owner-dashboard/cottage-owner-edit-cottage/cottage-owner-edit-cottage.component';
+import { NewBoatReservationComponent } from './components/client/new-boat-reservation/new-boat-reservation.component';
+import { NewCottageReservationComponent } from './components/client/new-cottage-reservation/new-cottage-reservation.component';
+import { NewAdventureReservationComponent } from './components/client/new-adventure-reservation/new-adventure-reservation.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'boats', component: BrowseBoatsComponent },
+  {
+    path: 'resertvation/new/boat/:id/:startDate/:endDate/:people',
+    component: NewBoatReservationComponent,
+  },
+  {
+    path: 'resertvation/new/adventure/:id/:startDate/:endDate/:people',
+    component: NewAdventureReservationComponent,
+  },
+  {
+    path: 'resertvation/new/cottage/:id/:startDate/:endDate/:people',
+    component: NewCottageReservationComponent,
+  },
   { path: 'cottages', component: BrowseCottagesComponent },
   { path: 'fishing', component: BrowseFishingComponent },
   { path: 'special-offers', component: BrowseSpecialOffersComponent },

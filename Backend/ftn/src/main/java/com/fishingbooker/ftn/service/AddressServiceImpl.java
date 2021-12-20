@@ -9,7 +9,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -46,6 +48,15 @@ public class AddressServiceImpl implements AddressService {
     @Transactional
     public void delete(Long id) {
         addressRepository.deleteById(id);
+    }
+
+    @Override
+    public Set<String> findAllCountries() {
+        Set<String> countries = new HashSet<>();
+        for (Address address : findAll()) {
+            countries.add(address.getCountry());
+        }
+        return countries;
     }
 
 }

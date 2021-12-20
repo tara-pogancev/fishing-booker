@@ -38,13 +38,8 @@
             <strong class="mr-1 star-text">{{ rating }} </strong>
             <i class="fa fa-star"></i>
             <div class="buttons ml-5">
-              <a
-                class="button is-success is-outlined"
-                href="{{ type }}/{{ id }}"
-              >
-                Preview
-              </a>
-              <button class="button is-success">Book Now</button>
+              <button class="button is-success is-outlined">Preview</button>
+              <button class="button is-success" (click)="newReservation()">Book Now</button>
             </div>
           </div>
         </div>

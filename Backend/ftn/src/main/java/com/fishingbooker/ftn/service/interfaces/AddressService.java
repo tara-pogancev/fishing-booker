@@ -4,6 +4,7 @@ import com.fishingbooker.ftn.bom.Address;
 import com.fishingbooker.ftn.dto.ApplicationUserDto;
 
 import java.util.List;
+import java.util.Set;
 
 public interface AddressService {
 
@@ -16,5 +17,7 @@ public interface AddressService {
     Address update(Address address);
 
     void delete(Long id);
+
+    Set<String> findAllCountries();
 
 }

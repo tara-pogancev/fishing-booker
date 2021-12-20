@@ -2,8 +2,7 @@
   <h1 class="title">Boat Reservations</h1>
   <hr />
   <div>
-    <reservation-search></reservation-search>
-    <search-field (doSearch)="search($event)"></search-field>
+    <reservation-search (doSearch)="search($event)"></reservation-search>
     <hr />
     <div *ngIf="boats.length == 0">
       <p>No Boats Found.</p>
@@ -20,6 +19,7 @@
         [id]="boat.id"
         [imageUrls]="boat.imageUrls"
         type="boat"
+        (doNewReservation)="newReservation($event)"
       ></reservation-card>
     </div>
   </div>

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequiredArgsConstructor
@@ -22,6 +23,11 @@ public class AddressController {
     public ResponseEntity<List<Address>> findAll() {
         List<Address> dtoList = addressService.findAll();
         return new ResponseEntity<List<Address>>(dtoList, HttpStatus.OK);
+    }
+
+    @GetMapping("/countries")
+    public ResponseEntity<Set<String>> findAllCountries() {
+        return new ResponseEntity<>(addressService.findAllCountries(), HttpStatus.OK);
     }
 
 }
