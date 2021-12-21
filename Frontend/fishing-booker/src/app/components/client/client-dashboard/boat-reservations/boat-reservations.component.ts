@@ -71,4 +71,7 @@ export class BoatReservationsComponent implements OnInit {
       this.people;
   }
 
+  previewEntity(entity: EntityModel) {
+    window.location.href = '/' + entity.type + '/' + entity.id;
+  }
 }

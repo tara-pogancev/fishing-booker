@@ -10,6 +10,7 @@ import { ImageService } from 'src/app/service/image.service';
 })
 export class ReservationCardComponent implements OnInit {
   @Output() doNewReservation: EventEmitter<EntityModel> = new EventEmitter();
+  @Output() doPreviewEntity: EventEmitter<EntityModel> = new EventEmitter();
 
   @Input() name: string = '';
   @Input() description: string = '';
@@ -58,5 +59,10 @@ export class ReservationCardComponent implements OnInit {
   newReservation() {
     let entity = new EntityModel(this.id, this.type);
     this.doNewReservation.emit(entity);
+  }
+
+  previewEntity() {
+    let entity = new EntityModel(this.id, this.type);
+    this.doPreviewEntity.emit(entity);
   }
 }

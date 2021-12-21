@@ -18,6 +18,8 @@
         [id]="adventure.id"
         [imageUrls]="adventure.imageUrls"
         type="adventure"
+        (doNewReservation)="newReservation($event)"
+        (doPreviewEntity)="previewEntity($event)"
       ></reservation-card>
     </div>
   </div>

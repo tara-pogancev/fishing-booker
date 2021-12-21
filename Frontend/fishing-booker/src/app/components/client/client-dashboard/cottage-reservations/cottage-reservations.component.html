@@ -19,6 +19,8 @@
         [id]="cottage.id"
         [imageUrls]="cottage.imageUrls"
         type="cottage"
+        (doNewReservation)="newReservation($event)"
+        (doPreviewEntity)="previewEntity($event)"
       ></reservation-card>
     </div>
   </div>
