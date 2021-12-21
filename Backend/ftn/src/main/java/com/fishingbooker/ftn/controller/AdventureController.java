@@ -40,13 +40,6 @@ public class AdventureController {
         return dto;
     }
 
-    // Post because of request body
-    @PostMapping("/search")
-    public List<AdventureDto> getSearch(@RequestBody EntitySearchDto filterDto) {
-        List<Adventure> adventures = adventureService.findFiltered(filterDto);
-        return converter.convert(adventures, AdventureDto.class);
-    }
-
     @DeleteMapping("/{id}")
     public boolean deleteAdventure(@PathVariable("id") Long id) {
         return adventureService.deleteAdventure(id);

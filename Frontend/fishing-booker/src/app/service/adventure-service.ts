@@ -9,11 +9,9 @@ import { LoginService } from './login.service';
   providedIn: 'root',
 })
 export class AdvetnureService {
-  
-  
   url = server + 'browse/adventures';
 
-  constructor(private _http: HttpClient,private loginService:LoginService) {}
+  constructor(private _http: HttpClient, private loginService: LoginService) {}
 
   findById(id: number) {
     return this._http.get<any>(this.url + '/' + id);
@@ -23,35 +21,34 @@ export class AdvetnureService {
     return this._http.get<any>(this.url);
   }
 
-  createAdventure(adventure:CreateAdventureModel){
-    const url=server+'api/adventures/add-adventure'
-    const headers=this.loginService.getHeaders();
-    adventure.ownerId=this.loginService.getCurrentUser().id;
-    return this._http.post<any>(url,adventure,{headers:headers});
+  createAdventure(adventure: CreateAdventureModel) {
+    const url = server + 'api/adventures/add-adventure';
+    const headers = this.loginService.getHeaders();
+    adventure.ownerId = this.loginService.getCurrentUser().id;
+    return this._http.post<any>(url, adventure, { headers: headers });
   }
 
-  getInstructorAdventures(){
-    const url=server+'api/adventures/get-instructor-adventures';
-    const headers=this.loginService.getHeaders();
-    const instructorId=this.loginService.getCurrentUser().id;
-    return this._http.get<any>(url+'/'+instructorId,{headers:headers});
-  }
-  
-  getSearch(filter : SearchFilter) {
-    const url=server+'api/adventures/search';
+  getInstructorAdventures() {
+    const url = server + 'api/adventures/get-instructor-adventures';
     const headers = this.loginService.getHeaders();
-    return this._http.post<any>(url,filter,{headers:headers});
+    const instructorId = this.loginService.getCurrentUser().id;
+    return this._http.get<any>(url + '/' + instructorId, { headers: headers });
+  }
+
+  getSearch(filter: SearchFilter) {
+    const url = server + 'browse/adventures/search';
+    return this._http.post<any>(url, filter);
   }
 
   getAdventure(id: any) {
-    const url=server+'api/adventures/'
-    const headers=this.loginService.getHeaders();
-    return this._http.get<any>(url + id,{headers:headers});
+    const url = server + 'api/adventures/';
+    const headers = this.loginService.getHeaders();
+    return this._http.get<any>(url + id, { headers: headers });
   }
 
   deleteAdventure(id: number) {
-    const localurl=server+'api/adventures/'+id;
-    const headers=this.loginService.getHeaders();
-    return this._http.delete<any>(localurl,{headers:headers});
+    const localurl = server + 'api/adventures/' + id;
+    const headers = this.loginService.getHeaders();
+    return this._http.delete<any>(localurl, { headers: headers });
   }
 }
