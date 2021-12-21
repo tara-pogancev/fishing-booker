@@ -2,7 +2,7 @@ package com.fishingbooker.ftn.email.context;
 
 import com.fishingbooker.ftn.bom.users.ApplicationUser;
 
-public class AcceptRegistrationEmailContext extends AbstractEmailContext{
+public class AcceptRegistrationEmailContext extends AbstractEmailContext {
 
     @Override
     public <T> void init(T context) {

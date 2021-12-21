@@ -4,9 +4,7 @@ import com.fishingbooker.ftn.bom.Address;
 import com.fishingbooker.ftn.bom.DatabaseEntity;
 import com.fishingbooker.ftn.bom.Image;
 import com.fishingbooker.ftn.bom.RuleOfConduct;
-import com.fishingbooker.ftn.bom.boats.NavigationalEquipment;
 import com.fishingbooker.ftn.bom.users.FishingInstructor;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,7 +20,7 @@ public class Adventure extends DatabaseEntity {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "address", referencedColumnName = "id")
     private Address address;
 
@@ -45,13 +43,13 @@ public class Adventure extends DatabaseEntity {
     @Column(name = "guestLimit", nullable = false)
     private Integer guestLimit;
 
-    @OneToMany(mappedBy = "adventure",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "adventure", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<AdventureQuickReservation> adventureQuickReservations;
 
-    @OneToMany(mappedBy = "adventure",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "adventure", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<AdventureReservation> adventureReservations;
 
-    @ManyToMany(cascade = CascadeType.REFRESH,fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinTable(
             name = "adventure_rules",
             joinColumns = @JoinColumn(name = "adventure_id"),
@@ -68,7 +66,7 @@ public class Adventure extends DatabaseEntity {
     @Column(name = "cancellationPercentageKeep", nullable = false)
     private Double cancellationPercentageKeep;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "adventure_id")
     private Set<AdventureUtility> utilities;
 

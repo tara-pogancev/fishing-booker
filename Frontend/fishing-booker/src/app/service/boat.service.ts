@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { server } from '../app-global';
+import { SearchFilter } from '../model/search-filter-model';
 import { LoginService } from './login.service';
 
 @Injectable({
@@ -17,6 +18,12 @@ export class BoatService {
 
   findAll() {
     return this._http.get<any>(this.url);
+  }
+
+  getSearch(filter : SearchFilter) {
+    const url=server+'api/boats/search';
+    const headers = this.loginService.getHeaders();
+    return this._http.post<any>(url,filter,{headers:headers});
   }
 
   getBoats(){ //admin reading cottages

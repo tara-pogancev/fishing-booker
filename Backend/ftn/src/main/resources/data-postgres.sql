@@ -286,9 +286,9 @@ INSERT INTO public.available_time_period(start_date, end_date)	VALUES ('20220113
 -- BOAT AVAILABILITY
 
 INSERT INTO public.available_boat_time_period(id, boat)	VALUES (1, 1);
---INSERT INTO public.available_boat_time_period(id, boat)	VALUES (2, 2);
---INSERT INTO public.available_boat_time_period(id, boat)	VALUES (3, 3);
---INSERT INTO public.available_boat_time_period(id, boat)	VALUES (4, 4);
+INSERT INTO public.available_boat_time_period(id, boat)	VALUES (2, 2);
+INSERT INTO public.available_boat_time_period(id, boat)	VALUES (3, 3);
+INSERT INTO public.available_boat_time_period(id, boat)	VALUES (4, 4);
 
 -- COTTAGE AVAILABILITY
 

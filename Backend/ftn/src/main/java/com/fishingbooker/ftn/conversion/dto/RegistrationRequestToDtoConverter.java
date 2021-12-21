@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 public class RegistrationRequestToDtoConverter implements Converter<RegistrationRequest, RegistrationRequestDto> {
     @Override
     public RegistrationRequestDto convert(RegistrationRequest source) {
-        RegistrationRequestDto dto=new RegistrationRequestDto();
+        RegistrationRequestDto dto = new RegistrationRequestDto();
         dto.setName(source.getUser().getName());
         dto.setLastName(source.getUser().getLastName());
         dto.setMail(source.getUser().getEmail());

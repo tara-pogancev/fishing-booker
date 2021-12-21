@@ -1,6 +1,5 @@
 package com.fishingbooker.ftn.conversion.dto;
 
-import com.fishingbooker.ftn.bom.adventures.Adventure;
 import com.fishingbooker.ftn.bom.adventures.AdventureReservation;
 import com.fishingbooker.ftn.dto.InstructorPastReservationsDto;
 import org.springframework.core.convert.converter.Converter;
@@ -24,7 +23,7 @@ import org.springframework.stereotype.Component;
 public class ReservationToInstructorPastReservationDto implements Converter<AdventureReservation, InstructorPastReservationsDto> {
     @Override
     public InstructorPastReservationsDto convert(AdventureReservation source) {
-        InstructorPastReservationsDto dto=new InstructorPastReservationsDto();
+        InstructorPastReservationsDto dto = new InstructorPastReservationsDto();
         dto.setReservationId(source.getId());
         dto.setAdventureId(source.getAdventure().getId());
         dto.setAdventureName(source.getAdventure().getName());
@@ -36,7 +35,7 @@ public class ReservationToInstructorPastReservationDto implements Converter<Adve
         dto.setClientName(source.getReservationClient().getName());
         dto.setClientLastName(source.getReservationClient().getLastName());
         dto.setClientMail(source.getReservationClient().getEmail());
-        dto.setClientfullAddress(source.getReservationClient().getUserAddress().getStreet()+','+source.getReservationClient().getUserAddress().getCity()+','+source.getReservationClient().getUserAddress().getCountry());
+        dto.setClientfullAddress(source.getReservationClient().getUserAddress().getStreet() + ',' + source.getReservationClient().getUserAddress().getCity() + ',' + source.getReservationClient().getUserAddress().getCountry());
         dto.setClientPhoneNumber(source.getReservationClient().getPhone());
         return dto;
     }

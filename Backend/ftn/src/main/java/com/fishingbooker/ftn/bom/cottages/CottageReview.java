@@ -3,7 +3,6 @@ package com.fishingbooker.ftn.bom.cottages;
 import com.fishingbooker.ftn.bom.Review;
 import com.fishingbooker.ftn.bom.users.CottageOwner;
 import com.fishingbooker.ftn.bom.users.RegisteredClient;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

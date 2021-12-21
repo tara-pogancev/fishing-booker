@@ -4,7 +4,6 @@ package com.fishingbooker.ftn.bom.adventures;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fishingbooker.ftn.bom.AvailableTimePeriod;
 import com.fishingbooker.ftn.bom.users.FishingInstructor;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

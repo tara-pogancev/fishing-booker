@@ -2,7 +2,10 @@ package com.fishingbooker.ftn.bom.adventures;
 
 import com.fishingbooker.ftn.bom.DatabaseEntity;
 import com.fishingbooker.ftn.bom.Utility;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
@@ -14,7 +17,7 @@ import javax.persistence.*;
 @RequiredArgsConstructor
 public class AdventureUtility extends DatabaseEntity {
 
-    @ManyToOne(cascade = CascadeType.REFRESH,fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn(name = "utility_id")
     private Utility utility;
 

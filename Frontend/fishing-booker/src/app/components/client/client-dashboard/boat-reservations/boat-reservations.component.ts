@@ -1,6 +1,7 @@
-import { formatDate } from '@angular/common';
+import { DatePipe, formatDate } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { fil } from 'date-fns/locale';
+import { start } from 'repl';
 import { Boat } from 'src/app/model/boat-model';
 import { Client } from 'src/app/model/client-model';
 import { EntityModel } from 'src/app/model/entity-moedl';
@@ -18,6 +19,7 @@ export class BoatReservationsComponent implements OnInit {
   boats: Boat[] = [];
   boatsAll: Boat[] = [];
 
+  today = new Date();
   startDate: Date = new Date();
   endDate: Date = new Date();
   people: number = 2;
@@ -35,11 +37,22 @@ export class BoatReservationsComponent implements OnInit {
   }
 
   search(filter: SearchFilter) {
-    console.log(filter)
     this.people = filter.people;
     this.startDate = filter.startDate;
     this.endDate = filter.endDate;
-    this.boats = this.searchService.filter(this.boatsAll, filter)!;
+
+    if (
+      this.endDate < this.today ||
+      this.startDate < this.today ||
+      this.startDate > this.endDate
+    ) {
+      alert('Invalid date input!');
+    } else {
+      this.boatService.getSearch(filter).subscribe((data) => {
+        this.boatsAll = data;
+        this.boats = this.searchService.filter(this.boatsAll, filter)!;
+      });
+    }
   }
 
   newReservation(entity: EntityModel) {
@@ -57,4 +70,5 @@ export class BoatReservationsComponent implements OnInit {
       '/' +
       this.people;
   }
+
 }

@@ -4,8 +4,10 @@ package com.fishingbooker.ftn.bom.cottages;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fishingbooker.ftn.bom.DatabaseEntity;
 import com.fishingbooker.ftn.bom.Utility;
-import com.fishingbooker.ftn.bom.adventures.Adventure;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
@@ -14,7 +16,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
-@Table (name = "CottageUtility")
+@Table(name = "CottageUtility")
 public class CottageUtility extends DatabaseEntity {
 
     @ManyToOne

@@ -6,7 +6,6 @@ import com.fishingbooker.ftn.bom.DatabaseEntity;
 import com.fishingbooker.ftn.bom.Image;
 import com.fishingbooker.ftn.bom.RuleOfConduct;
 import com.fishingbooker.ftn.bom.users.CottageOwner;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,7 +23,7 @@ public class Cottage extends DatabaseEntity {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "address", referencedColumnName = "id")
     private Address address;
 
@@ -75,7 +74,7 @@ public class Cottage extends DatabaseEntity {
     @JsonManagedReference
     private Set<AvailableCottageTimePeriod> availableTimePeriods;
 
-    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.REFRESH)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "cottageOwner")
     private CottageOwner cottageOwner;
 

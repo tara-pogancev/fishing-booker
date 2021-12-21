@@ -76,7 +76,7 @@ public class RegisteredClientServiceImpl implements RegisteredClientService {
 
     @Override
     public RegisteredClient delete(Long id) {
-        RegisteredClient client=clientRepository.get(id);
+        RegisteredClient client = clientRepository.get(id);
         clientRepository.delete(client);
         return client;
     }

@@ -12,12 +12,12 @@ public class SystemPropertiesController {
     private final SystemPropertiesService systemPropertiesService;
 
     @GetMapping("/get-commission")
-    public Double getCommissionPercentage(){
+    public Double getCommissionPercentage() {
         return systemPropertiesService.get().getIncomePercentage();
     }
 
     @PutMapping("/set-percentage/{percentage}")
-    public void setCommissionPercentage(@PathVariable("percentage") Double percentage){
+    public void setCommissionPercentage(@PathVariable("percentage") Double percentage) {
         systemPropertiesService.updateComissionPrecentage(percentage);
     }
 }

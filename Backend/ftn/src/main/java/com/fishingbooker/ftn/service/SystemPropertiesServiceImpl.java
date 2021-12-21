@@ -20,8 +20,8 @@ public class SystemPropertiesServiceImpl implements SystemPropertiesService {
         return systemPropertiesRepository.findAll().get(0);
     }
 
-    public void updateComissionPrecentage(Double incommingPrecentage){
-        SystemProperties properties=this.get();
+    public void updateComissionPrecentage(Double incommingPrecentage) {
+        SystemProperties properties = this.get();
         properties.setIncomePercentage(incommingPrecentage);
         systemPropertiesRepository.save(properties);
     }

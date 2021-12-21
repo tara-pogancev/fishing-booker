@@ -1,7 +1,5 @@
 package com.fishingbooker.ftn.conversion.dto;
 
-import com.fishingbooker.ftn.bom.RuleOfConduct;
-import com.fishingbooker.ftn.bom.Utility;
 import com.fishingbooker.ftn.bom.cottages.Cottage;
 import com.fishingbooker.ftn.bom.cottages.CottageUtility;
 import com.fishingbooker.ftn.bom.cottages.Room;

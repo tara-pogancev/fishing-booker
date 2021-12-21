@@ -1,9 +1,12 @@
 package com.fishingbooker.ftn.service.interfaces;
 
+import com.fishingbooker.ftn.bom.boats.Boat;
 import com.fishingbooker.ftn.bom.cottages.Cottage;
 import com.fishingbooker.ftn.dto.CottageCreationDto;
 import com.fishingbooker.ftn.dto.CottageDto;
+import com.fishingbooker.ftn.dto.EntitySearchDto;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface CottageService {
@@ -19,4 +22,8 @@ public interface CottageService {
     Boolean delete(Long id);
 
     Long create(CottageCreationDto cottageDto);
+
+    List<Cottage> filterByDate(LocalDate startDate, LocalDate endDate);
+
+    List<Cottage> findFiltered(EntitySearchDto filterDto);
 }

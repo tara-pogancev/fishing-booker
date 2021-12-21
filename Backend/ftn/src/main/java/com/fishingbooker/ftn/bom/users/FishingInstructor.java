@@ -1,10 +1,8 @@
 package com.fishingbooker.ftn.bom.users;
 
-import com.fishingbooker.ftn.bom.RegistrationRequest;
 import com.fishingbooker.ftn.bom.UserRank;
 import com.fishingbooker.ftn.bom.adventures.Adventure;
 import com.fishingbooker.ftn.bom.adventures.AvailableInstructorTimePeriod;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,7 +13,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Table(name = "FishingInstructor")
-@PrimaryKeyJoinColumn(name ="id")
+@PrimaryKeyJoinColumn(name = "id")
 public class FishingInstructor extends ApplicationUser {
 
     @Column(name = "biography")
@@ -31,7 +29,7 @@ public class FishingInstructor extends ApplicationUser {
     @JoinColumn(name = "rank")
     UserRank rank;
 
-    @OneToMany(mappedBy = "instructor",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "instructor", cascade = CascadeType.ALL)
     private Set<Adventure> adventures;
 
 

@@ -1,8 +1,6 @@
 package com.fishingbooker.ftn.bom.adventures;
 
 import com.fishingbooker.ftn.bom.reservations.Reservation;
-import com.fishingbooker.ftn.bom.users.RegisteredClient;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,7 +24,6 @@ public class AdventureReservation extends Reservation {
             joinColumns = @JoinColumn(name = "adventure_reservation_id"),
             inverseJoinColumns = @JoinColumn(name = "adventure_utility_id"))
     private Set<AdventureUtility> utilities;
-
 
 
 }

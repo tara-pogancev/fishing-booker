@@ -1,3 +1,5 @@
+import { DatePipe } from '@angular/common';
+import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { SearchFilter } from 'src/app/model/search-filter-model';
 import { AddressService } from 'src/app/service/address.service';
@@ -12,7 +14,9 @@ export class ReservationSearchComponent implements OnInit {
   countries = [];
   searchFilter = new SearchFilter();
 
-  constructor(private addressService: AddressService) {}
+  constructor(
+    private addressService: AddressService
+  ) {}
 
   ngOnInit(): void {
     this.addressService.getCountries().subscribe((data) => {
@@ -21,12 +25,10 @@ export class ReservationSearchComponent implements OnInit {
   }
 
   search(filter: SearchFilter) {
-    if (this.searchFilter.startDate > this.searchFilter.endDate) {
-      alert('Start date cannot be after end date!');
-    }
     this.searchFilter.tags = filter.tags;
     this.searchFilter.sort = filter.sort;
     this.searchFilter.text = filter.text;
     this.doSearch.emit(this.searchFilter);
   }
+
 }

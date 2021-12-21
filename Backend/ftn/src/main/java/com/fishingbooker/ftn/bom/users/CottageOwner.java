@@ -1,9 +1,7 @@
 package com.fishingbooker.ftn.bom.users;
 
-import com.fishingbooker.ftn.bom.RegistrationRequest;
 import com.fishingbooker.ftn.bom.UserRank;
 import com.fishingbooker.ftn.bom.cottages.Cottage;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,9 +15,8 @@ import java.util.Set;
 @PrimaryKeyJoinColumn(name = "userId")
 public class CottageOwner extends ApplicationUser {
 
-    @OneToMany(mappedBy = "cottageOwner",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cottageOwner", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Cottage> cottages;
-
 
 
     @ManyToOne()

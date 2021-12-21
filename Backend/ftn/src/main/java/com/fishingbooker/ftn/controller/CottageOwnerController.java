@@ -19,9 +19,9 @@ public class CottageOwnerController {
     private final DataConverter converter;
 
     @GetMapping()
-    public List<ApplicationUserDto> getRegisteredOwners(){
-        List<CottageOwner> cottageOwners=cottageOwnerService.getRegisteredOwners();
-        return converter.convert(cottageOwners,ApplicationUserDto.class);
+    public List<ApplicationUserDto> getRegisteredOwners() {
+        List<CottageOwner> cottageOwners = cottageOwnerService.getRegisteredOwners();
+        return converter.convert(cottageOwners, ApplicationUserDto.class);
     }
 
     @GetMapping("/{id}")
@@ -37,7 +37,7 @@ public class CottageOwnerController {
     }
 
     @DeleteMapping("/{id}")
-    public Long delete(@PathVariable("id") Long id){
+    public Long delete(@PathVariable("id") Long id) {
         return cottageOwnerService.delete(id);
     }
 

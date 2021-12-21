@@ -25,6 +25,7 @@ public class RegistrationRequestServiceImpl implements RegistrationRequestServic
     private final RegistrationRequestRepository registrationRequestRepository;
     private final ApplicationUserRepository applicationUserRepository;
     private final EmailService emailService;
+
     @Override
     public List<RegistrationRequest> get() {
         return registrationRequestRepository.getWaitingRequests();
@@ -32,7 +33,7 @@ public class RegistrationRequestServiceImpl implements RegistrationRequestServic
 
     @Override
     public void approveRequest(Long id) {
-        RegistrationRequest request=registrationRequestRepository.get(id);
+        RegistrationRequest request = registrationRequestRepository.get(id);
         request.setApproved(RequestApproval.APPROVED);
         registrationRequestRepository.save(request);
         request.getUser().setEnabled(true);
@@ -42,10 +43,10 @@ public class RegistrationRequestServiceImpl implements RegistrationRequestServic
 
     @Override
     public void rejectRequest(RejectRequestDto requestDto) {
-        RegistrationRequest request=registrationRequestRepository.get(requestDto.getId());
+        RegistrationRequest request = registrationRequestRepository.get(requestDto.getId());
         request.setApproved(RequestApproval.DECLINED);
         request.setCausesOfRejection(requestDto.getCauseOfRejection());
-        sendRefuseRegistrationEmail(request.getUser(),requestDto.getCauseOfRejection());
+        sendRefuseRegistrationEmail(request.getUser(), requestDto.getCauseOfRejection());
         registrationRequestRepository.save(request);
     }
 
@@ -60,7 +61,7 @@ public class RegistrationRequestServiceImpl implements RegistrationRequestServic
         }
     }
 
-    private void sendRefuseRegistrationEmail(ApplicationUser user, String rejectionCause){
+    private void sendRefuseRegistrationEmail(ApplicationUser user, String rejectionCause) {
         RejectRegistrationEmailContext emailContext = new RejectRegistrationEmailContext();
         emailContext.init(user);
         emailContext.setRejectionCause(rejectionCause);

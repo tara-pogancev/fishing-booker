@@ -23,16 +23,16 @@ public class AdminController {
 
     @GetMapping("/{id}")
 
-    public Administrator get(@PathVariable("id") Long id){
-        Administrator administrator=adminService.findById(id);
+    public Administrator get(@PathVariable("id") Long id) {
+        Administrator administrator = adminService.findById(id);
         return administrator;
     }
 
     @PutMapping()
 
-    public Administrator update(@RequestBody ApplicationUserDto adminDto){
-        Administrator admin=adminService.findById(adminDto.getId());
-        Address address=admin.getUserAddress();
+    public Administrator update(@RequestBody ApplicationUserDto adminDto) {
+        Administrator admin = adminService.findById(adminDto.getId());
+        Address address = admin.getUserAddress();
         address.setCity(adminDto.getCity());
         address.setStreet(adminDto.getStreet());
         address.setCountry(adminDto.getCountry());
@@ -45,16 +45,17 @@ public class AdminController {
     }
 
     @PostMapping()
-    public Long addAdministrator(@RequestBody AdministratorDto administratorDto){
+    public Long addAdministrator(@RequestBody AdministratorDto administratorDto) {
         administratorDto.setRole("Administrator");
-        Administrator administrator=converter.convert(administratorDto,Administrator.class);
+        Administrator administrator = converter.convert(administratorDto, Administrator.class);
         administrator.setFirstTimeLoggedIn(true);
         administrator.setEnabled(true);
-        Administrator admin=adminService.save(administrator);
+        Administrator admin = adminService.save(administrator);
         return admin.getId();
     }
+
     @PutMapping("/change-password")
-    public void changePassword(@RequestBody AdminChangePasswordDto adminDto){
+    public void changePassword(@RequestBody AdminChangePasswordDto adminDto) {
         adminService.changePassword(adminDto);
     }
 }

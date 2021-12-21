@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { server } from '../app-global';
 import { CreateCottageModel } from '../model/create-cottage-model';
+import { SearchFilter } from '../model/search-filter-model';
 import { LoginService } from './login.service';
 
 @Injectable({
@@ -24,6 +25,12 @@ export class CottageService {
     const url=server+'api/cottages';
     const headers = this.loginService.getHeaders();
     return this._http.get<any>(url,{headers:headers});
+  }
+
+  getSearch(filter : SearchFilter) {
+    const url=server+'api/cottages/search';
+    const headers = this.loginService.getHeaders();
+    return this._http.post<any>(url,filter,{headers:headers});
   }
 
   getCottage(id: any) {

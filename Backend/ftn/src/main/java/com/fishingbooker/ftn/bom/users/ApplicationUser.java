@@ -4,7 +4,6 @@ package com.fishingbooker.ftn.bom.users;
 import com.fishingbooker.ftn.bom.Address;
 import com.fishingbooker.ftn.bom.DatabaseEntity;
 import com.fishingbooker.ftn.bom.RegistrationRequest;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -29,7 +28,7 @@ public class ApplicationUser extends DatabaseEntity {
     @Column(name = "email", unique = true, nullable = false)
     private String email;
 
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "address", referencedColumnName = "id")
     private Address userAddress;
 

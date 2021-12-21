@@ -2,7 +2,6 @@ package com.fishingbooker.ftn.repository;
 
 import com.fishingbooker.ftn.bom.users.RegisteredClient;
 import com.fishingbooker.ftn.repository.base.EntityRepository;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 

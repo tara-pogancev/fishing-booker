@@ -6,10 +6,10 @@ import lombok.Data;
 public class RegistrationRequestDto {
 
     private Long id;
-    private  String name;
+    private String name;
     private String lastName;
-    private   String mail;
-    private  String  userType;
-    private String  registrationDescription;
+    private String mail;
+    private String userType;
+    private String registrationDescription;
 
 }

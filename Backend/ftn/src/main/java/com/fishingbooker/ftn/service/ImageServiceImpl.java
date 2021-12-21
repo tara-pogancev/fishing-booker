@@ -20,21 +20,21 @@ import java.util.Set;
 @Transactional
 public class ImageServiceImpl implements ImageService {
     @Override
-    public Set<Image> saveImages(List<ImageDto> images){
-        Set<Image> savedImages=new HashSet<>();
-        if (images==null){
+    public Set<Image> saveImages(List<ImageDto> images) {
+        Set<Image> savedImages = new HashSet<>();
+        if (images == null) {
             return null;
         }
-        for (ImageDto image:images){
-            String imageUrl=saveImage(image);
+        for (ImageDto image : images) {
+            String imageUrl = saveImage(image);
             savedImages.add(new Image(imageUrl));
         }
 
         return savedImages;
     }
 
-    private String saveImage(ImageDto imageDto){
-        if (imageDto.getContent().equalsIgnoreCase("exists")){ //ukoliko se prilikom editvanje vikendice prosljedi slka koja je vec sacuvana na serveru nemoj je opet cuvati
+    private String saveImage(ImageDto imageDto) {
+        if (imageDto.getContent().equalsIgnoreCase("exists")) { //ukoliko se prilikom editvanje vikendice prosljedi slka koja je vec sacuvana na serveru nemoj je opet cuvati
             return imageDto.getName(); //ime sadrzi url slike koji se skladisti u bazu
         }
         String[] parts = imageDto.getContent().split(",");
@@ -47,9 +47,9 @@ public class ImageServiceImpl implements ImageService {
             e.printStackTrace();
         }
 
-        String basePath=System.getenv("PictureLocations");
-        String name=imageDto.getName().replaceAll(" ", "_");
-        String photoPath=basePath+ File.separator+name;
+        String basePath = System.getenv("PictureLocations");
+        String name = imageDto.getName().replaceAll(" ", "_");
+        String photoPath = basePath + File.separator + name;
         File file = new File(photoPath);
         try {
             ImageIO.write(buffImg, imageDto.getExtension(), file);
@@ -58,6 +58,6 @@ public class ImageServiceImpl implements ImageService {
         }
         System.out.println("Image " + ".png" + " uploaded.");
 
-        return "assets/images/"+name;
+        return "assets/images/" + name;
     }
 }

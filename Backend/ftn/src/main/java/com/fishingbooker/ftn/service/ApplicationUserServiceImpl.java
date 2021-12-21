@@ -127,15 +127,14 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
 
     @Override
     public ApplicationUser createWithRequest(ApplicationUserDto userDto) {
-        ApplicationUser user=new ApplicationUser();
-        RegistrationRequest request=new RegistrationRequest();
+        ApplicationUser user = new ApplicationUser();
+        RegistrationRequest request = new RegistrationRequest();
         request.setRegistrationDescription(userDto.getRegistrationDescription());
-        if (ApplicationRole.getRoleFromString(userDto.getRole())==ApplicationRole.FISHING_INSTRUCTOR)
+        if (ApplicationRole.getRoleFromString(userDto.getRole()) == ApplicationRole.FISHING_INSTRUCTOR)
             user = fishingInstructorService.create(userDto);
-        else if(ApplicationRole.getRoleFromString(userDto.getRole())==ApplicationRole.COTTAGE_OWNER){
+        else if (ApplicationRole.getRoleFromString(userDto.getRole()) == ApplicationRole.COTTAGE_OWNER) {
             user = cottageOwnerService.create(userDto);
-        }
-        else if(ApplicationRole.getRoleFromString(userDto.getRole())==ApplicationRole.BOAT_OWNER){
+        } else if (ApplicationRole.getRoleFromString(userDto.getRole()) == ApplicationRole.BOAT_OWNER) {
             user = boatOwnerService.create(userDto);
         }// todo add for other types of users
 

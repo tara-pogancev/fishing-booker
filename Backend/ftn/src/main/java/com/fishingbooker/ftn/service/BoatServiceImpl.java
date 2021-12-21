@@ -4,6 +4,7 @@ import com.fishingbooker.ftn.bom.AvailableTimePeriod;
 import com.fishingbooker.ftn.bom.boats.Boat;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.BoatDto;
+import com.fishingbooker.ftn.dto.EntitySearchDto;
 import com.fishingbooker.ftn.repository.AddressRepository;
 import com.fishingbooker.ftn.repository.BoatOwnerRepository;
 import com.fishingbooker.ftn.repository.BoatRepository;
@@ -24,9 +25,6 @@ public class BoatServiceImpl implements BoatService {
 
     private final BoatRepository boatRepository;
     private final DataConverter converter;
-    private final BoatOwnerRepository boatOwnerRepository;
-    private final AddressRepository addressRepository;
-    private final UtilityRepository utilityRepository;
 
     @Override
     public List<Boat> findAll() {
@@ -56,6 +54,18 @@ public class BoatServiceImpl implements BoatService {
                 }
             }
         }
+        return boats;
+    }
+
+    @Override
+    public List<Boat> findFiltered(EntitySearchDto filterDto) {
+        List<Boat> boats = new ArrayList<>();
+
+        for (Boat boat : filterByDate(filterDto.startDate, filterDto.endDate)) {
+            if (boat.getGuestLimit() >= filterDto.people && (boat.getAddress().getCountry().equals(filterDto.country) || filterDto.country.equals("")))
+                boats.add(boat);
+        }
+
         return boats;
     }
 

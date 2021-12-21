@@ -18,13 +18,13 @@ public class BoatOwnerController {
     private final BoatOwnerService boatOwnerService;
 
     @GetMapping("")
-    public List<ApplicationUserDto> getEnabledOwners(){
-        List<BoatOwner> boatOwners=boatOwnerService.getRegisteredBoatOwners();
-        return converter.convert(boatOwners,ApplicationUserDto.class);
+    public List<ApplicationUserDto> getEnabledOwners() {
+        List<BoatOwner> boatOwners = boatOwnerService.getRegisteredBoatOwners();
+        return converter.convert(boatOwners, ApplicationUserDto.class);
     }
 
     @DeleteMapping("/{id}")
-    public Long delete(@PathVariable("id")Long id){
+    public Long delete(@PathVariable("id") Long id) {
         return boatOwnerService.delete(id);
     }
 }

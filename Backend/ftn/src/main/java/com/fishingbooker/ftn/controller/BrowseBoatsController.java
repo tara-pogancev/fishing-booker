@@ -5,7 +5,10 @@ import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.BoatDto;
 import com.fishingbooker.ftn.service.interfaces.BoatService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -16,10 +19,11 @@ public class BrowseBoatsController {
 
     private final BoatService boatService;
     private final DataConverter converter;
+
     @GetMapping
     public List<BoatDto> findAll() {
-        List<Boat> boats=boatService.findAll();
-        List<BoatDto> boatsDtos=converter.convert(boats,BoatDto.class);
+        List<Boat> boats = boatService.findAll();
+        List<BoatDto> boatsDtos = converter.convert(boats, BoatDto.class);
         return boatsDtos;
     }
 

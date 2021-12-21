@@ -21,13 +21,13 @@ public class RegistrationController {
 
     @PostMapping
     public ApplicationUser userRegistration(@RequestBody ApplicationUserDto userDto) {
-        if(ApplicationRole.getRoleFromString(userDto.getRole())==ApplicationRole.REGISTERED_CLIENT){
+        if (ApplicationRole.getRoleFromString(userDto.getRole()) == ApplicationRole.REGISTERED_CLIENT) {
             return userService.create(userDto);
-        }else if(ApplicationRole.getRoleFromString((userDto.getRole()))==ApplicationRole.FISHING_INSTRUCTOR){
+        } else if (ApplicationRole.getRoleFromString((userDto.getRole())) == ApplicationRole.FISHING_INSTRUCTOR) {
             return userService.createWithRequest(userDto);
-        }else if(ApplicationRole.getRoleFromString((userDto.getRole()))==ApplicationRole.COTTAGE_OWNER){
+        } else if (ApplicationRole.getRoleFromString((userDto.getRole())) == ApplicationRole.COTTAGE_OWNER) {
             return userService.createWithRequest(userDto);
-        }else if(ApplicationRole.getRoleFromString((userDto.getRole()))==ApplicationRole.BOAT_OWNER){
+        } else if (ApplicationRole.getRoleFromString((userDto.getRole())) == ApplicationRole.BOAT_OWNER) {
             return userService.createWithRequest(userDto);
         }
         //TODO: add registration for other types of user

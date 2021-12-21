@@ -46,7 +46,7 @@ public class AdministratorServiceImpl implements AdministratorService {
 
     @Override
     public void changePassword(AdminChangePasswordDto adminDto) {
-        Administrator admin=administratorRepository.get(adminDto.getId());
+        Administrator admin = administratorRepository.get(adminDto.getId());
         admin.setPassword(new BCryptPasswordEncoder().encode(adminDto.getPassword()));
         admin.setFirstTimeLoggedIn(false);
         administratorRepository.save(admin);

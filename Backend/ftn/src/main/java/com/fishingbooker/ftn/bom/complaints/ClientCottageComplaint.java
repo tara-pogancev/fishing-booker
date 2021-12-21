@@ -2,7 +2,6 @@ package com.fishingbooker.ftn.bom.complaints;
 
 
 import com.fishingbooker.ftn.bom.cottages.Cottage;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -3,11 +3,8 @@ package com.fishingbooker.ftn.conversion.dto;
 import com.fishingbooker.ftn.bom.users.ApplicationRole;
 import com.fishingbooker.ftn.bom.users.FishingInstructor;
 import com.fishingbooker.ftn.dto.FishingInstructorDto;
-import com.fishingbooker.ftn.dto.RegisteredClientDto;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
-
-import javax.persistence.Entity;
 
 @Component
 public class FishingInstructorToDtoConverter implements Converter<FishingInstructor, FishingInstructorDto> {

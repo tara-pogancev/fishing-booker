@@ -8,7 +8,6 @@ import com.fishingbooker.ftn.service.interfaces.RegistrationRequestService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
@@ -18,20 +17,21 @@ public class RegistrationRequestController {
 
     private final RegistrationRequestService registratinRequestService;
     private final DataConverter converter;
+
     @GetMapping
-    public List<RegistrationRequestDto> Get(){
-        List<RegistrationRequest> registrationRequests=registratinRequestService.get();
-        List<RegistrationRequestDto> registrationRequestDtos= converter.convert(registrationRequests,RegistrationRequestDto.class);
+    public List<RegistrationRequestDto> Get() {
+        List<RegistrationRequest> registrationRequests = registratinRequestService.get();
+        List<RegistrationRequestDto> registrationRequestDtos = converter.convert(registrationRequests, RegistrationRequestDto.class);
         return registrationRequestDtos;
     }
 
     @PutMapping("/approve/{id}")
-    public void approveRequest(@PathVariable("id") Long id){
+    public void approveRequest(@PathVariable("id") Long id) {
         registratinRequestService.approveRequest(id);
     }
 
     @PutMapping("/reject")
-    public void rejectRequest(@RequestBody RejectRequestDto requestDto){
+    public void rejectRequest(@RequestBody RejectRequestDto requestDto) {
         registratinRequestService.rejectRequest(requestDto);
     }
 }

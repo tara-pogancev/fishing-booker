@@ -1,7 +1,6 @@
 package com.fishingbooker.ftn.email.context;
 
 import com.fishingbooker.ftn.bom.users.ApplicationUser;
-import org.springframework.web.util.UriComponentsBuilder;
 
 public class RejectRegistrationEmailContext extends AbstractEmailContext {
 

@@ -14,6 +14,6 @@ public interface FishingInstructorRepository extends EntityRepository<FishingIns
     List<FishingInstructor> getEnabledInstructors();
 
     @Query(value = "SELECT *\n" +
-            "\tFROM public.fishing_instructor INNER JOIN public.application_user ON public.fishing_instructor.id=public.application_user.id ",nativeQuery=true)
+            "\tFROM public.fishing_instructor INNER JOIN public.application_user ON public.fishing_instructor.id=public.application_user.id ", nativeQuery = true)
     FishingInstructor getInstructorById(Long id);
 }

@@ -1,7 +1,6 @@
 package com.fishingbooker.ftn.bom;
 
-import com.fishingbooker.ftn.bom.users.*;
-import lombok.Data;
+import com.fishingbooker.ftn.bom.users.ApplicationUser;
 import lombok.Getter;
 import lombok.Setter;
 

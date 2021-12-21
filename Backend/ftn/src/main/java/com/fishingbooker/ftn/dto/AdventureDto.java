@@ -1,7 +1,6 @@
 package com.fishingbooker.ftn.dto;
 
 import com.fishingbooker.ftn.bom.AvailableTimePeriod;
-import com.fishingbooker.ftn.bom.adventures.AvailableInstructorTimePeriod;
 import lombok.Data;
 
 import java.util.List;

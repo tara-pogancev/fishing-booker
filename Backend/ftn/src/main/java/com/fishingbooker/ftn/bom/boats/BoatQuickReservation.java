@@ -1,7 +1,6 @@
 package com.fishingbooker.ftn.bom.boats;
 
 import com.fishingbooker.ftn.bom.reservations.QuickReservation;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

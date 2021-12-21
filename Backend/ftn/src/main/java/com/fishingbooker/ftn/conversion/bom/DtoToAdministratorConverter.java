@@ -4,7 +4,6 @@ import com.fishingbooker.ftn.bom.Address;
 import com.fishingbooker.ftn.bom.users.Administrator;
 import com.fishingbooker.ftn.bom.users.ApplicationRole;
 import com.fishingbooker.ftn.dto.AdministratorDto;
-import com.fishingbooker.ftn.dto.ApplicationUserDto;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 

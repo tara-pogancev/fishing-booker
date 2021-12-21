@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { server } from '../app-global';
 import { CreateAdventureModel } from '../model/create-adventure-model';
+import { SearchFilter } from '../model/search-filter-model';
 import { LoginService } from './login.service';
 
 @Injectable({
@@ -34,6 +35,12 @@ export class AdvetnureService {
     const headers=this.loginService.getHeaders();
     const instructorId=this.loginService.getCurrentUser().id;
     return this._http.get<any>(url+'/'+instructorId,{headers:headers});
+  }
+  
+  getSearch(filter : SearchFilter) {
+    const url=server+'api/adventures/search';
+    const headers = this.loginService.getHeaders();
+    return this._http.post<any>(url,filter,{headers:headers});
   }
 
   getAdventure(id: any) {
