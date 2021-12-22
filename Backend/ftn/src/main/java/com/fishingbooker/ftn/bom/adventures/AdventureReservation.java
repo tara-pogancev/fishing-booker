@@ -1,6 +1,7 @@
 package com.fishingbooker.ftn.bom.adventures;
 
 import com.fishingbooker.ftn.bom.reservations.Reservation;
+import com.fishingbooker.ftn.bom.users.RegisteredClient;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,6 +18,10 @@ public class AdventureReservation extends Reservation {
     @ManyToOne
     @JoinColumn(name = "adventure_id")
     private Adventure adventure;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private RegisteredClient reservationClient;
 
     @ManyToMany
     @JoinTable(

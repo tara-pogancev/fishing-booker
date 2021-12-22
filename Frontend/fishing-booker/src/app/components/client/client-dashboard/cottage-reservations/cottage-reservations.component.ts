@@ -28,9 +28,10 @@ export class CottageReservationsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.cottageService.findAll().subscribe((data) => {
-      this.cottages = data;
+    let filter = new SearchFilter()
+    this.cottageService.getSearch(filter).subscribe((data) => {
       this.cottagesAll = data;
+      this.cottages = this.searchService.filter(this.cottagesAll, filter)!;
     });
   }
 

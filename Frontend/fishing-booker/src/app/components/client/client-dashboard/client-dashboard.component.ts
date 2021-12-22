@@ -18,7 +18,6 @@ export class ClientDashboardComponent implements OnInit {
 
   constructor(
     private clientService: ClientService,
-    private loginService: LoginService,
     private route: ActivatedRoute,
     private location: Location
   ) {}

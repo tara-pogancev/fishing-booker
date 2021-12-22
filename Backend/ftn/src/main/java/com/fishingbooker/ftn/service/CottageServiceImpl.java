@@ -3,8 +3,6 @@ package com.fishingbooker.ftn.service;
 import com.fishingbooker.ftn.bom.Address;
 import com.fishingbooker.ftn.bom.AvailableTimePeriod;
 import com.fishingbooker.ftn.bom.RuleOfConduct;
-import com.fishingbooker.ftn.bom.adventures.Adventure;
-import com.fishingbooker.ftn.bom.boats.Boat;
 import com.fishingbooker.ftn.bom.cottages.Cottage;
 import com.fishingbooker.ftn.bom.cottages.CottageUtility;
 import com.fishingbooker.ftn.bom.cottages.Room;
@@ -14,7 +12,8 @@ import com.fishingbooker.ftn.dto.CottageCreationDto;
 import com.fishingbooker.ftn.dto.CottageDto;
 import com.fishingbooker.ftn.dto.EntitySearchDto;
 import com.fishingbooker.ftn.dto.RoomDto;
-import com.fishingbooker.ftn.repository.*;
+import com.fishingbooker.ftn.repository.CottageOwnerRepository;
+import com.fishingbooker.ftn.repository.CottageRepository;
 import com.fishingbooker.ftn.service.interfaces.CottageService;
 import com.fishingbooker.ftn.service.interfaces.ImageService;
 import com.fishingbooker.ftn.service.interfaces.RuleOfConductService;
@@ -37,10 +36,7 @@ import java.util.stream.Collectors;
 public class CottageServiceImpl implements CottageService {
 
     private final CottageRepository cottageRepository;
-    private final RoomRepository roomRepository;
-    private final AddressRepository addressRepository;
     private final CottageOwnerRepository cottageOwnerRepository;
-    private final CottageUtilityRepository utilityRepository;
     private final DataConverter converter;
     private final RuleOfConductService ruleOfConductService;
     private final ImageService imageService;
@@ -49,7 +45,6 @@ public class CottageServiceImpl implements CottageService {
     @Override
     public List<Cottage> findAll() {
         return cottageRepository.findAll();
-
     }
 
     @Override

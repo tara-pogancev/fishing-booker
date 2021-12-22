@@ -27,4 +27,7 @@ public class QuickReservation extends Reservation {
     @Column(name = "discount", nullable = false)
     private Double discount = 0.0;
 
+    @Column(name = "isReserved", nullable = false)
+    private Boolean isReserved = false;
+
 }

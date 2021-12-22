@@ -5,7 +5,7 @@
     <reservation-search (doSearch)="search($event)"></reservation-search>
     <hr />
     <div *ngIf="boats.length == 0">
-      <p>No Boats Found.</p>
+      <p>No boats to show. Try changing the dates or search parameters.</p>
     </div>
     <div *ngFor="let boat of boats">
       <reservation-card

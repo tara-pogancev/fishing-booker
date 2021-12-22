@@ -1,6 +1,5 @@
 package com.fishingbooker.ftn.service.interfaces;
 
-import com.fishingbooker.ftn.bom.boats.Boat;
 import com.fishingbooker.ftn.bom.cottages.Cottage;
 import com.fishingbooker.ftn.dto.CottageCreationDto;
 import com.fishingbooker.ftn.dto.CottageDto;
@@ -26,4 +25,5 @@ public interface CottageService {
     List<Cottage> filterByDate(LocalDate startDate, LocalDate endDate);
 
     List<Cottage> findFiltered(EntitySearchDto filterDto);
+
 }

@@ -28,9 +28,10 @@ export class FishingReservationsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.adventureService.findAll().subscribe((data) => {
-      this.adventures = data;
+    let filter = new SearchFilter()
+    this.adventureService.getSearch(filter).subscribe((data) => {
       this.adventuresAll = data;
+      this.adventures = this.searchService.filter(this.adventuresAll, filter)!;
     });
   }
 

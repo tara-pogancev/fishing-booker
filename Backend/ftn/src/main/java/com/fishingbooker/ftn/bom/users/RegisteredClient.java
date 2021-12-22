@@ -2,8 +2,11 @@ package com.fishingbooker.ftn.bom.users;
 
 import com.fishingbooker.ftn.bom.RegistrationRequest;
 import com.fishingbooker.ftn.bom.UserRank;
+import com.fishingbooker.ftn.bom.adventures.AdventureReservation;
 import com.fishingbooker.ftn.bom.boats.Boat;
+import com.fishingbooker.ftn.bom.boats.BoatReservation;
 import com.fishingbooker.ftn.bom.cottages.Cottage;
+import com.fishingbooker.ftn.bom.cottages.CottageReservation;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -44,12 +47,20 @@ public class RegisteredClient extends ApplicationUser {
             inverseJoinColumns = @JoinColumn(name = "instructor_id"))
     private Set<FishingInstructor> instructorSubscription;
 
+    @OneToMany(mappedBy = "reservationClient")
+    private Set<CottageReservation> cottageReservations;
+
+    @OneToMany(mappedBy = "reservationClient")
+    private Set<BoatReservation> boatReservations;
+
+    @OneToMany(mappedBy = "reservationClient")
+    private Set<AdventureReservation> adventureReservations;
+
     @OneToOne(mappedBy = "user")
     private RegistrationRequest request;
 
     @ManyToOne()
     @JoinColumn(name = "rank")
     UserRank rank;
-
 
 }

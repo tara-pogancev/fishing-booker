@@ -4,7 +4,7 @@
   <div>
     <reservation-search (doSearch)="search($event)"></reservation-search>
     <div *ngIf="adventures.length == 0">
-      <p>No Fishing Adventures Found.</p>
+      <p>No fishing adventures to show. Try changing the dates or search parameters.</p>
     </div>
     <div *ngFor="let adventure of adventures">
       <reservation-card

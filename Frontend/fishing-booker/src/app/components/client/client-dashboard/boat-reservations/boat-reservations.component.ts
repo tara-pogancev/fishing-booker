@@ -30,9 +30,10 @@ export class BoatReservationsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.boatService.findAll().subscribe((data) => {
-      this.boats = data;
+    let filter = new SearchFilter()
+    this.boatService.getSearch(filter).subscribe((data) => {
       this.boatsAll = data;
+      this.boats = this.searchService.filter(this.boatsAll, filter)!;
     });
   }
 
