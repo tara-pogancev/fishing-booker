@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { server } from '../app-global';
 import { CreateAdventureModel } from '../model/create-adventure-model';
+import { ReservationModel } from '../model/reservation-model';
 import { SearchFilter } from '../model/search-filter-model';
 import { LoginService } from './login.service';
 
@@ -50,5 +51,11 @@ export class AdvetnureService {
     const localurl = server + 'api/adventures/' + id;
     const headers = this.loginService.getHeaders();
     return this._http.delete<any>(localurl, { headers: headers });
+  }
+
+  bookAdventure(reservation: ReservationModel) {
+    const url = server + 'api/adventures/book';
+    const headers = this.loginService.getHeaders();
+    return this._http.post<any>(url, reservation, { headers: headers });
   }
 }

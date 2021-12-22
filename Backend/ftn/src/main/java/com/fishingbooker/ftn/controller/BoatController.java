@@ -2,9 +2,11 @@ package com.fishingbooker.ftn.controller;
 
 import com.fishingbooker.ftn.bom.boats.Boat;
 import com.fishingbooker.ftn.conversion.DataConverter;
+import com.fishingbooker.ftn.conversion.dto.ReservationDto;
 import com.fishingbooker.ftn.dto.BoatDto;
 import com.fishingbooker.ftn.dto.EntitySearchDto;
 import com.fishingbooker.ftn.service.interfaces.BoatService;
+import com.fishingbooker.ftn.service.interfaces.ReservationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +19,8 @@ public class BoatController {
 
     private final BoatService boatService;
     private final DataConverter converter;
+    private final ReservationService reservationService;
+
 
     @GetMapping()
     public List<BoatDto> get() {
@@ -34,5 +38,10 @@ public class BoatController {
     @DeleteMapping("/{id}")
     public Long delete(@PathVariable("id") Long id) {
         return boatService.delete(id);
+    }
+
+    @PostMapping("/book")
+    public Long book(@RequestBody ReservationDto reservationDto) {
+        return reservationService.bookBoat(reservationDto).getId();
     }
 }

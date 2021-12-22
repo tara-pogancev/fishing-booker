@@ -57,7 +57,7 @@ public class CottageController {
     }
 
     @PostMapping("/book")
-    public Long addCottage(@RequestBody ReservationDto reservationDto) {
+    public Long book(@RequestBody ReservationDto reservationDto) {
         return reservationService.bookCottage(reservationDto).getId();
     }
 

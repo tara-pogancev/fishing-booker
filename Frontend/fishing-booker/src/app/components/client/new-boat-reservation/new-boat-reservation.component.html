@@ -1,1 +1,67 @@
-<p>new-boat-reservation works!</p>
+<div class="body-wrapper">
+  <gap></gap>
+  <div class="is-flex content is-medium my-5 is-justify-content-center">
+    <div class="box p-6 max-width-800">
+      <h1 class="title">Complete Boat Reservation</h1>
+
+      <hr />
+      <h4>Reservation Details</h4>
+
+      <div class="columns">
+        <div class="column">
+          <label class="label">Start Date:</label>
+          <p>{{ reservation.startDate | date }}</p>
+        </div>
+
+        <div class="column">
+          <label class="label">End Date:</label>
+          <p>{{ reservation.endDate | date }}</p>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Boat: {{ boat.name }}</label>
+      </div>
+
+      <div class="field">
+        <label class="label">Number of people: {{ reservation.people }}</label>
+      </div>
+
+      <gap height="40"></gap>
+      <hr />
+      <h4>Additional Details</h4>
+
+      <div class="columns">
+        <div class="column">
+          <label class="checkbox" *ngFor="let utility of boat.utilities">
+            <input type="checkbox" (change)="this.alterPrice(utility)" />
+            {{ utility.name }} (${{ utility.price }})
+          </label>
+        </div>
+      </div>
+
+      <gap height="40"></gap>
+      <hr />
+      <h4>Confirm Booking</h4>
+
+      <div class="columns">
+        <div class="column">
+          <h2 class="confirm">Total price: ${{ reservation.price }}</h2>
+        </div>
+      </div>
+
+      <div class="control">
+        <button class="button is-danger mr-3" (click)="cancelReservation()">
+          Cancel
+        </button>
+        <button class="button is-success" (click)="createReservation()">
+          Confirm
+        </button>
+      </div>
+
+      <gap height="30"></gap>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
