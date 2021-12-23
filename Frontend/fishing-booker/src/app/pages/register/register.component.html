@@ -158,23 +158,55 @@
           </div>
         </div>
       </div>
-      <div class="column">
-        <div class="field">
-          <label class="label">Acount Type:</label>
-          <div class="control">
-            <div class="select">
-              <select [(ngModel)]="user.role" (click)="changeRegistrationType()">
-                <option value="Registered Client">Client</option>
-                <option value="Cottage Owner">Cottage Owner</option>
-                <option value="Boat Owner">Boat Owner</option>
-                <option value="Fishing Instructor">Fishing Instructor</option>
-              </select>
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <label class="label">Acount Type:</label>
+            <div class="control">
+              <div class="select">
+                <select
+                  [(ngModel)]="user.role"
+                  (click)="changeRegistrationType()"
+                >
+                  <option value="Registered Client">Client</option>
+                  <option value="Cottage Owner">Cottage Owner</option>
+                  <option value="Boat Owner">Boat Owner</option>
+                  <option value="Fishing Instructor">Fishing Instructor</option>
+                </select>
+              </div>
             </div>
+          </div>
+        </div>
+        <div class="column">
+          <div
+            [ngStyle]="{ visibility: selectedClient ? 'hidden' : 'visible' }"
+          >
+            <textarea
+              [(ngModel)]="user.registrationDescription"
+              class="textarea"
+              placeholder="Enter explanation for your registration"
+            ></textarea>
           </div>
         </div>
       </div>
       <div [ngStyle]="{visibility: selectedClient ? 'hidden' : 'visible'}">
         <textarea [(ngModel)]="user.registrationDescription" class="textarea" placeholder="Enter explanation for your registration"></textarea>
+
+      <gap height="30"></gap>
+      <div class="field">
+        <div class="control">
+          <button class="button is-link" (click)="validateForm()">
+            Submit
+          </button>
+          <p
+            class="help is-danger mt-5"
+            [ngStyle]="{
+              visibility: !validForm ? 'visible' : 'hidden'
+            }"
+          >
+            Please fill in all the form fields!
+          </p>
+        </div>
       </div>
       <gap height="30"></gap>
       <div class="field">
