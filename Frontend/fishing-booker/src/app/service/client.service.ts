@@ -13,7 +13,6 @@ import { LoginService } from './login.service';
 export class ClientService {
   url = server + 'api/client';
 
-
   constructor(private _http: HttpClient, private loginService: LoginService) {}
 
   getClient(id: number) {
@@ -34,18 +33,55 @@ export class ClientService {
     return this._http.put<any>(this.url, client, { headers: headers });
   }
 
-  loadEnabledClients(){
+  loadEnabledClients() {
     const headers = this.loginService.getHeaders();
-    return this._http.get<any>(this.url+'/get-enabled',{headers:headers});
+    return this._http.get<any>(this.url + '/get-enabled', { headers: headers });
   }
 
-  deleteClient(id:string){
+  deleteClient(id: string) {
     const headers = this.loginService.getHeaders();
-    return this._http.delete<any>(this.url+'/delete-client/'+id,{headers:headers});//.pipe(catchError(this.erroHandler));
+    return this._http.delete<any>(this.url + '/delete-client/' + id, {
+      headers: headers,
+    }); //.pipe(catchError(this.erroHandler));
   }
 
   erroHandler(error: HttpErrorResponse) {
     alert('Error');
     return throwError(error.message || 'server Error');
+  }
+
+  getClientPastCottageReservations() {
+    const id = this.loginService.getCurrentUser().id;
+    const url = this.url + '/' + id + '/past-reservations/cottages';
+    const headers = this.loginService.getHeaders();
+    return this._http.get<any>(url, { headers: headers });
+  }
+
+  getClientPastBoatReservations() {
+    const id = this.loginService.getCurrentUser().id;
+    const url = this.url + '/' + id + '/past-reservations/boats';
+    const headers = this.loginService.getHeaders();
+    return this._http.get<any>(url, { headers: headers });
+  }
+
+  getClientPastAdventureReservations() {
+    const id = this.loginService.getCurrentUser().id;
+    const url = this.url + '/' + id + '/past-reservations/adventures';
+    const headers = this.loginService.getHeaders();
+    return this._http.get<any>(url, { headers: headers });
+  }
+
+  getClientUpcomingReservations() {
+    const id = this.loginService.getCurrentUser().id;
+    const url = this.url + '/' + id + '/upcoming-reservations';
+    const headers = this.loginService.getHeaders();
+    return this._http.get<any>(url, { headers: headers });
+  }
+
+  cancelReservation(reservationId: number) {
+    const id = this.loginService.getCurrentUser().id;
+    const url = this.url + '/' + id + '/cancel/' + reservationId;
+    const headers = this.loginService.getHeaders();
+    return this._http.delete<any>(url, { headers: headers });
   }
 }

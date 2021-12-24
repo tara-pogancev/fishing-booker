@@ -273,7 +273,7 @@ INSERT INTO public.system_properties(gold_points, income_percentage, reservation
 
 -- AVAILABLE TIME PERIOD
 
-INSERT INTO public.available_time_period(start_date, end_date)	VALUES ('20211205 10:00:00 AM', '20211225 10:00:00 AM');
+INSERT INTO public.available_time_period(start_date, end_date)	VALUES ('20211205 10:00:00 AM', '20211231 10:00:00 AM');
 INSERT INTO public.available_time_period(start_date, end_date)	VALUES ('20220105 10:00:00 AM', '20220125 10:00:00 AM');
 INSERT INTO public.available_time_period(start_date, end_date)	VALUES ('20220105 10:00:00 AM', '20220125 10:00:00 AM');
 INSERT INTO public.available_time_period(start_date, end_date)	VALUES ('20211205 10:00:00 AM', '20211225 10:00:00 AM');
@@ -311,3 +311,20 @@ INSERT INTO public.available_instructor_time_period(id, instructor)	VALUES (12, 
 -- DELETE ACCOUNT REQUEST
 
 INSERT INTO public.delete_account_request( description, request_status, user_id) VALUES ( 'neki opis', 0, 6);
+-- RESERVATIONS
+
+INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start)	VALUES (3, 48, '2020110 10:00:00 AM', '2020105 10:00:00 AM');
+INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start)	VALUES (12, 254, '2020215 10:00:00 AM', '2020208 10:00:00 AM');
+INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start)	VALUES (2, 86, '20200606 10:00:00 AM', '20200602 10:00:00 AM');
+INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start)	VALUES (4, 54, '20220105 10:00:00 AM', '20220101 10:00:00 AM');
+INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start)	VALUES (5, 78, '20220106 10:00:00 AM', '20220102 10:00:00 AM');
+INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start)	VALUES (1, 32, '20220107 10:00:00 AM', '20220104 10:00:00 AM');
+INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start)	VALUES (6, 102, '20220108 10:00:00 AM', '20220103 10:00:00 AM');
+
+INSERT INTO public.cottage_reservation(id, cottage_id, user_id)	VALUES (1, 1, 1);
+INSERT INTO public.boat_reservation(id, boat_id, user_id)	VALUES (2, 1, 1);
+INSERT INTO public.adventure_reservation(id, adventure_id, user_id)	VALUES (3, 1, 1);
+INSERT INTO public.cottage_reservation(id, cottage_id, user_id)	VALUES (4, 1, 1);
+INSERT INTO public.cottage_reservation(id, cottage_id, user_id)	VALUES (5, 1, 1);
+INSERT INTO public.boat_reservation(id, boat_id, user_id)	VALUES (6, 1, 1);
+INSERT INTO public.adventure_reservation(id, adventure_id, user_id)	VALUES (7, 1, 1);

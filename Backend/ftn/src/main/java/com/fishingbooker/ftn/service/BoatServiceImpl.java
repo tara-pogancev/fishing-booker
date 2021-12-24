@@ -45,7 +45,8 @@ public class BoatServiceImpl implements BoatService {
         List<Boat> boats = new ArrayList<>();
         for (Boat boat : findAll()) {
             for (AvailableTimePeriod period : boat.getAvailableTimePeriods()) {
-                if (period.getStartDate().isBefore(startDate) && period.getEndDate().isAfter(endDate)) {
+                if ((period.getStartDate().isBefore(startDate) || period.getStartDate().isEqual(startDate))
+                        && (period.getEndDate().isAfter(endDate) || period.getStartDate().isEqual(endDate))) {
                     boats.add(boat);
                     break;
                 }

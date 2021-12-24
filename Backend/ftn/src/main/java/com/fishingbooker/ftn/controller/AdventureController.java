@@ -3,10 +3,10 @@ package com.fishingbooker.ftn.controller;
 
 import com.fishingbooker.ftn.bom.adventures.Adventure;
 import com.fishingbooker.ftn.conversion.DataConverter;
-import com.fishingbooker.ftn.conversion.dto.ReservationDto;
 import com.fishingbooker.ftn.dto.AdventureCreationDto;
 import com.fishingbooker.ftn.dto.AdventureDto;
 import com.fishingbooker.ftn.dto.EditAdventureDto;
+import com.fishingbooker.ftn.dto.ReservationDto;
 import com.fishingbooker.ftn.service.interfaces.AdventureService;
 import com.fishingbooker.ftn.service.interfaces.ReservationService;
 import lombok.RequiredArgsConstructor;

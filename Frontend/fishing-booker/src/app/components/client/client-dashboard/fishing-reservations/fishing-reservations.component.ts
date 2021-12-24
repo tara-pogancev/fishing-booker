@@ -2,7 +2,7 @@ import { formatDate } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { Adventure } from 'src/app/model/adventure-model';
 import { Client } from 'src/app/model/client-model';
-import { EntityModel } from 'src/app/model/entity-moedl';
+import { EntityModel } from 'src/app/model/entity-model';
 import { SearchFilter } from 'src/app/model/search-filter-model';
 import { AdvetnureService } from 'src/app/service/adventure-service';
 import { SearchService } from 'src/app/service/search-service';

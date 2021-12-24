@@ -101,7 +101,8 @@ public class CottageServiceImpl implements CottageService {
         List<Cottage> cottages = new ArrayList<>();
         for (Cottage cottage : findAll()) {
             for (AvailableTimePeriod period : cottage.getAvailableTimePeriods()) {
-                if (period.getStartDate().isBefore(startDate) && period.getEndDate().isAfter(endDate)) {
+                if ((period.getStartDate().isBefore(startDate) || period.getStartDate().isEqual(startDate))
+                        && (period.getEndDate().isAfter(endDate) || period.getStartDate().isEqual(endDate)))  {
                     cottages.add(cottage);
                     break;
                 }

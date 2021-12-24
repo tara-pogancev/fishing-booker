@@ -3,7 +3,7 @@ package com.fishingbooker.ftn.service.interfaces;
 import com.fishingbooker.ftn.bom.adventures.AdventureReservation;
 import com.fishingbooker.ftn.bom.boats.BoatReservation;
 import com.fishingbooker.ftn.bom.cottages.CottageReservation;
-import com.fishingbooker.ftn.conversion.dto.ReservationDto;
+import com.fishingbooker.ftn.dto.ReservationDto;
 
 public interface ReservationService {
 
@@ -13,5 +13,5 @@ public interface ReservationService {
 
     BoatReservation bookBoat(ReservationDto reservationDto);
 
-
+    void cancel(Long reservationId);
 }

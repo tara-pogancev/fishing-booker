@@ -1,7 +1,7 @@
 package com.fishingbooker.ftn.email.context;
 
 import com.fishingbooker.ftn.bom.users.ApplicationUser;
-import com.fishingbooker.ftn.conversion.dto.ReservationDto;
+import com.fishingbooker.ftn.dto.ReservationDto;
 
 public class ClientReservationConfirmationEmailContext extends AbstractEmailContext {
 

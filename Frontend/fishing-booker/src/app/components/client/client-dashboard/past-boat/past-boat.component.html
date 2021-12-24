@@ -15,40 +15,16 @@
         </tr>
       </thead>
 
-      <tr>
-        <th>1</th>
+      <tr *ngFor="let res of reservations">
+        <th>{{ res.id }}</th>
         <td>
-          <a href="#">Angelina Boat</a>
+          <a href="/boat/{{ res.entityId }}">{{ res.entityName }}</a>
         </td>
-        <td>John Smith</td>
-        <td>23/04/2021</td>
-        <td>25/04/2021</td>
-        <td>3</td>
-        <td>$75</td>
-      </tr>
-
-      <tr>
-        <th>2</th>
-        <td>
-          <a href="#">Angelina Boat</a>
-        </td>
-        <td>John Smith</td>
-        <td>23/04/2021</td>
-        <td>25/04/2021</td>
-        <td>3</td>
-        <td>$75</td>
-      </tr>
-
-      <tr>
-        <th>3</th>
-        <td>
-          <a href="#">Angelina Boat</a>
-        </td>
-        <td>John Smith</td>
-        <td>23/04/2021</td>
-        <td>25/04/2021</td>
-        <td>3</td>
-        <td>$75</td>
+        <td>{{ res.ownerName }}</td>
+        <td>{{ res.startDate | date }}</td>
+        <td>{{ res.endDate | date }}</td>
+        <td>{{ res.people }}</td>
+        <td>${{ res.price }}</td>
       </tr>
     </table>
   </div>

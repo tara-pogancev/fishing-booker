@@ -2,7 +2,7 @@ import { formatDate } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { Client } from 'src/app/model/client-model';
 import { Cottage } from 'src/app/model/cottage-model';
-import { EntityModel } from 'src/app/model/entity-moedl';
+import { EntityModel } from 'src/app/model/entity-model';
 import { SearchFilter } from 'src/app/model/search-filter-model';
 import { CottageService } from 'src/app/service/cottage.service';
 import { SearchService } from 'src/app/service/search-service';

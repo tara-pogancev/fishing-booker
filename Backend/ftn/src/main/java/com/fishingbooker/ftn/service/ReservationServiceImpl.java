@@ -11,14 +11,11 @@ import com.fishingbooker.ftn.bom.cottages.CottageReservation;
 import com.fishingbooker.ftn.bom.cottages.CottageUtility;
 import com.fishingbooker.ftn.bom.users.ApplicationUser;
 import com.fishingbooker.ftn.bom.users.RegisteredClient;
-import com.fishingbooker.ftn.conversion.dto.ReservationDto;
-import com.fishingbooker.ftn.email.context.AccountVerificationEmailContext;
+import com.fishingbooker.ftn.dto.ReservationDto;
 import com.fishingbooker.ftn.email.context.ClientReservationConfirmationEmailContext;
 import com.fishingbooker.ftn.email.service.EmailService;
 import com.fishingbooker.ftn.repository.*;
-import com.fishingbooker.ftn.security.registration.RegistrationToken;
 import com.fishingbooker.ftn.service.interfaces.AdventureService;
-import com.fishingbooker.ftn.service.interfaces.BoatService;
 import com.fishingbooker.ftn.service.interfaces.CottageService;
 import com.fishingbooker.ftn.service.interfaces.ReservationService;
 import lombok.RequiredArgsConstructor;
@@ -34,10 +31,11 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class ReservationServiceImpl implements ReservationService {
 
+    private final EmailService emailService;
     private final CottageService cottageService;
     private final BoatRepository boatRepository;
     private final AdventureService adventureService;
-    private final EmailService emailService;
+    private final ReservationRepository reservationRepository;
     private final RegisteredClientRepository clientRepository;
     private final BoatReservationRepository boatReservationRepository;
     private final CottageReservationRepository cottageReservationRepository;
@@ -130,6 +128,13 @@ public class ReservationServiceImpl implements ReservationService {
         return reservation;
     }
 
+    @Override
+    public void cancel(Long reservationId) {
+        if (reservationRepository.exists(reservationId)) {
+            reservationRepository.deleteById(reservationId);
+        }
+    }
+
     public void sendReservationConfirmationEmail(ApplicationUser user, ReservationDto reservationDto) {
         ClientReservationConfirmationEmailContext emailContext = new ClientReservationConfirmationEmailContext();
         emailContext.init(user);
@@ -140,7 +145,6 @@ public class ReservationServiceImpl implements ReservationService {
             e.printStackTrace();
         }
     }
-
 
 
 }

@@ -1,9 +1,14 @@
 package com.fishingbooker.ftn.service;
 
 import com.fishingbooker.ftn.bom.Address;
+import com.fishingbooker.ftn.bom.adventures.AdventureReservation;
+import com.fishingbooker.ftn.bom.boats.BoatReservation;
+import com.fishingbooker.ftn.bom.cottages.CottageReservation;
+import com.fishingbooker.ftn.bom.reservations.Reservation;
 import com.fishingbooker.ftn.bom.users.RegisteredClient;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.ApplicationUserDto;
+import com.fishingbooker.ftn.dto.BoatReservationToDto;
 import com.fishingbooker.ftn.dto.RegisteredClientDto;
 import com.fishingbooker.ftn.repository.AddressRepository;
 import com.fishingbooker.ftn.repository.RegisteredClientRepository;
@@ -13,6 +18,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -80,5 +88,64 @@ public class RegisteredClientServiceImpl implements RegisteredClientService {
         clientRepository.delete(client);
         return client;
     }
+
+    @Override
+    public List<Reservation> getPastCottageReservations(Long id) {
+        RegisteredClient client = clientRepository.get(id);
+        List<Reservation> reservations = new ArrayList<>();
+        if (client != null) {
+            for (CottageReservation cottageReservation : client.getCottageReservations())
+                if (cottageReservation.getReservationStart().isBefore(LocalDate.now()))
+                    reservations.add(cottageReservation);
+        }
+        return reservations;
+    }
+
+    @Override
+    public List<Reservation> getPastBoatReservations(Long id) {
+        RegisteredClient client = clientRepository.get(id);
+        List<Reservation> reservations = new ArrayList<>();
+        if (client != null) {
+            for (BoatReservation boatReservation : client.getBoatReservations())
+                if (boatReservation.getReservationStart().isBefore(LocalDate.now()))
+                    reservations.add(boatReservation);
+        }
+        return reservations;
+    }
+
+    @Override
+    public List<Reservation> getPastAdventureReservations(Long id) {
+        RegisteredClient client = clientRepository.get(id);
+        List<Reservation> reservations = new ArrayList<>();
+        if (client != null) {
+            for (AdventureReservation adventureReservation : client.getAdventureReservations())
+                if (adventureReservation.getReservationStart().isBefore(LocalDate.now()))
+                    reservations.add(adventureReservation);
+        }
+        return reservations;
+    }
+
+    @Override
+    public List<Reservation> getUpcomingReservations(Long id) {
+        RegisteredClient client = clientRepository.get(id);
+        List<Reservation> reservations = new ArrayList<>();
+        if (client != null) {
+            for (AdventureReservation adventureReservation : client.getAdventureReservations())
+                if (adventureReservation.getReservationStart().isAfter(LocalDate.now()) || adventureReservation.getReservationStart().isEqual(LocalDate.now()))
+                    reservations.add(adventureReservation);
+
+            for (CottageReservation cottageReservation : client.getCottageReservations())
+                if (cottageReservation.getReservationStart().isAfter(LocalDate.now()) || cottageReservation.getReservationStart().isEqual(LocalDate.now()))
+                    reservations.add(cottageReservation);
+
+            for (BoatReservation boatReservation : client.getBoatReservations())
+                if (boatReservation.getReservationStart().isAfter(LocalDate.now()) || boatReservation.getReservationStart().isEqual(LocalDate.now()))
+                    reservations.add(boatReservation);
+
+        }
+
+        return reservations;
+    }
+
 
 }

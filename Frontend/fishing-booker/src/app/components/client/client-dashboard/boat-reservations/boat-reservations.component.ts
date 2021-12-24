@@ -4,7 +4,7 @@ import { fil } from 'date-fns/locale';
 import { start } from 'repl';
 import { Boat } from 'src/app/model/boat-model';
 import { Client } from 'src/app/model/client-model';
-import { EntityModel } from 'src/app/model/entity-moedl';
+import { EntityModel } from 'src/app/model/entity-model';
 import { SearchFilter } from 'src/app/model/search-filter-model';
 import { BoatService } from 'src/app/service/boat.service';
 import { SearchService } from 'src/app/service/search-service';

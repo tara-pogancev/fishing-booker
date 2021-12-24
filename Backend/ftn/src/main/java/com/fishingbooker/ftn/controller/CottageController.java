@@ -2,10 +2,10 @@ package com.fishingbooker.ftn.controller;
 
 import com.fishingbooker.ftn.bom.cottages.Cottage;
 import com.fishingbooker.ftn.conversion.DataConverter;
-import com.fishingbooker.ftn.conversion.dto.ReservationDto;
 import com.fishingbooker.ftn.dto.CottageCreationDto;
 import com.fishingbooker.ftn.dto.CottageDto;
 import com.fishingbooker.ftn.dto.EntitySearchDto;
+import com.fishingbooker.ftn.dto.ReservationDto;
 import com.fishingbooker.ftn.service.interfaces.CottageService;
 import com.fishingbooker.ftn.service.interfaces.ReservationService;
 import lombok.RequiredArgsConstructor;

@@ -1,5 +1,6 @@
 package com.fishingbooker.ftn.service.interfaces;
 
+import com.fishingbooker.ftn.bom.reservations.Reservation;
 import com.fishingbooker.ftn.bom.users.RegisteredClient;
 import com.fishingbooker.ftn.dto.ApplicationUserDto;
 import com.fishingbooker.ftn.dto.RegisteredClientDto;
@@ -21,4 +22,12 @@ public interface RegisteredClientService {
     List<RegisteredClient> getEnabledClients();
 
     RegisteredClient delete(Long id);
+
+    List<Reservation> getPastCottageReservations(Long id);
+
+    List<Reservation> getPastBoatReservations(Long id);
+
+    List<Reservation> getPastAdventureReservations(Long id);
+
+    List<Reservation> getUpcomingReservations(Long id);
 }

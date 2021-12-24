@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { EntityModel } from 'src/app/model/entity-moedl';
+import { EntityModel } from 'src/app/model/entity-model';
 import { Utility } from 'src/app/model/utility-model';
 import { ImageService } from 'src/app/service/image.service';
 
