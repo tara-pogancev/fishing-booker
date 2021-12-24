@@ -1,5 +1,7 @@
-package com.fishingbooker.ftn.bom;
+package com.fishingbooker.ftn.bom.users;
 
+import com.fishingbooker.ftn.bom.DatabaseEntity;
+import com.fishingbooker.ftn.bom.RequestApproval;
 import com.fishingbooker.ftn.bom.users.ApplicationUser;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,7 +14,7 @@ import javax.persistence.*;
 @Table(name = "RegistrationRequest")
 public class RegistrationRequest extends DatabaseEntity {
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne()
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private ApplicationUser user;
 

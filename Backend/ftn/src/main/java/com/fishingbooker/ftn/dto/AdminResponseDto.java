@@ -3,7 +3,7 @@ package com.fishingbooker.ftn.dto;
 import lombok.Data;
 
 @Data
-public class RejectRequestDto {
+public class AdminResponseDto {
     private Long id;
-    private String causeOfRejection;
+    private String description;
 }

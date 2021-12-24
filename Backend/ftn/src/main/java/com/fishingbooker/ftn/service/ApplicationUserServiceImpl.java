@@ -1,7 +1,7 @@
 package com.fishingbooker.ftn.service;
 
 import com.fishingbooker.ftn.bom.Address;
-import com.fishingbooker.ftn.bom.RegistrationRequest;
+import com.fishingbooker.ftn.bom.users.RegistrationRequest;
 import com.fishingbooker.ftn.bom.users.ApplicationRole;
 import com.fishingbooker.ftn.bom.users.ApplicationUser;
 import com.fishingbooker.ftn.conversion.DataConverter;

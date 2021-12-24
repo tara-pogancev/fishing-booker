@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Client } from 'src/app/model/client-model';
 import { FishingInstructorService } from 'src/app/service/fishing-instructor.service';
+import { DeleteAccountService } from '../../../../service/delete-account.service';
 
 @Component({
   selector: 'app-instructor-settings',
@@ -19,7 +20,7 @@ export class InstructorSettingsComponent implements OnInit {
   country='';
   requestSent=false;
   requestText='';
-  constructor(private instructorService:FishingInstructorService) { }
+  constructor(private instructorService:FishingInstructorService,private deleteAccountService:DeleteAccountService) { }
 
   ngOnInit(): void {
     this.instructorService.getCurrentInstructor().subscribe((data: any) => {
@@ -67,6 +68,7 @@ export class InstructorSettingsComponent implements OnInit {
       alert('You must enter message');
       return;
     }
+    this.deleteAccountService.sendRequest(this.requestText);
     this.requestSent=true;
     this.requestText='';
   }

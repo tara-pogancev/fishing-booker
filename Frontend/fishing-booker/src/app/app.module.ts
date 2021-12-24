@@ -100,6 +100,7 @@ import { CottageOwnerAvailablePeriodsComponent } from './components/cottages/cot
 import { NewBoatReservationComponent } from './components/client/new-boat-reservation/new-boat-reservation.component';
 import { NewCottageReservationComponent } from './components/client/new-cottage-reservation/new-cottage-reservation.component';
 import { NewAdventureReservationComponent } from './components/client/new-adventure-reservation/new-adventure-reservation.component';
+import { DeleteAccountRequestsComponent } from './components/admin/admin-dashboard/delete-account-requests/delete-account-requests.component';
 
 
 @NgModule({
@@ -196,7 +197,8 @@ import { NewAdventureReservationComponent } from './components/client/new-advent
     CottageOwnerAvailablePeriodsComponent,
     NewBoatReservationComponent,
     NewCottageReservationComponent,
-    NewAdventureReservationComponent
+    NewAdventureReservationComponent,
+    DeleteAccountRequestsComponent
   ],
   imports: [
     BrowserModule,

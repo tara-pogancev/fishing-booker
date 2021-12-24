@@ -1,9 +1,9 @@
 package com.fishingbooker.ftn.service;
 
-import com.fishingbooker.ftn.bom.RegistrationRequest;
+import com.fishingbooker.ftn.bom.users.RegistrationRequest;
 import com.fishingbooker.ftn.bom.RequestApproval;
 import com.fishingbooker.ftn.bom.users.ApplicationUser;
-import com.fishingbooker.ftn.dto.RejectRequestDto;
+import com.fishingbooker.ftn.dto.AdminResponseDto;
 import com.fishingbooker.ftn.email.context.AcceptRegistrationEmailContext;
 import com.fishingbooker.ftn.email.context.RejectRegistrationEmailContext;
 import com.fishingbooker.ftn.email.service.EmailService;
@@ -42,11 +42,11 @@ public class RegistrationRequestServiceImpl implements RegistrationRequestServic
     }
 
     @Override
-    public void rejectRequest(RejectRequestDto requestDto) {
+    public void rejectRequest(AdminResponseDto requestDto) {
         RegistrationRequest request = registrationRequestRepository.get(requestDto.getId());
         request.setApproved(RequestApproval.DECLINED);
-        request.setCausesOfRejection(requestDto.getCauseOfRejection());
-        sendRefuseRegistrationEmail(request.getUser(), requestDto.getCauseOfRejection());
+        request.setCausesOfRejection(requestDto.getDescription());
+        sendRefuseRegistrationEmail(request.getUser(), requestDto.getDescription());
         registrationRequestRepository.save(request);
     }
 

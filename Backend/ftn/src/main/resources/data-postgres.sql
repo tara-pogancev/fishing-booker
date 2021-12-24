@@ -26,12 +26,14 @@ INSERT INTO public.application_user(email, enabled, last_name, first_name, passw
 INSERT INTO public.application_user(email, enabled, last_name, first_name, password, phone, role, address)	VALUES ('boat@fishing.com', true, 'Ellouise', 'Price', '$2a$10$KqyJ6IcfwIwV4pkjbfQ7LeGlhRRHTlIKtPKS7ElLJ0NcsOP2Zgpqm', '218-851-2525', '2', '3');
 INSERT INTO public.application_user(email, enabled, last_name, first_name, password, phone, role, address)	VALUES ('adventures@fishing.com', true, 'Filip', 'Magana', '$2a$10$KqyJ6IcfwIwV4pkjbfQ7LeGlhRRHTlIKtPKS7ElLJ0NcsOP2Zgpqm', '310-793-7864', '3', '4');
 INSERT INTO public.application_user(email, enabled, last_name, first_name, password, phone, role, address)	VALUES ('admin@fishing.com', true, 'Admin', 'Admin', '$2a$10$KqyJ6IcfwIwV4pkjbfQ7LeGlhRRHTlIKtPKS7ElLJ0NcsOP2Zgpqm', '978-809-5104', '4', '5');
+--INSERT INTO public.application_user(email, enabled, last_name, first_name, password, phone, role, address)	VALUES ('djordje1499@gmail.com', true, 'Admin', 'Admin', '$2a$10$KqyJ6IcfwIwV4pkjbfQ7LeGlhRRHTlIKtPKS7ElLJ0NcsOP2Zgpqm', '978-809-5104', '4', '5');
 
 INSERT INTO public.registered_client(is_blocked, penalties, user_id, rank)	VALUES (false, 0, 1, null);
 INSERT INTO public.cottage_owner(user_id, rank)	VALUES (2, null);
 INSERT INTO public.boat_owner(user_id, rank)	VALUES (3, null);
 INSERT INTO public.fishing_instructor(biography, rating, id, rank)	VALUES ('Lorem ipsum dolor sit amet, consectetur adipiscing elit. In blandit leo sed nibh ultrices tincidunt. Donec vulputate sapien ut mauris sagittis laoreet. Phasellus viverra nibh et eros consectetur, id facilisis est lacinia.', 0.0, 4, null);
 INSERT INTO public.administrator(user_id)	VALUES (5);
+--INSERT INTO public.fishing_instructor(biography, rating, id, rank)	VALUES ('Lorem ipsum dolor sit amet, consectetur adipiscing elit. In blandit leo sed nibh ultrices tincidunt. Donec vulputate sapien ut mauris sagittis laoreet. Phasellus viverra nibh et eros consectetur, id facilisis est lacinia.', 0.0, 6, null);
 
 -- IMAGES
 --boat images  id 1-8
@@ -303,3 +305,8 @@ INSERT INTO public.available_instructor_time_period(id, instructor)	VALUES (9, 4
 INSERT INTO public.available_instructor_time_period(id, instructor)	VALUES (10, 4);
 INSERT INTO public.available_instructor_time_period(id, instructor)	VALUES (11, 4);
 INSERT INTO public.available_instructor_time_period(id, instructor)	VALUES (12, 4);
+
+
+-- DELETE ACCOUNT REQUEST
+
+--INSERT INTO public.delete_account_request( description, request_status, user_id) VALUES ( 'neki opis', 0, 6);

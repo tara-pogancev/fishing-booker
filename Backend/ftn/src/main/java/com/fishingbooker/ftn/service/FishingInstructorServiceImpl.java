@@ -49,7 +49,10 @@ public class FishingInstructorServiceImpl implements FishingInstructorService {
 
     @Override
     public Long delete(Long id) {
-        instructorRepository.deleteById(id);
+
+        if (instructorRepository.existsById(id)){
+            instructorRepository.deleteById(id);
+        }
         return id;
     }
 

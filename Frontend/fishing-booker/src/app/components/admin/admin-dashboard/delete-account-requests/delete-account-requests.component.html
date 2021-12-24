@@ -1,0 +1,65 @@
+<div class="content is-medium">
+    <h1 class="title">Delete Account Requests</h1>
+
+    <div class="container">
+
+        <div class="column" *ngFor='let request of requests'>
+            <div class="card">
+                <div class="card-content">
+                  <p class="subtitle">
+                    User Details
+                  </p>
+                  <div>
+                      <p>Name:{{request.name}}</p>
+                      <p>Last Name:{{request.lastName}}</p>
+                      <p>Mail:{{request.mail}}</p>
+                      <p>User Type:{{request.userType}}</p>
+                  </div>
+                  <div>
+                    <div style="margin-top:20px"></div>
+                    <p class="subtitle">
+                        Description
+                    </p>
+                    <div style="word-wrap: break-word;">
+                        {{request.description}}
+                    </div>
+                  </div>
+                </div>
+                <footer class="card-footer">
+                  <p class="card-footer-item">
+                    <span>
+                      <button class="confirmButton" (click)="acceptButtonClicked(request)">Accept Registration</button>
+                    </span>
+                  </p>
+                  <p class="card-footer-item">
+                    <span>
+                      <button class="cancelButton" (click)="rejectButtonClicked(request)">Reject Registration</button>
+                    </span>
+                  </p>
+                </footer>
+              </div>
+        </div>
+        <div class="modal" id='modal'>
+          <div class="modal-background"></div>
+          <div class="modal-card">
+            <header class="modal-card-head">
+              <p class="modal-card-title">Refuse Registration Request</p>
+              <button class="delete" aria-label="close" (click)="closeModalTab()"></button>
+            </header>
+            <section class="modal-card-body">
+              <h2>Enter your comment</h2>
+              <div>
+                <textarea class="textarea" placeholder="10 lines of textarea" rows="10" [(ngModel)]="comment"></textarea>
+              </div>
+            </section>
+            <footer class="modal-card-foot">
+              <button class="button is-success" (click)="sendMail()">Send mail</button>
+              
+            </footer>
+          </div>
+        </div>
+        
+        
+        
+      </div>
+</div>
