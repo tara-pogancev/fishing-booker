@@ -43,10 +43,10 @@ public class Adventure extends DatabaseEntity {
     @Column(name = "guestLimit", nullable = false)
     private Integer guestLimit;
 
-    @OneToMany(mappedBy = "adventure", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "adventure", fetch = FetchType.EAGER)
     private Set<AdventureQuickReservation> adventureQuickReservations;
 
-    @OneToMany(mappedBy = "adventure", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "adventure", fetch = FetchType.EAGER)
     private Set<AdventureReservation> adventureReservations;
 
     @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
