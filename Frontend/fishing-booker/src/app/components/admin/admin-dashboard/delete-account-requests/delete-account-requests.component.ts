@@ -45,6 +45,7 @@ export class DeleteAccountRequestsComponent implements OnInit {
       return;
     }
     this.deleteAccountService.approveRequest(this.selectedRequest.id,this.comment);
+    this.removeRequestFromFront();
     alert('Success');
   }
 
@@ -63,7 +64,13 @@ export class DeleteAccountRequestsComponent implements OnInit {
       return;
     }
     this.deleteAccountService.rejectRequest(this.selectedRequest.id,this.comment);
+    this.removeRequestFromFront();
     alert('Success');
+  }
+
+  removeRequestFromFront(){
+    const index=this.requests.indexOf(this.selectedRequest);
+    this.requests.splice(index,1);
   }
 
 }

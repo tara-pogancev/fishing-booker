@@ -23,7 +23,7 @@ public class DeleteAccountServiceImpl implements DeleteAccountService {
 
     @Override
     public List<DeleteAccountRequest> get() {
-        return deleteAccountRequestRepository.findAll();
+        return deleteAccountRequestRepository.getUnansweredRequests();
     }
 
     @Override
@@ -43,12 +43,14 @@ public class DeleteAccountServiceImpl implements DeleteAccountService {
     }
 
     @Override
-    public boolean reject(Long requestId) {
+    public boolean reject(Long requestId,String description) {
         boolean result=false;
         if (deleteAccountRequestRepository.exists(requestId)){
             DeleteAccountRequest request=deleteAccountRequestRepository.get(requestId);
             request.setRequestStatus(RequestApproval.DECLINED);
             deleteAccountRequestRepository.save(request);
+            ApplicationUser applicationUser=applicationUserRepository.get(request.getUserId());
+            mailingService.sendRefuseDeleteAccountMail(applicationUser,description);
             result=true;
         }
         return result;

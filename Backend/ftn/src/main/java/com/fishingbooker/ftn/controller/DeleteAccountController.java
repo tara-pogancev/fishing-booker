@@ -38,5 +38,10 @@ public class DeleteAccountController {
         return deleteAccountService.approve(responseDto.getId(),responseDto.getDescription());
     }
 
+    @PutMapping("/reject")
+    public boolean rejectRequest(@RequestBody AdminResponseDto responseDto){
+        return deleteAccountService.reject(responseDto.getId(),responseDto.getDescription());
+    }
+
 
 }

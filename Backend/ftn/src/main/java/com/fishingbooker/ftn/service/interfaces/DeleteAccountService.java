@@ -10,7 +10,7 @@ public interface DeleteAccountService {
 
     boolean approve(Long requestId,String description);
 
-    boolean reject(Long requestId);
+    boolean reject(Long requestId,String description);
 
     Long create(DeleteAccountRequest deleteAccountRequest);
 }

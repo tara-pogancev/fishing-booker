@@ -3,6 +3,7 @@ package com.fishingbooker.ftn.service;
 import com.fishingbooker.ftn.bom.users.ApplicationUser;
 import com.fishingbooker.ftn.email.context.AcceptDeleteAccountEmailContext;
 import com.fishingbooker.ftn.email.context.AcceptRegistrationEmailContext;
+import com.fishingbooker.ftn.email.context.RefuseDeleteAccountEmailContext;
 import com.fishingbooker.ftn.email.service.EmailService;
 import com.fishingbooker.ftn.service.interfaces.MailingService;
 import lombok.RequiredArgsConstructor;
@@ -26,5 +27,18 @@ public class MailingServiceImpl implements MailingService {
         } catch (MessagingException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void sendRefuseDeleteAccountMail(ApplicationUser user, String description) {
+        RefuseDeleteAccountEmailContext emailContext = new RefuseDeleteAccountEmailContext();
+        emailContext.setDescription(description);
+        emailContext.init(user);
+        try {
+            emailService.sendMail(emailContext);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+
     }
 }

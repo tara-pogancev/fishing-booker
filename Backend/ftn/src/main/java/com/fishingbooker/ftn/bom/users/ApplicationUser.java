@@ -27,7 +27,7 @@ public class ApplicationUser extends DatabaseEntity {
     @Column(name = "email", unique = true, nullable = false)
     private String email;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER,orphanRemoval = true)
     @JoinColumn(name = "address", referencedColumnName = "id")
     private Address userAddress;
 
