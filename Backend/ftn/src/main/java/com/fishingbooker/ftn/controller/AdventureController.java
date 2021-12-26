@@ -2,11 +2,9 @@ package com.fishingbooker.ftn.controller;
 
 
 import com.fishingbooker.ftn.bom.adventures.Adventure;
+import com.fishingbooker.ftn.bom.adventures.AdventureQuickReservation;
 import com.fishingbooker.ftn.conversion.DataConverter;
-import com.fishingbooker.ftn.dto.AdventureCreationDto;
-import com.fishingbooker.ftn.dto.AdventureDto;
-import com.fishingbooker.ftn.dto.EditAdventureDto;
-import com.fishingbooker.ftn.dto.ReservationDto;
+import com.fishingbooker.ftn.dto.*;
 import com.fishingbooker.ftn.service.interfaces.AdventureService;
 import com.fishingbooker.ftn.service.interfaces.ReservationService;
 import lombok.RequiredArgsConstructor;
@@ -55,5 +53,20 @@ public class AdventureController {
     public Long book(@RequestBody ReservationDto reservationDto) {
         return reservationService.bookAdventure(reservationDto).getId();
     }
+
+    @PostMapping("add-quick-reservation")
+    @PreAuthorize("hasRole('FISHING_INSTRUCTOR')")
+    public Long addQuickReservation(@RequestBody AdventureQuickReservationDto dto){
+        AdventureQuickReservation reservation=converter.convert(dto,AdventureQuickReservation.class);
+        return adventureService.createQuickReservation(reservation);
+    }
+
+    @GetMapping("get-quick-reservations-calendar/{id}")
+    public List<AdventureQuickReservationCalendarDto> getAdventureQuickReservation(@PathVariable  Long id){
+        List<AdventureQuickReservation> reservations=adventureService.getQuickReservations(id);
+        List<AdventureQuickReservationCalendarDto> reservationsDto=converter.convert(reservations,AdventureQuickReservationCalendarDto.class);
+        return reservationsDto;
+    }
+
 
 }

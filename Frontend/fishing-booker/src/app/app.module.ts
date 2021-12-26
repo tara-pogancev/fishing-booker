@@ -105,6 +105,7 @@ import { AdminReviewsComponent } from './components/admin/admin-dashboard/admin-
 import { AdminComplaintsComponent } from './components/admin/admin-dashboard/admin-complaints/admin-complaints.component';
 import { ComplaintComponent } from './components/admin/admin-dashboard/admin-complaints/complaint/complaint.component';
 import { AdminReviewComponent } from './components/admin/admin-dashboard/admin-reviews/admin-review/admin-review.component';
+import { QuickReservationsCalendarComponent } from './components/fishing/fishing-instructor-dashboard/quick-reservations-calendar/quick-reservations-calendar.component';
 
 
 @NgModule({
@@ -207,6 +208,7 @@ import { AdminReviewComponent } from './components/admin/admin-dashboard/admin-r
     AdminComplaintsComponent,
     ComplaintComponent,
     AdminReviewComponent
+    QuickReservationsCalendarComponent
   ],
   imports: [
     BrowserModule,

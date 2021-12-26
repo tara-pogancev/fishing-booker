@@ -4,6 +4,7 @@ import com.fishingbooker.ftn.bom.Address;
 import com.fishingbooker.ftn.bom.AvailableTimePeriod;
 import com.fishingbooker.ftn.bom.RuleOfConduct;
 import com.fishingbooker.ftn.bom.adventures.Adventure;
+import com.fishingbooker.ftn.bom.adventures.AdventureQuickReservation;
 import com.fishingbooker.ftn.bom.adventures.AdventureUtility;
 import com.fishingbooker.ftn.bom.adventures.FishingEquipment;
 import com.fishingbooker.ftn.bom.users.FishingInstructor;
@@ -12,6 +13,7 @@ import com.fishingbooker.ftn.dto.AdventureCreationDto;
 import com.fishingbooker.ftn.dto.AdventureDto;
 import com.fishingbooker.ftn.dto.EntitySearchDto;
 import com.fishingbooker.ftn.dto.FishingEquipmentDto;
+import com.fishingbooker.ftn.repository.AdventureQuickReservationRepository;
 import com.fishingbooker.ftn.repository.AdventureRepository;
 import com.fishingbooker.ftn.repository.FishingInstructorRepository;
 import com.fishingbooker.ftn.service.interfaces.AdventureService;
@@ -41,6 +43,7 @@ public class AdventureServiceImpl implements AdventureService {
     private final RuleOfConductService ruleOfConductService;
     private final ImageService imageService;
     private final UtilityService utilityService;
+    private final AdventureQuickReservationRepository adventureQuickReservationRepository;
 
     @Override
     public List<AdventureDto> findAll() {
@@ -159,6 +162,19 @@ public class AdventureServiceImpl implements AdventureService {
         }
 
         return adventures;
+    }
+
+    @Override
+    public Long createQuickReservation(AdventureQuickReservation reservation) {
+        AdventureQuickReservation persistedReservation=adventureQuickReservationRepository.save(reservation);
+        return persistedReservation.getId();
+    }
+
+    @Override
+    public List<AdventureQuickReservation> getQuickReservations(Long id) {
+        Adventure adventure=adventureRepository.getById(id);
+        List<AdventureQuickReservation> quickReservations=new ArrayList<>(adventure.getAdventureQuickReservations());
+        return quickReservations;
     }
 
 

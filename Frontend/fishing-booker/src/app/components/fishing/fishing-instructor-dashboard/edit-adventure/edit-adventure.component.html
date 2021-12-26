@@ -80,8 +80,8 @@
         </div>
       </div>
       <hr />
-      <div>
-        <entity-calendar></entity-calendar>
+      <div *ngIf="loadData">
+        <app-quick-reservations-calendar [quickReservations]="adventureQuickReservations" ></app-quick-reservations-calendar>
       </div>
       
     </div>

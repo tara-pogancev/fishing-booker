@@ -17,6 +17,9 @@ export class EditAdventureComponent implements OnInit {
   navEquipment: string = '';
   image: any = 'assets/images/placeholder.jpg';
   editMode=true;
+  adventureQuickReservations:any[]=[];
+  loadData=false;
+
 
   constructor(
     private route: ActivatedRoute,
@@ -37,6 +40,9 @@ export class EditAdventureComponent implements OnInit {
       this.navEquipment = this.navEquipment.slice(0, -2);
       if (this.navEquipment == '') this.navEquipment = 'None';
     });
+
+    this.adventureService.getQuickReservationForCalendar(this.id).subscribe((data)=>{ this.adventureQuickReservations=data;console.log(this.adventureQuickReservations); this.loadData=true});
+    
   }
 
   editAdventure(){

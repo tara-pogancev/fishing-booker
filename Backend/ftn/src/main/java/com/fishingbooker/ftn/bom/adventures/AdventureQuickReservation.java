@@ -19,7 +19,7 @@ public class AdventureQuickReservation extends QuickReservation {
     private Adventure adventure;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = true)
     private RegisteredClient reservationClient;
 
     @ManyToMany
@@ -27,6 +27,6 @@ public class AdventureQuickReservation extends QuickReservation {
             name = "adventure_quick_reservation_utilities",
             joinColumns = @JoinColumn(name = "adventure_reservation_id"),
             inverseJoinColumns = @JoinColumn(name = "adventure_utility_id"))
-    private Set<AdventureUtility> utilities;
+    private Set<QuickReservationUtility> utilities;
 
 }

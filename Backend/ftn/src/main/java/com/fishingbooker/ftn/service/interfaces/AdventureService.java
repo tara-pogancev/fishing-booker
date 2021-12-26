@@ -1,6 +1,7 @@
 package com.fishingbooker.ftn.service.interfaces;
 
 import com.fishingbooker.ftn.bom.adventures.Adventure;
+import com.fishingbooker.ftn.bom.adventures.AdventureQuickReservation;
 import com.fishingbooker.ftn.dto.AdventureCreationDto;
 import com.fishingbooker.ftn.dto.AdventureDto;
 import com.fishingbooker.ftn.dto.EntitySearchDto;
@@ -27,4 +28,8 @@ public interface AdventureService {
     List<Adventure> filterByDate(LocalDate startDate, LocalDate endDate);
 
     List<Adventure> findFiltered(EntitySearchDto filterDto);
+
+    Long createQuickReservation(AdventureQuickReservation reservation);
+
+    List<AdventureQuickReservation> getQuickReservations(Long id);
 }

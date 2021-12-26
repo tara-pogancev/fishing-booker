@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NumberValueAccessor } from '@angular/forms';
 import { server } from '../app-global';
+import { AdventureQuickReservation } from '../model/adventure-quick-reservation-model';
 import { CreateAdventureModel } from '../model/create-adventure-model';
 import { ReservationModel } from '../model/reservation-model';
 import { SearchFilter } from '../model/search-filter-model';
@@ -63,5 +64,18 @@ export class AdvetnureService {
   getReviews(id: number) {
     const url = this.url + '/reviews/' + id;
     return this._http.get<any>(url);
+  }
+  createAdventureQuickReservation(reservation:AdventureQuickReservation){
+    const url = server + 'api/adventures/add-quick-reservation';
+    const headers = this.loginService.getHeaders();
+    return this._http.post<any>(url, reservation, { headers: headers });
+  }
+
+  getQuickReservationForCalendar(id:number){
+    const url = server + 'api/adventures/get-quick-reservations-calendar/'+id;
+    const headers = this.loginService.getHeaders();
+    
+    return this._http.get<any>(url,{ headers: headers });
+    
   }
 }

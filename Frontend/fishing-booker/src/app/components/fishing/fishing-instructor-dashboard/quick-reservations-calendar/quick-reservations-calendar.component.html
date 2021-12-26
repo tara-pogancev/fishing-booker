@@ -1,0 +1,27 @@
+<div [ngSwitch]="view">
+    <h2>
+      {{ viewDate | calendarDate: view + "ViewTitle":"en" }}, Quick Reservations
+    </h2>
+  
+    <ng-template #customCellTemplate let-day="day" let-locale="locale">
+      <div
+        class="cal-cell-top"
+        [ngClass]="{
+          available: day.events.length > 0,
+          unavailable: day.events.length == 0
+        }"
+      >
+        <span class="cal-day-number">{{
+          day.date | calendarDate: "monthViewDayNumber":locale
+        }}</span>
+      </div>
+    </ng-template>
+  
+    <mwl-calendar-month-view
+      *ngSwitchCase="'month'"
+      [viewDate]="viewDate"
+      [events]="events"
+      [cellTemplate]="customCellTemplate"
+    >
+    </mwl-calendar-month-view>
+  </div>
