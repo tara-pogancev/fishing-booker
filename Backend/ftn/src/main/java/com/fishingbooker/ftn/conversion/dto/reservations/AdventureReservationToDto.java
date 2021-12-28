@@ -1,6 +1,7 @@
-package com.fishingbooker.ftn.dto;
+package com.fishingbooker.ftn.conversion.dto.reservations;
 
 import com.fishingbooker.ftn.bom.adventures.AdventureReservation;
+import com.fishingbooker.ftn.dto.ViewReservationDto;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 

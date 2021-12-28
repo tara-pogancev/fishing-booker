@@ -1,13 +1,12 @@
 package com.fishingbooker.ftn.bom;
 
 
+import com.fishingbooker.ftn.bom.reservations.Reservation;
+import com.fishingbooker.ftn.bom.users.RegisteredClient;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 
@@ -20,6 +19,9 @@ public class Review extends DatabaseEntity {
     @Column(name = "review")
     private String review;
 
+    @Column(name = "reservationType")
+    private String reservationType;
+
     @Column(name = "rating", nullable = false)
     private Integer rating;
 
@@ -27,6 +29,16 @@ public class Review extends DatabaseEntity {
     private LocalDateTime date;
 
     @Column(name = "isApproved", nullable = false)
-    private Boolean isApproved = false;
+    private RequestApproval approval = RequestApproval.WAITING;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "reservation_id")
+    private Reservation reservation;
+
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    private RegisteredClient client;
+
+
 
 }

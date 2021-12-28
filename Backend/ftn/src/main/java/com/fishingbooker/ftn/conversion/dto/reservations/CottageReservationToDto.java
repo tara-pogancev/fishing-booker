@@ -1,4 +1,4 @@
-package com.fishingbooker.ftn.conversion.dto;
+package com.fishingbooker.ftn.conversion.dto.reservations;
 
 
 import com.fishingbooker.ftn.bom.cottages.CottageReservation;

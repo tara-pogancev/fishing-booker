@@ -43,4 +43,8 @@ public class ApplicationUser extends DatabaseEntity {
     @OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
     private RegistrationRequest request;
 
+    public String getFullName() {
+        return this.name + " " + this.lastName;
+    }
+
 }

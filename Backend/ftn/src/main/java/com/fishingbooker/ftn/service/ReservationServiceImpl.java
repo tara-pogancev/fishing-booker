@@ -9,6 +9,7 @@ import com.fishingbooker.ftn.bom.boats.BoatUtility;
 import com.fishingbooker.ftn.bom.cottages.Cottage;
 import com.fishingbooker.ftn.bom.cottages.CottageReservation;
 import com.fishingbooker.ftn.bom.cottages.CottageUtility;
+import com.fishingbooker.ftn.bom.reservations.Reservation;
 import com.fishingbooker.ftn.bom.users.ApplicationUser;
 import com.fishingbooker.ftn.bom.users.RegisteredClient;
 import com.fishingbooker.ftn.dto.ReservationDto;
@@ -23,7 +24,9 @@ import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -40,6 +43,11 @@ public class ReservationServiceImpl implements ReservationService {
     private final BoatReservationRepository boatReservationRepository;
     private final CottageReservationRepository cottageReservationRepository;
     private final AdventureReservationRepository adventureReservationRepository;
+
+    @Override
+    public List<Reservation> findAll() {
+        return reservationRepository.findAll();
+    }
 
     @Override
     public CottageReservation bookCottage(ReservationDto reservationDto) {
@@ -133,6 +141,46 @@ public class ReservationServiceImpl implements ReservationService {
         if (reservationRepository.exists(reservationId)) {
             reservationRepository.deleteById(reservationId);
         }
+    }
+
+    @Override
+    public List<Reservation> findAllByClient(Long id) {
+        List<Reservation> reservations = new ArrayList<>();
+        for (CottageReservation reservation : cottageReservationRepository.findAll()) {
+            if (reservation.getReservationClient().getId() == id)
+                reservations.add(reservation);
+        }
+
+        for (BoatReservation reservation : boatReservationRepository.findAll()) {
+            if (reservation.getReservationClient().getId() == id)
+                reservations.add(reservation);
+        }
+
+        for (AdventureReservation reservation : adventureReservationRepository.findAll()) {
+            if (reservation.getReservationClient().getId() == id)
+                reservations.add(reservation);
+        }
+        return  reservations;
+    }
+
+    @Override
+    public Reservation find(Long id) {
+        return reservationRepository.get(id);
+    }
+
+    @Override
+    public CottageReservation findCottageReservation(Long id) {
+        return cottageReservationRepository.get(id);
+    }
+
+    @Override
+    public BoatReservation findBoatReservation(Long id) {
+        return boatReservationRepository.get(id);
+    }
+
+    @Override
+    public AdventureReservation findAdventureReservation(Long id) {
+        return adventureReservationRepository.get(id);
     }
 
     public void sendReservationConfirmationEmail(ApplicationUser user, ReservationDto reservationDto) {

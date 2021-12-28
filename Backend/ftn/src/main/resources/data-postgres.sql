@@ -1,4 +1,5 @@
 -- ADDRESSES
+
 INSERT INTO public.address(city, country, street)	VALUES ('Eastbourne', 'UK', 'Marine Parade 22');
 INSERT INTO public.address(city, country, street)  VALUES ('Novi Sad', 'Serbia', 'Bulevar Oslobodjenja 85');
 INSERT INTO public.address(city, country, street)	VALUES ('Brighton', 'UK', 'Kingsway 30');
@@ -37,6 +38,7 @@ INSERT INTO public.administrator(user_id)	VALUES (5);
 INSERT INTO public.fishing_instructor(biography, rating, id, rank)	VALUES ('Lorem ipsum dolor sit amet, consectetur adipiscing elit. In blandit leo sed nibh ultrices tincidunt. Donec vulputate sapien ut mauris sagittis laoreet. Phasellus viverra nibh et eros consectetur, id facilisis est lacinia.', 0.0, 6, null);
 
 -- IMAGES
+
 --boat images  id 1-8
 INSERT INTO public.image (url) VALUES ('assets/images/boat.jpg');
 INSERT INTO public.image (url) VALUES ('assets/images/boat2.jpg');
@@ -60,9 +62,6 @@ INSERT INTO public.image (url) VALUES ('assets/images/fishing.jpg');
 INSERT INTO public.image (url) VALUES ('assets/images/fishing2.jpg');
 INSERT INTO public.image (url) VALUES ('assets/images/fishing3.jpg');
 INSERT INTO public.image (url) VALUES ('assets/images/fishing4.jpg');
-
-
-
 
 -- RULES OF CONDUCT
 
@@ -308,18 +307,19 @@ INSERT INTO public.available_instructor_time_period(id, instructor)	VALUES (11, 
 INSERT INTO public.available_instructor_time_period(id, instructor)	VALUES (12, 4);
 
 
--- DELETE ACCOUNT REQUEST
+-- DELETE ACCOUNT REQUESTs
 
 INSERT INTO public.delete_account_request( description, request_status, user_id) VALUES ( 'neki opis', 0, 6);
+
 -- RESERVATIONS
 
-INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start)	VALUES (3, 48, '2020110 10:00:00 AM', '2020105 10:00:00 AM');
-INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start)	VALUES (12, 254, '2020215 10:00:00 AM', '2020208 10:00:00 AM');
+INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start)	VALUES (3, 48, '20201010 10:00:00 AM', '20201005 10:00:00 AM');
+INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start)	VALUES (9, 54, '20200215 10:00:00 AM', '20200208 10:00:00 AM');
 INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start)	VALUES (2, 86, '20200606 10:00:00 AM', '20200602 10:00:00 AM');
 INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start)	VALUES (4, 54, '20220105 10:00:00 AM', '20220101 10:00:00 AM');
 INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start)	VALUES (5, 78, '20220106 10:00:00 AM', '20220102 10:00:00 AM');
 INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start)	VALUES (1, 32, '20220107 10:00:00 AM', '20220104 10:00:00 AM');
-INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start)	VALUES (6, 102, '20220108 10:00:00 AM', '20220103 10:00:00 AM');
+INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start)	VALUES (6, 10, '20220108 10:00:00 AM', '20220103 10:00:00 AM');
 
 INSERT INTO public.cottage_reservation(id, cottage_id, user_id)	VALUES (1, 1, 1);
 INSERT INTO public.boat_reservation(id, boat_id, user_id)	VALUES (2, 1, 1);

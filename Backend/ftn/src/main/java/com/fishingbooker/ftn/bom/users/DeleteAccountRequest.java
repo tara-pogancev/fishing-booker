@@ -3,7 +3,6 @@ package com.fishingbooker.ftn.bom.users;
 
 import com.fishingbooker.ftn.bom.DatabaseEntity;
 import com.fishingbooker.ftn.bom.RequestApproval;
-import jdk.nashorn.internal.ir.RuntimeNode;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
