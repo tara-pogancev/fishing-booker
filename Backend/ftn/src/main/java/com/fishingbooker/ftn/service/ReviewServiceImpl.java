@@ -33,7 +33,7 @@ public class ReviewServiceImpl implements ReviewService {
     public List<Reservation> getAvailableClientReviews(Long clientId) {
         List<Reservation> reservations = new ArrayList<>();
 
-        for (Reservation reservation : reservationService.findAllByClient(clientId) ) {
+        for (Reservation reservation : reservationService.findAllByClient(clientId)) {
             if (reservation.getReservationEnd().isBefore(LocalDate.now())) {
                 boolean hasReview = false;
                 for (Review review : getReviewsByClient(clientId))
@@ -84,6 +84,8 @@ public class ReviewServiceImpl implements ReviewService {
         Review review = new Review();
         review.setReview(dto.review);
         review.setClient(adventureReservation.getReservationClient());
+        review.setEntityId(adventureReservation.getAdventure().getId());
+        review.setEntityName(adventureReservation.getAdventure().getName());
         review.setRating(dto.rating);
         review.setReservation(adventureReservation);
         review.setDate(LocalDateTime.now());
@@ -94,6 +96,8 @@ public class ReviewServiceImpl implements ReviewService {
     private void saveBoatReview(ReviewDto dto, BoatReservation boatReservation) {
         Review review = new Review();
         review.setReview(dto.review);
+        review.setEntityId(boatReservation.getBoat().getId());
+        review.setEntityName(boatReservation.getBoat().getName());
         review.setClient(boatReservation.getReservationClient());
         review.setRating(dto.rating);
         review.setReservation(boatReservation);
@@ -106,6 +110,8 @@ public class ReviewServiceImpl implements ReviewService {
         Review review = new Review();
         review.setReview(dto.review);
         review.setReservationType("cottage");
+        review.setEntityId(cottageReservation.getCottage().getId());
+        review.setEntityName(cottageReservation.getCottage().getName());
         review.setClient(cottageReservation.getReservationClient());
         review.setRating(dto.rating);
         review.setReservation(cottageReservation);

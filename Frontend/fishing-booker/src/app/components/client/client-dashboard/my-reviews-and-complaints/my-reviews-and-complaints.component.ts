@@ -14,5 +14,10 @@ export class MyReviewsAndComplaintsComponent implements OnInit {
 
   constructor(private reviewService: ReviewService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.reviewService.getClientReviewsComplaints().subscribe((data) => {
+      this.reviews = data;
+      console.log(this.reviews);
+    });
+  }
 }

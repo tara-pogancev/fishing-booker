@@ -18,5 +18,7 @@ public class ReviewDto {
     public LocalDate reservationEnd;
     public String clientName;
     public String reservationType;
+    public Long entityId;
+    public String entityName;
 
 }

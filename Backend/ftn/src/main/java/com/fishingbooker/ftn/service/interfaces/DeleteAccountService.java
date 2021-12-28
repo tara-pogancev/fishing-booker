@@ -8,9 +8,9 @@ public interface DeleteAccountService {
 
     List<DeleteAccountRequest> get();
 
-    boolean approve(Long requestId,String description);
+    boolean approve(Long requestId, String description);
 
-    boolean reject(Long requestId,String description);
+    boolean reject(Long requestId, String description);
 
     Long create(DeleteAccountRequest deleteAccountRequest);
 }

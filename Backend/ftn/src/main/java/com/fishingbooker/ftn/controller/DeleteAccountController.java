@@ -1,7 +1,7 @@
 package com.fishingbooker.ftn.controller;
 
-import com.fishingbooker.ftn.bom.users.DeleteAccountRequest;
 import com.fishingbooker.ftn.bom.RequestApproval;
+import com.fishingbooker.ftn.bom.users.DeleteAccountRequest;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.AdminResponseDto;
 import com.fishingbooker.ftn.dto.CreateDeleteAccountRequestDto;
@@ -21,26 +21,26 @@ public class DeleteAccountController {
     private final DataConverter converter;
 
     @GetMapping()
-    public List<DeleteAccountRequestDto> get(){
-        List<DeleteAccountRequest> requests= deleteAccountService.get();
-        List<DeleteAccountRequestDto> dtos=converter.convert(requests,DeleteAccountRequestDto.class);
+    public List<DeleteAccountRequestDto> get() {
+        List<DeleteAccountRequest> requests = deleteAccountService.get();
+        List<DeleteAccountRequestDto> dtos = converter.convert(requests, DeleteAccountRequestDto.class);
         return dtos;
     }
 
     @PostMapping()
-    public Long createRequest(@RequestBody  CreateDeleteAccountRequestDto dto){
-        DeleteAccountRequest deleteAccountRequest=new DeleteAccountRequest(dto.getUserId(),dto.getDescription(), RequestApproval.WAITING);
+    public Long createRequest(@RequestBody CreateDeleteAccountRequestDto dto) {
+        DeleteAccountRequest deleteAccountRequest = new DeleteAccountRequest(dto.getUserId(), dto.getDescription(), RequestApproval.WAITING);
         return deleteAccountService.create(deleteAccountRequest);
     }
 
     @PutMapping("/approve")
-    public boolean approveRequest(@RequestBody  AdminResponseDto responseDto){
-        return deleteAccountService.approve(responseDto.getId(),responseDto.getDescription());
+    public boolean approveRequest(@RequestBody AdminResponseDto responseDto) {
+        return deleteAccountService.approve(responseDto.getId(), responseDto.getDescription());
     }
 
     @PutMapping("/reject")
-    public boolean rejectRequest(@RequestBody AdminResponseDto responseDto){
-        return deleteAccountService.reject(responseDto.getId(),responseDto.getDescription());
+    public boolean rejectRequest(@RequestBody AdminResponseDto responseDto) {
+        return deleteAccountService.reject(responseDto.getId(), responseDto.getDescription());
     }
 
 

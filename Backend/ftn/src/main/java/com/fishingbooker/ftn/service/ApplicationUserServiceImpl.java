@@ -1,9 +1,9 @@
 package com.fishingbooker.ftn.service;
 
 import com.fishingbooker.ftn.bom.Address;
-import com.fishingbooker.ftn.bom.users.RegistrationRequest;
 import com.fishingbooker.ftn.bom.users.ApplicationRole;
 import com.fishingbooker.ftn.bom.users.ApplicationUser;
+import com.fishingbooker.ftn.bom.users.RegistrationRequest;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.ApplicationUserDto;
 import com.fishingbooker.ftn.email.context.AccountVerificationEmailContext;

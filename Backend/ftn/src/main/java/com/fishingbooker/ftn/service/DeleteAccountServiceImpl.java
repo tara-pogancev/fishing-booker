@@ -1,8 +1,8 @@
 package com.fishingbooker.ftn.service;
 
-import com.fishingbooker.ftn.bom.users.DeleteAccountRequest;
 import com.fishingbooker.ftn.bom.RequestApproval;
 import com.fishingbooker.ftn.bom.users.ApplicationUser;
+import com.fishingbooker.ftn.bom.users.DeleteAccountRequest;
 import com.fishingbooker.ftn.repository.ApplicationUserRepository;
 import com.fishingbooker.ftn.repository.DeleteAccountRequestRepository;
 import com.fishingbooker.ftn.service.interfaces.DeleteAccountService;
@@ -27,38 +27,38 @@ public class DeleteAccountServiceImpl implements DeleteAccountService {
     }
 
     @Override
-    public boolean approve(Long requestId,String description) {
-        boolean result=false;
+    public boolean approve(Long requestId, String description) {
+        boolean result = false;
         ApplicationUser applicationUser;
-        if (deleteAccountRequestRepository.exists(requestId)){
-            DeleteAccountRequest request=deleteAccountRequestRepository.get(requestId);
+        if (deleteAccountRequestRepository.exists(requestId)) {
+            DeleteAccountRequest request = deleteAccountRequestRepository.get(requestId);
             request.setRequestStatus(RequestApproval.APPROVED);
             deleteAccountRequestRepository.save(request);
-            applicationUser=applicationUserRepository.get(request.getUserId());
-            mailingService.sendAcceptDeleteAccountMail(applicationUser,description);
+            applicationUser = applicationUserRepository.get(request.getUserId());
+            mailingService.sendAcceptDeleteAccountMail(applicationUser, description);
             applicationUserRepository.delete(applicationUser);
-            result=true;
+            result = true;
         }
         return result;
     }
 
     @Override
-    public boolean reject(Long requestId,String description) {
-        boolean result=false;
-        if (deleteAccountRequestRepository.exists(requestId)){
-            DeleteAccountRequest request=deleteAccountRequestRepository.get(requestId);
+    public boolean reject(Long requestId, String description) {
+        boolean result = false;
+        if (deleteAccountRequestRepository.exists(requestId)) {
+            DeleteAccountRequest request = deleteAccountRequestRepository.get(requestId);
             request.setRequestStatus(RequestApproval.DECLINED);
             deleteAccountRequestRepository.save(request);
-            ApplicationUser applicationUser=applicationUserRepository.get(request.getUserId());
-            mailingService.sendRefuseDeleteAccountMail(applicationUser,description);
-            result=true;
+            ApplicationUser applicationUser = applicationUserRepository.get(request.getUserId());
+            mailingService.sendRefuseDeleteAccountMail(applicationUser, description);
+            result = true;
         }
         return result;
     }
 
     @Override
     public Long create(DeleteAccountRequest deleteAccountRequest) {
-        DeleteAccountRequest request=deleteAccountRequestRepository.save(deleteAccountRequest);
+        DeleteAccountRequest request = deleteAccountRequestRepository.save(deleteAccountRequest);
         return request.getId();
     }
 }

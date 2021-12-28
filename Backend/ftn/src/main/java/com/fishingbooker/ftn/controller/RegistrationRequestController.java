@@ -2,8 +2,8 @@ package com.fishingbooker.ftn.controller;
 
 import com.fishingbooker.ftn.bom.users.RegistrationRequest;
 import com.fishingbooker.ftn.conversion.DataConverter;
-import com.fishingbooker.ftn.dto.RegistrationRequestDto;
 import com.fishingbooker.ftn.dto.AdminResponseDto;
+import com.fishingbooker.ftn.dto.RegistrationRequestDto;
 import com.fishingbooker.ftn.service.interfaces.RegistrationRequestService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

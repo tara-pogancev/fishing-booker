@@ -1,12 +1,15 @@
 <div class="content is-medium">
   <h1 class="title">My Reviews and Complaints</h1>
   <hr />
-  <div>
-    <review-card state="REJECTED"></review-card>
+  <div *ngIf="reviews.length > 0">
+    <div *ngFor="let review of this.reviews">
+      <review-card [review]="review"></review-card>
+    </div>
+    <hr />
     <complaint-card></complaint-card>
-    <complaint-card></complaint-card>
-    <review-card state="WAITING"></review-card>
-    <review-card></review-card>
-    <review-card></review-card>
+  </div>
+
+  <div *ngIf="reviews.length == 0">
+    <p>No reviews or complaints to show.</p>
   </div>
 </div>

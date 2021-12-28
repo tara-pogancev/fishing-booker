@@ -3,8 +3,6 @@ package com.fishingbooker.ftn.dto;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
-import javax.annotation.sql.DataSourceDefinitions;
-
 @Data
 @RequiredArgsConstructor
 public class DeleteAccountRequestDto {

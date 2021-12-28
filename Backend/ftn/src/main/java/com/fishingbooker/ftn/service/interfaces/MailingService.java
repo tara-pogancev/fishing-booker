@@ -6,5 +6,5 @@ public interface MailingService {
 
     void sendAcceptDeleteAccountMail(ApplicationUser user, String desciption);
 
-    void sendRefuseDeleteAccountMail(ApplicationUser user,String description);
+    void sendRefuseDeleteAccountMail(ApplicationUser user, String description);
 }

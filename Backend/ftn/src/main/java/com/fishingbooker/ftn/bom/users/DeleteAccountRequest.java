@@ -18,12 +18,12 @@ import javax.persistence.Entity;
 @RequiredArgsConstructor
 public class DeleteAccountRequest extends DatabaseEntity {
 
-    @Column(nullable = false,name = "userId")
+    @Column(nullable = false, name = "userId")
     private Long userId;
 
-    @Column(nullable = false,name="description")
+    @Column(nullable = false, name = "description")
     private String description;
 
-    @Column(nullable = false,name = "requestStatus")
+    @Column(nullable = false, name = "requestStatus")
     private RequestApproval requestStatus;
 }

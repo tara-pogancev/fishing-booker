@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ReviewModel } from 'src/app/model/review-model';
 
 @Component({
   selector: 'review-card',
@@ -6,8 +7,13 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./review-card.component.css'],
 })
 export class ReviewCardComponent implements OnInit {
-  @Input() state: string = 'ACCEPTED';
+  @Input() review: any;
+
   constructor() {}
 
   ngOnInit(): void {}
+
+  numSequence(n: number): Array<number> {
+    return Array(n);
+  }
 }

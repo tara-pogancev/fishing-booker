@@ -2,6 +2,8 @@ export class ReviewModel {
   constructor(
     public review: string = '',
     public id: number = 0,
+    public entityId: number = 0,
+    public entityName: string = '',
     public rating: number = 5,
     public date: Date = new Date(),
     public approval: string = '',

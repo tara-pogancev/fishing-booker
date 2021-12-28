@@ -7,24 +7,23 @@
   <div class="media-content">
     <div class="content">
       <p>
-        <b>John Smith </b> |
-        <small><a href="#">Boat Angelina</a>, 21/01/2021 | </small>
-        <i class="fa fa-star"></i>
-        <i class="fa fa-star"></i>
-        <i class="fa fa-star"></i>
-        <i class="fa fa-star"></i>
-        <i class="fa fa-star"></i>
+        <b>{{ review.clientName }} </b> |
+        <small
+          ><a href="/{{ review.reservationType }}/{{ review.entityId }}">{{
+            review.reservationName
+          }}</a
+          >, {{ review.date | date }} |
+        </small>
+        <i class="fa fa-star" *ngFor="let n of numSequence(review.rating)"></i>
 
         <br />
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare
-        magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa
-        sem. Etiam finibus odio quis feugiat facilisis.
+        {{ review.review }}
       </p>
     </div>
-    <div *ngIf="state == 'REJECTED'">
+    <div *ngIf="review.approval == 'REJECTED'">
       <span class="tag is-danger is-medium">REJECTED</span>
     </div>
-    <div *ngIf="state == 'WAITING'">
+    <div *ngIf="review.approval == 'WAITING'">
       <span class="tag is-warning is-medium">WAITING</span>
     </div>
   </div>

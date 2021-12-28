@@ -140,7 +140,7 @@ public class AdventureServiceImpl implements AdventureService {
         for (Adventure adventure : adventureRepository.findAll()) {
             for (AvailableTimePeriod period : adventure.getInstructor().getAvailableTimePeriods()) {
                 if ((period.getStartDate().isBefore(startDate) || period.getStartDate().isEqual(startDate))
-                        && (period.getEndDate().isAfter(endDate) || period.getStartDate().isEqual(endDate)))  {
+                        && (period.getEndDate().isAfter(endDate) || period.getStartDate().isEqual(endDate))) {
                     adventures.add(adventure);
                     break;
                 }

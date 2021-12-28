@@ -1,8 +1,8 @@
 package com.fishingbooker.ftn.service;
 
-import com.fishingbooker.ftn.bom.users.RegistrationRequest;
 import com.fishingbooker.ftn.bom.RequestApproval;
 import com.fishingbooker.ftn.bom.users.ApplicationUser;
+import com.fishingbooker.ftn.bom.users.RegistrationRequest;
 import com.fishingbooker.ftn.dto.AdminResponseDto;
 import com.fishingbooker.ftn.email.context.AcceptRegistrationEmailContext;
 import com.fishingbooker.ftn.email.context.RejectRegistrationEmailContext;

@@ -2,7 +2,6 @@ package com.fishingbooker.ftn.service;
 
 import com.fishingbooker.ftn.bom.users.ApplicationUser;
 import com.fishingbooker.ftn.email.context.AcceptDeleteAccountEmailContext;
-import com.fishingbooker.ftn.email.context.AcceptRegistrationEmailContext;
 import com.fishingbooker.ftn.email.context.RefuseDeleteAccountEmailContext;
 import com.fishingbooker.ftn.email.service.EmailService;
 import com.fishingbooker.ftn.service.interfaces.MailingService;

@@ -22,7 +22,7 @@ public class FishingInstructor extends ApplicationUser {
     @Column(name = "rating")
     private Double rating = 0.0;
 
-    @OneToMany(mappedBy = "instructor",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "instructor", cascade = CascadeType.ALL)
     private Set<AvailableInstructorTimePeriod> availableTimePeriods;
 
     @ManyToOne()

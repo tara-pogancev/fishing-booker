@@ -2,7 +2,7 @@ package com.fishingbooker.ftn.email.context;
 
 import com.fishingbooker.ftn.bom.users.ApplicationUser;
 
-public class RefuseDeleteAccountEmailContext extends AbstractEmailContext{
+public class RefuseDeleteAccountEmailContext extends AbstractEmailContext {
 
     @Override
     public <T> void init(T context) {
@@ -16,7 +16,7 @@ public class RefuseDeleteAccountEmailContext extends AbstractEmailContext{
         setTo(user.getEmail());
     }
 
-    public void  setDescription(String description){
-        put("description",description);
+    public void setDescription(String description) {
+        put("description", description);
     }
 }

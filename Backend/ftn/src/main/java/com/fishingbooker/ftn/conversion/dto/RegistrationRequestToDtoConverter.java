@@ -1,7 +1,7 @@
 package com.fishingbooker.ftn.conversion.dto;
 
-import com.fishingbooker.ftn.bom.users.RegistrationRequest;
 import com.fishingbooker.ftn.bom.users.ApplicationRole;
+import com.fishingbooker.ftn.bom.users.RegistrationRequest;
 import com.fishingbooker.ftn.dto.RegistrationRequestDto;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;

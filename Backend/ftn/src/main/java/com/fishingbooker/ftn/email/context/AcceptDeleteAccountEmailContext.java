@@ -16,7 +16,7 @@ public class AcceptDeleteAccountEmailContext extends AbstractEmailContext {
         setTo(user.getEmail());
     }
 
-    public void  setDescription(String description){
-        put("description",description);
+    public void setDescription(String description) {
+        put("description", description);
     }
 }

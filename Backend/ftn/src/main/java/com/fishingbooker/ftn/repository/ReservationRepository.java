@@ -8,6 +8,4 @@ import org.springframework.stereotype.Repository;
 public interface ReservationRepository extends EntityRepository<Reservation> {
 
 
-
-
 }

@@ -160,7 +160,7 @@ public class ReservationServiceImpl implements ReservationService {
             if (reservation.getReservationClient().getId() == id)
                 reservations.add(reservation);
         }
-        return  reservations;
+        return reservations;
     }
 
     @Override
