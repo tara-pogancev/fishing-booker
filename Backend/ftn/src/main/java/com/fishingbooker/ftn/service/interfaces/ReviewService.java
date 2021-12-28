@@ -15,4 +15,6 @@ public interface ReviewService {
     void create(ReviewDto dto);
 
     List<Review> getEntityReviews(String type, Long id);
+
+    List<Review> getApprovedReviews();
 }

@@ -94,6 +94,18 @@ public class ReviewServiceImpl implements ReviewService {
         return reviews;
     }
 
+    @Override
+    public List<Review> getApprovedReviews() {
+        List<Review> reviews = new ArrayList<>();
+
+        for (Review review : reviewRepository.findAll()) {
+            if (review.getApproval() == RequestApproval.APPROVED)
+                reviews.add(review);
+        }
+
+        return reviews;
+    }
+
     private void saveAdventureReview(ReviewDto dto, AdventureReservation adventureReservation) {
         Review review = new Review();
         review.setReview(dto.review);

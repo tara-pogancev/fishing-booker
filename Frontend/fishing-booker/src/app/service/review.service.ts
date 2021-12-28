@@ -33,8 +33,8 @@ export class ReviewService {
     return this._http.get<any>(url, { headers: headers });
   }
 
-  getAllReviews(id: number) {
-    const url = this.url;
+  getAllReviews() {
+    const url = server + 'browse/reviews';
     return this._http.get<any>(url);
   }
 }
