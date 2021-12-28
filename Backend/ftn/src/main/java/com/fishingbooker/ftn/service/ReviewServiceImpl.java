@@ -2,21 +2,28 @@ package com.fishingbooker.ftn.service;
 
 import com.fishingbooker.ftn.bom.RequestApproval;
 import com.fishingbooker.ftn.bom.Review;
+import com.fishingbooker.ftn.bom.adventures.Adventure;
 import com.fishingbooker.ftn.bom.adventures.AdventureReservation;
+import com.fishingbooker.ftn.bom.boats.Boat;
 import com.fishingbooker.ftn.bom.boats.BoatReservation;
+import com.fishingbooker.ftn.bom.cottages.Cottage;
 import com.fishingbooker.ftn.bom.cottages.CottageReservation;
 import com.fishingbooker.ftn.bom.reservations.Reservation;
+import com.fishingbooker.ftn.bom.users.ApplicationUser;
 import com.fishingbooker.ftn.dto.ReviewDto;
+import com.fishingbooker.ftn.email.context.ReviewUpdateEmailContext;
+import com.fishingbooker.ftn.email.service.EmailService;
 import com.fishingbooker.ftn.repository.AdventureRepository;
 import com.fishingbooker.ftn.repository.BoatRepository;
 import com.fishingbooker.ftn.repository.CottageRepository;
 import com.fishingbooker.ftn.repository.ReviewRepository;
-import com.fishingbooker.ftn.service.interfaces.RegisteredClientService;
+import com.fishingbooker.ftn.service.interfaces.ApplicationUserService;
 import com.fishingbooker.ftn.service.interfaces.ReservationService;
 import com.fishingbooker.ftn.service.interfaces.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.mail.MessagingException;
 import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -28,13 +35,14 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ReviewServiceImpl implements ReviewService {
 
+    private final EmailService emailService;
     private final ReviewRepository reviewRepository;
     private final ReservationService reservationService;
 
-    private final CottageRepository cottageRepository;
     private final BoatRepository boatRepository;
+    private final ApplicationUserService userService;
+    private final CottageRepository cottageRepository;
     private final AdventureRepository adventureRepository;
-
 
     @Override
     public List<Reservation> getAvailableClientReviews(Long clientId) {
@@ -84,8 +92,62 @@ public class ReviewServiceImpl implements ReviewService {
             }
 
         }
-
     }
+
+    public void recalculateCottageRating(Long cottageId) {
+        Cottage cottage = cottageRepository.get(cottageId);
+        if (cottage != null) {
+            double sum = 0;
+            for (Review review : getEntityReviews("cottage", cottageId))
+                sum += review.getRating();
+
+            int numberOfReviews = getEntityReviews("cottage", cottageId).size();
+            if (numberOfReviews == 0) {
+                cottage.setRating(0.0);
+            } else {
+                cottage.setRating(sum / numberOfReviews);
+            }
+
+            cottageRepository.save(cottage);
+        }
+    }
+
+    public void recalculateBoatRating(Long boatId) {
+        Boat boat = boatRepository.get(boatId);
+        if (boat != null) {
+            double sum = 0;
+            for (Review review : getEntityReviews("boat", boatId))
+                sum += review.getRating();
+
+            int numberOfReviews = getEntityReviews("boat", boatId).size();
+            if (numberOfReviews == 0) {
+                boat.setRating(0.0);
+            } else {
+                boat.setRating(sum / numberOfReviews);
+            }
+
+            boatRepository.save(boat);
+        }
+    }
+
+    public void recalculateAdventureRating(Long adventureId) {
+        Adventure adventure = adventureRepository.get(adventureId);
+        if (adventure != null) {
+            double sum = 0;
+            for (Review review : getEntityReviews("adventure", adventureId))
+                sum += review.getRating();
+
+            int numberOfReviews = getEntityReviews("adventure", adventureId).size();
+            if (numberOfReviews == 0) {
+                adventure.setRating(0.0);
+            } else {
+                adventure.setRating(sum / numberOfReviews);
+            }
+
+            adventureRepository.save(adventure);
+        }
+    }
+
 
     @Override
     public List<Review> getEntityReviews(String type, Long id) {
@@ -118,6 +180,8 @@ public class ReviewServiceImpl implements ReviewService {
         if (review != null) {
             review.setApproval(RequestApproval.APPROVED);
             reviewRepository.save(review);
+            recalculateRating(review);
+            sendReviewUpdateEmail(review);
         }
     }
 
@@ -127,6 +191,18 @@ public class ReviewServiceImpl implements ReviewService {
         if (review != null) {
             review.setApproval(RequestApproval.DECLINED);
             reviewRepository.save(review);
+            recalculateRating(review);
+            sendReviewUpdateEmail(review);
+        }
+    }
+
+    private void recalculateRating(Review review) {
+        if (review.getReservationType().equals("cottage")) {
+            recalculateCottageRating(review.getEntityId());
+        } else if (review.getReservationType().equals("boat")) {
+            recalculateBoatRating(review.getEntityId());
+        } else if (review.getReservationType().equals("adventure")) {
+            recalculateAdventureRating(review.getEntityId());
         }
     }
 
@@ -169,6 +245,17 @@ public class ReviewServiceImpl implements ReviewService {
         review.setReservation(cottageReservation);
         review.setDate(LocalDateTime.now());
         reviewRepository.save(review);
+    }
+
+    public void sendReviewUpdateEmail(Review review) {
+        ApplicationUser user = userService.findById(review.getClient().getId());
+        ReviewUpdateEmailContext emailContext = new ReviewUpdateEmailContext();
+        emailContext.init(user);
+        try {
+            emailService.sendMail(emailContext);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
     }
 
 
