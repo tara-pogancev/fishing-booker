@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { NumberValueAccessor } from '@angular/forms';
 import { server } from '../app-global';
 import { CreateAdventureModel } from '../model/create-adventure-model';
 import { ReservationModel } from '../model/reservation-model';
@@ -57,5 +58,10 @@ export class AdvetnureService {
     const url = server + 'api/adventures/book';
     const headers = this.loginService.getHeaders();
     return this._http.post<any>(url, reservation, { headers: headers });
+  }
+
+  getReviews(id: number) {
+    const url = this.url + '/reviews/' + id;
+    return this._http.get<any>(url);
   }
 }

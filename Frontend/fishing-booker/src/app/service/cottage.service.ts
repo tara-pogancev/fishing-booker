@@ -65,4 +65,9 @@ export class CottageService {
     cottage.ownerId = this.loginService.getCurrentUser().id;
     return this._http.post<any>(url, cottage, { headers: headers });
   }
+
+  getReviews(id: number) {
+    const url = this.url + '/reviews/' + id;
+    return this._http.get<any>(url);
+  }
 }

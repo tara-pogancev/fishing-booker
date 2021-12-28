@@ -1,7 +1,7 @@
 <article class="media">
   <figure class="media-left">
     <p class="image is-64x64">
-      <img src="assets/icons/boat.png" />
+      <img src="{{ imagePath }}" />
     </p>
   </figure>
   <div class="media-content">
@@ -9,9 +9,8 @@
       <p>
         <b>{{ review.clientName }} </b> |
         <small
-          ><a href="/{{ review.reservationType }}/{{ review.entityId }}">{{
-            review.reservationName
-          }}</a
+          ><a href="/{{ review.reservationType }}/{{ review.entityId }}">
+            View {{ review.reservationType | titlecase }}</a
           >, {{ review.date | date }} |
         </small>
         <i class="fa fa-star" *ngFor="let n of numSequence(review.rating)"></i>
@@ -20,7 +19,7 @@
         {{ review.review }}
       </p>
     </div>
-    <div *ngIf="review.approval == 'REJECTED'">
+    <div *ngIf="review.approval == 'DECLINED'">
       <span class="tag is-danger is-medium">REJECTED</span>
     </div>
     <div *ngIf="review.approval == 'WAITING'">

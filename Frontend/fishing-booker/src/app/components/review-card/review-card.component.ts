@@ -8,10 +8,13 @@ import { ReviewModel } from 'src/app/model/review-model';
 })
 export class ReviewCardComponent implements OnInit {
   @Input() review: any;
+  imagePath: String = '';
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.imagePath = 'assets/icons/' + this.review.reservationType + '.png';
+  }
 
   numSequence(n: number): Array<number> {
     return Array(n);

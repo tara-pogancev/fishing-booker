@@ -32,4 +32,9 @@ export class ReviewService {
     const headers = this.loginService.getHeaders();
     return this._http.get<any>(url, { headers: headers });
   }
+
+  getAllReviews(id: number) {
+    const url = this.url;
+    return this._http.get<any>(url);
+  }
 }

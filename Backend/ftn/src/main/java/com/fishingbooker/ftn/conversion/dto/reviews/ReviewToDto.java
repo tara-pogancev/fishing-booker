@@ -20,7 +20,6 @@ public class ReviewToDto implements Converter<Review, ReviewDto> {
         dto.setRating(source.getRating());
         dto.setId(source.getId());
         dto.setReservationType(source.getReservationType());
-        dto.setReservationName(source.getEntityName());
         dto.setEntityId(source.getEntityId());
         return dto;
     }

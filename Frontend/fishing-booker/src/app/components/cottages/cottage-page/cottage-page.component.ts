@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Cottage } from 'src/app/model/cottage-model';
+import { ReviewModel } from 'src/app/model/review-model';
 import { CottageService } from 'src/app/service/cottage.service';
 import { ImageService } from 'src/app/service/image.service';
 
@@ -13,6 +14,7 @@ export class CottagePageComponent implements OnInit {
   id: number = 0;
   cottage: Cottage = new Cottage();
   image: any = 'assets/images/placeholder.jpg';
+  reviews: ReviewModel[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -24,6 +26,10 @@ export class CottagePageComponent implements OnInit {
 
     this.cottageService.findById(this.id).subscribe((data) => {
       this.cottage = data;
+    });
+
+    this.cottageService.getReviews(this.id).subscribe((data) => {
+      this.reviews = data;
     });
   }
 }

@@ -45,4 +45,9 @@ export class BoatService {
     const headers = this.loginService.getHeaders();
     return this._http.post<any>(url, reservation, { headers: headers });
   }
+
+  getReviews(id: number) {
+    const url = this.url + '/reviews/' + id;
+    return this._http.get<any>(url);
+  }
 }

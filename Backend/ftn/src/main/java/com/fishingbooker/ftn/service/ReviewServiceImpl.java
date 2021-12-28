@@ -1,5 +1,6 @@
 package com.fishingbooker.ftn.service;
 
+import com.fishingbooker.ftn.bom.RequestApproval;
 import com.fishingbooker.ftn.bom.Review;
 import com.fishingbooker.ftn.bom.adventures.AdventureReservation;
 import com.fishingbooker.ftn.bom.boats.BoatReservation;
@@ -80,16 +81,28 @@ public class ReviewServiceImpl implements ReviewService {
 
     }
 
+    @Override
+    public List<Review> getEntityReviews(String type, Long id) {
+        List<Review> reviews = new ArrayList<>();
+
+        for (Review review : reviewRepository.findAll()) {
+            if (review.getReservationType().equals(type)
+                    && review.getEntityId() == id && review.getApproval() == RequestApproval.APPROVED)
+                reviews.add(review);
+        }
+
+        return reviews;
+    }
+
     private void saveAdventureReview(ReviewDto dto, AdventureReservation adventureReservation) {
         Review review = new Review();
         review.setReview(dto.review);
         review.setClient(adventureReservation.getReservationClient());
         review.setEntityId(adventureReservation.getAdventure().getId());
-        review.setEntityName(adventureReservation.getAdventure().getName());
         review.setRating(dto.rating);
         review.setReservation(adventureReservation);
         review.setDate(LocalDateTime.now());
-        review.setReservationType("fishing");
+        review.setReservationType("adventure");
         reviewRepository.save(review);
     }
 
@@ -97,7 +110,6 @@ public class ReviewServiceImpl implements ReviewService {
         Review review = new Review();
         review.setReview(dto.review);
         review.setEntityId(boatReservation.getBoat().getId());
-        review.setEntityName(boatReservation.getBoat().getName());
         review.setClient(boatReservation.getReservationClient());
         review.setRating(dto.rating);
         review.setReservation(boatReservation);
@@ -111,7 +123,6 @@ public class ReviewServiceImpl implements ReviewService {
         review.setReview(dto.review);
         review.setReservationType("cottage");
         review.setEntityId(cottageReservation.getCottage().getId());
-        review.setEntityName(cottageReservation.getCottage().getName());
         review.setClient(cottageReservation.getReservationClient());
         review.setRating(dto.rating);
         review.setReservation(cottageReservation);

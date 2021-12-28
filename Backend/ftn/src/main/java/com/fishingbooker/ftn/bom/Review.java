@@ -28,9 +28,6 @@ public class Review extends DatabaseEntity {
     @Column(name = "entityId", nullable = false)
     private Long entityId;
 
-    @Column(name = "entityName", nullable = false)
-    private String entityName;
-
     @Column(name = "date")
     private LocalDateTime date;
 
@@ -44,6 +41,5 @@ public class Review extends DatabaseEntity {
     @ManyToOne
     @JoinColumn(name = "client_id")
     private RegisteredClient client;
-
 
 }

@@ -13,4 +13,6 @@ public interface ReviewService {
     List<Review> getReviewsByClient(Long clientId);
 
     void create(ReviewDto dto);
+
+    List<Review> getEntityReviews(String type, Long id);
 }

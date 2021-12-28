@@ -1,9 +1,12 @@
 package com.fishingbooker.ftn.controller;
 
+import com.fishingbooker.ftn.bom.Review;
 import com.fishingbooker.ftn.bom.boats.Boat;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.BoatDto;
+import com.fishingbooker.ftn.dto.ReviewDto;
 import com.fishingbooker.ftn.service.interfaces.BoatService;
+import com.fishingbooker.ftn.service.interfaces.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +22,7 @@ public class BrowseBoatsController {
 
     private final BoatService boatService;
     private final DataConverter converter;
+    private final ReviewService reviewService;
 
     @GetMapping
     public List<BoatDto> findAll() {
@@ -30,6 +34,12 @@ public class BrowseBoatsController {
     @GetMapping("{id}")
     public BoatDto findById(@PathVariable Long id) {
         return boatService.findById(id);
+    }
+
+    @GetMapping("/reviews/{id}")
+    public List<ReviewDto> getClientReviewsComplaints(@PathVariable Long id) {
+        List<Review> reviews = reviewService.getEntityReviews("boat", id);
+        return converter.convert(reviews, ReviewDto.class);
     }
 
 }

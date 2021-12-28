@@ -316,15 +316,43 @@ INSERT INTO public.delete_account_request( description, request_status, user_id)
 INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start)	VALUES (3, 48, '20201010 10:00:00 AM', '20201005 10:00:00 AM');
 INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start)	VALUES (9, 54, '20200215 10:00:00 AM', '20200208 10:00:00 AM');
 INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start)	VALUES (2, 86, '20200606 10:00:00 AM', '20200602 10:00:00 AM');
+
 INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start)	VALUES (4, 54, '20220105 10:00:00 AM', '20220101 10:00:00 AM');
 INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start)	VALUES (5, 78, '20220106 10:00:00 AM', '20220102 10:00:00 AM');
 INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start)	VALUES (1, 32, '20220107 10:00:00 AM', '20220104 10:00:00 AM');
 INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start)	VALUES (6, 10, '20220108 10:00:00 AM', '20220103 10:00:00 AM');
 
+INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start)	VALUES (6, 84, '20191010 10:00:00 AM', '20191005 10:00:00 AM');
+INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start)	VALUES (2, 70, '20190215 10:00:00 AM', '20190208 10:00:00 AM');
+INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start)	VALUES (4, 90, '20190606 10:00:00 AM', '20190602 10:00:00 AM');
+INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start)	VALUES (3, 98, '20180606 10:00:00 AM', '20180602 10:00:00 AM');
+
 INSERT INTO public.cottage_reservation(id, cottage_id, user_id)	VALUES (1, 1, 1);
 INSERT INTO public.boat_reservation(id, boat_id, user_id)	VALUES (2, 1, 1);
 INSERT INTO public.adventure_reservation(id, adventure_id, user_id)	VALUES (3, 1, 1);
+
 INSERT INTO public.cottage_reservation(id, cottage_id, user_id)	VALUES (4, 1, 1);
 INSERT INTO public.cottage_reservation(id, cottage_id, user_id)	VALUES (5, 1, 1);
 INSERT INTO public.boat_reservation(id, boat_id, user_id)	VALUES (6, 1, 1);
 INSERT INTO public.adventure_reservation(id, adventure_id, user_id)	VALUES (7, 1, 1);
+
+INSERT INTO public.cottage_reservation(id, cottage_id, user_id)	VALUES (8, 3, 1);
+INSERT INTO public.boat_reservation(id, boat_id, user_id)	VALUES (9, 2, 1);
+INSERT INTO public.adventure_reservation(id, adventure_id, user_id)	VALUES (10, 3, 1);
+INSERT INTO public.adventure_reservation(id, adventure_id, user_id)	VALUES (11, 2, 1);
+
+
+-- REVIEWS
+
+INSERT INTO public.review(is_approved, date, entity_id, rating, reservation_type, review, client_id, reservation_id)
+    VALUES ('0', '20210310 11:16:00 AM', 1, 5, 'cottage', 'Amazing cottage!', 1, 1);
+INSERT INTO public.review(is_approved, date, entity_id, rating, reservation_type, review, client_id, reservation_id)
+    VALUES ('1', '20210208 09:23:00 AM', 2, 4, 'boat', 'Great experience!', 1, 2);
+INSERT INTO public.review(is_approved, date, entity_id, rating, reservation_type, review, client_id, reservation_id)
+    VALUES ('2', '20210109 12:50:00 AM', 3, 5, 'adventure', 'Best trip of my life!!', 1, 3);
+INSERT INTO public.review(is_approved, date, entity_id, rating, reservation_type, review, client_id, reservation_id)
+    VALUES ('0', '20200310 11:16:00 AM', 1, 3, 'cottage', 'Nulla euismod ipsum eget aliquet!', 1, 8);
+INSERT INTO public.review(is_approved, date, entity_id, rating, reservation_type, review, client_id, reservation_id)
+    VALUES ('0', '20200208 09:23:00 AM', 2, 4, 'boat', 'Proin venenatis, quam quis sagittis ullamcorper, augue dolor pretium orci, nec vehicula justo tortor eu justo. Pellentesque eu ligula nisl. Non dignissim velit scelerisque nec.', 1, 9);
+INSERT INTO public.review(is_approved, date, entity_id, rating, reservation_type, review, client_id, reservation_id)
+    VALUES ('0', '20200109 12:50:00 AM', 3, 5, 'adventure', 'Nunc tincidunt leo non nisl rhoncus euismod. Sed hendrerit id elit at accumsan. Phasellus non erat libero. Nam eget odio pharetra, consectetur dolor ac!', 1, 10);
