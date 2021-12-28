@@ -32,8 +32,24 @@ public class ReviewController {
     }
 
     @PostMapping("/new-review")
-    public void getAvailableClientReviews(@RequestBody ReviewDto dto) {
+    public void writeReview(@RequestBody ReviewDto dto) {
         reviewService.create(dto);
+    }
+
+    @GetMapping("/admin")
+    public List<ReviewDto> getAllAdminReviews() {
+        List<Review> reviews = reviewService.findAll();
+        return converter.convert(reviews, ReviewDto.class);
+    }
+
+    @PutMapping("/accept/{id}")
+    public void acceptReview(@PathVariable Long id) {
+        reviewService.acceptReview(id);
+    }
+
+    @PutMapping("/decline/{id}")
+    public void declineReview(@PathVariable Long id) {
+        reviewService.declineReview(id);
     }
 
 }

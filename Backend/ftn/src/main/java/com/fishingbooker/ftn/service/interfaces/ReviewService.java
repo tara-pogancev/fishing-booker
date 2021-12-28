@@ -17,4 +17,10 @@ public interface ReviewService {
     List<Review> getEntityReviews(String type, Long id);
 
     List<Review> getApprovedReviews();
+
+    void acceptReview(Long id);
+
+    void declineReview(Long id);
+
+    List<Review> findAll();
 }

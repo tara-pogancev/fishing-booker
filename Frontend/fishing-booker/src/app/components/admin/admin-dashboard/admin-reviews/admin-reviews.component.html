@@ -1,0 +1,12 @@
+<div class="content is-medium">
+  <h1 class="title">Client Reviews</h1>
+  <hr />
+  <div *ngIf="reviews.length > 0">
+    <div *ngFor="let review of this.reviews">
+      <app-admin-review [review]="review"></app-admin-review>
+    </div>
+  </div>
+  <div *ngIf="reviews.length == 0">
+    <p>No reviews to show.</p>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+<article
+  class="media"
+  [class.approved]="review.approval == 'APPROVED'"
+  [class.declined]="review.approval == 'DECLINED'"
+  [class.waiting]="review.approval == 'WAITING'"
+>
+  <figure class="media-left">
+    <p class="image is-64x64">
+      <img src="{{ imagePath }}" />
+    </p>
+  </figure>
+  <div class="media-content">
+    <div class="content">
+      <p>
+        <b>{{ review.clientName }} </b> |
+        <small
+          ><a href="/{{ review.reservationType }}/{{ review.entityId }}">
+            View {{ review.reservationType | titlecase }}</a
+          >, {{ review.date | date }} |
+        </small>
+        <i class="fa fa-star" *ngFor="let n of numSequence(review.rating)"></i>
+
+        <br />
+        {{ review.review }}
+      </p>
+    </div>
+    <div class="mb-4">
+      <button
+        class="button is-success mr-5"
+        [disabled]="review.approval == 'APPROVED'"
+        (click)="accept()"
+      >
+        ACCEPT
+      </button>
+      <button
+        class="button is-danger"
+        [disabled]="review.approval == 'DECLINED'"
+        (click)="decline()"
+      >
+        REJECT
+      </button>
+    </div>
+  </div>
+</article>

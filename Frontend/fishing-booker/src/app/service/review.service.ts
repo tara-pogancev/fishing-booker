@@ -20,7 +20,6 @@ export class ReviewService {
   }
 
   newReview(review: ReviewModel) {
-    const id = this.loginService.getCurrentUser().id;
     const url = this.url + '/new-review';
     const headers = this.loginService.getHeaders();
     return this._http.post<any>(url, review, { headers: headers });
@@ -36,5 +35,23 @@ export class ReviewService {
   getAllReviews() {
     const url = server + 'browse/reviews';
     return this._http.get<any>(url);
+  }
+
+  getAllReviewsAdmin() {
+    const url = this.url + '/admin';
+    const headers = this.loginService.getHeaders();
+    return this._http.get<any>(url, { headers: headers });
+  }
+
+  acceptReview(id: number) {
+    const url = this.url + '/accept/' + id;
+    const headers = this.loginService.getHeaders();
+    return this._http.put<any>(url, {}, { headers: headers });
+  }
+
+  declineReview(id: number) {
+    const url = this.url + '/decline/' + id;
+    const headers = this.loginService.getHeaders();
+    return this._http.put<any>(url, {}, { headers: headers });
   }
 }

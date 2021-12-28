@@ -1,0 +1,10 @@
+<div class="content is-medium">
+  <h1 class="title">Client Complaints</h1>
+  <hr />
+  <div *ngIf="complaints.length > 0">
+    <div *ngFor="let complaint of this.complaints"></div>
+  </div>
+  <div *ngIf="complaints.length == 0">
+    <p>No complaints to show.</p>
+  </div>
+</div>

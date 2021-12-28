@@ -69,7 +69,7 @@
             >Delete Account Requests</a
           >
         </li>
-        <li *ngIf="admin.email=='admin@fishing.com'">
+        <li *ngIf="admin.email == 'admin@fishing.com'">
           <a
             [ngClass]="{ 'is-active': activeTab === 'ADD_ADMIN' }"
             (click)="changeTab('ADD_ADMIN')"
@@ -94,12 +94,32 @@
                   >Boats</a
                 >
               </li>
-              
+            </ul>
+          </div>
+        </li>
+
+        <li>
+          <div class="mt-4">
+            <p class="menu-label">Communication</p>
+            <ul>
+              <li>
+                <a
+                  [ngClass]="{ 'is-active': activeTab === 'REVIEWS' }"
+                  (click)="changeTab('REVIEWS')"
+                  >Client Reviews</a
+                >
+              </li>
+              <li>
+                <a
+                  [ngClass]="{ 'is-active': activeTab === 'COMPLAINTS' }"
+                  (click)="changeTab('COMPLAINTS')"
+                  >Complaints</a
+                >
+              </li>
             </ul>
           </div>
         </li>
       </ul>
-      
     </aside>
   </div>
 
@@ -112,7 +132,7 @@
     </div>
     <div class="m-5">
       <div *ngIf="activeTab == 'PERSONAL_INFO'">
-        <app-admin-persona-info ></app-admin-persona-info>
+        <app-admin-persona-info></app-admin-persona-info>
       </div>
       <div *ngIf="activeTab == 'SETTINGS'">
         <app-admin-settings></app-admin-settings>
@@ -147,10 +167,17 @@
       <div *ngIf="activeTab == 'PAST_FISHING'">
         <client-past-fishing [user]="admin"></client-past-fishing>
       </div>
-      <div *ngIf="activeTab=='ADD_ADMIN' && admin.email=='admin@fishing.com'">
+      <div
+        *ngIf="activeTab == 'ADD_ADMIN' && admin.email == 'admin@fishing.com'"
+      >
         <app-add-admin></app-add-admin>
       </div>
-      
+      <div *ngIf="activeTab == 'REVIEWS'">
+        <app-admin-reviews></app-admin-reviews>
+      </div>
+      <div *ngIf="activeTab == 'COMPLAINTS'">
+        <app-admin-complaints></app-admin-complaints>
+      </div>
     </div>
   </div>
 </div>

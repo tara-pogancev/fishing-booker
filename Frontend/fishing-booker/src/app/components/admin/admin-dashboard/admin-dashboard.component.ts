@@ -6,33 +6,23 @@ import { ClientService } from 'src/app/service/client.service';
 @Component({
   selector: 'app-admin-dashboard',
   templateUrl: './admin-dashboard.component.html',
-  styleUrls: ['./admin-dashboard.component.css']
+  styleUrls: ['./admin-dashboard.component.css'],
 })
 export class AdminDashboardComponent implements OnInit {
-
-  
-
   admin: any = {};
   activeTab: string = 'PERSONAL_INFO';
-  newAdmin:any={};
-  passwordConfirm='';
+  newAdmin: any = {};
+  passwordConfirm = '';
 
   constructor(private adminService: AdminService) {}
 
   ngOnInit(): void {
-   this.adminService.getCurrentAdmin().subscribe((data: Client) => {
+    this.adminService.getCurrentAdmin().subscribe((data: Client) => {
       this.admin = data;
-      console.log(data);
     });
   }
 
   changeTab(tabName: string) {
     this.activeTab = tabName;
   }
-
-  
 }
-
-  
-
-

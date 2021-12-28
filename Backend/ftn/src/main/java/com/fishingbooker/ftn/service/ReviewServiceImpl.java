@@ -7,6 +7,9 @@ import com.fishingbooker.ftn.bom.boats.BoatReservation;
 import com.fishingbooker.ftn.bom.cottages.CottageReservation;
 import com.fishingbooker.ftn.bom.reservations.Reservation;
 import com.fishingbooker.ftn.dto.ReviewDto;
+import com.fishingbooker.ftn.repository.AdventureRepository;
+import com.fishingbooker.ftn.repository.BoatRepository;
+import com.fishingbooker.ftn.repository.CottageRepository;
 import com.fishingbooker.ftn.repository.ReviewRepository;
 import com.fishingbooker.ftn.service.interfaces.RegisteredClientService;
 import com.fishingbooker.ftn.service.interfaces.ReservationService;
@@ -26,8 +29,11 @@ import java.util.List;
 public class ReviewServiceImpl implements ReviewService {
 
     private final ReviewRepository reviewRepository;
-    private final RegisteredClientService clientService;
     private final ReservationService reservationService;
+
+    private final CottageRepository cottageRepository;
+    private final BoatRepository boatRepository;
+    private final AdventureRepository adventureRepository;
 
 
     @Override
@@ -104,6 +110,29 @@ public class ReviewServiceImpl implements ReviewService {
         }
 
         return reviews;
+    }
+
+    @Override
+    public void acceptReview(Long id) {
+        Review review = reviewRepository.get(id);
+        if (review != null) {
+            review.setApproval(RequestApproval.APPROVED);
+            reviewRepository.save(review);
+        }
+    }
+
+    @Override
+    public void declineReview(Long id) {
+        Review review = reviewRepository.get(id);
+        if (review != null) {
+            review.setApproval(RequestApproval.DECLINED);
+            reviewRepository.save(review);
+        }
+    }
+
+    @Override
+    public List<Review> findAll() {
+        return reviewRepository.findAll();
     }
 
     private void saveAdventureReview(ReviewDto dto, AdventureReservation adventureReservation) {

@@ -101,6 +101,10 @@ import { NewBoatReservationComponent } from './components/client/new-boat-reserv
 import { NewCottageReservationComponent } from './components/client/new-cottage-reservation/new-cottage-reservation.component';
 import { NewAdventureReservationComponent } from './components/client/new-adventure-reservation/new-adventure-reservation.component';
 import { DeleteAccountRequestsComponent } from './components/admin/admin-dashboard/delete-account-requests/delete-account-requests.component';
+import { AdminReviewsComponent } from './components/admin/admin-dashboard/admin-reviews/admin-reviews.component';
+import { AdminComplaintsComponent } from './components/admin/admin-dashboard/admin-complaints/admin-complaints.component';
+import { ComplaintComponent } from './components/admin/admin-dashboard/admin-complaints/complaint/complaint.component';
+import { AdminReviewComponent } from './components/admin/admin-dashboard/admin-reviews/admin-review/admin-review.component';
 
 
 @NgModule({
@@ -198,7 +202,11 @@ import { DeleteAccountRequestsComponent } from './components/admin/admin-dashboa
     NewBoatReservationComponent,
     NewCottageReservationComponent,
     NewAdventureReservationComponent,
-    DeleteAccountRequestsComponent
+    DeleteAccountRequestsComponent,
+    AdminReviewsComponent,
+    AdminComplaintsComponent,
+    ComplaintComponent,
+    AdminReviewComponent
   ],
   imports: [
     BrowserModule,
