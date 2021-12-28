@@ -3,27 +3,23 @@
     <div class="media">
       <div class="media-left">
         <figure class="image is-48x48">
-          <img src="assets/icons/boat.png" />
+          <img src="{{ imagePath }}" />
         </figure>
       </div>
       <div class="media-content">
-        <p class="title is-4">Boat: Angelina</p>
-        <p class="subtitle is-6">@John Rodgers</p>
+        <p class="title is-4">{{ type | titlecase }}: {{ entity.name }}</p>
+        <p class="subtitle is-6">@{{ entity.ownerName }}</p>
       </div>
       <div class="">
-        <button class="button is-danger">Unsubscribe</button>
+        <button class="button is-danger" (click)="unsubscribe()">
+          Unsubscribe
+        </button>
       </div>
     </div>
 
     <div class="content">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisi odio,
-      lacinia a tortor convallis, congue interdum felis. Nulla pretium porttitor
-      enim, sit amet ullamcorper lacus pretium id.
+      {{ entity.description }}
       <br />
-
-      <span class="tag is-primary">Boat</span>
-      <span class="tag is-primary">5 Beds</span>
-      <span class="tag is-primary">2 Baths</span>
     </div>
   </div>
 </div>

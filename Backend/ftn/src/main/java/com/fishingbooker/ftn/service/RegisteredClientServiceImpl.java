@@ -2,12 +2,14 @@ package com.fishingbooker.ftn.service;
 
 import com.fishingbooker.ftn.bom.Address;
 import com.fishingbooker.ftn.bom.adventures.AdventureReservation;
+import com.fishingbooker.ftn.bom.boats.Boat;
 import com.fishingbooker.ftn.bom.boats.BoatReservation;
 import com.fishingbooker.ftn.bom.cottages.CottageReservation;
 import com.fishingbooker.ftn.bom.reservations.Reservation;
 import com.fishingbooker.ftn.bom.users.RegisteredClient;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.ApplicationUserDto;
+import com.fishingbooker.ftn.dto.BoatDto;
 import com.fishingbooker.ftn.dto.RegisteredClientDto;
 import com.fishingbooker.ftn.repository.AddressRepository;
 import com.fishingbooker.ftn.repository.RegisteredClientRepository;
@@ -143,6 +145,22 @@ public class RegisteredClientServiceImpl implements RegisteredClientService {
         }
 
         return reservations;
+    }
+
+    @Override
+    public RegisteredClient get(Long id) {
+        return clientRepository.get(id);
+    }
+
+    @Override
+    public List<BoatDto> getBoatSubscription(Long id) {
+        RegisteredClient client = get(id);
+        List<BoatDto> boats = new ArrayList<>();
+        if (client != null) {
+            for (Boat boat: client.getBoatSubscription())
+                boats.add(converter.convert(boat, BoatDto.class));
+        }
+        return boats;
     }
 
 

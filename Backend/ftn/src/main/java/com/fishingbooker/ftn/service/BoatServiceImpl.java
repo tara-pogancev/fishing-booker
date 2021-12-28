@@ -67,5 +67,10 @@ public class BoatServiceImpl implements BoatService {
         return boats;
     }
 
+    @Override
+    public Boat get(Long entityId) {
+        return boatRepository.get(entityId);
+    }
+
 
 }

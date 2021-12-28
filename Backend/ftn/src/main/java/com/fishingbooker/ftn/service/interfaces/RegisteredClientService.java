@@ -1,8 +1,10 @@
 package com.fishingbooker.ftn.service.interfaces;
 
+import com.fishingbooker.ftn.bom.boats.Boat;
 import com.fishingbooker.ftn.bom.reservations.Reservation;
 import com.fishingbooker.ftn.bom.users.RegisteredClient;
 import com.fishingbooker.ftn.dto.ApplicationUserDto;
+import com.fishingbooker.ftn.dto.BoatDto;
 import com.fishingbooker.ftn.dto.RegisteredClientDto;
 
 import java.util.List;
@@ -30,4 +32,8 @@ public interface RegisteredClientService {
     List<Reservation> getPastAdventureReservations(Long id);
 
     List<Reservation> getUpcomingReservations(Long id);
+
+    RegisteredClient get(Long id);
+
+    List<BoatDto> getBoatSubscription(Long id);
 }

@@ -4,6 +4,7 @@ import { Boat } from 'src/app/model/boat-model';
 import { ReviewModel } from 'src/app/model/review-model';
 import { BoatService } from 'src/app/service/boat.service';
 import { ImageService } from 'src/app/service/image.service';
+import { SubscriptionService } from 'src/app/service/subscription-service';
 
 @Component({
   selector: 'app-boat-page',
@@ -16,10 +17,12 @@ export class BoatPageComponent implements OnInit {
   navEquipment: string = '';
   image: any = 'assets/images/placeholder.jpg';
   reviews: ReviewModel[] = [];
+  isSubscribed: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
-    private boatService: BoatService
+    private boatService: BoatService,
+    private subscriptionService: SubscriptionService
   ) {}
 
   ngOnInit(): void {
@@ -41,5 +44,23 @@ export class BoatPageComponent implements OnInit {
     this.boatService.getReviews(this.id).subscribe((data) => {
       this.reviews = data;
     });
+
+    this.subscriptionService.getBoatSubscriptions().subscribe((data) => {
+      let boats = data;
+      for (let boat of boats) {
+        if (boat.id == this.boat.id) {
+          this.isSubscribed = true;
+          break;
+        }
+      }
+    });
+  }
+
+  subscribe() {
+    this.subscriptionService
+      .subscribe('boat', this.boat.id)
+      .subscribe((data) => {
+        this.isSubscribed = true;
+      });
   }
 }

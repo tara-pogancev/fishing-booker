@@ -18,4 +18,6 @@ public interface BoatService {
     List<Boat> filterByDate(LocalDate startDate, LocalDate endDate);
 
     List<Boat> findFiltered(EntitySearchDto filterDto);
+
+    Boat get(Long entityId);
 }

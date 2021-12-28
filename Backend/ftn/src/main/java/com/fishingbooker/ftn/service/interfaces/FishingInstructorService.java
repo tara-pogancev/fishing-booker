@@ -18,4 +18,5 @@ public interface FishingInstructorService {
     Long delete(Long id);
 
     FishingInstructor update(FishingInstructor instructor);
+
 }

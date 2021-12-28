@@ -3,10 +3,17 @@
   <hr />
   <div class="columns is-variable is-8">
     <div class="column is-three-fifths">
-      <subscription-component></subscription-component>
-      <subscription-component></subscription-component>
-      <subscription-component></subscription-component
-      ><subscription-component></subscription-component>
+      <div *ngIf="subscriptionCount > 0">
+        <div *ngFor="let boat of boats">
+          <subscription-component
+            [entity]="boat"
+            type="boat"
+          ></subscription-component>
+        </div>
+      </div>
+      <div *ngIf="subscriptionCount == 0">
+        <p>You are not subscribed to any entities yet!</p>
+      </div>
     </div>
 
     <div class="column">
@@ -24,7 +31,9 @@
               is-flex is-justify-content-space-evenly is-flex-direction-column
             "
           >
-            <p>You are subscribed to <b>7</b> cottages.</p>
+            <p>
+              You are subscribed to <b>{{ cottageSubCount }}</b> cottages.
+            </p>
           </div>
         </div>
       </div>
@@ -43,7 +52,9 @@
               is-flex is-justify-content-space-evenly is-flex-direction-column
             "
           >
-            <p>You are subscribed to <b>0</b> boats.</p>
+            <p>
+              You are subscribed to <b>{{ boatSubCount }}</b> boats.
+            </p>
           </div>
         </div>
       </div>
@@ -52,7 +63,7 @@
         <div class="media">
           <div class="media-left">
             <figure class="image is-48x48">
-              <img src="assets/icons/fishing.png" />
+              <img src="assets/icons/adventure.png" />
             </figure>
           </div>
           <div
@@ -62,7 +73,10 @@
               is-flex is-justify-content-space-evenly is-flex-direction-column
             "
           >
-            <p>You are subscribed to <b>2</b> fishing instructors.</p>
+            <p>
+              You are subscribed to <b>{{ adventureSubCount }}</b> fishing
+              instructors.
+            </p>
           </div>
         </div>
       </div>
