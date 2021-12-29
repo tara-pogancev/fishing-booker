@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'complaint-card',
@@ -6,7 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./complaint-card.component.css'],
 })
 export class ComplaintCardComponent implements OnInit {
+  @Input() review: any;
+  imagePath: String = '';
+
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.imagePath = 'assets/icons/' + this.review.reservationType + '.png';
+  }
 }

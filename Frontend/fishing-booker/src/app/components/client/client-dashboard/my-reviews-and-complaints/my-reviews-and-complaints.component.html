@@ -3,10 +3,13 @@
   <hr />
   <div *ngIf="reviews.length > 0">
     <div *ngFor="let review of this.reviews">
-      <review-card [review]="review"></review-card>
+      <div *ngIf="review.rating != null">
+        <review-card [review]="review"></review-card>
+      </div>
+      <div *ngIf="review.rating == null">
+        <complaint-card [review]="review"></complaint-card>
+      </div>
     </div>
-    <hr />
-    <complaint-card></complaint-card>
   </div>
 
   <div *ngIf="reviews.length == 0">

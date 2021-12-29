@@ -1,19 +1,28 @@
 <article class="media">
   <figure class="media-left">
     <p class="image is-64x64">
-      <img src="assets/icons/cottage.png" />
+      <img src="{{ imagePath }}" />
     </p>
   </figure>
   <div class="media-content">
     <div class="content">
       <p>
-        <b>John Smith </b> |
-        <small><a href="#">Cottage Shinra's Resort</a>, 21/04/2021</small>
+        <b>{{ review.clientName }} </b> |
+        <small
+          ><a href="/{{ review.reservationType }}/{{ review.entityId }}">
+            View {{ review.reservationType | titlecase }}</a
+          >, {{ review.date | date: "short" }}
+        </small>
+
         <br />
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare
-        magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa
-        sem. Etiam finibus odio quis feugiat facilisis.
+        {{ review.review }}
       </p>
+    </div>
+    <div *ngIf="review.approval == 'PROCESSED'">
+      <span class="tag is-info is-medium">PROCESSED</span>
+    </div>
+    <div *ngIf="review.approval == 'WAITING'">
+      <span class="tag is-warning is-medium">WAITING</span>
     </div>
   </div>
 </article>
