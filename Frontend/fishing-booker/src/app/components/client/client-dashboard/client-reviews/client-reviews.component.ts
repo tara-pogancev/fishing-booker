@@ -14,6 +14,7 @@ export class ClientReviewsComponent implements OnInit {
 
   reservations: ReservationModel[] = [];
   visibleMessage: boolean = false;
+  visibleMessageBox: boolean = false;
 
   review: ReviewModel = new ReviewModel();
 
@@ -33,11 +34,12 @@ export class ClientReviewsComponent implements OnInit {
     } else {
       this.reviewService.newReview(this.review).subscribe((data) => {
         this.visibleMessage = true;
+        this.visibleMessageBox = true;
       });
     }
   }
 
   hideMessage() {
-    this.visibleMessage = false;
+    this.visibleMessageBox = false;
   }
 }

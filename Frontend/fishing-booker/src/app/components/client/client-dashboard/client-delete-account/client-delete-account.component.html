@@ -8,18 +8,26 @@
         <textarea
           class="textarea"
           placeholder="Why do you wish to delete your account?"
+          [(ngModel)]="request.description"
+          [disabled]="visibleMessage"
         ></textarea>
       </div>
     </div>
 
     <div class="field is-grouped">
       <div class="control">
-        <button class="button is-link">Submit</button>
+        <button
+          class="button is-link"
+          (click)="submit()"
+          [disabled]="visibleMessage"
+        >
+          Submit
+        </button>
       </div>
     </div>
 
-    <div class="notification is-danger mt-6">
-      <button class="delete"></button>
+    <div class="notification is-danger mt-6" *ngIf="visibleMessageBox">
+      <button class="delete" (click)="hideMessage()"></button>
       Your account deletion request has been sent. You will recieve any updates
       via email notification. If you wish to cancel your request, please contact
       as at <b>fishing.booker.service@gmail.com</b>.

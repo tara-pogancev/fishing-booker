@@ -6,7 +6,7 @@
       <label class="label">Reservation Selection</label>
       <div class="control">
         <div class="select">
-          <select [(ngModel)]="this.review.id">
+          <select [(ngModel)]="this.review.id" [disabled]="visibleMessage">
             <option value="0">Select dropdown</option>
             <option
               *ngFor="let reservation of reservations"
@@ -29,6 +29,7 @@
           min="1"
           max="5"
           [(ngModel)]="review.rating"
+          [disabled]="visibleMessage"
         />
       </div>
     </div>
@@ -40,6 +41,7 @@
           class="textarea"
           placeholder="Review text"
           [(ngModel)]="review.review"
+          [disabled]="visibleMessage"
         ></textarea>
       </div>
     </div>
@@ -56,7 +58,7 @@
       </div>
     </div>
 
-    <div class="notification is-success mt-6" *ngIf="visibleMessage">
+    <div class="notification is-success mt-6" *ngIf="visibleMessageBox">
       <button class="delete" (click)="hideMessage()"></button>
       Thank you! Your review has been sent for review!.
       <a href="/client-db/REVIEW">Send another</a>

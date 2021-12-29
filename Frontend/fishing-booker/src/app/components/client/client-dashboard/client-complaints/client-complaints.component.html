@@ -6,7 +6,7 @@
       <label class="label">Reservation Complaint</label>
       <div class="control">
         <div class="select">
-          <select [(ngModel)]="this.complaint.id">
+          <select [(ngModel)]="this.complaint.id" [disabled]="visibleMessage">
             <option value="0">Select dropdown</option>
             <option
               *ngFor="let reservation of reservations"
@@ -27,6 +27,7 @@
           class="textarea"
           placeholder="Complaint text"
           [(ngModel)]="complaint.description"
+          [disabled]="visibleMessage"
         ></textarea>
       </div>
     </div>
@@ -43,7 +44,7 @@
       </div>
     </div>
 
-    <div class="notification is-success mt-6" *ngIf="visibleMessage">
+    <div class="notification is-success mt-6" *ngIf="visibleMessageBox">
       <button class="delete" (click)="hideMessage()"></button>
       Thank you! Your complaint has been sent. You will recieve any updates via
       email notification. <a href="/client-db/COMPLAINT">Send another</a>

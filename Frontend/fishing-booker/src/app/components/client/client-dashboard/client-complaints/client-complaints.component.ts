@@ -15,6 +15,7 @@ export class ClientComplaintsComponent implements OnInit {
 
   reservations: ReservationModel[] = [];
   visibleMessage: boolean = false;
+  visibleMessageBox: boolean = false;
 
   complaint: ComplaintModel = new ComplaintModel();
 
@@ -34,11 +35,12 @@ export class ClientComplaintsComponent implements OnInit {
     } else {
       this.complaintService.newComplaint(this.complaint).subscribe((data) => {
         this.visibleMessage = true;
+        this.visibleMessageBox = true;
       });
     }
   }
 
   hideMessage() {
-    this.visibleMessage = false;
+    this.visibleMessageBox = false;
   }
 }
