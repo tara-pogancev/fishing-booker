@@ -20,4 +20,5 @@ public interface BoatService {
     List<Boat> findFiltered(EntitySearchDto filterDto);
 
     Boat get(Long entityId);
+
 }

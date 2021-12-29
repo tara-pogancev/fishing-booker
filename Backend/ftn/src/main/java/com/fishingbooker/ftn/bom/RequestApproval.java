@@ -4,6 +4,7 @@ public enum RequestApproval {
 
     APPROVED,
     WAITING,
-    DECLINED;
+    DECLINED,
+    PROCESSED;
 
 }

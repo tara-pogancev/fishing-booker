@@ -341,7 +341,6 @@ INSERT INTO public.boat_reservation(id, boat_id, user_id)	VALUES (9, 2, 1);
 INSERT INTO public.adventure_reservation(id, adventure_id, user_id)	VALUES (10, 3, 1);
 INSERT INTO public.adventure_reservation(id, adventure_id, user_id)	VALUES (11, 2, 1);
 
-
 -- REVIEWS
 
 INSERT INTO public.review(is_approved, date, entity_id, rating, reservation_type, review, client_id, reservation_id)
@@ -356,3 +355,9 @@ INSERT INTO public.review(is_approved, date, entity_id, rating, reservation_type
     VALUES ('0', '20200208 09:23:00 AM', 2, 4, 'boat', 'Proin venenatis, quam quis sagittis ullamcorper, augue dolor pretium orci, nec vehicula justo tortor eu justo. Pellentesque eu ligula nisl. Non dignissim velit scelerisque nec.', 1, 9);
 INSERT INTO public.review(is_approved, date, entity_id, rating, reservation_type, review, client_id, reservation_id)
     VALUES ('0', '20200109 12:50:00 AM', 3, 5, 'adventure', 'Nunc tincidunt leo non nisl rhoncus euismod. Sed hendrerit id elit at accumsan. Phasellus non erat libero. Nam eget odio pharetra, consectetur dolor ac!', 1, 10);
+
+
+-- COMPLAINTS
+
+INSERT INTO public.complaint(approved, date, description, entity_id, reservation_type, type, reservation_id, user_id)
+	VALUES (3, '20210310 11:16:00 AM', 'ugh', 1, 1, 0, 8, 1);

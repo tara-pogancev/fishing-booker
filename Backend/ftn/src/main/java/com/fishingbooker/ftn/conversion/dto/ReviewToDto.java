@@ -1,4 +1,4 @@
-package com.fishingbooker.ftn.conversion.dto.reviews;
+package com.fishingbooker.ftn.conversion.dto;
 
 import com.fishingbooker.ftn.bom.Review;
 import com.fishingbooker.ftn.dto.ReviewDto;

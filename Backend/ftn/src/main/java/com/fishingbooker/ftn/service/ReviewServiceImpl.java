@@ -90,7 +90,6 @@ public class ReviewServiceImpl implements ReviewService {
             } else if (adventureReservation != null) {
                 saveAdventureReview(dto, adventureReservation);
             }
-
         }
     }
 

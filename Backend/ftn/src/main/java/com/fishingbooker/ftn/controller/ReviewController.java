@@ -5,11 +5,14 @@ import com.fishingbooker.ftn.bom.reservations.Reservation;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.ReviewDto;
 import com.fishingbooker.ftn.dto.ViewReservationDto;
+import com.fishingbooker.ftn.service.interfaces.ComplaintService;
 import com.fishingbooker.ftn.service.interfaces.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,6 +21,7 @@ public class ReviewController {
 
     private final DataConverter converter;
     private final ReviewService reviewService;
+    private final ComplaintService complaintService;
 
     @GetMapping("/available-reviews/{clientId}")
     public List<ViewReservationDto> getAvailableClientReviews(@PathVariable Long clientId) {
@@ -27,8 +31,10 @@ public class ReviewController {
 
     @GetMapping("/client-reviews-complaints/{clientId}")
     public List<ReviewDto> getClientReviewsComplaints(@PathVariable Long clientId) {
-        List<Review> reviews = reviewService.getReviewsByClient(clientId);
-        return converter.convert(reviews, ReviewDto.class);
+        List<ReviewDto> reviews = converter.convert(reviewService.getReviewsByClient(clientId), ReviewDto.class);
+        List<ReviewDto> complaints = converter.convert(complaintService.getComplaintsByUser(clientId), ReviewDto.class);
+        List<ReviewDto> retVal = Stream.concat(reviews.stream(), complaints.stream()).collect(Collectors.toList());
+        return retVal;
     }
 
     @PostMapping("/new-review")
