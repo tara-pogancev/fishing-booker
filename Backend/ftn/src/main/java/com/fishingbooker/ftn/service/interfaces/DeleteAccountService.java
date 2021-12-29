@@ -13,4 +13,6 @@ public interface DeleteAccountService {
     boolean reject(Long requestId, String description);
 
     Long create(DeleteAccountRequest deleteAccountRequest);
+
+    Boolean clientHasActiveRequest(Long id);
 }

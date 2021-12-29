@@ -14,10 +14,15 @@ export class ClientDeleteAccountComponent implements OnInit {
 
   visibleMessage: boolean = false;
   visibleMessageBox: boolean = false;
+  hasRequest: boolean = false;
 
   constructor(private deleteAccountService: DeleteAccountService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.deleteAccountService.checkForActiveRequests().subscribe((data) => {
+      this.hasRequest = data;
+    });
+  }
 
   submit() {
     if (this.request.description == '') {

@@ -51,4 +51,11 @@ export class DeleteAccountService {
         }
       });
   }
+
+  checkForActiveRequests() {
+    const userId = this.loginService.getCurrentUser().id;
+    const headers = this.loginService.getHeaders();
+    const url = server + 'api/delete-account/active-request/' + userId;
+    return this._http.get<any>(url, { headers: headers });
+  }
 }

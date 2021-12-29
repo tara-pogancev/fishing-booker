@@ -43,5 +43,10 @@ public class DeleteAccountController {
         return deleteAccountService.reject(responseDto.getId(), responseDto.getDescription());
     }
 
+    @GetMapping("/active-request/{id}")
+    public Boolean clientHasActiveRequest(@PathVariable Long id) {
+        return deleteAccountService.clientHasActiveRequest(id);
+    }
+
 
 }

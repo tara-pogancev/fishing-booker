@@ -1,7 +1,7 @@
 <div class="content is-medium">
   <h1 class="title">Delete my Account</h1>
   <hr />
-  <div>
+  <div *ngIf="hasRequest == false">
     <div class="field">
       <label class="label">Message</label>
       <div class="control">
@@ -31,6 +31,14 @@
       Your account deletion request has been sent. You will recieve any updates
       via email notification. If you wish to cancel your request, please contact
       as at <b>fishing.booker.service@gmail.com</b>.
+    </div>
+  </div>
+  <div *ngIf="hasRequest == true">
+    <div class="notification is-danger mt-6">
+      Your account removal request is already active. You cannot send another
+      one. You will recieve any updates via email notification. If you wish to
+      cancel your request, please contact as at
+      <b>fishing.booker.service@gmail.com</b>.
     </div>
   </div>
 </div>

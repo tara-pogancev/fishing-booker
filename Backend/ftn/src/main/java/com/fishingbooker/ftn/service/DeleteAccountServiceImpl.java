@@ -61,4 +61,13 @@ public class DeleteAccountServiceImpl implements DeleteAccountService {
         DeleteAccountRequest request = deleteAccountRequestRepository.save(deleteAccountRequest);
         return request.getId();
     }
+
+    @Override
+    public Boolean clientHasActiveRequest(Long id) {
+        for (DeleteAccountRequest request : deleteAccountRequestRepository.getUnansweredRequests()) {
+            if (request.getUserId() == id)
+                return true;
+        }
+        return false;
+    }
 }
