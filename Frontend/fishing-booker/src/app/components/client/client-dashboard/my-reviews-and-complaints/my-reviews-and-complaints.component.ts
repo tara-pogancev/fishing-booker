@@ -16,8 +16,17 @@ export class MyReviewsAndComplaintsComponent implements OnInit {
 
   ngOnInit(): void {
     this.reviewService.getClientReviewsComplaints().subscribe((data) => {
-      this.reviews = data;
-      console.log(this.reviews);
+      this.reviews = this.sortReviews(data);
+    });
+  }
+
+  sortReviews(entities: any[]) {
+    return entities.sort((n1, n2) => {
+      if (n1.date < n2.date) {
+        return 1;
+      } else {
+        return -1;
+      }
     });
   }
 }
