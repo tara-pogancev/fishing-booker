@@ -11,6 +11,7 @@
             type="email"
             placeholder="Email"
             [(ngModel)]="request.email"
+            (keyup.enter)="login()"
           />
         </p>
       </div>
@@ -21,6 +22,7 @@
             type="password"
             placeholder="Password"
             [(ngModel)]="request.password"
+            (keyup.enter)="login()"
           />
         </p>
         <p class="help is-danger mt-5">
