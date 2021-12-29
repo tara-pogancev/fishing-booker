@@ -25,7 +25,7 @@ public class ComplaintController {
     }
 
     @PostMapping("/new-complaint")
-    public void writeReview(@RequestBody ComplaintDto dto) {
+    public void writeComplaint(@RequestBody ComplaintDto dto) {
         complaintService.create(dto);
     }
 

@@ -11,7 +11,8 @@
         <small
           ><a href="/{{ review.reservationType }}/{{ review.entityId }}">
             View {{ review.reservationType | titlecase }}</a
-          >, {{ review.date | date: "short" }}
+          >, {{ review.date | date: "short" }} |
+          <span class="tag is-danger is-light">Complaint</span>
         </small>
 
         <br />

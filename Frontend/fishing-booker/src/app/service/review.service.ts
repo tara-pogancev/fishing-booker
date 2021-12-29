@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { server } from 'src/app/app-global';
-import { UserModel } from 'src/app/model/user-model';
 import { ReviewModel } from '../model/review-model';
 import { LoginService } from './login.service';
 

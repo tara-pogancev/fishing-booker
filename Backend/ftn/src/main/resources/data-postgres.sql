@@ -350,7 +350,7 @@ INSERT INTO public.review(is_approved, date, entity_id, rating, reservation_type
 INSERT INTO public.review(is_approved, date, entity_id, rating, reservation_type, review, client_id, reservation_id)
     VALUES ('2', '20210109 12:50:00 AM', 3, 5, 'adventure', 'Best trip of my life!!', 1, 3);
 INSERT INTO public.review(is_approved, date, entity_id, rating, reservation_type, review, client_id, reservation_id)
-    VALUES ('0', '20200310 11:16:00 AM', 1, 3, 'cottage', 'Nulla euismod ipsum eget aliquet!', 1, 8);
+    VALUES ('0', '20200310 11:16:00 AM', 3, 3, 'cottage', 'Nulla euismod ipsum eget aliquet!', 1, 8);
 INSERT INTO public.review(is_approved, date, entity_id, rating, reservation_type, review, client_id, reservation_id)
     VALUES ('0', '20200208 09:23:00 AM', 2, 4, 'boat', 'Proin venenatis, quam quis sagittis ullamcorper, augue dolor pretium orci, nec vehicula justo tortor eu justo. Pellentesque eu ligula nisl. Non dignissim velit scelerisque nec.', 1, 9);
 INSERT INTO public.review(is_approved, date, entity_id, rating, reservation_type, review, client_id, reservation_id)
@@ -360,4 +360,4 @@ INSERT INTO public.review(is_approved, date, entity_id, rating, reservation_type
 -- COMPLAINTS
 
 INSERT INTO public.complaint(approved, date, description, entity_id, reservation_type, type, reservation_id, user_id)
-	VALUES (3, '20210310 11:16:00 AM', 'ugh', 1, 1, 0, 8, 1);
+	VALUES (3, '20210310 11:16:00 AM', 'ugh', 3, 1, 0, 8, 1);
