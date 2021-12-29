@@ -32,7 +32,11 @@ public class EmailServiceImpl implements EmailService {
         mimeMessageHelper.setSubject(email.getSubject());
         mimeMessageHelper.setFrom(email.getFrom());
         mimeMessageHelper.setText(emailContent, true);
-        emailSender.send(message);
+        try {
+            emailSender.send(message);
+        } catch (Exception e) {
+            System.out.println("Email message could not be sent. Check your antivirus.");
+        }
     }
 
 }
