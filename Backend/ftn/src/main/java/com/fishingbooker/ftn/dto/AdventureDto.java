@@ -10,6 +10,7 @@ import java.util.Set;
 public class AdventureDto {
 
     private Long id;
+    private Long ownerId;
     private String name;
     private String address;
     private String description;

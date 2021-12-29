@@ -11,7 +11,7 @@
         <small
           ><a href="/{{ review.reservationType }}/{{ review.entityId }}">
             View {{ review.reservationType | titlecase }}</a
-          >, {{ review.date | date }} |
+          >, {{ review.date | date: "short" }} |
         </small>
         <i class="fa fa-star" *ngFor="let n of numSequence(review.rating)"></i>
 

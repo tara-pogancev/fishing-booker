@@ -111,7 +111,7 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     }
 
     @Override
-    public List<RegisteredClient> cottageSubscribers(Long cottageId) {
+    public List<RegisteredClient> getCottageSubscribers(Long cottageId) {
         List<RegisteredClient> clients = new ArrayList<>();
         for (RegisteredClient client : clientRepository.findAll()) {
             for (Cottage cottage : client.getCottageSubscription()) {
@@ -126,7 +126,7 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     }
 
     @Override
-    public List<RegisteredClient> instructorSubscribers(Long instructorId) {
+    public List<RegisteredClient> getInstructorSubscribers(Long instructorId) {
         List<RegisteredClient> clients = new ArrayList<>();
         for (RegisteredClient client : clientRepository.findAll()) {
             for (FishingInstructor instructor : client.getInstructorSubscription()) {

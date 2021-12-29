@@ -4,13 +4,13 @@ import com.fishingbooker.ftn.bom.Address;
 import com.fishingbooker.ftn.bom.adventures.AdventureReservation;
 import com.fishingbooker.ftn.bom.boats.Boat;
 import com.fishingbooker.ftn.bom.boats.BoatReservation;
+import com.fishingbooker.ftn.bom.cottages.Cottage;
 import com.fishingbooker.ftn.bom.cottages.CottageReservation;
 import com.fishingbooker.ftn.bom.reservations.Reservation;
+import com.fishingbooker.ftn.bom.users.FishingInstructor;
 import com.fishingbooker.ftn.bom.users.RegisteredClient;
 import com.fishingbooker.ftn.conversion.DataConverter;
-import com.fishingbooker.ftn.dto.ApplicationUserDto;
-import com.fishingbooker.ftn.dto.BoatDto;
-import com.fishingbooker.ftn.dto.RegisteredClientDto;
+import com.fishingbooker.ftn.dto.*;
 import com.fishingbooker.ftn.repository.AddressRepository;
 import com.fishingbooker.ftn.repository.RegisteredClientRepository;
 import com.fishingbooker.ftn.service.interfaces.RegisteredClientService;
@@ -161,6 +161,28 @@ public class RegisteredClientServiceImpl implements RegisteredClientService {
                 boats.add(converter.convert(boat, BoatDto.class));
         }
         return boats;
+    }
+
+    @Override
+    public List<CottageDto> getCottageSubscription(Long id) {
+        RegisteredClient client = get(id);
+        List<CottageDto> cottages = new ArrayList<>();
+        if (client != null) {
+            for (Cottage cottage: client.getCottageSubscription())
+                cottages.add(converter.convert(cottage, CottageDto.class));
+        }
+        return cottages;
+    }
+
+    @Override
+    public List<InstructorSubscriptionDto> getClientInstructorSubscription(Long id) {
+        RegisteredClient client = get(id);
+        List<InstructorSubscriptionDto> instructors = new ArrayList<>();
+        if (client != null) {
+            for (FishingInstructor instructor: client.getInstructorSubscription())
+                instructors.add(converter.convert(instructor, InstructorSubscriptionDto.class));
+        }
+        return instructors;
     }
 
 

@@ -30,4 +30,18 @@ export class SubscriptionService {
     const headers = this.loginService.getHeaders();
     return this._http.get<any>(url, { headers: headers });
   }
+
+  getCottageSubscriptions() {
+    const id = this.loginService.getCurrentUser().id;
+    const url = this.url + '/cottages/' + id;
+    const headers = this.loginService.getHeaders();
+    return this._http.get<any>(url, { headers: headers });
+  }
+
+  getInstructorsSubscriptions() {
+    const id = this.loginService.getCurrentUser().id;
+    const url = this.url + '/instructors/' + id;
+    const headers = this.loginService.getHeaders();
+    return this._http.get<any>(url, { headers: headers });
+  }
 }

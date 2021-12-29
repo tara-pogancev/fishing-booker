@@ -34,6 +34,7 @@ public class AdventureToDto implements Converter<Adventure, AdventureDto> {
         dto.setInstructorBiography(source.getInstructor().getBiography());
         dto.setFishingEquipments(source.getFishingEquipments().stream().map(fishingEquipment -> new FishingEquipmentDto(fishingEquipment.getId(), fishingEquipment.getFishingEquipmentName())).collect(Collectors.toList()));
         dto.setAvailableTimePeriods(getAvailableTimePeriods(source.getInstructor()));
+        dto.setOwnerId(source.getInstructor().getId());
         return dto;
     }
 

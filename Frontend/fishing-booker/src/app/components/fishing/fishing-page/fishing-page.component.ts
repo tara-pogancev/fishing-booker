@@ -5,6 +5,7 @@ import { ReviewModel } from 'src/app/model/review-model';
 import { AdvetnureService } from 'src/app/service/adventure-service';
 import { ImageService } from 'src/app/service/image.service';
 import { ReviewService } from 'src/app/service/review.service';
+import { SubscriptionService } from 'src/app/service/subscription-service';
 
 @Component({
   selector: 'app-fishing-page',
@@ -17,10 +18,12 @@ export class FishingPageComponent implements OnInit {
   navEquipment: string = '';
   image: any = 'assets/images/placeholder.jpg';
   reviews: ReviewModel[] = [];
+  isSubscribed: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
-    private adventureService: AdvetnureService
+    private adventureService: AdvetnureService,
+    private subscriptionService: SubscriptionService
   ) {}
 
   ngOnInit(): void {
@@ -40,5 +43,23 @@ export class FishingPageComponent implements OnInit {
     this.adventureService.getReviews(this.id).subscribe((data) => {
       this.reviews = data;
     });
+
+    this.subscriptionService.getInstructorsSubscriptions().subscribe((data) => {
+      let instructors = data;
+      for (let instructor of instructors) {
+        if (instructor.id == this.adventure.ownerId) {
+          this.isSubscribed = true;
+          break;
+        }
+      }
+    });
+  }
+
+  subscribe() {
+    this.subscriptionService
+      .subscribe('adventure', this.adventure.ownerId)
+      .subscribe((data) => {
+        this.isSubscribed = true;
+      });
   }
 }

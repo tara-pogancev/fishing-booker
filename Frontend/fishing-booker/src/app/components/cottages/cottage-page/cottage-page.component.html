@@ -28,7 +28,11 @@
           </div>
           <div class="column">
             <div class="mb-5">
-              <button class="button is-success is-large is-outlined">
+              <button
+                class="button is-success is-large is-outlined"
+                (click)="subscribe()"
+                [disabled]="isSubscribed"
+              >
                 Subscribe
               </button>
             </div>

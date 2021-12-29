@@ -10,6 +10,20 @@
             type="boat"
           ></subscription-component>
         </div>
+
+        <div *ngFor="let cottage of cottages">
+          <subscription-component
+            [entity]="cottage"
+            type="cottage"
+          ></subscription-component>
+        </div>
+
+        <div *ngFor="let instructor of instructors">
+          <subscription-component
+            [entity]="instructor"
+            type="adventure"
+          ></subscription-component>
+        </div>
       </div>
       <div *ngIf="subscriptionCount == 0">
         <p>You are not subscribed to any entities yet!</p>
@@ -30,6 +44,19 @@
               media-content
               is-flex is-justify-content-space-evenly is-flex-direction-column
             "
+            *ngIf="cottageSubCount == 1"
+          >
+            <p>
+              You are subscribed to <b>{{ cottageSubCount }}</b> cottage.
+            </p>
+          </div>
+          <div
+            class="
+              text-notification-area
+              media-content
+              is-flex is-justify-content-space-evenly is-flex-direction-column
+            "
+            *ngIf="cottageSubCount != 1"
           >
             <p>
               You are subscribed to <b>{{ cottageSubCount }}</b> cottages.
@@ -51,6 +78,19 @@
               media-content
               is-flex is-justify-content-space-evenly is-flex-direction-column
             "
+            *ngIf="boatSubCount == 1"
+          >
+            <p>
+              You are subscribed to <b>{{ boatSubCount }}</b> boat.
+            </p>
+          </div>
+          <div
+            class="
+              text-notification-area
+              media-content
+              is-flex is-justify-content-space-evenly is-flex-direction-column
+            "
+            *ngIf="boatSubCount != 1"
           >
             <p>
               You are subscribed to <b>{{ boatSubCount }}</b> boats.
@@ -72,6 +112,20 @@
               media-content
               is-flex is-justify-content-space-evenly is-flex-direction-column
             "
+            *ngIf="adventureSubCount == 1"
+          >
+            <p>
+              You are subscribed to <b>{{ adventureSubCount }}</b> fishing
+              instructor.
+            </p>
+          </div>
+          <div
+            class="
+              text-notification-area
+              media-content
+              is-flex is-justify-content-space-evenly is-flex-direction-column
+            "
+            *ngIf="adventureSubCount != 1"
           >
             <p>
               You are subscribed to <b>{{ adventureSubCount }}</b> fishing

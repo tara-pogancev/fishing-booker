@@ -7,6 +7,7 @@ import com.fishingbooker.ftn.bom.users.RegisteredClient;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.BoatDto;
 import com.fishingbooker.ftn.dto.CottageDto;
+import com.fishingbooker.ftn.dto.InstructorSubscriptionDto;
 import com.fishingbooker.ftn.service.interfaces.RegisteredClientService;
 import com.fishingbooker.ftn.service.interfaces.SubscriptionService;
 import lombok.RequiredArgsConstructor;
@@ -41,16 +42,12 @@ public class SubscriptionController {
 
     @GetMapping("/cottages/{id}")
     public List<CottageDto> getClientCottageSubscriptions(@PathVariable Long id) {
-        //List<Cottage> cottages = (List<Cottage>) clientService.get(id).getCottageSubscription();
-        //return converter.convert(cottages, CottageDto.class);
-        return null;
+        return clientService.getCottageSubscription(id);
     }
 
     @GetMapping("/instructors/{id}")
-    public List<FishingInstructor> getClientInstructorsSubscriptions(@PathVariable Long id) {
-        //List<FishingInstructor> instructors = (List<FishingInstructor>) clientService.get(id).getInstructorSubscription();
-        //return converter.convert(instructors, FishingInstructor.class);
-        return null;
+    public List<InstructorSubscriptionDto> getClientInstructorsSubscriptions(@PathVariable Long id) {
+        return clientService.getClientInstructorSubscription(id);
     }
 
 }

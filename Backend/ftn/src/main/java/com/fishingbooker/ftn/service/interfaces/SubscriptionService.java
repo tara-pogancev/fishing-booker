@@ -12,8 +12,8 @@ public interface SubscriptionService {
 
     List<RegisteredClient> getBoatSubscribers(Long boatId);
 
-    List<RegisteredClient> cottageSubscribers(Long cottageId);
+    List<RegisteredClient> getCottageSubscribers(Long cottageId);
 
-    List<RegisteredClient> instructorSubscribers(Long instructorId);
+    List<RegisteredClient> getInstructorSubscribers(Long instructorId);
 
 }

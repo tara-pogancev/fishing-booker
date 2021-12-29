@@ -18,6 +18,7 @@ export class Adventure {
     public instructorBiography: string = '',
     public imageUrls: string[] = [],
     public fishingEquipments: FishingEquipment[] = [],
-    public availableTimePeriods: AvailableTimePeriod[] = []
+    public availableTimePeriods: AvailableTimePeriod[] = [],
+    public ownerId: number = 0
   ) {}
 }
