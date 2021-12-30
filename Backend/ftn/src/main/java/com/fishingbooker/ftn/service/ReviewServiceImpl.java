@@ -49,7 +49,7 @@ public class ReviewServiceImpl implements ReviewService {
         List<Reservation> reservations = new ArrayList<>();
 
         for (Reservation reservation : reservationService.findAllByClient(clientId)) {
-            if (reservation.getReservationEnd().isBefore(LocalDate.now())) {
+            if (reservation.getReservationEnd().isBefore(LocalDateTime.now())) {
                 boolean hasReview = false;
                 for (Review review : getReviewsByClient(clientId))
                     if (review.getReservation().getId() == reservation.getId()) {

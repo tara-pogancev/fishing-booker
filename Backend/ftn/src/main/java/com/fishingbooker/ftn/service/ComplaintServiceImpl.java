@@ -88,7 +88,7 @@ public class ComplaintServiceImpl implements ComplaintService {
         List<Reservation> reservations = new ArrayList<>();
 
         for (Reservation reservation : reservationService.findAllByClient(clientId)) {
-            if (reservation.getReservationEnd().isBefore(LocalDate.now())) {
+            if (reservation.getReservationEnd().isBefore(LocalDateTime.now())) {
                 boolean hasComplaint = false;
                 for (Complaint complaint : getComplaintsByUser(clientId))
                     if (complaint.getReservation().getId() == reservation.getId()) {

@@ -210,7 +210,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AdminReviewsComponent,
     AdminComplaintsComponent,
     ComplaintComponent,
-    AdminReviewComponent
+    AdminReviewComponent,
     QuickReservationsCalendarComponent
   ],
   imports: [

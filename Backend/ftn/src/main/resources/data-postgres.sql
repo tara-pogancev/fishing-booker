@@ -336,8 +336,8 @@ INSERT INTO public.adventure_reservation(id, adventure_id, user_id)	VALUES (3, 1
 --INSERT INTO public.boat_reservation(id, boat_id, user_id)	VALUES (6, 1, 1);
 INSERT INTO public.adventure_reservation(id, adventure_id, user_id)	VALUES (7, 1, 1);
 
-INSERT INTO public.cottage_reservation(id, cottage_id, user_id)	VALUES (8, 3, 1);
-INSERT INTO public.boat_reservation(id, boat_id, user_id)	VALUES (9, 2, 1);
+--INSERT INTO public.cottage_reservation(id, cottage_id, user_id)	VALUES (8, 3, 1);
+--INSERT INTO public.boat_reservation(id, boat_id, user_id)	VALUES (9, 2, 1);
 INSERT INTO public.adventure_reservation(id, adventure_id, user_id)	VALUES (10, 3, 1);
 INSERT INTO public.adventure_reservation(id, adventure_id, user_id)	VALUES (11, 2, 1);
 
