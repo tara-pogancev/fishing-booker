@@ -74,8 +74,12 @@ export class AdvetnureService {
   getQuickReservationForCalendar(id:number){
     const url = server + 'api/adventures/get-quick-reservations-calendar/'+id;
     const headers = this.loginService.getHeaders();
-    
     return this._http.get<any>(url,{ headers: headers });
-    
+  }
+
+  getReservation(id:number){
+    const url = server + 'api/adventures/get-reservation/'+id;
+    const headers = this.loginService.getHeaders();
+    return this._http.get<any>(url,{headers:headers});
   }
 }

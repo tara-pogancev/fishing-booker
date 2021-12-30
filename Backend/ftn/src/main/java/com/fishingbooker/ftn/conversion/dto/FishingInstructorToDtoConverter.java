@@ -11,6 +11,7 @@ public class FishingInstructorToDtoConverter implements Converter<FishingInstruc
     @Override
     public FishingInstructorDto convert(FishingInstructor source) {
         FishingInstructorDto dto = new FishingInstructorDto();
+
         dto.setId(source.getId());
         dto.setPassword(source.getPassword());
         dto.setName(source.getName());
@@ -25,6 +26,7 @@ public class FishingInstructorToDtoConverter implements Converter<FishingInstruc
         dto.setCity(source.getUserAddress().getCity());
         dto.setBiography(source.getBiography());
         dto.setRating(source.getRating());
+
         return dto;
     }
 }

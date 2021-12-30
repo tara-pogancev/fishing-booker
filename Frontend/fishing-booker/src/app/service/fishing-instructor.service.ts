@@ -63,7 +63,7 @@ export class FishingInstructorService {
     const id = this.loginService.getCurrentUser().id;
     time.instructorId=id;
     const url =server+'api/available-instructor-time';
-    this._http.post<any>(url,time,{headers:headers}).subscribe();
+    return this._http.post<any>(url,time,{headers:headers});
   }
 
   getAvailableTimes() {

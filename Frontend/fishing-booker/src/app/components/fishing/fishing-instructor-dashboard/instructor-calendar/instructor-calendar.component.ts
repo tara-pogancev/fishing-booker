@@ -32,6 +32,8 @@ import { AvailableInstructorTimePeriod } from '../../../../model/available-instr
 import { ReservationModel } from '../../../../model/reservation-model';
 import { InstructorCalendarResevation } from '../../../../model/instructor-calendar-reservation';
 import { ChangeTimeSlot } from '../../../../model/change-time-slot';
+import { CalendarReservationInfo } from '../../../../model/calendar-reservation-info';
+import { AdvetnureService } from '../../../../service/adventure-service';
 
 const colors: any = {
   red: {
@@ -83,10 +85,12 @@ export class InstructorCalendarComponent implements OnInit{
   endDate:Date=new Date();
 
   startDate:Date=new Date();
+  
+  openModal:boolean=false;
 
   currentFreeSlots:MyCalendarEvent[]=[]; //slotovi koji se mogu mijenjati. Mogu se mijenjati samo oni koji jos uvijek traju
 
-  
+  reservationInfo:CalendarReservationInfo;
 
   modalData: {
     action: string;
@@ -97,17 +101,23 @@ export class InstructorCalendarComponent implements OnInit{
   ngOnInit(): void {
     
     this.getAvailableTimes();
+    this.getReservations();
+    
+    
+  }
+
+  getReservations(){
     this.fishingInstructorService.getInstructorReservations().subscribe(data=>{
       this.reservations=data;
       this.reservations.forEach(reservation=>this.createReservationEvent(reservation));
       this.refresh.next();
     })
-    
   }
 
   getAvailableTimes(){
     this.availablePeriods.length=0;
     this.currentFreeSlots.length=0;
+    this.events.length=0;
     this.fishingInstructorService.getAvailableTimes().subscribe(data=> {
       this.availablePeriods=data;
       this.availablePeriods.forEach(period=> this.createAvailbleTimeEvent(period));
@@ -118,25 +128,6 @@ export class InstructorCalendarComponent implements OnInit{
 ;
 
   
-
-  actions: CalendarEventAction[] = [
-    {
-      label: '<i class="fas fa-fw fa-pencil-alt"></i>',
-      a11yLabel: 'Edit',
-      onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.handleEvent('Edited', event);
-      },
-    },
-    {
-      label: '<i class="fas fa-fw fa-trash-alt"></i>',
-      a11yLabel: 'Delete',
-      onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.events = this.events.filter((iEvent) => iEvent !== event);
-        this.currentFreeSlots = this.currentFreeSlots.filter((iEvent) => iEvent !== event);
-        this.handleEvent('Deleted', event);
-      },
-    },
-  ];
 
   refresh = new Subject<void>();
 
@@ -158,6 +149,7 @@ export class InstructorCalendarComponent implements OnInit{
     if (k>p){
       this.currentFreeSlots.push(event);
     }
+    this.refresh.next(); 
     
 
   }
@@ -192,7 +184,7 @@ export class InstructorCalendarComponent implements OnInit{
 
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal,private fishingInstructorService:FishingInstructorService) {}
+  constructor(private modal: NgbModal,private fishingInstructorService:FishingInstructorService,private adventureService:AdvetnureService) {}
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
@@ -209,8 +201,17 @@ export class InstructorCalendarComponent implements OnInit{
   }
 
   handleEvent(action: string, event: CalendarEvent): void {
-    this.modalData = { event, action };
-    this.modal.open(this.modalContent, { size: 'lg' });
+    if (event.title!='Available'){
+      let id:number=event.id as number;
+      this.adventureService.getReservation(id).subscribe(data=>{
+        this.openModal=true;
+        this.reservationInfo=data;
+        this.openModalTab();
+        console.log(this.reservationInfo);
+      })
+      
+    }
+    
   }
 
   addEvent(): void {
@@ -230,6 +231,7 @@ export class InstructorCalendarComponent implements OnInit{
       }else{
         alert('Selected free time slot contains reservations!');
       }
+      this.refresh.next(); 
     })
     
 
@@ -245,10 +247,14 @@ export class InstructorCalendarComponent implements OnInit{
 
   onChangeDate(event:MyCalendarEvent){
     const index=this.events.indexOf(event);
-    var p=this.events[index].end;
-        if (p==undefined){
-          p=new Date();
-        }
+    var selectedEndDate=new Date(event.endDateString)
+    var selectedStartDate=new Date(event.startDateString);
+    if (selectedEndDate<selectedStartDate || selectedStartDate<new Date() || selectedEndDate < new Date()){
+      alert('Chose valid date');
+      return;
+    }
+    var p=this.events[index].end as Date;
+
     var timePeriod:ChangeTimeSlot=new ChangeTimeSlot(-1,event.id,new Date(event.start).getTime()/1000,new Date(p).getTime()/1000,new Date(event.startDateString).getTime()/1000,new Date(event.endDateString).getTime()/1000);
     this.fishingInstructorService.updateFreeSlot(timePeriod).subscribe(data=>{
       if (data==true){
@@ -261,19 +267,45 @@ export class InstructorCalendarComponent implements OnInit{
         if (k==undefined){
           k=new Date();
         }
-        this.events[index].endDateString=k.toISOString().slice(0,16);
+        this.events[index].endDateString=p.toISOString().slice(0,16);
       }
+      this.refresh.next();
     });
     
     
     this.refresh.next();
   }
 
+  openModalTab():void{
+    
+    document.getElementById('modal')?.classList.toggle('is-active');
+  }
+
+  closeModalTab():void{
+    document.getElementById('modal')?.classList.toggle('is-active');
+  }
+
   confirmAdding(){
+    var selectedStartDate=new Date(this.startDate);
+    var selectedEndDate=new Date(this.endDate);
+    if (selectedEndDate<selectedStartDate || selectedStartDate<new Date() || selectedEndDate < new Date()){
+      alert('Chose valid date');
+      return;
+    }
     var timePeriod:AvailableInstructorTimePeriod=new AvailableInstructorTimePeriod(-1,new Date(this.startDate).getTime()/1000,new Date(this.endDate).getTime()/1000,-1);
-    this.fishingInstructorService.addAvailableTime(timePeriod);
-    this.getAvailableTimes();
-    this.refresh.next(); 
+    this.fishingInstructorService.addAvailableTime(timePeriod).subscribe(data=>{
+      if (data==-1){
+        alert('Selected time slot overlaps with other time slots');
+      }else{
+        this.getAvailableTimes();
+        this.getReservations();
+        this.refresh.next();
+      }
+    }
+      
+    );
+    
+     
   }
 }
 

@@ -180,6 +180,7 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     public AdventureReservation findAdventureReservation(Long id) {
+    public AdventureReservation getAdventureReservation(Long id) {
         return adventureReservationRepository.get(id);
     }
 

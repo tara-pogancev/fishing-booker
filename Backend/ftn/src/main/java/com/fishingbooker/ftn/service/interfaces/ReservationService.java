@@ -30,4 +30,5 @@ public interface ReservationService {
 
     AdventureReservation findAdventureReservation(Long id);
 
+    AdventureReservation getAdventureReservation(Long id);
 }

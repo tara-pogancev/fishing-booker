@@ -3,6 +3,7 @@ package com.fishingbooker.ftn.controller;
 
 import com.fishingbooker.ftn.bom.adventures.Adventure;
 import com.fishingbooker.ftn.bom.adventures.AdventureQuickReservation;
+import com.fishingbooker.ftn.bom.adventures.AdventureReservation;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.*;
 import com.fishingbooker.ftn.service.interfaces.AdventureService;
@@ -66,6 +67,13 @@ public class AdventureController {
         List<AdventureQuickReservation> reservations=adventureService.getQuickReservations(id);
         List<AdventureQuickReservationCalendarDto> reservationsDto=converter.convert(reservations,AdventureQuickReservationCalendarDto.class);
         return reservationsDto;
+    }
+
+    @GetMapping("get-reservation/{id}")
+    public ShowReservationInCalendarDto getReservationForCalendar(@PathVariable Long id){
+        AdventureReservation adventureReservation=reservationService.getAdventureReservation(id);
+        ShowReservationInCalendarDto dto=converter.convert(adventureReservation,ShowReservationInCalendarDto.class);
+        return dto;
     }
 
 

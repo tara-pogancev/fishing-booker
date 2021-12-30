@@ -56,7 +56,12 @@ public class AvailableInstructorTimePeriodServiceImpl implements AvailableInstru
     }
 
     private boolean validate(Long instructorId, LocalDateTime startDate,LocalDateTime endDate){
-       return  availableInstructorTimeRepository.checkOverlaping(instructorId,startDate,endDate).size()==0? true:false;
+       List<AvailableInstructorTimePeriod> times=availableInstructorTimeRepository.checkOverlaping(instructorId,startDate,endDate);
+       if (times.size()==0){
+           return true;
+       }else{
+           return false;
+       }
     }
 
     @Override
@@ -80,7 +85,8 @@ public class AvailableInstructorTimePeriodServiceImpl implements AvailableInstru
 
     @Override
     public boolean update(ChangeTimeSlotDto dto) {
-        if (!validate(dto.getInstructorId(),UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getNewStartDate()),UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getNewEndDate()))){
+
+        if (!validateForUpdate(dto)){
             return false;
         }
         FishingInstructor instructor=instructorRepository.getById(dto.getInstructorId());
@@ -102,5 +108,13 @@ public class AvailableInstructorTimePeriodServiceImpl implements AvailableInstru
         period.setEndDate(UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getNewEndDate()));
         availableInstructorTimeRepository.save(period);
         return true;
+    }
+
+    private boolean validateForUpdate(ChangeTimeSlotDto dto) {
+        List<AvailableInstructorTimePeriod> periods=availableInstructorTimeRepository.checkOverlapingForUpdate(dto.getId(),dto.getInstructorId(),UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getNewStartDate()),UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getNewEndDate()));
+        if (periods.size()==0){
+            return true;
+        }
+        return false;
     }
 }

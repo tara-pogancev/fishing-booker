@@ -112,7 +112,7 @@
 
 <h3>
   Current Available Times
-  <button class="btn btn-primary float-right" (click)="addEvent()">
+  <button class="button is-info" (click)="addEvent()">
     Add new
   </button>
   <div class="clearfix"></div>
@@ -145,8 +145,8 @@
     </div>
   </div>
   <div class="column">
-    <div class="field">
-      <button (click)="confirmAdding()">Confirm</button>
+    <div style="margin-top: 30px;">
+      <button class="button is-success" (click)="confirmAdding()">Confirm</button>
     </div>
   </div>
 </div>
@@ -191,16 +191,70 @@
             (ngModelChange)="refresh.next()"
           />
         </td>
-        <td>
-          <button class="btn-danger" (click)="deleteEvent(event)">
+        <td >
+          
+          <button class="button is-danger" (click)="deleteEvent(event)">
             Delete
           </button>
+          
         </td>
       </tr>
     </tbody>
   </table>
 </div>
 </div>
+
+
+<div class="modal" id='modal' *ngIf="openModal==true">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Reservation info</p>
+      <button class="delete" aria-label="close" (click)="closeModalTab()"></button>
+    </header>
+    <section class="modal-card-body">
+      <div class="columns p-5">
+        <div class="column">
+          <div class="mb-6">
+            <h4>First Name:</h4>
+            <p>{{reservationInfo.clientName}}</p>
+          </div>
+          <div class="mb-6">
+            <h4>Last Name:</h4>
+            <p> {{reservationInfo.clientSurname}}</p>
+          </div>
+    
+          <div class="mb-6">
+            <h4>Start Date:</h4>
+            <p>{{reservationInfo.start}}</p>
+          </div>
+          <div class="mb-6">
+            <h4>End date:</h4>
+            <p> {{reservationInfo.end}}
+            </p>
+          </div>
+        </div>
+        <div class="column">
+          <div class="mb-6">
+            <h4>Price:</h4>
+            <p>{{reservationInfo.price}}</p>
+          </div>
+          <div class="mb-6">
+            <h4>Guest Number:</h4>
+            <p> {{reservationInfo.guestNumber}}</p>
+          </div>
+        </div>
+      </div>
+    
+    </section>
+    <footer class="modal-card-foot">
+     
+      
+    </footer>
+  </div>
+</div>
+
+
 
 
 

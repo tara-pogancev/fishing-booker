@@ -11,12 +11,14 @@ public class RegistrationRequestToDtoConverter implements Converter<Registration
     @Override
     public RegistrationRequestDto convert(RegistrationRequest source) {
         RegistrationRequestDto dto = new RegistrationRequestDto();
+
         dto.setName(source.getUser().getName());
         dto.setLastName(source.getUser().getLastName());
         dto.setMail(source.getUser().getEmail());
         dto.setUserType(ApplicationRole.toString(source.getUser().getRole()));
         dto.setRegistrationDescription(source.getRegistrationDescription());
         dto.setId(source.getId());
+
         return dto;
     }
 }
