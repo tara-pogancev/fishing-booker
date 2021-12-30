@@ -12,6 +12,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Table(name = "BoatQuickReservation")
+@PrimaryKeyJoinColumn(name = "id")
 public class BoatQuickReservation extends QuickReservation {
 
     @ManyToMany

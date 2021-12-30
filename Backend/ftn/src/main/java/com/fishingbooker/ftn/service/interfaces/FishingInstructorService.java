@@ -1,5 +1,7 @@
 package com.fishingbooker.ftn.service.interfaces;
 
+import com.fishingbooker.ftn.bom.adventures.AdventureQuickReservation;
+import com.fishingbooker.ftn.bom.adventures.AdventureReservation;
 import com.fishingbooker.ftn.bom.users.FishingInstructor;
 import com.fishingbooker.ftn.dto.ApplicationUserDto;
 
@@ -19,4 +21,7 @@ public interface FishingInstructorService {
 
     FishingInstructor update(FishingInstructor instructor);
 
+    List<AdventureReservation> getInstructorReservations(Long id);
+
+    List<AdventureQuickReservation> getInstructorQuickReservations(Long id);
 }

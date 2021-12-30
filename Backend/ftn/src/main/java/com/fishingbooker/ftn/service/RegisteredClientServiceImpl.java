@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,7 +96,7 @@ public class RegisteredClientServiceImpl implements RegisteredClientService {
         List<Reservation> reservations = new ArrayList<>();
         if (client != null) {
             for (CottageReservation cottageReservation : client.getCottageReservations())
-                if (cottageReservation.getReservationStart().isBefore(LocalDate.now()))
+                if (cottageReservation.getReservationStart().isBefore(LocalDateTime.now()))
                     reservations.add(cottageReservation);
         }
         return reservations;
@@ -107,7 +108,7 @@ public class RegisteredClientServiceImpl implements RegisteredClientService {
         List<Reservation> reservations = new ArrayList<>();
         if (client != null) {
             for (BoatReservation boatReservation : client.getBoatReservations())
-                if (boatReservation.getReservationStart().isBefore(LocalDate.now()))
+                if (boatReservation.getReservationStart().isBefore(LocalDateTime.now()))
                     reservations.add(boatReservation);
         }
         return reservations;
@@ -119,7 +120,7 @@ public class RegisteredClientServiceImpl implements RegisteredClientService {
         List<Reservation> reservations = new ArrayList<>();
         if (client != null) {
             for (AdventureReservation adventureReservation : client.getAdventureReservations())
-                if (adventureReservation.getReservationStart().isBefore(LocalDate.now()))
+                if (adventureReservation.getReservationStart().isBefore(LocalDateTime.now()))
                     reservations.add(adventureReservation);
         }
         return reservations;
@@ -131,15 +132,15 @@ public class RegisteredClientServiceImpl implements RegisteredClientService {
         List<Reservation> reservations = new ArrayList<>();
         if (client != null) {
             for (AdventureReservation adventureReservation : client.getAdventureReservations())
-                if (adventureReservation.getReservationStart().isAfter(LocalDate.now()) || adventureReservation.getReservationStart().isEqual(LocalDate.now()))
+                if (adventureReservation.getReservationStart().isAfter(LocalDateTime.now()) || adventureReservation.getReservationStart().isEqual(LocalDateTime.now()))
                     reservations.add(adventureReservation);
 
             for (CottageReservation cottageReservation : client.getCottageReservations())
-                if (cottageReservation.getReservationStart().isAfter(LocalDate.now()) || cottageReservation.getReservationStart().isEqual(LocalDate.now()))
+                if (cottageReservation.getReservationStart().isAfter(LocalDateTime.now()) || cottageReservation.getReservationStart().isEqual(LocalDateTime.now()))
                     reservations.add(cottageReservation);
 
             for (BoatReservation boatReservation : client.getBoatReservations())
-                if (boatReservation.getReservationStart().isAfter(LocalDate.now()) || boatReservation.getReservationStart().isEqual(LocalDate.now()))
+                if (boatReservation.getReservationStart().isAfter(LocalDateTime.now()) || boatReservation.getReservationStart().isEqual(LocalDateTime.now()))
                     reservations.add(boatReservation);
 
         }

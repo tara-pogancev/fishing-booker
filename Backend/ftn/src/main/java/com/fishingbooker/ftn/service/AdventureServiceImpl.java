@@ -26,6 +26,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -138,7 +139,7 @@ public class AdventureServiceImpl implements AdventureService {
     }
 
     @Override
-    public List<Adventure> filterByDate(LocalDate startDate, LocalDate endDate) {
+    public List<Adventure> filterByDate(LocalDateTime startDate, LocalDateTime endDate) {
         List<Adventure> adventures = new ArrayList<>();
         for (Adventure adventure : adventureRepository.findAll()) {
             for (AvailableTimePeriod period : adventure.getInstructor().getAvailableTimePeriods()) {

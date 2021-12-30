@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.Column;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -12,7 +13,7 @@ public class AdventureQuickReservationDto {
     private Long adventureId;
     private List<AdventureUtilityDto> adventureUtilityDtoList;
     private Integer guestLimit;
-    private LocalDate actionStart;
-    private LocalDate actionEnd;
+    private LocalDateTime actionStart;
+    private LocalDateTime actionEnd;
     private Integer price;
 }

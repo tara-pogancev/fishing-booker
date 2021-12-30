@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +42,7 @@ public class BoatServiceImpl implements BoatService {
     }
 
     @Override
-    public List<Boat> filterByDate(LocalDate startDate, LocalDate endDate) {
+    public List<Boat> filterByDate(LocalDateTime startDate, LocalDateTime endDate) {
         List<Boat> boats = new ArrayList<>();
         for (Boat boat : findAll()) {
             for (AvailableTimePeriod period : boat.getAvailableTimePeriods()) {

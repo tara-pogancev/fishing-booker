@@ -6,6 +6,8 @@ Website URL: http://localhost:4200/
 GitHub URL: https://github.com/tara-pogancev/fishing-booker
 Copyright 2017. All Rights Reserved.
 
+
+
 Color Guide
 ***************
 White: FBF9F8
@@ -208,4 +210,10 @@ html {
 .p-6 {
   padding: 20px;
 }
+
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
+@import "../node_modules/bootstrap/dist/css/bootstrap.css"
+
+/* angular-cli file: src/styles.css */
+@import "../node_modules/angular-calendar/css/angular-calendar.css"
 

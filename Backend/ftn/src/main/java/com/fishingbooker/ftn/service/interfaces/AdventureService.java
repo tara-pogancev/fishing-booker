@@ -7,6 +7,7 @@ import com.fishingbooker.ftn.dto.AdventureDto;
 import com.fishingbooker.ftn.dto.EntitySearchDto;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface AdventureService {
@@ -25,7 +26,7 @@ public interface AdventureService {
 
     boolean deleteAdventure(Long id);
 
-    List<Adventure> filterByDate(LocalDate startDate, LocalDate endDate);
+    List<Adventure> filterByDate(LocalDateTime startDate, LocalDateTime endDate);
 
     List<Adventure> findFiltered(EntitySearchDto filterDto);
 

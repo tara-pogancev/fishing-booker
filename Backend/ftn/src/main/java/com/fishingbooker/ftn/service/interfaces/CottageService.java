@@ -6,6 +6,7 @@ import com.fishingbooker.ftn.dto.CottageDto;
 import com.fishingbooker.ftn.dto.EntitySearchDto;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface CottageService {
@@ -22,7 +23,7 @@ public interface CottageService {
 
     Long create(CottageCreationDto cottageDto);
 
-    List<Cottage> filterByDate(LocalDate startDate, LocalDate endDate);
+    List<Cottage> filterByDate(LocalDateTime startDate, LocalDateTime endDate);
 
     List<Cottage> findFiltered(EntitySearchDto filterDto);
 

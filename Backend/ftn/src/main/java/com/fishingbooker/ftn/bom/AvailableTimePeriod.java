@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -16,10 +17,10 @@ import java.time.LocalDate;
 public class AvailableTimePeriod extends DatabaseEntity {
 
     @Column(name = "startDate", nullable = false)
-    private LocalDate startDate;
+    private LocalDateTime startDate;
 
     @Column(name = "endDate", nullable = false)
-    private LocalDate endDate;
+    private LocalDateTime endDate;
 
 }
 

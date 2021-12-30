@@ -3,6 +3,7 @@ package com.fishingbooker.ftn.dto;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 public class ViewReservationDto {
@@ -12,8 +13,8 @@ public class ViewReservationDto {
     public Long entityId;
     public String entityName;
     public String ownerName;
-    public LocalDate startDate;
-    public LocalDate endDate;
+    public LocalDateTime startDate;
+    public LocalDateTime endDate;
     public Double price;
     public Integer people;
 

@@ -1,12 +1,36 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { server } from '../app-global';
+import { AvailableInstructorTimePeriod } from '../model/available-instructor-time-period';
+import { AvailableTimePeriod } from '../model/available-time-period';
+import { ChangeTimeSlot } from '../model/change-time-slot';
 import { LoginService } from './login.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FishingInstructorService {
+  updateFreeSlot(timePeriod: ChangeTimeSlot) {
+    const headers = this.loginService.getHeaders();
+    const id = this.loginService.getCurrentUser().id;
+    timePeriod.instructorId=id;
+    const url =server+'api/available-instructor-time';
+    return this._http.put<any>(url,timePeriod,{headers:headers});
+  }
+
+
+  getInstructorReservations() {
+    const id = this.loginService.getCurrentUser().id;
+    const url = this.url + '/get-instructor-reservations/'+id;
+    const headers = this.loginService.getHeaders();
+    return this._http.get<any>(url,{headers:headers});
+  }
+
+  deleteAvailableTimePeriod(id:number){
+    const headers = this.loginService.getHeaders();
+    const url =server+'api/available-instructor-time/'+id;
+    return this._http.delete<any>(url,{headers:headers});
+  }
   
 
   url = server + 'api/fishing-instructor';
@@ -32,5 +56,21 @@ export class FishingInstructorService {
   updateInstructor(instructor: any) {
     const headers = this.loginService.getHeaders();
     return this._http.put<any>(this.url, instructor, { headers: headers });
+  }
+
+  addAvailableTime(time:AvailableInstructorTimePeriod){
+    const headers = this.loginService.getHeaders();
+    const id = this.loginService.getCurrentUser().id;
+    time.instructorId=id;
+    const url =server+'api/available-instructor-time';
+    this._http.post<any>(url,time,{headers:headers}).subscribe();
+  }
+
+  getAvailableTimes() {
+    const headers = this.loginService.getHeaders();
+    const id = this.loginService.getCurrentUser().id;
+    const url =server+'api/available-instructor-time/'+id;
+    return this._http.get<any>(url,{headers:headers});
+
   }
 }

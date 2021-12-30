@@ -1,1 +1,209 @@
-<p>Funkcionalnost 3.15</p>
+<div class="content is-medium" >
+
+  
+        <div style="float: left;">
+          <div class="columns">
+            <div class="column">
+              <div
+            
+                  mwlCalendarPreviousView
+                  [view]="view"
+                  [(viewDate)]="viewDate"
+                  (viewDateChange)="closeOpenMonthViewDay()"
+              >     
+                Previous
+              </div>
+            </div>
+            <div class="column">
+              <div
+            
+                mwlCalendarToday
+                [(viewDate)]="viewDate"
+              >
+                Today
+              </div>
+            </div>
+          
+          <div
+            class="column"
+            mwlCalendarNextView
+            [view]="view"
+            [(viewDate)]="viewDate"
+            (viewDateChange)="closeOpenMonthViewDay()"
+          >
+            Next
+          </div>
+          </div>
+        </div>
+        
+        
+      
+    
+    
+        <div style="float: right;">
+          <div class="columns">
+            <div
+            class="column"
+            (click)="setView(CalendarView.Month)"
+            [class.active]="view === CalendarView.Month"
+          >
+            Month
+          </div>
+          <div
+            class="column"
+            (click)="setView(CalendarView.Week)"
+            [class.active]="view === CalendarView.Week"
+          >
+            Week
+          </div>
+          <div
+            class="column"
+            (click)="setView(CalendarView.Day)"
+            [class.active]="view === CalendarView.Day"
+          >
+            Day
+          </div>
+          </div>
+        </div>
+      
+        
+        
+      
+    
+
+  <br />
+  <div class="column">
+    <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+  </div>
+  <div [ngSwitch]="view">
+    <mwl-calendar-month-view
+      *ngSwitchCase="CalendarView.Month"
+      [viewDate]="viewDate"
+      [events]="events"
+      [refresh]="refresh"
+      [activeDayIsOpen]="activeDayIsOpen"
+      (dayClicked)="dayClicked($event.day)"
+      (eventClicked)="handleEvent('Clicked', $event.event)"
+      
+    >
+    </mwl-calendar-month-view>
+    <mwl-calendar-week-view
+      *ngSwitchCase="CalendarView.Week"
+      [viewDate]="viewDate"
+      [events]="events"
+      [refresh]="refresh"
+      (eventClicked)="handleEvent('Clicked', $event.event)"
+      
+    >
+    </mwl-calendar-week-view>
+    <mwl-calendar-day-view
+      *ngSwitchCase="CalendarView.Day"
+      [viewDate]="viewDate"
+      [events]="events"
+      [refresh]="refresh"
+      (eventClicked)="handleEvent('Clicked', $event.event)"
+      
+    >
+    </mwl-calendar-day-view>
+  </div>
+
+
+  <br /><br /><br />
+
+<h3>
+  Current Available Times
+  <button class="btn btn-primary float-right" (click)="addEvent()">
+    Add new
+  </button>
+  <div class="clearfix"></div>
+</h3>
+
+<div class="addNewTime" id="addNewSlot">
+<div class="columns" >
+  <div class="column">
+    <div class="field">
+      <label class="label">Start Date:</label>
+      <div class="control">
+        <input
+          class="input"
+          type="datetime-local"
+          [(ngModel)]="startDate"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="column">
+    <div class="field">
+      <label class="label">End date:</label>
+      <div class="control">
+        <input
+          class="input"
+          type="datetime-local"
+          [(ngModel)]="endDate"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="column">
+    <div class="field">
+      <button (click)="confirmAdding()">Confirm</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Starts at</th>
+        <th>Ends at</th>
+        <th>Remove</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let event of currentFreeSlots">
+        <td>
+          <label>{{event.title}}</label>
+        </td>
+        
+        <td>
+          <input
+          class="form-control"
+            class="input"
+            type="datetime-local"
+            [(ngModel)]="event.startDateString"
+            placeholder="Not set"
+            (change)="onChangeDate(event)"
+            (ngModelChange)="refresh.next()"
+          />
+        </td>
+        <td>
+          <input
+            class="form-control"
+            class="input"
+            type="datetime-local"
+            [(ngModel)]="event.endDateString"
+            placeholder="Not set"
+            (change)="onChangeDate(event)"
+            (ngModelChange)="refresh.next()"
+          />
+        </td>
+        <td>
+          <button class="btn-danger" (click)="deleteEvent(event)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+
+
+
+
+
+

@@ -24,6 +24,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -97,7 +98,7 @@ public class CottageServiceImpl implements CottageService {
     }
 
     @Override
-    public List<Cottage> filterByDate(LocalDate startDate, LocalDate endDate) {
+    public List<Cottage> filterByDate(LocalDateTime startDate, LocalDateTime endDate) {
         List<Cottage> cottages = new ArrayList<>();
         for (Cottage cottage : findAll()) {
             for (AvailableTimePeriod period : cottage.getAvailableTimePeriods()) {

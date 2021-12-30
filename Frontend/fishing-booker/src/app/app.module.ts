@@ -106,7 +106,10 @@ import { AdminComplaintsComponent } from './components/admin/admin-dashboard/adm
 import { ComplaintComponent } from './components/admin/admin-dashboard/admin-complaints/complaint/complaint.component';
 import { AdminReviewComponent } from './components/admin/admin-dashboard/admin-reviews/admin-review/admin-review.component';
 import { QuickReservationsCalendarComponent } from './components/fishing/fishing-instructor-dashboard/quick-reservations-calendar/quick-reservations-calendar.component';
-
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { FlatpickrModule } from 'angularx-flatpickr';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -216,6 +219,9 @@ import { QuickReservationsCalendarComponent } from './components/fishing/fishing
     HttpClientModule,
     FormsModule,
     IvyCarouselModule,
+    NgbModalModule,
+    FlatpickrModule.forRoot(),
+    BrowserAnimationsModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory,

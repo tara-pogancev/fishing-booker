@@ -44,9 +44,11 @@
             ],
             "styles": [
               "node_modules/angular-calendar/css/angular-calendar.css",
-              "src/styles.css"
+              "src/styles.css",
             ],
-            "scripts": []
+            "scripts": [
+			  
+			]
           },
           "configurations": {
             "production": {
@@ -112,7 +114,8 @@
             ],
             "styles": [
               "node_modules/angular-calendar/css/angular-calendar.css",
-              "src/styles.css"
+              "src/styles.css",
+			  "styles.css",  "../node_modules/bootstrap/dist/css/bootstrap.css"
             ],
             "scripts": []
           }

@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -17,10 +18,10 @@ import java.time.LocalDate;
 public class Reservation extends DatabaseEntity {
 
     @Column(name = "reservationStart", nullable = false)
-    private LocalDate reservationStart;
+    private LocalDateTime reservationStart;
 
     @Column(name = "reservationEnd", nullable = false)
-    private LocalDate reservationEnd;
+    private LocalDateTime reservationEnd;
 
     @Column(name = "price", nullable = false)
     private Double price;
