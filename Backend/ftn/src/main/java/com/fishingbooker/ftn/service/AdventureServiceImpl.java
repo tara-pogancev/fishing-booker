@@ -3,19 +3,15 @@ package com.fishingbooker.ftn.service;
 import com.fishingbooker.ftn.bom.Address;
 import com.fishingbooker.ftn.bom.AvailableTimePeriod;
 import com.fishingbooker.ftn.bom.RuleOfConduct;
-import com.fishingbooker.ftn.bom.adventures.Adventure;
-import com.fishingbooker.ftn.bom.adventures.AdventureQuickReservation;
-import com.fishingbooker.ftn.bom.adventures.AdventureUtility;
-import com.fishingbooker.ftn.bom.adventures.FishingEquipment;
+import com.fishingbooker.ftn.bom.adventures.*;
 import com.fishingbooker.ftn.bom.users.FishingInstructor;
 import com.fishingbooker.ftn.conversion.DataConverter;
+import com.fishingbooker.ftn.conversion.UnixTimeToLocalDateTimeConverter;
 import com.fishingbooker.ftn.dto.AdventureCreationDto;
 import com.fishingbooker.ftn.dto.AdventureDto;
 import com.fishingbooker.ftn.dto.EntitySearchDto;
 import com.fishingbooker.ftn.dto.FishingEquipmentDto;
-import com.fishingbooker.ftn.repository.AdventureQuickReservationRepository;
-import com.fishingbooker.ftn.repository.AdventureRepository;
-import com.fishingbooker.ftn.repository.FishingInstructorRepository;
+import com.fishingbooker.ftn.repository.*;
 import com.fishingbooker.ftn.service.interfaces.AdventureService;
 import com.fishingbooker.ftn.service.interfaces.ImageService;
 import com.fishingbooker.ftn.service.interfaces.RuleOfConductService;
@@ -45,6 +41,8 @@ public class AdventureServiceImpl implements AdventureService {
     private final ImageService imageService;
     private final UtilityService utilityService;
     private final AdventureQuickReservationRepository adventureQuickReservationRepository;
+    private final AdventureReservationRepository adventureReservationRepository;
+    private final AvailableInstructorTimeRepository instructorTimeRepository;
 
     @Override
     public List<AdventureDto> findAll() {
@@ -167,8 +165,33 @@ public class AdventureServiceImpl implements AdventureService {
 
     @Override
     public Long createQuickReservation(AdventureQuickReservation reservation) {
-        AdventureQuickReservation persistedReservation=adventureQuickReservationRepository.save(reservation);
-        return persistedReservation.getId();
+        if(!validate(reservation)){
+            return -1l;
+        }else{
+            AdventureQuickReservation persistedReservation=adventureQuickReservationRepository.save(reservation);
+            return persistedReservation.getId();
+        }
+
+    }
+
+    private boolean validate(AdventureQuickReservation reservation) {
+        List<Adventure> adventures=adventureRepository.getInstructorAdventures(reservation.getAdventure().getInstructor().getId());
+        for (Adventure adventure:adventures){
+            List<AdventureQuickReservation> quickReservations=adventureQuickReservationRepository.getOverlappedWithNewAction(reservation.getActionStart(),reservation.getActionEnd(),adventure.getId());
+            if (quickReservations.size()!=0){ //vec postoji kreiranja brza rezervacija u ovom periodu
+                return false;
+            }
+            List<AdventureReservation> adventureReservations=adventureReservationRepository.getOverlappedWithNewAction(reservation.getActionStart(),reservation.getActionEnd(),adventure.getId());
+            if (adventureReservations.size()!=0){//vec postoji kreirana obicna rezervacija u ovom periodu
+                return false;
+            }
+        }
+        List<AvailableInstructorTimePeriod> periods=instructorTimeRepository.getAvailabilityForDate(reservation.getActionStart(),reservation.getActionEnd(),reservation.getAdventure().getInstructor().getId());
+        if (periods.size()==0){ //znaci da instruktor nije dostupan za vrijeme kreiranja
+            return false;
+        }
+        return true;
+
     }
 
     @Override

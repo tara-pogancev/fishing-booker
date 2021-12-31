@@ -21,4 +21,9 @@ public interface AvailableInstructorTimeRepository extends EntityRepository<Avai
             "\tFROM public.available_instructor_time_period natural join public.available_time_period\n" +
             "\tWHERE instructor=:instructorId and id!=:periodId and ((end_date between :newStartDate and :newEndDate) or (start_date  between :newStartDate and :newEndDate)) ", nativeQuery = true)
     List<AvailableInstructorTimePeriod> checkOverlapingForUpdate(@Param("periodId")Long periodId,@Param("instructorId") Long instructorId, @Param("newStartDate") LocalDateTime newStartDate, @Param("newEndDate") LocalDateTime newEndDate);
+
+    @Query(value="SELECT *\n" +
+            "\tFROM public.available_instructor_time_period natural join public.available_time_period\n" +
+            "\tWHERE instructor=:instructorId and (:start between start_date and end_date) and (:end between start_date and end_date); ", nativeQuery = true)
+    List<AvailableInstructorTimePeriod> getAvailabilityForDate(@Param("start")LocalDateTime start,@Param("end") LocalDateTime end,@Param("instructorId") Long instructorId);
 }
