@@ -10,6 +10,6 @@ import java.util.List;
 public interface AdventureQuickReservationRepository extends EntityRepository<AdventureQuickReservation> {
     @Query(value = "SELECT *\n" +
             "\tFROM public.adventure_quick_reservation natural join public.quick_reservation\n" +
-            "where adventure_id=:id and  ((action_end between :startDate and :endDate) or (action_start  between :startDate and :endDate))",nativeQuery = true)
+            "where adventure_id=:id and  ((action_end between :startDate and :endDate) and (action_start  between :startDate and :endDate))",nativeQuery = true)
     List<AdventureQuickReservation> getInSelectedDate(LocalDateTime startDate, LocalDateTime endDate, Long id);
 }
