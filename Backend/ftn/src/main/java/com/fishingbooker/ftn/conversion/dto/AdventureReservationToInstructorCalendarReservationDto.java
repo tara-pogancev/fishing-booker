@@ -11,7 +11,7 @@ public class AdventureReservationToInstructorCalendarReservationDto implements C
     public InstructorCalendarReservationDto convert(AdventureReservation source) {
         InstructorCalendarReservationDto dto=new InstructorCalendarReservationDto();
         dto.setReservationId(source.getId());
-        dto.setReserationType("Reservation");
+        dto.setReservationType("Reservation");
         dto.setStartDate(source.getReservationStart());
         dto.setEndDate(source.getReservationEnd());
         return dto;

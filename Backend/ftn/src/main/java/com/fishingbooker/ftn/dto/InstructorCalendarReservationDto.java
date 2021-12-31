@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 @Data
 public class InstructorCalendarReservationDto {
 
-    private String reserationType;
+    private String reservationType;
     private Long reservationId;
     private LocalDateTime startDate;
     private LocalDateTime endDate;

@@ -11,7 +11,7 @@ public class AdventureQuickReservationToInstructorCalendarReservationDto impleme
     public InstructorCalendarReservationDto convert(AdventureQuickReservation source) {
         InstructorCalendarReservationDto dto=new InstructorCalendarReservationDto();
         dto.setReservationId(source.getId());
-        dto.setReserationType("Quick Reservation");
+        dto.setReservationType("Quick Reservation");
         dto.setStartDate(source.getActionStart());
         dto.setEndDate(source.getActionEnd());
         return dto;

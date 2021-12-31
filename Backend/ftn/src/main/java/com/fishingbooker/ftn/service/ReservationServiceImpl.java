@@ -1,6 +1,7 @@
 package com.fishingbooker.ftn.service;
 
 import com.fishingbooker.ftn.bom.adventures.Adventure;
+import com.fishingbooker.ftn.bom.adventures.AdventureQuickReservation;
 import com.fishingbooker.ftn.bom.adventures.AdventureReservation;
 import com.fishingbooker.ftn.bom.adventures.AdventureUtility;
 import com.fishingbooker.ftn.bom.boats.Boat;
@@ -43,6 +44,7 @@ public class ReservationServiceImpl implements ReservationService {
     private final BoatReservationRepository boatReservationRepository;
     private final CottageReservationRepository cottageReservationRepository;
     private final AdventureReservationRepository adventureReservationRepository;
+    private final AdventureQuickReservationRepository adventureQuickReservationRepository;
 
     @Override
     public List<Reservation> findAll() {
@@ -184,6 +186,11 @@ public class ReservationServiceImpl implements ReservationService {
     }
     public AdventureReservation getAdventureReservation(Long id) {
         return adventureReservationRepository.get(id);
+    }
+
+    @Override
+    public AdventureQuickReservation getAdventureQuickReservation(Long id) {
+        return adventureQuickReservationRepository.get(id);
     }
 
     public void sendReservationConfirmationEmail(ApplicationUser user, ReservationDto reservationDto) {

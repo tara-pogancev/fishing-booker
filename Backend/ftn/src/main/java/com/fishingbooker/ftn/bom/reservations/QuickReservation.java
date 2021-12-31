@@ -28,8 +28,8 @@ public class QuickReservation extends DatabaseEntity {
     @Column(name = "actionEnd", nullable = false)
     private LocalDateTime actionEnd;
 
-    @Column(name = "discount", nullable = false)
-    private Double discount = 0.0;
+    @Column(name = "price", nullable = false)
+    private Double price = 0.0;
 
     @Column(name = "isReserved", nullable = false)
     private Boolean isReserved = false;

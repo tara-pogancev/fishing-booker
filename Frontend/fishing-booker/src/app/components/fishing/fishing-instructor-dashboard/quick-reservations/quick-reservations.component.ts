@@ -82,8 +82,15 @@ export class QuickReservationsComponent implements OnInit {
     if (this.reservation.actionEnd!=new Date() && this.reservation.actionStart != new Date() && this.reservation.guestLimit>0 && this.reservation.price>0 ){
       this.validForm=true;
       this.reservation.adventureUtilityDtoList=this.chosenUtilities;
-      this.adventureService.createAdventureQuickReservation(this.reservation).subscribe();
-      alert('Adventure successfully added!');
+      this.reservation.actionStart=new Date(this.reservation.actionStart);
+      this.reservation.actionEnd=new Date(this.reservation.actionEnd);
+      this.adventureService.createAdventureQuickReservation(this.reservation).subscribe(data=>{
+        if (data!=-1){
+          alert('Adventure successfully added!');
+        }else{
+          alert('Mistake');
+        }
+      });
       this.reservation=new AdventureQuickReservation();
     }else{
       this.validForm=false;

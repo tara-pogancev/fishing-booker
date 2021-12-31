@@ -1,5 +1,6 @@
 package com.fishingbooker.ftn.service.interfaces;
 
+import com.fishingbooker.ftn.bom.adventures.AdventureQuickReservation;
 import com.fishingbooker.ftn.bom.adventures.AdventureReservation;
 import com.fishingbooker.ftn.bom.boats.BoatReservation;
 import com.fishingbooker.ftn.bom.cottages.CottageReservation;
@@ -31,4 +32,6 @@ public interface ReservationService {
     AdventureReservation findAdventureReservation(Long id);
 
     AdventureReservation getAdventureReservation(Long id);
+
+    AdventureQuickReservation getAdventureQuickReservation(Long id);
 }

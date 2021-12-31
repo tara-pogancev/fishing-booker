@@ -167,7 +167,7 @@ export class InstructorCalendarComponent implements OnInit{
       startDateString:(new Date(reservation.startDate)).toISOString().slice(0,16),
       reservationType:'Quick Reservation',
     };
-    if (reservation.reservationType=="QuickReservation"){
+    if (reservation.reservationType=="Quick Reservation"){
       event.title='Quick Reservation';
       event.reservationType='Quick Reservation';
       event.color=colors.yellow;
@@ -203,12 +203,22 @@ export class InstructorCalendarComponent implements OnInit{
   handleEvent(action: string, event: CalendarEvent): void {
     if (event.title!='Available'){
       let id:number=event.id as number;
-      this.adventureService.getReservation(id).subscribe(data=>{
-        this.openModal=true;
-        this.reservationInfo=data;
-        this.openModalTab();
-        console.log(this.reservationInfo);
-      })
+      if(event.title=='Reservation'){
+        this.adventureService.getReservation(id).subscribe(data=>{
+          this.openModal=true;
+          this.reservationInfo=data;
+          this.openModalTab();
+          console.log(this.reservationInfo);
+        })
+      }else{
+        this.adventureService.getQuickReservation(id).subscribe(data=>{
+          this.openModal=true;
+          this.reservationInfo=data;
+          this.openModalTab();
+          console.log(this.reservationInfo);
+        })
+      }
+      
       
     }
     

@@ -68,7 +68,7 @@ export class AdvetnureService {
   createAdventureQuickReservation(reservation:AdventureQuickReservation){
     const url = server + 'api/adventures/add-quick-reservation';
     const headers = this.loginService.getHeaders();
-    return this._http.post<any>(url, reservation, { headers: headers });
+    return this._http.post<any>(url,reservation, { headers: headers });
   }
 
   getQuickReservationForCalendar(id:number){
@@ -79,6 +79,12 @@ export class AdvetnureService {
 
   getReservation(id:number){
     const url = server + 'api/adventures/get-reservation/'+id;
+    const headers = this.loginService.getHeaders();
+    return this._http.get<any>(url,{headers:headers});
+  }
+
+  getQuickReservation(id:number){
+    const url = server + 'api/adventures/get-quick-reservation/'+id;
     const headers = this.loginService.getHeaders();
     return this._http.get<any>(url,{headers:headers});
   }
