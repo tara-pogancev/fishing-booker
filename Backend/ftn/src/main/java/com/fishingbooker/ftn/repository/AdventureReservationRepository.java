@@ -20,4 +20,5 @@ public interface AdventureReservationRepository extends EntityRepository<Adventu
             "WHERE adventure_id=:id and ((:startDate between reservation_start and reservation_end) or (:endDate  between reservation_start and reservation_end))",nativeQuery = true)
     List<AdventureReservation> getOverlappedWithNewAction(@Param("startDate")LocalDateTime startDate,@Param("endDate") LocalDateTime endDate,@Param("id") Long id);
 
+
 }

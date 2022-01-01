@@ -23,6 +23,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -184,6 +185,13 @@ public class RegisteredClientServiceImpl implements RegisteredClientService {
                 instructors.add(converter.convert(instructor, InstructorSubscriptionDto.class));
         }
         return instructors;
+    }
+
+    @Override
+    public List<RegisteredClient> getClientsWithReservation(Long instructorId) {
+        List<Long> clientsIds=clientRepository.getUsersWithReservationInMoment(instructorId);
+        List<RegisteredClient> clients=clientsIds.stream().map(id -> clientRepository.get(id)).collect(Collectors.toList());
+        return clients;
     }
 
 

@@ -1,1 +1,117 @@
-<p>Funkcionalnost 3.22</p>
+<div class="content is-medium">
+    <h1 class="title">Create Reservation</h1>
+    <hr />
+    <div class="box p-6">
+      
+  
+      <div class="columns">
+        <div class="column">
+            <div class="field">
+              <label class="label">Chose Client</label>
+              
+                <select style="height:40px;width: 300px;"  [(ngModel)]="reservation.clientId">
+                    <option value="">Select dropdown</option>
+                    <option *ngFor="let client of clients" value={{client.id}}>{{client.name}},  {{client.lastName}},  {{client.email}} </option>
+                </select>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="field">
+              <label class="label">Chose Adventure</label>
+              
+              <select style="height:40px;width: 300px;" (change)="adventureChosen($event)" [(ngModel)]=reservation.adventureId>
+                <option value="">Select dropdown</option>
+                <option *ngFor="let adventure of adventures" value={{adventure.id}}>{{adventure.name}}</option>
+              </select>
+            </div>
+        </div>
+      </div>
+
+      <div class="columns">
+        <div class="column">
+            <div class="field">
+              <label class="label">Start Date</label>
+              <div class="control">
+                <input
+                  class="input"
+                  type="datetime-local"
+                  placeholder="Street"
+                  [(ngModel)]="startDate"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="field">
+              <label class="label">End Date</label>
+              <div class="control">
+                <input
+                  class="input"
+                  type="datetime-local"
+                  placeholder="End date"
+                  [(ngModel)]="endDate"
+                />
+              </div>
+            </div>
+          </div>
+       </div>
+
+       <div class="columns">
+        <div class="column">
+            <div class="field">
+              <label class="label">Price</label>
+              <div class="control">
+                <input
+                  class="input"
+                  type="number"
+                  placeholder="Price"
+                  [(ngModel)]="reservation.price"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="field">
+              <label class="label">Guest Number</label>
+              <div class="control">
+                <input
+                  class="input"
+                  type="number"
+                  placeholder="Guest number"
+                  [(ngModel)]="reservation.guestNumber"
+                />
+              </div>
+            </div>
+          </div>
+       </div>
+       
+       <div class="columns"> 
+        <div class="column">
+            <div class="tags" >
+                <span class="tag is-warning is-medium" *ngFor="let service of reservation.utilities">
+                    Name:{{service.name}} &nbsp; &nbsp; &nbsp;Price:{{service.price}}
+                    <button class="delete is-small" (click)="removeService(service)"></button>
+                </span>
+              </div>  
+    
+          </div>
+      </div>
+        
+
+      <gap height="30"></gap>
+      <div class="field">
+        <div class="control">
+          <button class="button is-link" (click)="validateForm()">Submit</button>
+          <p
+            class="help is-danger mt-5"
+            [ngStyle]="{
+              visibility: !validForm ? 'visible' : 'hidden'
+            }"
+          >
+            Please fill in all the form fields!
+          </p>
+        </div>
+      </div>
+      
+    </div>

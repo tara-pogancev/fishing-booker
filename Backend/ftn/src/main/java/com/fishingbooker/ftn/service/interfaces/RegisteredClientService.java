@@ -39,4 +39,6 @@ public interface RegisteredClientService {
     List<CottageDto> getCottageSubscription(Long id);
 
     List<InstructorSubscriptionDto> getClientInstructorSubscription(Long id);
+
+    List<RegisteredClient> getClientsWithReservation(Long instructorId);
 }

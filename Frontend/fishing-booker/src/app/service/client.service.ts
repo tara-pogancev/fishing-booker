@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { server } from '../app-global';
@@ -11,6 +11,13 @@ import { LoginService } from './login.service';
   providedIn: 'root',
 })
 export class ClientService {
+
+  getClientsWithReservationInTheMoment():Observable<Client[]> {
+    const id=this.loginService.getCurrentUser().id;
+    const url = this.url+'/users-with-reservation/'+id;
+    const headers = this.loginService.getHeaders();
+    return this._http.get<Client[]>(url, { headers: headers });
+  }
   url = server + 'api/client';
 
   constructor(private _http: HttpClient, private loginService: LoginService) {}

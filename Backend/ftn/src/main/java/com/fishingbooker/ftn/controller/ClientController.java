@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -83,6 +84,13 @@ public class ClientController {
     public ResponseEntity cancelReservation(@PathVariable Long id, @PathVariable Long reservationId) {
         reservationService.cancel(reservationId);
         return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @GetMapping("/users-with-reservation/{id}")
+    public List<RegisteredClientDto> getClientsWithReservation(@PathVariable("id") Long instructorId){
+        List<RegisteredClient> clients=clientService.getClientsWithReservation(instructorId);
+        List<RegisteredClientDto> clientDtos=converter.convert(clients,RegisteredClientDto.class);
+        return clientDtos;
     }
 
 

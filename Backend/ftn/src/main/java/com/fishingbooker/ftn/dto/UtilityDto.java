@@ -12,5 +12,4 @@ public class UtilityDto {
     private Long id;
     private String name;
     private Double price;
-
 }
