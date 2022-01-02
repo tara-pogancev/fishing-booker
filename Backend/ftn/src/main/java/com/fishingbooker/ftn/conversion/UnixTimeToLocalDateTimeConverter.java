@@ -13,4 +13,9 @@ public class UnixTimeToLocalDateTimeConverter {
 
         return triggerTime;
     }
+
+    public static LocalDateTime adjustDefaultTimeZone(LocalDateTime time) {
+        return time.plusHours(1);
+    }
+
 }

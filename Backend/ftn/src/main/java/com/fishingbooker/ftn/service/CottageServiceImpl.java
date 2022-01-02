@@ -8,6 +8,7 @@ import com.fishingbooker.ftn.bom.cottages.CottageUtility;
 import com.fishingbooker.ftn.bom.cottages.Room;
 import com.fishingbooker.ftn.bom.users.CottageOwner;
 import com.fishingbooker.ftn.conversion.DataConverter;
+import com.fishingbooker.ftn.conversion.UnixTimeToLocalDateTimeConverter;
 import com.fishingbooker.ftn.dto.CottageCreationDto;
 import com.fishingbooker.ftn.dto.CottageDto;
 import com.fishingbooker.ftn.dto.EntitySearchDto;
@@ -114,6 +115,9 @@ public class CottageServiceImpl implements CottageService {
 
     @Override
     public List<Cottage> findFiltered(EntitySearchDto filterDto) {
+        filterDto.setEndDate(UnixTimeToLocalDateTimeConverter.adjustDefaultTimeZone(filterDto.endDate));
+        filterDto.setStartDate(UnixTimeToLocalDateTimeConverter.adjustDefaultTimeZone(filterDto.startDate));
+
         List<Cottage> cottages = new ArrayList<>();
 
         for (Cottage cottage : filterByDate(filterDto.startDate, filterDto.endDate)) {

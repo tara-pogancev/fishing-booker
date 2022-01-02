@@ -37,6 +37,7 @@ public class BoatToDto implements Converter<Boat, BoatDto> {
             UtilityDto dto = new UtilityDto();
             dto.setName(utility.getUtility().getName());
             dto.setPrice(utility.getPrice());
+            dto.setId(utility.getId());
             retVal.add(dto);
         }
         return retVal;

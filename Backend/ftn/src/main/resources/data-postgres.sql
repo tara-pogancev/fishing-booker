@@ -307,7 +307,7 @@ INSERT INTO public.available_instructor_time_period(id, instructor)	VALUES (11, 
 INSERT INTO public.available_instructor_time_period(id, instructor)	VALUES (12, 4);
 
 
--- DELETE ACCOUNT REQUESTs
+-- DELETE ACCOUNT REQUESTS
 
 INSERT INTO public.delete_account_request( description, request_status, user_id) VALUES ( 'neki opis', 0, 6);
 

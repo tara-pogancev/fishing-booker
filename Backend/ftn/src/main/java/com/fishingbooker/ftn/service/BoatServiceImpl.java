@@ -3,6 +3,7 @@ package com.fishingbooker.ftn.service;
 import com.fishingbooker.ftn.bom.AvailableTimePeriod;
 import com.fishingbooker.ftn.bom.boats.Boat;
 import com.fishingbooker.ftn.conversion.DataConverter;
+import com.fishingbooker.ftn.conversion.UnixTimeToLocalDateTimeConverter;
 import com.fishingbooker.ftn.dto.BoatDto;
 import com.fishingbooker.ftn.dto.EntitySearchDto;
 import com.fishingbooker.ftn.repository.BoatRepository;
@@ -58,6 +59,9 @@ public class BoatServiceImpl implements BoatService {
 
     @Override
     public List<Boat> findFiltered(EntitySearchDto filterDto) {
+        filterDto.setEndDate(UnixTimeToLocalDateTimeConverter.adjustDefaultTimeZone(filterDto.endDate));
+        filterDto.setStartDate(UnixTimeToLocalDateTimeConverter.adjustDefaultTimeZone(filterDto.startDate));
+
         List<Boat> boats = new ArrayList<>();
 
         for (Boat boat : filterByDate(filterDto.startDate, filterDto.endDate)) {

@@ -152,6 +152,9 @@ public class AdventureServiceImpl implements AdventureService {
 
     @Override
     public List<Adventure> findFiltered(EntitySearchDto filterDto) {
+        filterDto.setEndDate(UnixTimeToLocalDateTimeConverter.adjustDefaultTimeZone(filterDto.endDate));
+        filterDto.setStartDate(UnixTimeToLocalDateTimeConverter.adjustDefaultTimeZone(filterDto.startDate));
+
         List<Adventure> adventures = new ArrayList<>();
 
         for (Adventure adventure : filterByDate(filterDto.startDate, filterDto.endDate)) {

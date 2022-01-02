@@ -70,14 +70,33 @@ export class NewBoatReservationComponent implements OnInit {
   }
 
   alterPrice(utility: Utility) {
-    const index: number = this.reservation.utilityIds.indexOf(utility.id);
-    if (index !== -1) {
+    if (this.isUtilityIncluded(utility)) {
       this.reservation.price = this.reservation.price - utility.price;
-      this.reservation.utilityIds.splice(index, 1);
+      this.removeUtilityId(utility);
     } else {
       this.reservation.price = this.reservation.price + utility.price;
       this.reservation.utilityIds.push(utility.id);
     }
+  }
+
+  isUtilityIncluded(utility: Utility) {
+    console.log(utility);
+    for (let utilityId of this.reservation.utilityIds) {
+      if (utilityId == utility.id) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  removeUtilityId(utility: Utility) {
+    let utilityIdsNew = [];
+    for (let utilityId of this.reservation.utilityIds) {
+      if (utilityId != utility.id) {
+        utilityIdsNew.push(utilityId);
+      }
+    }
+    this.reservation.utilityIds = utilityIdsNew;
   }
 
   createReservation() {

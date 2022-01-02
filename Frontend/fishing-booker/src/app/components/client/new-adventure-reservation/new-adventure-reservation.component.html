@@ -10,12 +10,12 @@
       <div class="columns">
         <div class="column">
           <label class="label">Start Date:</label>
-          <p>{{ reservation.startDate | date }}</p>
+          <p>{{ reservation.startDate | date: "short" }}</p>
         </div>
 
         <div class="column">
           <label class="label">End Date:</label>
-          <p>{{ reservation.endDate | date }}</p>
+          <p>{{ reservation.endDate | date: "short" }}</p>
         </div>
       </div>
 
@@ -46,7 +46,9 @@
 
       <div class="columns">
         <div class="column">
-          <h2 class="confirm">Total price: ${{ reservation.price }}</h2>
+          <h2 class="confirm">
+            Total price: ${{ reservation.price | number }}
+          </h2>
         </div>
       </div>
 

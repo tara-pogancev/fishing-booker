@@ -28,7 +28,7 @@ export class CottageReservationsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    let filter = new SearchFilter()
+    let filter = new SearchFilter();
     this.cottageService.getSearch(filter).subscribe((data) => {
       this.cottagesAll = data;
       this.cottages = this.searchService.filter(this.cottagesAll, filter)!;
@@ -41,8 +41,8 @@ export class CottageReservationsComponent implements OnInit {
     this.endDate = filter.endDate;
 
     if (
-      this.endDate < this.today ||
-      this.startDate < this.today ||
+      this.endDate <= this.today ||
+      this.startDate <= this.today ||
       this.startDate > this.endDate
     ) {
       alert('Invalid date input!');
@@ -55,8 +55,8 @@ export class CottageReservationsComponent implements OnInit {
   }
 
   newReservation(entity: EntityModel) {
-    let startDate = formatDate(this.startDate, 'yyyy-MM-dd', 'en_US');
-    let endDate = formatDate(this.endDate, 'yyyy-MM-dd', 'en_US');
+    let startDate = formatDate(this.startDate, 'yyyy-MM-ddThh:mm:ss', 'en_US');
+    let endDate = formatDate(this.endDate, 'yyyy-MM-ddThh:mm:ss', 'en_US');
     window.location.href =
       '/resertvation/new/' +
       entity.type +

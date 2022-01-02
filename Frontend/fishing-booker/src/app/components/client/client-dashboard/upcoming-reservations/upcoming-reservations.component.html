@@ -24,10 +24,10 @@
           }}</a>
         </td>
         <td>{{ res.ownerName }}</td>
-        <td>{{ res.startDate | date }}</td>
-        <td>{{ res.endDate | date }}</td>
+        <td>{{ res.startDate | date: "short" }}</td>
+        <td>{{ res.endDate | date: "short" }}</td>
         <td>{{ res.people }}</td>
-        <td>${{ res.price }}</td>
+        <td>${{ res.price | number }}</td>
         <td>
           <button
             class="button is-danger"
@@ -39,5 +39,8 @@
         </td>
       </tr>
     </table>
+    <div *ngIf="reservations.length == 0">
+      <p>No upcoming reservations to show.</p>
+    </div>
   </div>
 </div>

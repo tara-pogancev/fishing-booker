@@ -13,6 +13,7 @@ import com.fishingbooker.ftn.bom.cottages.CottageUtility;
 import com.fishingbooker.ftn.bom.reservations.Reservation;
 import com.fishingbooker.ftn.bom.users.ApplicationUser;
 import com.fishingbooker.ftn.bom.users.RegisteredClient;
+import com.fishingbooker.ftn.conversion.UnixTimeToLocalDateTimeConverter;
 import com.fishingbooker.ftn.dto.ReservationDto;
 import com.fishingbooker.ftn.email.context.ClientReservationConfirmationEmailContext;
 import com.fishingbooker.ftn.email.service.EmailService;
@@ -53,6 +54,8 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     public CottageReservation bookCottage(ReservationDto reservationDto) {
+        reservationDto.setEndDate(UnixTimeToLocalDateTimeConverter.adjustDefaultTimeZone(reservationDto.endDate));
+        reservationDto.setStartDate(UnixTimeToLocalDateTimeConverter.adjustDefaultTimeZone(reservationDto.startDate));
         CottageReservation reservation = new CottageReservation();
 
         Cottage cottage = cottageService.get(reservationDto.entityId);
@@ -82,6 +85,8 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     public AdventureReservation bookAdventure(ReservationDto reservationDto) {
+        reservationDto.setEndDate(UnixTimeToLocalDateTimeConverter.adjustDefaultTimeZone(reservationDto.endDate));
+        reservationDto.setStartDate(UnixTimeToLocalDateTimeConverter.adjustDefaultTimeZone(reservationDto.startDate));
         AdventureReservation reservation = new AdventureReservation();
 
         Adventure adventure = adventureService.get(reservationDto.entityId);
@@ -111,6 +116,8 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     public BoatReservation bookBoat(ReservationDto reservationDto) {
+        reservationDto.setEndDate(UnixTimeToLocalDateTimeConverter.adjustDefaultTimeZone(reservationDto.endDate));
+        reservationDto.setStartDate(UnixTimeToLocalDateTimeConverter.adjustDefaultTimeZone(reservationDto.startDate));
         BoatReservation reservation = new BoatReservation();
 
         Boat boat = boatRepository.getById(reservationDto.entityId);

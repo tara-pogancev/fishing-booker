@@ -30,7 +30,7 @@ export class BoatReservationsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    let filter = new SearchFilter()
+    let filter = new SearchFilter();
     this.boatService.getSearch(filter).subscribe((data) => {
       this.boatsAll = data;
       this.boats = this.searchService.filter(this.boatsAll, filter)!;
@@ -43,8 +43,8 @@ export class BoatReservationsComponent implements OnInit {
     this.endDate = filter.endDate;
 
     if (
-      this.endDate < this.today ||
-      this.startDate < this.today ||
+      this.endDate <= this.today ||
+      this.startDate <= this.today ||
       this.startDate > this.endDate
     ) {
       alert('Invalid date input!');
@@ -57,8 +57,8 @@ export class BoatReservationsComponent implements OnInit {
   }
 
   newReservation(entity: EntityModel) {
-    let startDate = formatDate(this.startDate, 'yyyy-MM-dd', 'en_US');
-    let endDate = formatDate(this.endDate, 'yyyy-MM-dd', 'en_US');
+    let startDate = formatDate(this.startDate, 'yyyy-MM-ddThh:mm:ss', 'en_US');
+    let endDate = formatDate(this.endDate, 'yyyy-MM-ddThh:mm:ss', 'en_US');
     window.location.href =
       '/resertvation/new/' +
       entity.type +
