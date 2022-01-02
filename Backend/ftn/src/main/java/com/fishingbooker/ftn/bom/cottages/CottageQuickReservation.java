@@ -12,7 +12,7 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@Table(name = "CottageReservation")
+@Table(name = "CottageQuickReservation")
 @PrimaryKeyJoinColumn(name = "id")
 public class CottageQuickReservation extends QuickReservation {
 

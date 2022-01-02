@@ -13,6 +13,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Table(name = "CottageReservation")
+@PrimaryKeyJoinColumn(name = "id")
 public class CottageReservation extends Reservation {
 
     @ManyToOne
