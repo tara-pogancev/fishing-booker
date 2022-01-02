@@ -40,6 +40,8 @@ export class FishingReservationsComponent implements OnInit {
     this.startDate = filter.startDate;
     this.endDate = filter.endDate;
 
+    console.log(this.endDate);
+
     if (
       this.endDate <= this.today ||
       this.startDate <= this.today ||
@@ -58,8 +60,8 @@ export class FishingReservationsComponent implements OnInit {
   }
 
   newReservation(entity: EntityModel) {
-    let startDate = formatDate(this.startDate, 'yyyy-MM-ddThh:mm:ss', 'en_US');
-    let endDate = formatDate(this.endDate, 'yyyy-MM-ddThh:mm:ss', 'en_US');
+    let startDate = this.startDate.toString();
+    let endDate = this.endDate.toString();
     window.location.href =
       '/resertvation/new/' +
       entity.type +

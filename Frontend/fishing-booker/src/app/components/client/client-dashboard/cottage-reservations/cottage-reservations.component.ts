@@ -54,9 +54,9 @@ export class CottageReservationsComponent implements OnInit {
     }
   }
 
-  newReservation(entity: EntityModel) {
-    let startDate = formatDate(this.startDate, 'yyyy-MM-ddThh:mm:ss', 'en_US');
-    let endDate = formatDate(this.endDate, 'yyyy-MM-ddThh:mm:ss', 'en_US');
+  newReservation(entity: EntityModel) {    
+    let startDate = this.startDate.toString();
+    let endDate = this.endDate.toString();
     window.location.href =
       '/resertvation/new/' +
       entity.type +
