@@ -7,4 +7,6 @@ public interface MailingService {
     void sendAcceptDeleteAccountMail(ApplicationUser user, String desciption);
 
     void sendRefuseDeleteAccountMail(ApplicationUser user, String description);
+
+    void sendComplaintResponse(ApplicationUser client, ApplicationUser owner,String response,String complaint);
 }

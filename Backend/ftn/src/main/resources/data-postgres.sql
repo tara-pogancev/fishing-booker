@@ -360,4 +360,4 @@ INSERT INTO public.review(is_approved, date, entity_id, rating, reservation_type
 -- COMPLAINTS
 
 INSERT INTO public.complaint(approved, date, description, entity_id, reservation_type, type, reservation_id, user_id)
-	VALUES (3, '20210310 11:16:00 AM', 'ugh', 3, 1, 0, 8, 1);
+	VALUES (1, '20210310 11:16:00 AM', 'ugh', 3, 1, 0, 8, 1);

@@ -8,6 +8,12 @@ import { LoginService } from './login.service';
   providedIn: 'root',
 })
 export class ComplaintService {
+
+  createResponse(comment: any,id:any) {
+    const url = this.url + '/create-response';
+    const headers = this.loginService.getHeaders();
+    return this._http.post<any>(url,{response:comment,complaintId:id},{ headers: headers });
+  }
   url = server + 'api/complaints';
   constructor(private _http: HttpClient, private loginService: LoginService) {}
 
@@ -24,5 +30,11 @@ export class ComplaintService {
     const url = this.url + '/new-complaint';
     const headers = this.loginService.getHeaders();
     return this._http.post<any>(url, complaint, { headers: headers });
+  }
+
+  getWaitingComplaints(){
+    const url = this.url + '/get-waiting-complaints';
+    const headers = this.loginService.getHeaders();
+    return this._http.get<any>(url, { headers: headers });
   }
 }

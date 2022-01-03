@@ -2,6 +2,7 @@ package com.fishingbooker.ftn.service;
 
 import com.fishingbooker.ftn.bom.users.ApplicationUser;
 import com.fishingbooker.ftn.email.context.AcceptDeleteAccountEmailContext;
+import com.fishingbooker.ftn.email.context.ComplaintResponseEmailContext;
 import com.fishingbooker.ftn.email.context.RefuseDeleteAccountEmailContext;
 import com.fishingbooker.ftn.email.service.EmailService;
 import com.fishingbooker.ftn.service.interfaces.MailingService;
@@ -39,5 +40,24 @@ public class MailingServiceImpl implements MailingService {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public void sendComplaintResponse(ApplicationUser client, ApplicationUser owner,String response,String complaint) {
+        ComplaintResponseEmailContext emailContext = new ComplaintResponseEmailContext();
+        emailContext.setComplaint(complaint);
+        emailContext.setDescription(response);
+        emailContext.init(client);
+        try {
+            emailService.sendMail(emailContext);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+        emailContext.init(owner);
+        try {
+            emailService.sendMail(emailContext);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
     }
 }

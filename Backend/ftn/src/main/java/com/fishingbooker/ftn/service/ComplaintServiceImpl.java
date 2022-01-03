@@ -1,18 +1,25 @@
 package com.fishingbooker.ftn.service;
 
 import com.fishingbooker.ftn.bom.EntityType;
+import com.fishingbooker.ftn.bom.RequestApproval;
+import com.fishingbooker.ftn.bom.adventures.Adventure;
 import com.fishingbooker.ftn.bom.adventures.AdventureReservation;
+import com.fishingbooker.ftn.bom.boats.Boat;
 import com.fishingbooker.ftn.bom.boats.BoatReservation;
 import com.fishingbooker.ftn.bom.complaints.Complaint;
+import com.fishingbooker.ftn.bom.cottages.Cottage;
 import com.fishingbooker.ftn.bom.cottages.CottageReservation;
 import com.fishingbooker.ftn.bom.reservations.Reservation;
+import com.fishingbooker.ftn.bom.users.ApplicationUser;
 import com.fishingbooker.ftn.dto.ComplaintDto;
+import com.fishingbooker.ftn.dto.ComplaintResponseDto;
 import com.fishingbooker.ftn.repository.AdventureRepository;
 import com.fishingbooker.ftn.repository.BoatRepository;
 import com.fishingbooker.ftn.repository.ComplaintRepository;
 import com.fishingbooker.ftn.repository.CottageRepository;
 import com.fishingbooker.ftn.service.interfaces.ApplicationUserService;
 import com.fishingbooker.ftn.service.interfaces.ComplaintService;
+import com.fishingbooker.ftn.service.interfaces.MailingService;
 import com.fishingbooker.ftn.service.interfaces.ReservationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -31,6 +38,10 @@ public class ComplaintServiceImpl implements ComplaintService {
     private final ApplicationUserService userService;
     private final ReservationService reservationService;
     private final ComplaintRepository complaintRepository;
+    private final BoatRepository boatRepository;
+    private final AdventureRepository adventureRepository;
+    private final CottageRepository cottageRepository;
+    private final MailingService mailingService;
 
     @Override
     public void create(ComplaintDto dto) {
@@ -112,5 +123,31 @@ public class ComplaintServiceImpl implements ComplaintService {
                 complaints.add(complaint);
         }
         return complaints;
+    }
+
+    @Override
+    public List<Complaint> getWaitingComplaints() {
+        return complaintRepository.getWaitingComplaints();
+    }
+
+    @Override
+    public void createResponse(ComplaintResponseDto dto) {
+        Complaint complaint=complaintRepository.get(dto.getComplaintId());
+        ApplicationUser client=complaint.getUser();
+        complaint.setApproval(RequestApproval.PROCESSED);
+        complaintRepository.save(complaint);
+        if (complaint.getReservationType()==EntityType.BOAT){
+            Boat boat=boatRepository.get(complaint.getEntityId());
+            ApplicationUser owner=boat.getBoatOwner();
+            mailingService.sendComplaintResponse(client,owner,dto.getResponse(),complaint.getDescription());
+        }else if(complaint.getReservationType()==EntityType.ADVENTURE){
+            Adventure adventure=adventureRepository.getById(complaint.getEntityId());
+            ApplicationUser owner=adventure.getInstructor();
+            mailingService.sendComplaintResponse(client,owner,dto.getResponse(),complaint.getDescription());
+        }else{
+            Cottage cottage=cottageRepository.getById(complaint.getEntityId());
+            ApplicationUser owner=cottage.getCottageOwner();
+            mailingService.sendComplaintResponse(client,owner,dto.getResponse(),complaint.getDescription());
+        }
     }
 }
