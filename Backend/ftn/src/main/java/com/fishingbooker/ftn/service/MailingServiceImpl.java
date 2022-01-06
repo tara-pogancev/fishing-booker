@@ -1,9 +1,9 @@
 package com.fishingbooker.ftn.service;
 
 import com.fishingbooker.ftn.bom.users.ApplicationUser;
-import com.fishingbooker.ftn.email.context.AcceptDeleteAccountEmailContext;
-import com.fishingbooker.ftn.email.context.ComplaintResponseEmailContext;
-import com.fishingbooker.ftn.email.context.RefuseDeleteAccountEmailContext;
+import com.fishingbooker.ftn.bom.users.FishingInstructor;
+import com.fishingbooker.ftn.bom.users.RegisteredClient;
+import com.fishingbooker.ftn.email.context.*;
 import com.fishingbooker.ftn.email.service.EmailService;
 import com.fishingbooker.ftn.service.interfaces.MailingService;
 import lombok.RequiredArgsConstructor;
@@ -56,6 +56,27 @@ public class MailingServiceImpl implements MailingService {
         emailContext.init(owner);
         try {
             emailService.sendMail(emailContext);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void sendMailToClientAboutPenalty(RegisteredClient registeredClient, ApplicationUser owner) {
+        ClientPenaltyNotification emailContext=new ClientPenaltyNotification();
+        emailContext.setDate(registeredClient.getFullName(),owner.getFullName());
+        emailContext.init(registeredClient);
+        try {
+            emailService.sendMail(emailContext);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+
+        OwnerPenaltyNotification ownerEmailContext=new OwnerPenaltyNotification();
+        ownerEmailContext.setDate(registeredClient.getFullName(),owner.getFullName());
+        ownerEmailContext.init(owner);
+        try {
+            emailService.sendMail(ownerEmailContext);
         } catch (MessagingException e) {
             e.printStackTrace();
         }

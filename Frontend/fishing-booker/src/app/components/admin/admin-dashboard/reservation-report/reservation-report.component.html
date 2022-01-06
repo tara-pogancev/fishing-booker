@@ -1,0 +1,40 @@
+<div class="container">
+
+    <div class="column" *ngFor='let report of reservationReports'>
+        <div class="card">
+            <div class="card-content">
+              
+              <div>
+                  <p>Adventure Name:{{report.adventureName}}</p>
+                  <p>Owner Name:{{report.ownerName}}</p>
+                  <p>Client Name:{{report.clientName}}</p>
+              </div>
+              <div>
+                <div style="margin-top:20px"></div>
+                <p class="subtitle">
+                    Owner Comment
+                </p>
+                <div style="word-wrap: break-word;">
+                    {{report.comment}}
+                </div>
+              </div>
+            </div>
+            <footer class="card-footer">
+              <p class="card-footer-item">
+                <span>
+                  <button class="confirmButton" (click)="givePenalty(report)">Punish Client</button>
+                </span>
+              </p>
+              <p class="card-footer-item">
+                <span>
+                  <button class="cancelButton" (click)="forgiveClient(report)">Forgive Client</button>
+                </span>
+              </p>
+            </footer>
+          </div>
+    </div>
+    
+    
+    
+    
+  </div>

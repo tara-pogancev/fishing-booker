@@ -116,6 +116,13 @@
                   >Complaints</a
                 >
               </li>
+              <li>
+                <a
+                  [ngClass]="{ 'is-active': activeTab === 'REPORTS' }"
+                  (click)="changeTab('REPORTS')"
+                  >Reservation Reports</a
+                >
+              </li>
             </ul>
           </div>
         </li>
@@ -178,6 +185,11 @@
       <div *ngIf="activeTab == 'COMPLAINTS'">
         <app-complaint></app-complaint>
       </div>
+      <div *ngIf="activeTab == 'REPORTS'">
+        <app-reservation-report></app-reservation-report>
+      </div>
+      
+      
     </div>
   </div>
 </div>

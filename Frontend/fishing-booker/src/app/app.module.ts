@@ -110,6 +110,8 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AdventureReservationReportComponent } from './components/fishing/fishing-instructor-dashboard/adventure-reservation-report/adventure-reservation-report.component';
+import { ReservationReportComponent } from './components/admin/admin-dashboard/reservation-report/reservation-report.component';
 
 @NgModule({
   declarations: [
@@ -211,7 +213,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AdminComplaintsComponent,
     ComplaintComponent,
     AdminReviewComponent,
-    QuickReservationsCalendarComponent
+    QuickReservationsCalendarComponent,
+    AdventureReservationReportComponent,
+    ReservationReportComponent
   ],
   imports: [
     BrowserModule,

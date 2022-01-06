@@ -7,6 +7,8 @@ import com.fishingbooker.ftn.bom.adventures.AdventureReservation;
 import com.fishingbooker.ftn.bom.users.FishingInstructor;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.ApplicationUserDto;
+import com.fishingbooker.ftn.repository.AdventureQuickReservationRepository;
+import com.fishingbooker.ftn.repository.AdventureReservationRepository;
 import com.fishingbooker.ftn.repository.FishingInstructorRepository;
 import com.fishingbooker.ftn.service.interfaces.AddressService;
 import com.fishingbooker.ftn.service.interfaces.FishingInstructorService;
@@ -15,6 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,6 +30,8 @@ public class FishingInstructorServiceImpl implements FishingInstructorService {
 
     private final DataConverter converter;
     private final FishingInstructorRepository instructorRepository;
+    private final AdventureReservationRepository adventureReservationRepository;
+    private final AdventureQuickReservationRepository adventureQuickReservationRepository;
     private final AddressService addressService;
 
     @Override
@@ -91,8 +96,29 @@ public class FishingInstructorServiceImpl implements FishingInstructorService {
         return ret;
     }
 
+    @Override
+    public List<AdventureReservation> getInstructorPastReservations(Long id) {
+       List<AdventureReservation> adventureReservations=this.getInstructorReservations(id);
+       for(int i=0;i<adventureReservations.size();i++){
+           if (adventureReservations.get(i).getReservationEnd().isAfter(LocalDateTime.now())){
+               adventureReservations.remove(i);
+               i--;
+           }
+       }
+       return adventureReservations;
+    }
 
-
+    @Override
+    public List<AdventureQuickReservation> getInsturctorPastQuickReservations(Long id) {
+        List<AdventureQuickReservation> adventureQuickReservations=this.getInstructorQuickReservations(id);
+        for(int i=0;i<adventureQuickReservations.size();i++){
+            if (adventureQuickReservations.get(i).getActionEnd().isAfter(LocalDateTime.now())){
+                adventureQuickReservations.remove(i);
+                i--;
+            }
+        }
+        return  adventureQuickReservations;
+    }
 
 
 }
