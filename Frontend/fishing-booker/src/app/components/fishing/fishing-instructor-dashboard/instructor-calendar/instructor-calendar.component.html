@@ -1,79 +1,61 @@
-<div class="content is-medium" >
+<div class="content is-medium">
+  <div style="float: left">
+    <div class="columns">
+      <div class="column">
+        <div
+          mwlCalendarPreviousView
+          [view]="view"
+          [(viewDate)]="viewDate"
+          (viewDateChange)="closeOpenMonthViewDay()"
+        >
+          Previous
+        </div>
+      </div>
+      <div class="column">
+        <div mwlCalendarToday [(viewDate)]="viewDate">Today</div>
+      </div>
 
-  
-        <div style="float: left;">
-          <div class="columns">
-            <div class="column">
-              <div
-            
-                  mwlCalendarPreviousView
-                  [view]="view"
-                  [(viewDate)]="viewDate"
-                  (viewDateChange)="closeOpenMonthViewDay()"
-              >     
-                Previous
-              </div>
-            </div>
-            <div class="column">
-              <div
-            
-                mwlCalendarToday
-                [(viewDate)]="viewDate"
-              >
-                Today
-              </div>
-            </div>
-          
-          <div
-            class="column"
-            mwlCalendarNextView
-            [view]="view"
-            [(viewDate)]="viewDate"
-            (viewDateChange)="closeOpenMonthViewDay()"
-          >
-            Next
-          </div>
-          </div>
-        </div>
-        
-        
-      
-    
-    
-        <div style="float: right;">
-          <div class="columns">
-            <div
-            class="column"
-            (click)="setView(CalendarView.Month)"
-            [class.active]="view === CalendarView.Month"
-          >
-            Month
-          </div>
-          <div
-            class="column"
-            (click)="setView(CalendarView.Week)"
-            [class.active]="view === CalendarView.Week"
-          >
-            Week
-          </div>
-          <div
-            class="column"
-            (click)="setView(CalendarView.Day)"
-            [class.active]="view === CalendarView.Day"
-          >
-            Day
-          </div>
-          </div>
-        </div>
-      
-        
-        
-      
-    
+      <div
+        class="column"
+        mwlCalendarNextView
+        [view]="view"
+        [(viewDate)]="viewDate"
+        (viewDateChange)="closeOpenMonthViewDay()"
+      >
+        Next
+      </div>
+    </div>
+  </div>
+
+  <div style="float: right">
+    <div class="columns">
+      <div
+        class="column"
+        (click)="setView(CalendarView.Month)"
+        [class.active]="view === CalendarView.Month"
+      >
+        Month
+      </div>
+      <div
+        class="column"
+        (click)="setView(CalendarView.Week)"
+        [class.active]="view === CalendarView.Week"
+      >
+        Week
+      </div>
+      <div
+        class="column"
+        (click)="setView(CalendarView.Day)"
+        [class.active]="view === CalendarView.Day"
+      >
+        Day
+      </div>
+    </div>
+  </div>
 
   <br />
   <div class="column">
-    <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+    <h3>{{ viewDate | calendarDate: view + "ViewTitle":"en" }}</h3>
   </div>
   <div [ngSwitch]="view">
     <mwl-calendar-month-view
@@ -84,7 +66,6 @@
       [activeDayIsOpen]="activeDayIsOpen"
       (dayClicked)="dayClicked($event.day)"
       (eventClicked)="handleEvent('Clicked', $event.event)"
-      
     >
     </mwl-calendar-month-view>
     <mwl-calendar-week-view
@@ -93,7 +74,6 @@
       [events]="events"
       [refresh]="refresh"
       (eventClicked)="handleEvent('Clicked', $event.event)"
-      
     >
     </mwl-calendar-week-view>
     <mwl-calendar-day-view
@@ -102,162 +82,144 @@
       [events]="events"
       [refresh]="refresh"
       (eventClicked)="handleEvent('Clicked', $event.event)"
-      
     >
     </mwl-calendar-day-view>
   </div>
 
-
   <br /><br /><br />
 
-<h3>
-  Current Available Times
-  <button class="button is-info" (click)="addEvent()">
-    Add new
-  </button>
-  <div class="clearfix"></div>
-</h3>
+  <h3>
+    Current Available Times
+    <button class="button is-info" (click)="addEvent()">Add new</button>
+    <div class="clearfix"></div>
+  </h3>
 
-<div class="addNewTime" id="addNewSlot">
-<div class="columns" >
-  <div class="column">
-    <div class="field">
-      <label class="label">Start Date:</label>
-      <div class="control">
-        <input
-          class="input"
-          type="datetime-local"
-          [(ngModel)]="startDate"
-        />
+  <div class="addNewTime" id="addNewSlot">
+    <div class="columns">
+      <div class="column">
+        <div class="field">
+          <label class="label">Start Date:</label>
+          <div class="control">
+            <input
+              class="input"
+              type="datetime-local"
+              [(ngModel)]="startDate"
+            />
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-  <div class="column">
-    <div class="field">
-      <label class="label">End date:</label>
-      <div class="control">
-        <input
-          class="input"
-          type="datetime-local"
-          [(ngModel)]="endDate"
-        />
+      <div class="column">
+        <div class="field">
+          <label class="label">End date:</label>
+          <div class="control">
+            <input class="input" type="datetime-local" [(ngModel)]="endDate" />
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-  <div class="column">
-    <div style="margin-top: 30px;">
-      <button class="button is-success" (click)="confirmAdding()">Confirm</button>
-    </div>
-  </div>
-</div>
-</div>
-
-<div class="table-responsive">
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Starts at</th>
-        <th>Ends at</th>
-        <th>Remove</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr *ngFor="let event of currentFreeSlots">
-        <td>
-          <label>{{event.title}}</label>
-        </td>
-        
-        <td>
-          <input
-          class="form-control"
-            class="input"
-            type="datetime-local"
-            [(ngModel)]="event.startDateString"
-            placeholder="Not set"
-            (change)="onChangeDate(event)"
-            (ngModelChange)="refresh.next()"
-          />
-        </td>
-        <td>
-          <input
-            class="form-control"
-            class="input"
-            type="datetime-local"
-            [(ngModel)]="event.endDateString"
-            placeholder="Not set"
-            (change)="onChangeDate(event)"
-            (ngModelChange)="refresh.next()"
-          />
-        </td>
-        <td >
-          
-          <button class="button is-danger" (click)="deleteEvent(event)">
-            Delete
+      <div class="column">
+        <div style="margin-top: 30px">
+          <button class="button is-success" (click)="confirmAdding()">
+            Confirm
           </button>
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Starts at</th>
+          <th>Ends at</th>
+          <th>Remove</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let event of currentFreeSlots">
+          <td>
+            <label>{{ event.title }}</label>
+          </td>
+
+          <td>
+            <input
+              class="form-control"
+              class="input"
+              type="datetime-local"
+              [(ngModel)]="event.startDateString"
+              placeholder="Not set"
+              (change)="onChangeDate(event)"
+              (ngModelChange)="refresh.next()"
+            />
+          </td>
+          <td>
+            <input
+              class="form-control"
+              class="input"
+              type="datetime-local"
+              [(ngModel)]="event.endDateString"
+              placeholder="Not set"
+              (change)="onChangeDate(event)"
+              (ngModelChange)="refresh.next()"
+            />
+          </td>
+          <td>
+            <button class="button is-danger" (click)="deleteEvent(event)">
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 
-
-<div class="modal" id='modal' *ngIf="openModal==true">
+<div class="modal" id="modal" *ngIf="openModal == true">
   <div class="modal-background"></div>
   <div class="modal-card">
     <header class="modal-card-head">
       <p class="modal-card-title">Reservation info</p>
-      <button class="delete" aria-label="close" (click)="closeModalTab()"></button>
+      <button
+        class="delete"
+        aria-label="close"
+        (click)="closeModalTab()"
+      ></button>
     </header>
     <section class="modal-card-body">
       <div class="columns p-5">
         <div class="column">
           <div class="mb-6">
             <h4>First Name:</h4>
-            <p>{{reservationInfo.clientName}}</p>
+            <p>{{ reservationInfo.clientName }}</p>
           </div>
           <div class="mb-6">
             <h4>Last Name:</h4>
-            <p> {{reservationInfo.clientSurname}}</p>
+            <p>{{ reservationInfo.clientSurname }}</p>
           </div>
-    
+
           <div class="mb-6">
             <h4>Start Date:</h4>
-            <p>{{reservationInfo.start}}</p>
+            <p>{{ reservationInfo.start }}</p>
           </div>
           <div class="mb-6">
             <h4>End date:</h4>
-            <p> {{reservationInfo.end}}
-            </p>
+            <p>{{ reservationInfo.end }}</p>
           </div>
         </div>
         <div class="column">
           <div class="mb-6">
             <h4>Price:</h4>
-            <p>{{reservationInfo.price}}</p>
+            <p>{{ reservationInfo.price }}</p>
           </div>
           <div class="mb-6">
             <h4>Guest Number:</h4>
-            <p> {{reservationInfo.guestNumber}}</p>
+            <p>{{ reservationInfo.guestNumber }}</p>
           </div>
         </div>
       </div>
-    
     </section>
-    <footer class="modal-card-foot">
-     
-      
-    </footer>
+    <footer class="modal-card-foot"></footer>
   </div>
 </div>
-
-
-
-
-
-
-
-

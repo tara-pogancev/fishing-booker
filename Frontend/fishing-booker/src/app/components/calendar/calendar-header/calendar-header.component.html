@@ -1,0 +1,60 @@
+<div class="columns mb-5">
+  <div class="column">
+    <div class="buttons">
+      <div
+        class="button is-primary"
+        mwlCalendarPreviousView
+        [view]="view"
+        [(viewDate)]="viewDate"
+        (viewDateChange)="viewDateChange.next(viewDate)"
+      >
+        Previous
+      </div>
+      <div
+        class="button is-info"
+        mwlCalendarToday
+        [(viewDate)]="viewDate"
+        (viewDateChange)="viewDateChange.next(viewDate)"
+      >
+        Today
+      </div>
+      <div
+        class="button is-primary"
+        mwlCalendarNextView
+        [view]="view"
+        [(viewDate)]="viewDate"
+        (viewDateChange)="viewDateChange.next(viewDate)"
+      >
+        Next
+      </div>
+    </div>
+  </div>
+  <div class="column has-text-centered">
+    <h3>{{ viewDate | calendarDate: view + "ViewTitle":locale }}</h3>
+  </div>
+  <div class="column is-flex is-justify-content-end">
+    <div class="buttons">
+      <div
+        class="button is-primary"
+        (click)="viewChange.emit(CalendarView.Month)"
+        [class.active]="view === CalendarView.Month"
+      >
+        Month
+      </div>
+      <div
+        class="button is-primary"
+        (click)="viewChange.emit(CalendarView.Week)"
+        [class.active]="view === CalendarView.Week"
+      >
+        Week
+      </div>
+      <div
+        class="button is-primary"
+        (click)="viewChange.emit(CalendarView.Day)"
+        [class.active]="view === CalendarView.Day"
+      >
+        Day
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -108,9 +107,9 @@ import { AdminReviewComponent } from './components/admin/admin-dashboard/admin-r
 import { QuickReservationsCalendarComponent } from './components/fishing/fishing-instructor-dashboard/quick-reservations-calendar/quick-reservations-calendar.component';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlatpickrModule } from 'angularx-flatpickr';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SpecialOfferReservationCardComponent } from './components/client/special-offer-reservation-card/special-offer-reservation-card.component';
+import { CalendarHeaderComponent } from './components/calendar/calendar-header/calendar-header.component';
 
 @NgModule({
   declarations: [
@@ -213,7 +212,8 @@ import { SpecialOfferReservationCardComponent } from './components/client/specia
     ComplaintComponent,
     AdminReviewComponent,
     QuickReservationsCalendarComponent,
-    SpecialOfferReservationCardComponent
+    SpecialOfferReservationCardComponent,
+    CalendarHeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -229,7 +229,6 @@ import { SpecialOfferReservationCardComponent } from './components/client/specia
       useFactory: adapterFactory,
     }),
     CommonModule,
-    
   ],
   providers: [],
   bootstrap: [AppComponent],
