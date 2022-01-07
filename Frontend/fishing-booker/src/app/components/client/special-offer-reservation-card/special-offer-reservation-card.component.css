@@ -1,0 +1,9 @@
+.image {
+  height: auto;
+  width: 250px;
+}
+
+.is-orange {
+  background-color: rgb(248, 125, 103);
+  color: white;
+}

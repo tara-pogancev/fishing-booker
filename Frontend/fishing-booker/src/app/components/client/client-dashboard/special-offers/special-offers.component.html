@@ -2,11 +2,15 @@
   <h1 class="title">Special Offers</h1>
   <hr />
   <div>
-    <search-field></search-field>
+    <search-field (doSearch)="search($event)"></search-field>
     <hr />
-    <special-offer-card></special-offer-card>
-    <special-offer-card></special-offer-card>
-    <special-offer-card></special-offer-card>
-    <special-offer-card></special-offer-card>
+    <div *ngIf="actions.length == 0">
+      <p>No Special Offers Found.</p>
+    </div>
+    <div *ngFor="let action of actions">
+      <special-offer-reservation-card
+        [action]="action"
+      ></special-offer-reservation-card>
+    </div>
   </div>
 </div>

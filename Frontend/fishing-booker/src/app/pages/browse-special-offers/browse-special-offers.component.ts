@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Action } from 'rxjs/internal/scheduler/Action';
 import { ActionModel } from 'src/app/model/action-model';
 import { SearchFilter } from 'src/app/model/search-filter-model';
+import { ActionSearchService } from 'src/app/service/action-search.service';
 import { ActionService } from 'src/app/service/action.service';
 import { SearchService } from 'src/app/service/search-service';
 
@@ -16,7 +17,7 @@ export class BrowseSpecialOffersComponent implements OnInit {
 
   constructor(
     private actionService: ActionService,
-    private searchService: SearchService
+    private searchService: ActionSearchService
   ) {}
 
   ngOnInit(): void {
@@ -27,6 +28,7 @@ export class BrowseSpecialOffersComponent implements OnInit {
   }
 
   search(filter: SearchFilter) {
+    console.log(filter);
     this.actions = this.searchService.filter(this.actionsAll, filter)!;
   }
 }

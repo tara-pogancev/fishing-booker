@@ -110,6 +110,7 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SpecialOfferReservationCardComponent } from './components/client/special-offer-reservation-card/special-offer-reservation-card.component';
 
 @NgModule({
   declarations: [
@@ -211,7 +212,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AdminComplaintsComponent,
     ComplaintComponent,
     AdminReviewComponent,
-    QuickReservationsCalendarComponent
+    QuickReservationsCalendarComponent,
+    SpecialOfferReservationCardComponent
   ],
   imports: [
     BrowserModule,

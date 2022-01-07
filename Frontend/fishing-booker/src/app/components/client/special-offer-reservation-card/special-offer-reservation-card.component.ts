@@ -1,22 +1,20 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AsyncAction } from 'rxjs/internal/scheduler/AsyncAction';
 import { ActionModel } from 'src/app/model/action-model';
 import { ImageService } from 'src/app/service/image.service';
 import { LoginService } from 'src/app/service/login.service';
 
 @Component({
-  selector: 'special-offer-card',
-  templateUrl: './special-offer-card.component.html',
-  styleUrls: ['./special-offer-card.component.css'],
+  selector: 'special-offer-reservation-card',
+  templateUrl: './special-offer-reservation-card.component.html',
+  styleUrls: ['./special-offer-reservation-card.component.css'],
 })
-export class SpecialOfferCardComponent implements OnInit {
+export class SpecialOfferReservationCardComponent implements OnInit {
   @Input() action: ActionModel = new ActionModel();
   image: any;
   daysLeft: number;
 
-  constructor(
-    private imageService: ImageService,
-    private loginService: LoginService
-  ) {}
+  constructor(private imageService: ImageService) {}
 
   ngOnInit(): void {
     if (this.action.imageUrls.length != 0) {
@@ -59,14 +57,15 @@ export class SpecialOfferCardComponent implements OnInit {
     });
   }
 
-  browse() {
-    let currentUser = this.loginService.getCurrentUser();
-    if (currentUser.role == 'LOGGED_OUT') {
-      window.location.href = '/login';
-    } else if (currentUser.role != 'REGISTERED_CLIENT') {
-      alert('You must be logged in as a client to preview this page!');
-    } else {
-      window.location.href = '/client-db/SPECIAL_OFFERS';
+  book() {
+    if (
+      confirm(
+        'Are you sure you want to book the Special Offer for ' +
+          this.action.entityName
+      )
+    ) {
+      window.location.href = 'client-db/UPCOMING';
+      alert('Special Offer succesfully booked!');
     }
   }
 }

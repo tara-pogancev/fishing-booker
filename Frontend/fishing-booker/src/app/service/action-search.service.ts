@@ -6,7 +6,7 @@ import { Utility } from '../model/utility-model';
 @Injectable({
   providedIn: 'root',
 })
-export class SearchService {
+export class ActionSearchService {
   constructor() {}
 
   matchName(string1: string, string2: string) {
@@ -28,7 +28,7 @@ export class SearchService {
 
     for (let entity of entities) {
       if (
-        this.matchName(entity.name, filter.text) ||
+        this.matchName(entity.entityName, filter.text) ||
         this.matchName(entity.ownerName, filter.text) ||
         this.matchName(entity.address, filter.text)
       ) {
@@ -105,7 +105,7 @@ export class SearchService {
 
   nameAcs(entities: any[]) {
     return entities.sort((n1, n2) => {
-      if (n1.name > n2.name) {
+      if (n1.entityName > n2.entityName) {
         return 1;
       } else {
         return -1;
@@ -115,7 +115,7 @@ export class SearchService {
 
   nameDes(entities: any[]) {
     return entities.sort((n1, n2) => {
-      if (n1.name < n2.name) {
+      if (n1.entityName < n2.entityName) {
         return 1;
       } else {
         return -1;
