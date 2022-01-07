@@ -1,9 +1,4 @@
-import {
-  Component,
-  Input,
-  OnInit,
-  ChangeDetectionStrategy,
-} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {
   CalendarEvent,
   CalendarDateFormatter,

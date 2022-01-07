@@ -1,46 +1,68 @@
 <div class="content is-medium">
-  <h1 class="title">Upcoming Reservations</h1>
-  <hr />
-  <div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th><abbr title="ID">ID</abbr></th>
-          <th><abbr title="Reservation type">Type</abbr></th>
-          <th><abbr title="Owner">Owner</abbr></th>
-          <th><abbr title="Start Date">Start Date</abbr></th>
-          <th><abbr title="End Date">End Date</abbr></th>
-          <th><abbr title="No. of People">No. of People</abbr></th>
-          <th><abbr title="Price">Price</abbr></th>
-          <th><abbr title="Cancel reservation">Cancel</abbr></th>
-        </tr>
-      </thead>
+  <div class="columns is-vcentered">
+    <div class="column">
+      <h1 class="title">Upcoming Reservations</h1>
+    </div>
+    <div class="column is-flex is-justify-content-end mr-4">
+      <div class="select">
+        <select [(ngModel)]="sort" (change)="refreshSort()">
+          <option value="NO_SORT">Select sorting:</option>
+          <option value="PRICE_LOWER">Price: Lower first</option>
+          <option value="PRICE_HIGHER">Price: Higher first</option>
+          <option value="START_HIGHER">Start Date: Acsending</option>
+          <option value="START_LOWER">Start Date: Descending</option>
+          <option value="DURATION_HIGHER">Duration: Higher first</option>
+          <option value="DURATION_LOWER">Duration: Lower first</option>
+          <option value="NAME_ACS">Name: Acsending</option>
+          <option value="NAME_DES">Name: Descending</option>
+        </select>
+      </div>
+    </div>
+  </div>
 
-      <tr *ngFor="let res of reservations">
-        <th>{{ res.id }}</th>
-        <td>
-          <a href="/{{ res.entityType }}/{{ res.entityId }}">{{
-            res.entityName
-          }}</a>
-        </td>
-        <td>{{ res.ownerName }}</td>
-        <td>{{ res.startDate | date: "short" }}</td>
-        <td>{{ res.endDate | date: "short" }}</td>
-        <td>{{ res.people }}</td>
-        <td>${{ res.price | number }}</td>
-        <td>
-          <button
-            class="button is-danger"
-            [disabled]="!res.canCancel"
-            (click)="cancelReservation(res)"
-          >
-            Cancel
-          </button>
-        </td>
-      </tr>
-    </table>
-    <div *ngIf="reservations.length == 0">
-      <p>No upcoming reservations to show.</p>
+  <div>
+    <hr />
+    <div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th><abbr title="ID">ID</abbr></th>
+            <th><abbr title="Reservation type">Type</abbr></th>
+            <th><abbr title="Owner">Owner</abbr></th>
+            <th><abbr title="Start Date">Start Date</abbr></th>
+            <th><abbr title="End Date">End Date</abbr></th>
+            <th><abbr title="No. of People">No. of People</abbr></th>
+            <th><abbr title="Price">Price</abbr></th>
+            <th><abbr title="Cancel reservation">Cancel</abbr></th>
+          </tr>
+        </thead>
+
+        <tr *ngFor="let res of reservations">
+          <th>{{ res.id }}</th>
+          <td>
+            <a href="/{{ res.entityType }}/{{ res.entityId }}">{{
+              res.entityName
+            }}</a>
+          </td>
+          <td>{{ res.ownerName }}</td>
+          <td>{{ res.startDate | date: "short" }}</td>
+          <td>{{ res.endDate | date: "short" }}</td>
+          <td>{{ res.people }}</td>
+          <td>${{ res.price | number }}</td>
+          <td>
+            <button
+              class="button is-danger"
+              [disabled]="!res.canCancel"
+              (click)="cancelReservation(res)"
+            >
+              Cancel
+            </button>
+          </td>
+        </tr>
+      </table>
+      <div *ngIf="reservations.length == 0">
+        <p>No upcoming reservations to show.</p>
+      </div>
     </div>
   </div>
 </div>

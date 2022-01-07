@@ -1,5 +1,25 @@
 <div class="content is-medium">
-  <h1 class="title">Past Cottage Reservations</h1>
+  <div class="columns is-vcentered">
+    <div class="column">
+      <h1 class="title">Upcoming Reservations</h1>
+    </div>
+    <div class="column is-flex is-justify-content-end mr-4">
+      <div class="select">
+        <select [(ngModel)]="sort" (change)="refreshSort()">
+          <option value="NO_SORT">Select sorting:</option>
+          <option value="PRICE_LOWER">Price: Lower first</option>
+          <option value="PRICE_HIGHER">Price: Higher first</option>
+          <option value="START_HIGHER">Start Date: Acsending</option>
+          <option value="START_LOWER">Start Date: Descending</option>
+          <option value="DURATION_HIGHER">Duration: Higher first</option>
+          <option value="DURATION_LOWER">Duration: Lower first</option>
+          <option value="NAME_ACS">Name: Acsending</option>
+          <option value="NAME_DES">Name: Descending</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
   <hr />
   <div>
     <table class="table">
