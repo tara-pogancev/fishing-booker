@@ -43,9 +43,11 @@ export class BoatReservationsComponent implements OnInit {
     this.endDate = filter.endDate;
 
     if (
-      this.endDate <= this.today ||
-      this.startDate <= this.today ||
-      this.startDate > this.endDate
+      new Date(filter.startDate) <= this.today ||
+      new Date(filter.endDate) <= this.today ||
+      this.startDate > this.endDate ||
+      !this.validateDate(this.startDate) ||
+      !this.validateDate(this.endDate)
     ) {
       alert('Invalid date input!');
     } else {
@@ -56,7 +58,7 @@ export class BoatReservationsComponent implements OnInit {
     }
   }
 
-  newReservation(entity: EntityModel) {    
+  newReservation(entity: EntityModel) {
     let startDate = this.startDate.toString();
     let endDate = this.endDate.toString();
     window.location.href =
@@ -74,5 +76,10 @@ export class BoatReservationsComponent implements OnInit {
 
   previewEntity(entity: EntityModel) {
     window.location.href = '/' + entity.type + '/' + entity.id;
+  }
+
+  validateDate(date: Date) {
+    let string = date.toString();
+    return !(string === '' || string.indexOf(' ') >= 0);
   }
 }
