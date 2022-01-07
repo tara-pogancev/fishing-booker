@@ -23,6 +23,7 @@ import com.fishingbooker.ftn.repository.*;
 import com.fishingbooker.ftn.service.interfaces.AdventureService;
 import com.fishingbooker.ftn.service.interfaces.CottageService;
 import com.fishingbooker.ftn.service.interfaces.ReservationService;
+import com.sun.xml.bind.v2.model.annotation.Quick;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -46,6 +47,7 @@ public class ReservationServiceImpl implements ReservationService {
     private final ReservationRepository reservationRepository;
     private final RegisteredClientRepository clientRepository;
     private final BoatReservationRepository boatReservationRepository;
+    private final QuickReservationRepository quickReservationRepository;
     private final CottageReservationRepository cottageReservationRepository;
     private final AdventureReservationRepository adventureReservationRepository;
     private final AdventureQuickReservationRepository adventureQuickReservationRepository;
@@ -150,8 +152,16 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     public void cancel(Long reservationId) {
-        if (reservationRepository.exists(reservationId)) {
-            reservationRepository.deleteById(reservationId);
+        Reservation reservation = reservationRepository.getById(reservationId);
+        if (reservation != null) {
+            reservation.setIsCanceled(true);
+            reservationRepository.save(reservation);
+
+            QuickReservation quickReservation = reservation.getQuickReservation();
+            if (reservation.getQuickReservation() != null) {
+                quickReservation.setIsReserved(false);
+                quickReservationRepository.save(quickReservation);
+            }
         }
     }
 
@@ -159,19 +169,20 @@ public class ReservationServiceImpl implements ReservationService {
     public List<Reservation> findAllByClient(Long id) {
         List<Reservation> reservations = new ArrayList<>();
         for (CottageReservation reservation : cottageReservationRepository.findAll()) {
-            if (reservation.getReservationClient().getId() == id)
+            if (reservation.getReservationClient().getId() == id && !reservation.getIsCanceled())
                 reservations.add(reservation);
         }
 
         for (BoatReservation reservation : boatReservationRepository.findAll()) {
-            if (reservation.getReservationClient().getId() == id)
+            if (reservation.getReservationClient().getId() == id && !reservation.getIsCanceled())
                 reservations.add(reservation);
         }
 
         for (AdventureReservation reservation : adventureReservationRepository.findAll()) {
-            if (reservation.getReservationClient().getId() == id)
+            if (reservation.getReservationClient().getId() == id && !reservation.getIsCanceled())
                 reservations.add(reservation);
         }
+
         return reservations;
     }
 

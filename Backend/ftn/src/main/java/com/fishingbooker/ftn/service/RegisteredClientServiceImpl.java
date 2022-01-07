@@ -132,15 +132,15 @@ public class RegisteredClientServiceImpl implements RegisteredClientService {
         List<Reservation> reservations = new ArrayList<>();
         if (client != null) {
             for (AdventureReservation adventureReservation : client.getAdventureReservations())
-                if (adventureReservation.getReservationStart().isAfter(LocalDateTime.now()) || adventureReservation.getReservationStart().isEqual(LocalDateTime.now()))
+                if (!adventureReservation.getIsCanceled() && (adventureReservation.getReservationStart().isAfter(LocalDateTime.now()) || adventureReservation.getReservationStart().isEqual(LocalDateTime.now())))
                     reservations.add(adventureReservation);
 
             for (CottageReservation cottageReservation : client.getCottageReservations())
-                if (cottageReservation.getReservationStart().isAfter(LocalDateTime.now()) || cottageReservation.getReservationStart().isEqual(LocalDateTime.now()))
+                if (!cottageReservation.getIsCanceled() && (cottageReservation.getReservationStart().isAfter(LocalDateTime.now()) || cottageReservation.getReservationStart().isEqual(LocalDateTime.now())))
                     reservations.add(cottageReservation);
 
             for (BoatReservation boatReservation : client.getBoatReservations())
-                if (boatReservation.getReservationStart().isAfter(LocalDateTime.now()) || boatReservation.getReservationStart().isEqual(LocalDateTime.now()))
+                if (!boatReservation.getIsCanceled() &&(boatReservation.getReservationStart().isAfter(LocalDateTime.now()) || boatReservation.getReservationStart().isEqual(LocalDateTime.now())))
                     reservations.add(boatReservation);
 
         }
