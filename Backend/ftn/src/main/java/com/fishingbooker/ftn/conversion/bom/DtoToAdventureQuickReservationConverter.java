@@ -3,12 +3,10 @@ package com.fishingbooker.ftn.conversion.bom;
 import com.fishingbooker.ftn.bom.Utility;
 import com.fishingbooker.ftn.bom.adventures.Adventure;
 import com.fishingbooker.ftn.bom.adventures.AdventureQuickReservation;
-import com.fishingbooker.ftn.bom.adventures.AdventureUtility;
 import com.fishingbooker.ftn.bom.adventures.QuickReservationUtility;
 import com.fishingbooker.ftn.dto.AdventureQuickReservationDto;
 import com.fishingbooker.ftn.dto.AdventureUtilityDto;
 import com.fishingbooker.ftn.repository.AdventureRepository;
-import com.fishingbooker.ftn.repository.AdventureUtilityRepository;
 import com.fishingbooker.ftn.repository.QuickReservationUtilityRepository;
 import com.fishingbooker.ftn.repository.UtilityRepository;
 import lombok.RequiredArgsConstructor;
@@ -30,8 +28,8 @@ public class DtoToAdventureQuickReservationConverter implements Converter<Advent
 
     @Override
     public AdventureQuickReservation convert(AdventureQuickReservationDto source) {
-        AdventureQuickReservation adventureQuickReservation=new AdventureQuickReservation();
-        Adventure adventure=adventureRepository.getById(source.getAdventureId());
+        AdventureQuickReservation adventureQuickReservation = new AdventureQuickReservation();
+        Adventure adventure = adventureRepository.getById(source.getAdventureId());
         adventureQuickReservation.setAdventure(adventure);
         adventureQuickReservation.setActionStart(source.getActionStart());
         adventureQuickReservation.setActionEnd(source.getActionEnd());
@@ -57,7 +55,7 @@ public class DtoToAdventureQuickReservationConverter implements Converter<Advent
             quickReservationUtility = new QuickReservationUtility(utility, dto.getPrice());
         } else {
             utility = utilityRepository.getById(dto.getUtilityId());
-            quickReservationUtility= new QuickReservationUtility(utility, dto.getPrice());
+            quickReservationUtility = new QuickReservationUtility(utility, dto.getPrice());
         }
         quickReservationUtilityRepository.save(quickReservationUtility);
         return quickReservationUtility;

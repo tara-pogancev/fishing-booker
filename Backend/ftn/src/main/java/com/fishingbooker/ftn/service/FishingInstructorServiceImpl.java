@@ -17,8 +17,6 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 @Transactional
@@ -69,11 +67,11 @@ public class FishingInstructorServiceImpl implements FishingInstructorService {
 
     @Override
     public List<AdventureReservation> getInstructorReservations(Long id) {
-        FishingInstructor instructor=instructorRepository.getById(id);
-        List<Adventure> adventures=new ArrayList<>(instructor.getAdventures());
-        List<AdventureReservation> ret=new ArrayList<>();
-        for(Adventure adventure:adventures){
-            List<AdventureReservation> reservations=new ArrayList<>(adventure.getAdventureReservations());
+        FishingInstructor instructor = instructorRepository.getById(id);
+        List<Adventure> adventures = new ArrayList<>(instructor.getAdventures());
+        List<AdventureReservation> ret = new ArrayList<>();
+        for (Adventure adventure : adventures) {
+            List<AdventureReservation> reservations = new ArrayList<>(adventure.getAdventureReservations());
             ret.addAll(reservations);
         }
         return ret;
@@ -81,18 +79,15 @@ public class FishingInstructorServiceImpl implements FishingInstructorService {
 
     @Override
     public List<AdventureQuickReservation> getInstructorQuickReservations(Long id) {
-        FishingInstructor instructor=instructorRepository.getById(id);
-        List<Adventure> adventures=new ArrayList<>(instructor.getAdventures());
-        List<AdventureQuickReservation> ret=new ArrayList<>();
-        for(Adventure adventure:adventures){
-            List<AdventureQuickReservation> quickReservations=new ArrayList<>(adventure.getAdventureQuickReservations());
+        FishingInstructor instructor = instructorRepository.getById(id);
+        List<Adventure> adventures = new ArrayList<>(instructor.getAdventures());
+        List<AdventureQuickReservation> ret = new ArrayList<>();
+        for (Adventure adventure : adventures) {
+            List<AdventureQuickReservation> quickReservations = new ArrayList<>(adventure.getAdventureQuickReservations());
             ret.addAll(quickReservations);
         }
         return ret;
     }
-
-
-
 
 
 }

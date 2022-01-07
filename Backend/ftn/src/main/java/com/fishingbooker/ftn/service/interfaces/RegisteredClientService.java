@@ -1,8 +1,6 @@
 package com.fishingbooker.ftn.service.interfaces;
 
-import com.fishingbooker.ftn.bom.boats.Boat;
 import com.fishingbooker.ftn.bom.reservations.Reservation;
-import com.fishingbooker.ftn.bom.users.FishingInstructor;
 import com.fishingbooker.ftn.bom.users.RegisteredClient;
 import com.fishingbooker.ftn.dto.*;
 

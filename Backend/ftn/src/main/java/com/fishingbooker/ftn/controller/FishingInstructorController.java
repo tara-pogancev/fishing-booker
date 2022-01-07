@@ -2,12 +2,10 @@ package com.fishingbooker.ftn.controller;
 
 import com.fishingbooker.ftn.bom.adventures.AdventureQuickReservation;
 import com.fishingbooker.ftn.bom.adventures.AdventureReservation;
-import com.fishingbooker.ftn.bom.reservations.Reservation;
 import com.fishingbooker.ftn.bom.users.FishingInstructor;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.FishingInstructorDto;
 import com.fishingbooker.ftn.dto.InstructorCalendarReservationDto;
-import com.fishingbooker.ftn.dto.ReservationDto;
 import com.fishingbooker.ftn.service.interfaces.FishingInstructorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -66,12 +64,12 @@ public class FishingInstructorController {
     }
 
     @GetMapping("/get-instructor-reservations/{id}")
-    public List<InstructorCalendarReservationDto> getInstructorReservations(@PathVariable() Long id){
-        List<AdventureReservation> reservations=fishingInstructorService.getInstructorReservations(id);
-        List<AdventureQuickReservation> quickReservations=fishingInstructorService.getInstructorQuickReservations(id);
-        List<InstructorCalendarReservationDto> reservationDtos=converter.convert(reservations,InstructorCalendarReservationDto.class);
-        List<InstructorCalendarReservationDto> quickReservationDtos=converter.convert(quickReservations,InstructorCalendarReservationDto.class);
-        List<InstructorCalendarReservationDto> ret=new ArrayList<InstructorCalendarReservationDto>(reservationDtos);
+    public List<InstructorCalendarReservationDto> getInstructorReservations(@PathVariable() Long id) {
+        List<AdventureReservation> reservations = fishingInstructorService.getInstructorReservations(id);
+        List<AdventureQuickReservation> quickReservations = fishingInstructorService.getInstructorQuickReservations(id);
+        List<InstructorCalendarReservationDto> reservationDtos = converter.convert(reservations, InstructorCalendarReservationDto.class);
+        List<InstructorCalendarReservationDto> quickReservationDtos = converter.convert(quickReservations, InstructorCalendarReservationDto.class);
+        List<InstructorCalendarReservationDto> ret = new ArrayList<InstructorCalendarReservationDto>(reservationDtos);
         ret.addAll(quickReservationDtos);
         return ret;
     }

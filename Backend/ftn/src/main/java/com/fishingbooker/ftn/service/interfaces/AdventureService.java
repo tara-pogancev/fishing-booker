@@ -8,7 +8,6 @@ import com.fishingbooker.ftn.dto.AdventureDto;
 import com.fishingbooker.ftn.dto.EntitySearchDto;
 import com.fishingbooker.ftn.dto.InstructorNewReservationDto;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 

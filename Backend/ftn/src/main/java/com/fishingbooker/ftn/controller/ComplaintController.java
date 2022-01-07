@@ -32,14 +32,14 @@ public class ComplaintController {
     }
 
     @GetMapping("/get-waiting-complaints")
-    public List<ComplaintDto> getWaitingCompolaints(){
-        List<Complaint> complaints=complaintService.getWaitingComplaints();
-        List<ComplaintDto> complaintDtos=converter.convert(complaints,ComplaintDto.class);
-        return  complaintDtos;
+    public List<ComplaintDto> getWaitingCompolaints() {
+        List<Complaint> complaints = complaintService.getWaitingComplaints();
+        List<ComplaintDto> complaintDtos = converter.convert(complaints, ComplaintDto.class);
+        return complaintDtos;
     }
 
     @PostMapping("/create-response")
-    public void createResponse(@RequestBody ComplaintResponseDto dto){
+    public void createResponse(@RequestBody ComplaintResponseDto dto) {
         complaintService.createResponse(dto);
     }
 

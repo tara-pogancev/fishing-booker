@@ -1,9 +1,5 @@
 package com.fishingbooker.ftn.controller;
 
-import com.fishingbooker.ftn.bom.boats.Boat;
-import com.fishingbooker.ftn.bom.cottages.Cottage;
-import com.fishingbooker.ftn.bom.users.FishingInstructor;
-import com.fishingbooker.ftn.bom.users.RegisteredClient;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.BoatDto;
 import com.fishingbooker.ftn.dto.CottageDto;
@@ -14,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Set;
 
 @RestController
 @RequiredArgsConstructor
@@ -26,12 +21,12 @@ public class SubscriptionController {
     final private RegisteredClientService clientService;
 
     @PutMapping("/subscribe/{clientId}/{entityType}/{entityId}")
-    public void subscribe(@PathVariable Long clientId, @PathVariable String entityType, @PathVariable Long entityId ) {
+    public void subscribe(@PathVariable Long clientId, @PathVariable String entityType, @PathVariable Long entityId) {
         subscriptionService.subscribe(clientId, entityType, entityId);
     }
 
     @PutMapping("/unsubscribe/{clientId}/{entityType}/{entityId}")
-    public void unsubscribe(@PathVariable Long clientId, @PathVariable String entityType, @PathVariable Long entityId ) {
+    public void unsubscribe(@PathVariable Long clientId, @PathVariable String entityType, @PathVariable Long entityId) {
         subscriptionService.unsubscribe(clientId, entityType, entityId);
     }
 

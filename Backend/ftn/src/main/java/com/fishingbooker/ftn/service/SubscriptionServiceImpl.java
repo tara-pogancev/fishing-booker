@@ -5,7 +5,10 @@ import com.fishingbooker.ftn.bom.cottages.Cottage;
 import com.fishingbooker.ftn.bom.users.FishingInstructor;
 import com.fishingbooker.ftn.bom.users.RegisteredClient;
 import com.fishingbooker.ftn.repository.RegisteredClientRepository;
-import com.fishingbooker.ftn.service.interfaces.*;
+import com.fishingbooker.ftn.service.interfaces.BoatService;
+import com.fishingbooker.ftn.service.interfaces.CottageService;
+import com.fishingbooker.ftn.service.interfaces.FishingInstructorService;
+import com.fishingbooker.ftn.service.interfaces.SubscriptionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +30,7 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     public void subscribe(Long clientId, String entityType, Long entityId) {
         RegisteredClient client = clientRepository.get(clientId);
         if (client != null) {
-            switch(entityType) {
+            switch (entityType) {
                 case "cottage": {
                     Cottage cottage = cottageService.get(entityId);
                     if (cottage != null) {

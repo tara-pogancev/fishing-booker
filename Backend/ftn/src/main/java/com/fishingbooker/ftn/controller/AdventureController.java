@@ -59,41 +59,41 @@ public class AdventureController {
 
     //@PreAuthorize("hasRole('FISHING_INSTRUCTOR')")
     @PostMapping("/add-quick-reservation")
-    public Long addQuickReservation(@RequestBody AdventureQuickReservationDto dto){
-        AdventureQuickReservation reservation=converter.convert(dto,AdventureQuickReservation.class);
+    public Long addQuickReservation(@RequestBody AdventureQuickReservationDto dto) {
+        AdventureQuickReservation reservation = converter.convert(dto, AdventureQuickReservation.class);
         return adventureService.createQuickReservation(reservation);
     }
 
     @PostMapping("/add-reservation")
-    public Long addReservation(@RequestBody InstructorNewReservationDto dto){
+    public Long addReservation(@RequestBody InstructorNewReservationDto dto) {
         return adventureService.createReservation(dto);
     }
 
     @GetMapping("/get-quick-reservations-calendar/{id}")
-    public List<AdventureQuickReservationCalendarDto> getAdventureQuickReservation(@PathVariable  Long id){
-        List<AdventureQuickReservation> reservations=adventureService.getQuickReservations(id);
-        List<AdventureQuickReservationCalendarDto> reservationsDto=converter.convert(reservations,AdventureQuickReservationCalendarDto.class);
+    public List<AdventureQuickReservationCalendarDto> getAdventureQuickReservation(@PathVariable Long id) {
+        List<AdventureQuickReservation> reservations = adventureService.getQuickReservations(id);
+        List<AdventureQuickReservationCalendarDto> reservationsDto = converter.convert(reservations, AdventureQuickReservationCalendarDto.class);
         return reservationsDto;
     }
 
     @GetMapping("/get-reservation/{id}")
-    public ShowReservationInCalendarDto getReservationForCalendar(@PathVariable Long id){
-        AdventureReservation adventureReservation=reservationService.getAdventureReservation(id);
-        ShowReservationInCalendarDto dto=converter.convert(adventureReservation,ShowReservationInCalendarDto.class);
+    public ShowReservationInCalendarDto getReservationForCalendar(@PathVariable Long id) {
+        AdventureReservation adventureReservation = reservationService.getAdventureReservation(id);
+        ShowReservationInCalendarDto dto = converter.convert(adventureReservation, ShowReservationInCalendarDto.class);
         return dto;
     }
 
     @GetMapping("/get-quick-reservation/{id}")
-    public ShowReservationInCalendarDto getQuickReservationForCalendar(@PathVariable Long id){
-        AdventureQuickReservation adventureReservation=reservationService.getAdventureQuickReservation(id);
-        ShowReservationInCalendarDto dto=converter.convert(adventureReservation,ShowReservationInCalendarDto.class);
+    public ShowReservationInCalendarDto getQuickReservationForCalendar(@PathVariable Long id) {
+        AdventureQuickReservation adventureReservation = reservationService.getAdventureQuickReservation(id);
+        ShowReservationInCalendarDto dto = converter.convert(adventureReservation, ShowReservationInCalendarDto.class);
         return dto;
     }
 
     @GetMapping("/get-adventure-utilities/{id}")
-    public List<AdventureUtilityDto> getAdventureUtilities(@PathVariable Long id){
-        List<AdventureUtility> utilities=adventureService.getAdventureUtilities(id);
-        List<AdventureUtilityDto> utilityDtos=converter.convert(utilities,AdventureUtilityDto.class);
+    public List<AdventureUtilityDto> getAdventureUtilities(@PathVariable Long id) {
+        List<AdventureUtility> utilities = adventureService.getAdventureUtilities(id);
+        List<AdventureUtilityDto> utilityDtos = converter.convert(utilities, AdventureUtilityDto.class);
         return utilityDtos;
     }
 

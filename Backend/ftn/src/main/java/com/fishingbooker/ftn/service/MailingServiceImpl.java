@@ -43,7 +43,7 @@ public class MailingServiceImpl implements MailingService {
     }
 
     @Override
-    public void sendComplaintResponse(ApplicationUser client, ApplicationUser owner,String response,String complaint) {
+    public void sendComplaintResponse(ApplicationUser client, ApplicationUser owner, String response, String complaint) {
         ComplaintResponseEmailContext emailContext = new ComplaintResponseEmailContext();
         emailContext.setComplaint(complaint);
         emailContext.setDescription(response);

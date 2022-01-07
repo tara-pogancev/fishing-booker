@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class AdventureUtilityToAdventureUtilityDto implements Converter<AdventureUtility, AdventureUtilityDto> {
     @Override
     public AdventureUtilityDto convert(AdventureUtility source) {
-        AdventureUtilityDto dto=new AdventureUtilityDto();
+        AdventureUtilityDto dto = new AdventureUtilityDto();
         dto.setId(source.getId());
         dto.setName(source.getUtility().getName());
         dto.setUtilityId(source.getUtility().getId());

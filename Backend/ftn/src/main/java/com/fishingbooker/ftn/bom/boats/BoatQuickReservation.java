@@ -1,5 +1,6 @@
 package com.fishingbooker.ftn.bom.boats;
 
+import com.fishingbooker.ftn.bom.adventures.QuickReservationUtility;
 import com.fishingbooker.ftn.bom.reservations.QuickReservation;
 import com.fishingbooker.ftn.bom.users.RegisteredClient;
 import lombok.Getter;
@@ -20,10 +21,10 @@ public class BoatQuickReservation extends QuickReservation {
             name = "boat_quick_reservation_utilities",
             joinColumns = @JoinColumn(name = "boat_reservation_id"),
             inverseJoinColumns = @JoinColumn(name = "boat_utility_id"))
-    private Set<BoatUtility> utilities;
+    private Set<QuickReservationUtility> utilities;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id")
     private RegisteredClient reservationClient;
 
     @ManyToOne

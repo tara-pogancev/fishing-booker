@@ -28,54 +28,55 @@ public class AvailableInstructorTimePeriodServiceImpl implements AvailableInstru
     private final AvailableInstructorTimeRepository availableInstructorTimeRepository;
     private final AdventureReservationRepository adventureReservationRepository;
     private final AdventureQuickReservationRepository adventureQuickReservationRepository;
+
     @Override
     public List<AvailableInstructorTimePeriod> findAll(Long instructorId) {
-        FishingInstructor instructor=instructorRepository.getById(instructorId);
-        List<AvailableInstructorTimePeriod> instructorTimePeriods=new ArrayList<>(instructor.getAvailableTimePeriods());
+        FishingInstructor instructor = instructorRepository.getById(instructorId);
+        List<AvailableInstructorTimePeriod> instructorTimePeriods = new ArrayList<>(instructor.getAvailableTimePeriods());
         return instructorTimePeriods;
     }
 
     @Override
     public Long create(AvailableInstructorTimePeriodDto availableTime) {
-        if (!validate(availableTime.getInstructorId(),UnixTimeToLocalDateTimeConverter.TimeStampToDate(availableTime.getStartDate()),UnixTimeToLocalDateTimeConverter.TimeStampToDate(availableTime.getEndDate()))){
+        if (!validate(availableTime.getInstructorId(), UnixTimeToLocalDateTimeConverter.TimeStampToDate(availableTime.getStartDate()), UnixTimeToLocalDateTimeConverter.TimeStampToDate(availableTime.getEndDate()))) {
             return -1l;
         }
-        if (availableTime.getId()==-1){
-            AvailableInstructorTimePeriod availableInstructorTimePeriod=new AvailableInstructorTimePeriod();
-            FishingInstructor instructor=instructorRepository.getById(availableTime.getInstructorId());
+        if (availableTime.getId() == -1) {
+            AvailableInstructorTimePeriod availableInstructorTimePeriod = new AvailableInstructorTimePeriod();
+            FishingInstructor instructor = instructorRepository.getById(availableTime.getInstructorId());
             availableInstructorTimePeriod.setEndDate(UnixTimeToLocalDateTimeConverter.TimeStampToDate(availableTime.getEndDate()));
             availableInstructorTimePeriod.setStartDate(UnixTimeToLocalDateTimeConverter.TimeStampToDate(availableTime.getStartDate()));
             availableInstructorTimePeriod.setInstructor(instructor);
             return availableInstructorTimeRepository.save(availableInstructorTimePeriod).getId();
-        }else{
-            AvailableInstructorTimePeriod availableInstructorTimePeriod=availableInstructorTimeRepository.get(availableTime.getId());
+        } else {
+            AvailableInstructorTimePeriod availableInstructorTimePeriod = availableInstructorTimeRepository.get(availableTime.getId());
             availableInstructorTimePeriod.setEndDate(UnixTimeToLocalDateTimeConverter.TimeStampToDate(availableTime.getEndDate()));
             availableInstructorTimePeriod.setStartDate(UnixTimeToLocalDateTimeConverter.TimeStampToDate(availableTime.getStartDate()));
             return availableInstructorTimeRepository.save(availableInstructorTimePeriod).getId();
         }
     }
 
-    private boolean validate(Long instructorId, LocalDateTime startDate,LocalDateTime endDate){
-       List<AvailableInstructorTimePeriod> times=availableInstructorTimeRepository.checkOverlaping(instructorId,startDate,endDate);
-       if (times.size()==0){
-           return true;
-       }else{
-           return false;
-       }
+    private boolean validate(Long instructorId, LocalDateTime startDate, LocalDateTime endDate) {
+        List<AvailableInstructorTimePeriod> times = availableInstructorTimeRepository.checkOverlaping(instructorId, startDate, endDate);
+        if (times.size() == 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
     public boolean delete(Long id) {
-        AvailableInstructorTimePeriod availableInstructorTimePeriod=availableInstructorTimeRepository.get(id);
-        FishingInstructor instructor=availableInstructorTimePeriod.getInstructor();
-        List<Adventure> adventures=new ArrayList<>(instructor.getAdventures());
-        for(Adventure adventure:adventures){
-            List<AdventureReservation> reservationsInSelectedDate=adventureReservationRepository.getInSelectedDate(availableInstructorTimePeriod.getStartDate(),availableInstructorTimePeriod.getEndDate(),adventure.getId());
-            if (reservationsInSelectedDate.size()>0){
+        AvailableInstructorTimePeriod availableInstructorTimePeriod = availableInstructorTimeRepository.get(id);
+        FishingInstructor instructor = availableInstructorTimePeriod.getInstructor();
+        List<Adventure> adventures = new ArrayList<>(instructor.getAdventures());
+        for (Adventure adventure : adventures) {
+            List<AdventureReservation> reservationsInSelectedDate = adventureReservationRepository.getInSelectedDate(availableInstructorTimePeriod.getStartDate(), availableInstructorTimePeriod.getEndDate(), adventure.getId());
+            if (reservationsInSelectedDate.size() > 0) {
                 return false;
             }
-            List<AdventureQuickReservation> adventureQuickReservations=adventureQuickReservationRepository.getInSelectedDate(availableInstructorTimePeriod.getStartDate(),availableInstructorTimePeriod.getEndDate(),adventure.getId());
-            if (adventureQuickReservations.size()>0){
+            List<AdventureQuickReservation> adventureQuickReservations = adventureQuickReservationRepository.getInSelectedDate(availableInstructorTimePeriod.getStartDate(), availableInstructorTimePeriod.getEndDate(), adventure.getId());
+            if (adventureQuickReservations.size() > 0) {
                 return false;
             }
         }
@@ -86,24 +87,24 @@ public class AvailableInstructorTimePeriodServiceImpl implements AvailableInstru
     @Override
     public boolean update(ChangeTimeSlotDto dto) {
 
-        if (!validateForUpdate(dto)){
+        if (!validateForUpdate(dto)) {
             return false;
         }
-        FishingInstructor instructor=instructorRepository.getById(dto.getInstructorId());
-        List<Adventure> adventures=new ArrayList<>(instructor.getAdventures());
-        for(Adventure adventure:adventures){
-            List<AdventureReservation> reservationsInSelectedDate=adventureReservationRepository.getInSelectedDate(UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getStartDate()),UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getEndDate()),adventure.getId());
-            List<AdventureReservation> reservationsInNewSelectedDate=adventureReservationRepository.getInSelectedDate(UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getNewStartDate()),UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getNewEndDate()),adventure.getId());
-            if (reservationsInSelectedDate.size()!=reservationsInNewSelectedDate.size()){
+        FishingInstructor instructor = instructorRepository.getById(dto.getInstructorId());
+        List<Adventure> adventures = new ArrayList<>(instructor.getAdventures());
+        for (Adventure adventure : adventures) {
+            List<AdventureReservation> reservationsInSelectedDate = adventureReservationRepository.getInSelectedDate(UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getStartDate()), UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getEndDate()), adventure.getId());
+            List<AdventureReservation> reservationsInNewSelectedDate = adventureReservationRepository.getInSelectedDate(UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getNewStartDate()), UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getNewEndDate()), adventure.getId());
+            if (reservationsInSelectedDate.size() != reservationsInNewSelectedDate.size()) {
                 return false;
             }
-            List<AdventureQuickReservation> quickReservationsInSelectedDate=adventureQuickReservationRepository.getInSelectedDate(UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getStartDate()),UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getEndDate()),adventure.getId());
-            List<AdventureQuickReservation> quickReservationsInNewSelectedDate=adventureQuickReservationRepository.getInSelectedDate(UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getNewStartDate()),UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getNewEndDate()),adventure.getId());
-            if (quickReservationsInSelectedDate.size()!=quickReservationsInNewSelectedDate.size()){
+            List<AdventureQuickReservation> quickReservationsInSelectedDate = adventureQuickReservationRepository.getInSelectedDate(UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getStartDate()), UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getEndDate()), adventure.getId());
+            List<AdventureQuickReservation> quickReservationsInNewSelectedDate = adventureQuickReservationRepository.getInSelectedDate(UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getNewStartDate()), UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getNewEndDate()), adventure.getId());
+            if (quickReservationsInSelectedDate.size() != quickReservationsInNewSelectedDate.size()) {
                 return false;
             }
         }
-        AvailableInstructorTimePeriod period=availableInstructorTimeRepository.get(dto.getId());
+        AvailableInstructorTimePeriod period = availableInstructorTimeRepository.get(dto.getId());
         period.setStartDate(UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getNewStartDate()));
         period.setEndDate(UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getNewEndDate()));
         availableInstructorTimeRepository.save(period);
@@ -111,8 +112,8 @@ public class AvailableInstructorTimePeriodServiceImpl implements AvailableInstru
     }
 
     private boolean validateForUpdate(ChangeTimeSlotDto dto) {
-        List<AvailableInstructorTimePeriod> periods=availableInstructorTimeRepository.checkOverlapingForUpdate(dto.getId(),dto.getInstructorId(),UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getNewStartDate()),UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getNewEndDate()));
-        if (periods.size()==0){
+        List<AvailableInstructorTimePeriod> periods = availableInstructorTimeRepository.checkOverlapingForUpdate(dto.getId(), dto.getInstructorId(), UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getNewStartDate()), UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getNewEndDate()));
+        if (periods.size() == 0) {
             return true;
         }
         return false;

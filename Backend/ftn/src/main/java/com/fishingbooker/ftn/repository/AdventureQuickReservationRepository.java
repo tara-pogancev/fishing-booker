@@ -10,11 +10,11 @@ import java.util.List;
 public interface AdventureQuickReservationRepository extends EntityRepository<AdventureQuickReservation> {
     @Query(value = "SELECT *\n" +
             "\tFROM public.adventure_quick_reservation natural join public.quick_reservation\n" +
-            "where adventure_id=:id and  ((action_end between :startDate and :endDate) and (action_start  between :startDate and :endDate))",nativeQuery = true)
+            "where adventure_id=:id and  ((action_end between :startDate and :endDate) and (action_start  between :startDate and :endDate))", nativeQuery = true)
     List<AdventureQuickReservation> getInSelectedDate(LocalDateTime startDate, LocalDateTime endDate, Long id);
 
     @Query(value = "SELECT *\n" +
             "\tFROM public.adventure_quick_reservation natural join public.quick_reservation\n" +
-            "where adventure_id=:id and  ((:startDate between action_start and action_end) or (:endDate  between action_start and action_end))",nativeQuery = true)
+            "where adventure_id=:id and  ((:startDate between action_start and action_end) or (:endDate  between action_start and action_end))", nativeQuery = true)
     List<AdventureQuickReservation> getOverlappedWithNewAction(LocalDateTime startDate, LocalDateTime endDate, Long id);
 }

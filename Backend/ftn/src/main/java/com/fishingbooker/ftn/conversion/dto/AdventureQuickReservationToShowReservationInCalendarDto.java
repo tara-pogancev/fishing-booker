@@ -9,10 +9,10 @@ import org.springframework.stereotype.Component;
 public class AdventureQuickReservationToShowReservationInCalendarDto implements Converter<AdventureQuickReservation, ShowReservationInCalendarDto> {
     @Override
     public ShowReservationInCalendarDto convert(AdventureQuickReservation source) {
-        ShowReservationInCalendarDto dto=new ShowReservationInCalendarDto();
+        ShowReservationInCalendarDto dto = new ShowReservationInCalendarDto();
 
         dto.setReservationId(source.getId());
-        if (source.getReservationClient()!=null){
+        if (source.getReservationClient() != null) {
             dto.setClientName(source.getReservationClient().getName());
             dto.setClientSurname(source.getReservationClient().getLastName());
         }

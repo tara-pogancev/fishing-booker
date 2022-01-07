@@ -6,9 +6,9 @@ import java.util.TimeZone;
 
 public class UnixTimeToLocalDateTimeConverter {
 
-    public static LocalDateTime TimeStampToDate(Long timestamp){
+    public static LocalDateTime TimeStampToDate(Long timestamp) {
         LocalDateTime triggerTime =
-                LocalDateTime.ofInstant(Instant.ofEpochMilli(timestamp*1000),
+                LocalDateTime.ofInstant(Instant.ofEpochMilli(timestamp * 1000),
                         TimeZone.getDefault().toZoneId());
 
         return triggerTime;

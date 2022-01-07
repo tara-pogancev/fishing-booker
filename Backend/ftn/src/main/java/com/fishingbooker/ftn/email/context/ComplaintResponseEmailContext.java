@@ -2,7 +2,7 @@ package com.fishingbooker.ftn.email.context;
 
 import com.fishingbooker.ftn.bom.users.ApplicationUser;
 
-public class ComplaintResponseEmailContext extends AbstractEmailContext{
+public class ComplaintResponseEmailContext extends AbstractEmailContext {
 
     @Override
     public <T> void init(T context) {
@@ -20,5 +20,7 @@ public class ComplaintResponseEmailContext extends AbstractEmailContext{
         put("response", response);
     }
 
-    public void setComplaint(String complaint) {put ("complaint",complaint);}
+    public void setComplaint(String complaint) {
+        put("complaint", complaint);
+    }
 }

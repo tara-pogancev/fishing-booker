@@ -1,6 +1,5 @@
 package com.fishingbooker.ftn.conversion.dto;
 
-import com.fishingbooker.ftn.bom.Review;
 import com.fishingbooker.ftn.bom.complaints.Complaint;
 import com.fishingbooker.ftn.dto.ReviewDto;
 import org.springframework.core.convert.converter.Converter;

@@ -14,12 +14,10 @@ import com.fishingbooker.ftn.service.interfaces.ImageService;
 import com.fishingbooker.ftn.service.interfaces.RuleOfConductService;
 import com.fishingbooker.ftn.service.interfaces.UtilityService;
 import lombok.RequiredArgsConstructor;
-import org.apache.tomcat.jni.Local;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -167,21 +165,21 @@ public class AdventureServiceImpl implements AdventureService {
 
     @Override
     public Long createQuickReservation(AdventureQuickReservation reservation) {
-        if(!validate(reservation.getAdventure().getInstructor().getId(),reservation.getActionStart(),reservation.getActionEnd())){
+        if (!validate(reservation.getAdventure().getInstructor().getId(), reservation.getActionStart(), reservation.getActionEnd())) {
             return -1l;
-        }else{
-            AdventureQuickReservation persistedReservation=adventureQuickReservationRepository.save(reservation);
+        } else {
+            AdventureQuickReservation persistedReservation = adventureQuickReservationRepository.save(reservation);
             return persistedReservation.getId();
         }
     }
 
-    public Long createReservation(InstructorNewReservationDto dto){
-        Adventure adventure=adventureRepository.getById(dto.getAdventureId());
+    public Long createReservation(InstructorNewReservationDto dto) {
+        Adventure adventure = adventureRepository.getById(dto.getAdventureId());
 
-        if(!validate(adventure.getInstructor().getId(),UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getStartDate()),UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getEndDate()))){
+        if (!validate(adventure.getInstructor().getId(), UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getStartDate()), UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getEndDate()))) {
             return -1l;
-        }else{
-            AdventureReservation adventureReservation=new AdventureReservation();
+        } else {
+            AdventureReservation adventureReservation = new AdventureReservation();
             adventureReservation.setAdventure(adventure);
             adventureReservation.setReservationClient(clientRepository.getById(dto.getClientId()));
             adventureReservation.setReservationStart(UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getStartDate()));
@@ -199,24 +197,24 @@ public class AdventureServiceImpl implements AdventureService {
 
     @Override
     public List<AdventureUtility> getAdventureUtilities(Long id) {
-        Adventure adventure=adventureRepository.getById(id);
+        Adventure adventure = adventureRepository.getById(id);
         return new ArrayList<>(adventure.getUtilities());
     }
 
-    private boolean validate(Long instructorId, LocalDateTime startDate,LocalDateTime endDate) {
-        List<Adventure> adventures=adventureRepository.getInstructorAdventures(instructorId);
-        for (Adventure adventure:adventures){
-            List<AdventureQuickReservation> quickReservations=adventureQuickReservationRepository.getOverlappedWithNewAction(startDate,endDate,adventure.getId());
-            if (quickReservations.size()!=0){ //vec postoji kreiranja brza rezervacija u ovom periodu
+    private boolean validate(Long instructorId, LocalDateTime startDate, LocalDateTime endDate) {
+        List<Adventure> adventures = adventureRepository.getInstructorAdventures(instructorId);
+        for (Adventure adventure : adventures) {
+            List<AdventureQuickReservation> quickReservations = adventureQuickReservationRepository.getOverlappedWithNewAction(startDate, endDate, adventure.getId());
+            if (quickReservations.size() != 0) { //vec postoji kreiranja brza rezervacija u ovom periodu
                 return false;
             }
-            List<AdventureReservation> adventureReservations=adventureReservationRepository.getOverlappedWithNewAction(startDate,endDate,adventure.getId());
-            if (adventureReservations.size()!=0){//vec postoji kreirana obicna rezervacija u ovom periodu
+            List<AdventureReservation> adventureReservations = adventureReservationRepository.getOverlappedWithNewAction(startDate, endDate, adventure.getId());
+            if (adventureReservations.size() != 0) {//vec postoji kreirana obicna rezervacija u ovom periodu
                 return false;
             }
         }
-        List<AvailableInstructorTimePeriod> periods=instructorTimeRepository.getAvailabilityForDate(startDate,endDate,instructorId);
-        if (periods.size()==0){ //znaci da instruktor nije dostupan za vrijeme kreiranja
+        List<AvailableInstructorTimePeriod> periods = instructorTimeRepository.getAvailabilityForDate(startDate, endDate, instructorId);
+        if (periods.size() == 0) { //znaci da instruktor nije dostupan za vrijeme kreiranja
             return false;
         }
         return true;
@@ -225,8 +223,8 @@ public class AdventureServiceImpl implements AdventureService {
 
     @Override
     public List<AdventureQuickReservation> getQuickReservations(Long id) {
-        Adventure adventure=adventureRepository.getById(id);
-        List<AdventureQuickReservation> quickReservations=new ArrayList<>(adventure.getAdventureQuickReservations());
+        Adventure adventure = adventureRepository.getById(id);
+        List<AdventureQuickReservation> quickReservations = new ArrayList<>(adventure.getAdventureQuickReservations());
         return quickReservations;
     }
 

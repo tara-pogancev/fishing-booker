@@ -5,7 +5,6 @@ import com.fishingbooker.ftn.bom.EntityType;
 import com.fishingbooker.ftn.bom.RequestApproval;
 import com.fishingbooker.ftn.bom.reservations.Reservation;
 import com.fishingbooker.ftn.bom.users.ApplicationUser;
-import com.fishingbooker.ftn.bom.users.RegisteredClient;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -1,6 +1,7 @@
 package com.fishingbooker.ftn.bom.cottages;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fishingbooker.ftn.bom.adventures.QuickReservationUtility;
 import com.fishingbooker.ftn.bom.reservations.QuickReservation;
 import com.fishingbooker.ftn.bom.users.RegisteredClient;
 import lombok.Getter;
@@ -21,10 +22,10 @@ public class CottageQuickReservation extends QuickReservation {
             name = "cottage_quick_reservation_utilities",
             joinColumns = @JoinColumn(name = "cottage_reservation_id"),
             inverseJoinColumns = @JoinColumn(name = "cottage_utility_id"))
-    private Set<CottageUtility> utilities;
+    private Set<QuickReservationUtility> utilities;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id")
     private RegisteredClient reservationClient;
 
     @ManyToOne

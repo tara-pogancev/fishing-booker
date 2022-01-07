@@ -25,7 +25,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -132,22 +131,22 @@ public class ComplaintServiceImpl implements ComplaintService {
 
     @Override
     public void createResponse(ComplaintResponseDto dto) {
-        Complaint complaint=complaintRepository.get(dto.getComplaintId());
-        ApplicationUser client=complaint.getUser();
+        Complaint complaint = complaintRepository.get(dto.getComplaintId());
+        ApplicationUser client = complaint.getUser();
         complaint.setApproval(RequestApproval.PROCESSED);
         complaintRepository.save(complaint);
-        if (complaint.getReservationType()==EntityType.BOAT){
-            Boat boat=boatRepository.get(complaint.getEntityId());
-            ApplicationUser owner=boat.getBoatOwner();
-            mailingService.sendComplaintResponse(client,owner,dto.getResponse(),complaint.getDescription());
-        }else if(complaint.getReservationType()==EntityType.ADVENTURE){
-            Adventure adventure=adventureRepository.getById(complaint.getEntityId());
-            ApplicationUser owner=adventure.getInstructor();
-            mailingService.sendComplaintResponse(client,owner,dto.getResponse(),complaint.getDescription());
-        }else{
-            Cottage cottage=cottageRepository.getById(complaint.getEntityId());
-            ApplicationUser owner=cottage.getCottageOwner();
-            mailingService.sendComplaintResponse(client,owner,dto.getResponse(),complaint.getDescription());
+        if (complaint.getReservationType() == EntityType.BOAT) {
+            Boat boat = boatRepository.get(complaint.getEntityId());
+            ApplicationUser owner = boat.getBoatOwner();
+            mailingService.sendComplaintResponse(client, owner, dto.getResponse(), complaint.getDescription());
+        } else if (complaint.getReservationType() == EntityType.ADVENTURE) {
+            Adventure adventure = adventureRepository.getById(complaint.getEntityId());
+            ApplicationUser owner = adventure.getInstructor();
+            mailingService.sendComplaintResponse(client, owner, dto.getResponse(), complaint.getDescription());
+        } else {
+            Cottage cottage = cottageRepository.getById(complaint.getEntityId());
+            ApplicationUser owner = cottage.getCottageOwner();
+            mailingService.sendComplaintResponse(client, owner, dto.getResponse(), complaint.getDescription());
         }
     }
 }

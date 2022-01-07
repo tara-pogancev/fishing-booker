@@ -19,7 +19,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -159,7 +158,7 @@ public class RegisteredClientServiceImpl implements RegisteredClientService {
         RegisteredClient client = get(id);
         List<BoatDto> boats = new ArrayList<>();
         if (client != null) {
-            for (Boat boat: client.getBoatSubscription())
+            for (Boat boat : client.getBoatSubscription())
                 boats.add(converter.convert(boat, BoatDto.class));
         }
         return boats;
@@ -170,7 +169,7 @@ public class RegisteredClientServiceImpl implements RegisteredClientService {
         RegisteredClient client = get(id);
         List<CottageDto> cottages = new ArrayList<>();
         if (client != null) {
-            for (Cottage cottage: client.getCottageSubscription())
+            for (Cottage cottage : client.getCottageSubscription())
                 cottages.add(converter.convert(cottage, CottageDto.class));
         }
         return cottages;
@@ -181,7 +180,7 @@ public class RegisteredClientServiceImpl implements RegisteredClientService {
         RegisteredClient client = get(id);
         List<InstructorSubscriptionDto> instructors = new ArrayList<>();
         if (client != null) {
-            for (FishingInstructor instructor: client.getInstructorSubscription())
+            for (FishingInstructor instructor : client.getInstructorSubscription())
                 instructors.add(converter.convert(instructor, InstructorSubscriptionDto.class));
         }
         return instructors;
@@ -189,8 +188,8 @@ public class RegisteredClientServiceImpl implements RegisteredClientService {
 
     @Override
     public List<RegisteredClient> getClientsWithReservation(Long instructorId) {
-        List<Long> clientsIds=clientRepository.getUsersWithReservationInMoment(instructorId);
-        List<RegisteredClient> clients=clientsIds.stream().map(id -> clientRepository.get(id)).collect(Collectors.toList());
+        List<Long> clientsIds = clientRepository.getUsersWithReservationInMoment(instructorId);
+        List<RegisteredClient> clients = clientsIds.stream().map(id -> clientRepository.get(id)).collect(Collectors.toList());
         return clients;
     }
 

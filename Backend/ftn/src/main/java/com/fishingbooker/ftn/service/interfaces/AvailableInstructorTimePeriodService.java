@@ -14,5 +14,5 @@ public interface AvailableInstructorTimePeriodService {
 
     boolean delete(Long id);
 
-    boolean update( ChangeTimeSlotDto dto);
+    boolean update(ChangeTimeSlotDto dto);
 }

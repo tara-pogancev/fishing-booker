@@ -191,6 +191,7 @@ public class ReservationServiceImpl implements ReservationService {
     public AdventureReservation findAdventureReservation(Long id) {
         return adventureReservationRepository.get(id);
     }
+
     public AdventureReservation getAdventureReservation(Long id) {
         return adventureReservationRepository.get(id);
     }

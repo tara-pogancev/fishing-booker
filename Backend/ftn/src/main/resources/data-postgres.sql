@@ -361,3 +361,19 @@ INSERT INTO public.review(is_approved, date, entity_id, rating, reservation_type
 
 INSERT INTO public.complaint(approved, date, description, entity_id, reservation_type, type, reservation_id, user_id)
 	VALUES (1, '20210310 11:16:00 AM', 'ugh', 3, 1, 0, 8, 1);
+
+-- ACTIONS
+
+INSERT INTO public.quick_reservation(action_end, action_start, guest_limit, is_reserved, price)
+	VALUES ('20220506 10:00:00 AM', '20220501 10:00:00 AM', 5, false, 20);
+INSERT INTO public.quick_reservation(action_end, action_start, guest_limit, is_reserved, price)
+	VALUES ('20220606 10:00:00 AM', '20220601 10:00:00 AM', 3, false, 15);
+INSERT INTO public.quick_reservation(action_end, action_start, guest_limit, is_reserved, price)
+	VALUES ('20220706 10:00:00 AM', '20220701 10:00:00 AM', 4, false, 35);
+
+INSERT INTO public.adventure_quick_reservation(id, adventure_id)	VALUES (1, 1);
+INSERT INTO public.boat_quick_reservation(id, boat_id)	VALUES (2, 1);
+INSERT INTO public.cottage_quick_reservation(id, cottage_id)	VALUES (3, 1);
+
+
+

@@ -13,8 +13,8 @@ public interface RegisteredClientRepository extends EntityRepository<RegisteredC
     @Query("SELECT c from RegisteredClient c WHERE c.enabled=true")
     public List<RegisteredClient> getEnabledClients();
 
-    @Query(value="SELECT user_id\n" +
+    @Query(value = "SELECT user_id\n" +
             "\tFROM public.adventure_reservation natural join public.reservation\n" +
-            "\tWHERE NOW() between reservation_start and reservation_end and :instructorId in (SELECT instructor from public.adventure) ",nativeQuery = true)
+            "\tWHERE NOW() between reservation_start and reservation_end and :instructorId in (SELECT instructor from public.adventure) ", nativeQuery = true)
     List<Long> getUsersWithReservationInMoment(@Param("instructorId") Long instructorId);
 }
