@@ -23,4 +23,5 @@ public class QuickReservationUtility extends DatabaseEntity {
 
     @Column(name = "price", nullable = false)
     private Double price;
+
 }
