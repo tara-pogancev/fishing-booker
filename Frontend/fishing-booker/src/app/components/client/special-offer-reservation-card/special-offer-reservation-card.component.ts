@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AsyncAction } from 'rxjs/internal/scheduler/AsyncAction';
 import { ActionModel } from 'src/app/model/action-model';
+import { ActionService } from 'src/app/service/action.service';
 import { ImageService } from 'src/app/service/image.service';
 import { LoginService } from 'src/app/service/login.service';
 
@@ -14,7 +15,10 @@ export class SpecialOfferReservationCardComponent implements OnInit {
   image: any;
   daysLeft: number;
 
-  constructor(private imageService: ImageService) {}
+  constructor(
+    private imageService: ImageService,
+    private actionService: ActionService
+  ) {}
 
   ngOnInit(): void {
     if (this.action.imageUrls.length != 0) {
@@ -64,8 +68,10 @@ export class SpecialOfferReservationCardComponent implements OnInit {
           this.action.entityName
       )
     ) {
-      window.location.href = 'client-db/UPCOMING';
-      alert('Special Offer succesfully booked!');
+      this.actionService.bookAction(this.action).subscribe((data) => {
+        window.location.href = 'client-db/UPCOMING';
+        alert('Special Offer succesfully booked!');
+      });
     }
   }
 }

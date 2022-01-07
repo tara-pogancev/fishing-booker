@@ -4,10 +4,7 @@ import com.fishingbooker.ftn.bom.DatabaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Getter
@@ -27,5 +24,12 @@ public class Reservation extends DatabaseEntity {
 
     @Column(name = "guestNumber", nullable = false)
     private Integer guestNumber;
+
+    @Column(name = "isCanceled", nullable = false)
+    private Boolean isCanceled = false;
+
+    @ManyToOne
+    @JoinColumn(name="quickReservation_id", nullable=true)
+    private QuickReservation quickReservation;
 
 }

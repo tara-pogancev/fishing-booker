@@ -5,6 +5,7 @@ import com.fishingbooker.ftn.bom.users.RegisteredClient;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.RegisteredClientDto;
 import com.fishingbooker.ftn.dto.ViewReservationDto;
+import com.fishingbooker.ftn.service.interfaces.ActionReservationService;
 import com.fishingbooker.ftn.service.interfaces.RegisteredClientService;
 import com.fishingbooker.ftn.service.interfaces.ReservationService;
 import lombok.RequiredArgsConstructor;
@@ -19,9 +20,10 @@ import java.util.List;
 @RequestMapping("/api/client")
 public class ClientController {
 
+    private final DataConverter converter;
     private final RegisteredClientService clientService;
     private final ReservationService reservationService;
-    private final DataConverter converter;
+    final private ActionReservationService actionReservationService;
 
     @GetMapping
     public List<RegisteredClientDto> findAll() {
@@ -92,5 +94,9 @@ public class ClientController {
         return clientDtos;
     }
 
+    @PostMapping("/book-action/{clientId}/{type}/{actionId}")
+    public Long book(@PathVariable Long clientId, @PathVariable Long actionId, @PathVariable String type) {
+        return actionReservationService.bookAction(clientId, actionId, type);
+    }
 
 }
