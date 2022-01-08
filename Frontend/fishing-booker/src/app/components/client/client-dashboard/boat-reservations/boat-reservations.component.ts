@@ -24,6 +24,8 @@ export class BoatReservationsComponent implements OnInit {
   endDate: Date = new Date();
   people: number = 2;
 
+  didSearch: boolean = false;
+
   constructor(
     private boatService: BoatService,
     private searchService: SearchService
@@ -51,7 +53,8 @@ export class BoatReservationsComponent implements OnInit {
     ) {
       alert('Invalid date input!');
     } else {
-      this.boatService.getSearch(filter).subscribe((data) => {
+      this.boatService.getSearch(filter).subscribe((data) => {        
+        this.didSearch = true;
         this.boatsAll = data;
         this.boats = this.searchService.filter(this.boatsAll, filter)!;
       });
@@ -59,19 +62,23 @@ export class BoatReservationsComponent implements OnInit {
   }
 
   newReservation(entity: EntityModel) {
-    let startDate = this.startDate.toString();
-    let endDate = this.endDate.toString();
-    window.location.href =
-      '/resertvation/new/' +
-      entity.type +
-      '/' +
-      entity.id +
-      '/' +
-      startDate +
-      '/' +
-      endDate +
-      '/' +
-      this.people;
+    if (this.didSearch == false) {
+      alert('Please enter dates before booking!');
+    } else {
+      let startDate = this.startDate.toString();
+      let endDate = this.endDate.toString();
+      window.location.href =
+        '/resertvation/new/' +
+        entity.type +
+        '/' +
+        entity.id +
+        '/' +
+        startDate +
+        '/' +
+        endDate +
+        '/' +
+        this.people;
+    }
   }
 
   previewEntity(entity: EntityModel) {

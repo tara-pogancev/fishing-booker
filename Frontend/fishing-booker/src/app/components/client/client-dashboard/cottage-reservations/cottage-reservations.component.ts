@@ -22,6 +22,8 @@ export class CottageReservationsComponent implements OnInit {
   endDate: Date = new Date();
   people: number = 2;
 
+  didSearch: boolean = false;
+
   constructor(
     private cottageService: CottageService,
     private searchService: SearchService
@@ -30,6 +32,7 @@ export class CottageReservationsComponent implements OnInit {
   ngOnInit(): void {
     let filter = new SearchFilter();
     this.cottageService.getSearch(filter).subscribe((data) => {
+      this.didSearch = true;
       this.cottagesAll = data;
       this.cottages = this.searchService.filter(this.cottagesAll, filter)!;
     });
@@ -57,19 +60,23 @@ export class CottageReservationsComponent implements OnInit {
   }
 
   newReservation(entity: EntityModel) {
-    let startDate = this.startDate.toString();
-    let endDate = this.endDate.toString();
-    window.location.href =
-      '/resertvation/new/' +
-      entity.type +
-      '/' +
-      entity.id +
-      '/' +
-      startDate +
-      '/' +
-      endDate +
-      '/' +
-      this.people;
+    if (this.didSearch == false) {
+      alert('Please enter dates before booking!');
+    } else {
+      let startDate = this.startDate.toString();
+      let endDate = this.endDate.toString();
+      window.location.href =
+        '/resertvation/new/' +
+        entity.type +
+        '/' +
+        entity.id +
+        '/' +
+        startDate +
+        '/' +
+        endDate +
+        '/' +
+        this.people;
+    }
   }
 
   previewEntity(entity: EntityModel) {

@@ -22,6 +22,8 @@ export class FishingReservationsComponent implements OnInit {
   endDate: Date = new Date();
   people: number = 2;
 
+  didSearch: boolean = false;
+
   constructor(
     private adventureService: AdvetnureService,
     private searchService: SearchService
@@ -50,6 +52,7 @@ export class FishingReservationsComponent implements OnInit {
       alert('Invalid date input!');
     } else {
       this.adventureService.getSearch(filter).subscribe((data) => {
+        this.didSearch = true;
         this.adventuresAll = data;
         this.adventures = this.searchService.filter(
           this.adventuresAll,
@@ -60,19 +63,23 @@ export class FishingReservationsComponent implements OnInit {
   }
 
   newReservation(entity: EntityModel) {
-    let startDate = this.startDate.toString();
-    let endDate = this.endDate.toString();
-    window.location.href =
-      '/resertvation/new/' +
-      entity.type +
-      '/' +
-      entity.id +
-      '/' +
-      startDate +
-      '/' +
-      endDate +
-      '/' +
-      this.people;
+    if (this.didSearch == false) {
+      alert('Please enter dates before booking!');
+    } else {
+      let startDate = this.startDate.toString();
+      let endDate = this.endDate.toString();
+      window.location.href =
+        '/resertvation/new/' +
+        entity.type +
+        '/' +
+        entity.id +
+        '/' +
+        startDate +
+        '/' +
+        endDate +
+        '/' +
+        this.people;
+    }
   }
 
   previewEntity(entity: EntityModel) {
