@@ -5,16 +5,16 @@ import { catchError } from 'rxjs/operators';
 
 import { server } from '../app-global';
 import { Client } from '../model/client-model';
+import { SearchFilter } from '../model/search-filter-model';
 import { LoginService } from './login.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ClientService {
-
-  getClientsWithReservationInTheMoment():Observable<Client[]> {
-    const id=this.loginService.getCurrentUser().id;
-    const url = this.url+'/users-with-reservation/'+id;
+  getClientsWithReservationInTheMoment(): Observable<Client[]> {
+    const id = this.loginService.getCurrentUser().id;
+    const url = this.url + '/users-with-reservation/' + id;
     const headers = this.loginService.getHeaders();
     return this._http.get<Client[]>(url, { headers: headers });
   }
@@ -90,5 +90,12 @@ export class ClientService {
     const url = this.url + '/' + id + '/cancel/' + reservationId;
     const headers = this.loginService.getHeaders();
     return this._http.delete<any>(url, { headers: headers });
+  }
+
+  clientDatesOverlap(filter: SearchFilter) {
+    const id = this.loginService.getCurrentUser().id;
+    const url = this.url + '/client-dates-overlap/' + id;
+    const headers = this.loginService.getHeaders();
+    return this._http.post<any>(url, filter, { headers: headers });
   }
 }

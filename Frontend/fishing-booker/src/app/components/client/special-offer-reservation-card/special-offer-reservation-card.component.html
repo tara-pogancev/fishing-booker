@@ -30,8 +30,9 @@
             <br />
 
             <strong
-              ><i class="fa fa-calendar"></i> {{ action.startDate | date }} -
-              {{ action.endDate | date }}</strong
+              ><i class="fa fa-calendar"></i>
+              {{ action.startDate | date: "short" }} -
+              {{ action.endDate | date: "short" }}</strong
             >
             <br />
             <strong
@@ -52,10 +53,7 @@
             >
           </div>
           <div
-            class="
-              column
-              is-flex is-justify-content-flex-end is-align-items-center
-            "
+            class="column is-flex is-justify-content-flex-end is-align-items-center"
           >
             <small>Offer ends in {{ daysLeft }} days!</small>
             <strong class="ml-5 mr-1 star-text"
@@ -63,7 +61,7 @@
             </strong>
             <i class="fa fa-star"></i>
             <div class="buttons ml-5">
-              <button class="button is-danger" (click)="book()">
+              <button class="button is-danger" (click)="book()" [disabled]="datesOverlap">
                 Book Now
               </button>
             </div>

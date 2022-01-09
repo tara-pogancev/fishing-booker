@@ -3,6 +3,7 @@ package com.fishingbooker.ftn.controller;
 import com.fishingbooker.ftn.bom.reservations.Reservation;
 import com.fishingbooker.ftn.bom.users.RegisteredClient;
 import com.fishingbooker.ftn.conversion.DataConverter;
+import com.fishingbooker.ftn.dto.EntitySearchDto;
 import com.fishingbooker.ftn.dto.RegisteredClientDto;
 import com.fishingbooker.ftn.dto.ViewReservationDto;
 import com.fishingbooker.ftn.service.interfaces.ActionReservationService;
@@ -11,6 +12,7 @@ import com.fishingbooker.ftn.service.interfaces.ReservationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +20,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/client")
+@PreAuthorize("hasRole('REGISTERED_CLIENT')")
 public class ClientController {
 
     private final DataConverter converter;
@@ -97,6 +100,11 @@ public class ClientController {
     @PostMapping("/book-action/{clientId}/{type}/{actionId}")
     public Long book(@PathVariable Long clientId, @PathVariable Long actionId, @PathVariable String type) {
         return actionReservationService.bookAction(clientId, actionId, type);
+    }
+
+    @PostMapping("/client-dates-overlap/{userId}")
+    public Boolean clientDatesOverlap(@PathVariable Long userId, @RequestBody EntitySearchDto filterDto) {
+        return clientService.clientHasOverlappingReservation(filterDto.startDate, filterDto.endDate, userId);
     }
 
 }

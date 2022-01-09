@@ -1,7 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { fi } from 'date-fns/locale';
 import { AsyncAction } from 'rxjs/internal/scheduler/AsyncAction';
 import { ActionModel } from 'src/app/model/action-model';
+import { SearchFilter } from 'src/app/model/search-filter-model';
 import { ActionService } from 'src/app/service/action.service';
+import { ClientService } from 'src/app/service/client.service';
 import { ImageService } from 'src/app/service/image.service';
 import { LoginService } from 'src/app/service/login.service';
 
@@ -15,12 +18,23 @@ export class SpecialOfferReservationCardComponent implements OnInit {
   image: any;
   daysLeft: number;
 
+  datesOverlap = false;
+
   constructor(
     private imageService: ImageService,
-    private actionService: ActionService
+    private actionService: ActionService,
+    private clientService: ClientService
   ) {}
 
   ngOnInit(): void {
+    let filter = new SearchFilter();
+    filter.startDate = this.action.startDate;
+    filter.endDate = this.action.endDate;
+
+    this.clientService.clientDatesOverlap(filter).subscribe((data) => {
+      this.datesOverlap = data;
+    });
+
     if (this.action.imageUrls.length != 0) {
       this.image = this.action.imageUrls[0];
     } else {
