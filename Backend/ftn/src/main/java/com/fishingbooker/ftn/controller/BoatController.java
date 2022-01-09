@@ -56,4 +56,5 @@ public class BoatController {
     public Long book(@RequestBody ReservationDto reservationDto) {
         return reservationService.bookBoat(reservationDto).getId();
     }
+
 }

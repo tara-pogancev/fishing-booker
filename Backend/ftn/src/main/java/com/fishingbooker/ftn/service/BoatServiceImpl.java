@@ -2,11 +2,13 @@ package com.fishingbooker.ftn.service;
 
 import com.fishingbooker.ftn.bom.AvailableTimePeriod;
 import com.fishingbooker.ftn.bom.boats.Boat;
+import com.fishingbooker.ftn.bom.boats.BoatReservation;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.conversion.UnixTimeToLocalDateTimeConverter;
 import com.fishingbooker.ftn.dto.BoatDto;
 import com.fishingbooker.ftn.dto.EntitySearchDto;
 import com.fishingbooker.ftn.repository.BoatRepository;
+import com.fishingbooker.ftn.repository.BoatReservationRepository;
 import com.fishingbooker.ftn.service.interfaces.BoatService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,8 +23,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BoatServiceImpl implements BoatService {
 
-    private final BoatRepository boatRepository;
     private final DataConverter converter;
+    private final BoatRepository boatRepository;
+    private final BoatReservationRepository boatReservationRepository;
 
     @Override
     public List<Boat> findAll() {
@@ -74,6 +77,11 @@ public class BoatServiceImpl implements BoatService {
     @Override
     public Boat get(Long entityId) {
         return boatRepository.get(entityId);
+    }
+
+    @Override
+    public List<BoatReservation> getReservationsByBoat(Long boatId) {
+        return boatReservationRepository.getWaitingComplaints(boatId);
     }
 
 

@@ -5,6 +5,8 @@ import {
   CalendarView,
 } from 'angular-calendar';
 import { AvailableTimePeriod } from 'src/app/model/available-time-period';
+import { ReservationModel } from 'src/app/model/reservation-model';
+import { colors } from './calendar-colors';
 import { CustomDateFormatter } from './custom-date-formatter.provider';
 
 @Component({
@@ -23,6 +25,7 @@ export class CalendarComponent implements OnInit {
   viewDate: Date = new Date();
   events: CalendarEvent[] = [];
   @Input() availableDates: AvailableTimePeriod[] = [];
+  @Input() reservationDates: ReservationModel[] = [];
 
   constructor() {}
 
@@ -33,6 +36,20 @@ export class CalendarComponent implements OnInit {
         title: 'Available',
         start: new Date(date.startDate),
         end: new Date(date.endDate),
+        allDay: false,
+        color: colors.green,
+      };
+
+      this.events.push(event);
+    }
+
+    for (let date of this.reservationDates) {
+      let event = {
+        title: 'Booked',
+        start: new Date(date.startDate),
+        end: new Date(date.endDate),
+        allDay: false,
+        color: colors.red,
       };
 
       this.events.push(event);

@@ -17,6 +17,11 @@ export class BoatService {
     return this._http.get<any>(this.url + '/' + id);
   }
 
+  getBoatReservations(id: number) {
+    const url = this.url + '/reservations/' + id;
+    return this._http.get<any>(url);
+  }
+
   findAll() {
     return this._http.get<any>(this.url);
   }

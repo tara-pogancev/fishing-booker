@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Boat } from 'src/app/model/boat-model';
+import { ReservationModel } from 'src/app/model/reservation-model';
 import { ReviewModel } from 'src/app/model/review-model';
 import { BoatService } from 'src/app/service/boat.service';
 import { ImageService } from 'src/app/service/image.service';
@@ -14,6 +15,8 @@ import { SubscriptionService } from 'src/app/service/subscription-service';
 export class BoatPageComponent implements OnInit {
   id: number = 0;
   boat: Boat = new Boat();
+  reservations: ReservationModel[] = [];
+  reservationsLoaded: boolean = false;
   navEquipment: string = '';
   image: any = 'assets/images/placeholder.jpg';
   reviews: ReviewModel[] = [];
@@ -40,6 +43,11 @@ export class BoatPageComponent implements OnInit {
 
       console.log(data);
     });
+
+    this.boatService.getBoatReservations(this.id).subscribe((data) => {
+      this.reservations = data;
+      this.reservationsLoaded = true;
+    })
 
     this.boatService.getReviews(this.id).subscribe((data) => {
       this.reviews = data;

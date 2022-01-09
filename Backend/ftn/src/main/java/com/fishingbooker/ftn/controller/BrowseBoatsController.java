@@ -2,9 +2,12 @@ package com.fishingbooker.ftn.controller;
 
 import com.fishingbooker.ftn.bom.Review;
 import com.fishingbooker.ftn.bom.boats.Boat;
+import com.fishingbooker.ftn.bom.boats.BoatReservation;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.BoatDto;
+import com.fishingbooker.ftn.dto.ReservationDto;
 import com.fishingbooker.ftn.dto.ReviewDto;
+import com.fishingbooker.ftn.dto.ViewReservationDto;
 import com.fishingbooker.ftn.service.interfaces.BoatService;
 import com.fishingbooker.ftn.service.interfaces.ReviewService;
 import lombok.RequiredArgsConstructor;
@@ -40,6 +43,12 @@ public class BrowseBoatsController {
     public List<ReviewDto> getClientReviewsComplaints(@PathVariable Long id) {
         List<Review> reviews = reviewService.getEntityReviews("boat", id);
         return converter.convert(reviews, ReviewDto.class);
+    }
+
+    @GetMapping("/reservations/{boatId}")
+    public List<ViewReservationDto> getBoatReservations(@PathVariable Long boatId) {
+        List<BoatReservation> reservations = boatService.getReservationsByBoat(boatId);
+        return converter.convert(reservations, ViewReservationDto.class);
     }
 
 }

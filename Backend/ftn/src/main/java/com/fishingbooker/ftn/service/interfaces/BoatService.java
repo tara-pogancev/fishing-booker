@@ -1,6 +1,7 @@
 package com.fishingbooker.ftn.service.interfaces;
 
 import com.fishingbooker.ftn.bom.boats.Boat;
+import com.fishingbooker.ftn.bom.boats.BoatReservation;
 import com.fishingbooker.ftn.dto.BoatDto;
 import com.fishingbooker.ftn.dto.EntitySearchDto;
 
@@ -20,5 +21,7 @@ public interface BoatService {
     List<Boat> findFiltered(EntitySearchDto filterDto);
 
     Boat get(Long entityId);
+
+    List<BoatReservation> getReservationsByBoat(Long boatId);
 
 }

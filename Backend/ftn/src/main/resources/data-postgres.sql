@@ -269,18 +269,18 @@ INSERT INTO public.system_properties(gold_points, income_percentage, reservation
 
 -- AVAILABLE TIME PERIOD
 
-INSERT INTO public.available_time_period(start_date, end_date)	VALUES ('20211205 10:00:00 AM', '20211231 10:00:00 AM');
-INSERT INTO public.available_time_period(start_date, end_date)	VALUES ('20220105 10:00:00 AM', '20220125 10:00:00 AM');
-INSERT INTO public.available_time_period(start_date, end_date)	VALUES ('20220105 10:00:00 AM', '20220125 10:00:00 AM');
+INSERT INTO public.available_time_period(start_date, end_date)	VALUES ('20211205 10:00:00 AM', '20221231 10:00:00 AM');
+INSERT INTO public.available_time_period(start_date, end_date)	VALUES ('20220105 10:00:00 AM', '20220325 10:00:00 AM');
+INSERT INTO public.available_time_period(start_date, end_date)	VALUES ('20220105 10:00:00 AM', '20220525 10:00:00 AM');
 INSERT INTO public.available_time_period(start_date, end_date)	VALUES ('20211205 10:00:00 AM', '20211225 10:00:00 AM');
 INSERT INTO public.available_time_period(start_date, end_date)	VALUES ('20211205 10:00:00 AM', '20211225 10:00:00 AM');
-INSERT INTO public.available_time_period(start_date, end_date)	VALUES ('20220105 10:00:00 AM', '20220125 10:00:00 AM');
-INSERT INTO public.available_time_period(start_date, end_date)	VALUES ('20220105 10:00:00 AM', '20220125 10:00:00 AM');
+INSERT INTO public.available_time_period(start_date, end_date)	VALUES ('20220105 10:00:00 AM', '20220325 10:00:00 AM');
+INSERT INTO public.available_time_period(start_date, end_date)	VALUES ('20220105 10:00:00 AM', '20220325 10:00:00 AM');
 INSERT INTO public.available_time_period(start_date, end_date)	VALUES ('20211205 10:00:00 AM', '20211225 10:00:00 AM');
 INSERT INTO public.available_time_period(start_date, end_date)	VALUES ('20211205 10:00:00 AM', '20211210 10:00:00 AM');
 INSERT INTO public.available_time_period(start_date, end_date)	VALUES ('20211225 10:00:00 AM', '20211230 10:00:00 AM');
-INSERT INTO public.available_time_period(start_date, end_date)	VALUES ('20220105 10:00:00 AM', '20220110 10:00:00 AM');
-INSERT INTO public.available_time_period(start_date, end_date)	VALUES ('20220113 10:00:00 AM', '20220124 10:00:00 AM');
+INSERT INTO public.available_time_period(start_date, end_date)	VALUES ('20220105 10:00:00 AM', '20220210 10:00:00 AM');
+INSERT INTO public.available_time_period(start_date, end_date)	VALUES ('20220113 10:00:00 AM', '20220224 10:00:00 AM');
 
 -- BOAT AVAILABILITY
 
@@ -314,9 +314,9 @@ INSERT INTO public.reservation(guest_number, price, reservation_end, reservation
 INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled)	VALUES (9, 54, '20200215 10:00:00 AM', '20200208 10:00:00 AM', false);
 INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled)	VALUES (2, 86, '20200606 10:00:00 AM', '20200602 10:00:00 AM', false);
 
-INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled)	VALUES (4, 54, '20220105 10:00:00 AM', '20220101 10:00:00 AM', false);
+INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled)	VALUES (4, 54, '20220205 10:00:00 AM', '20220201 10:00:00 AM', false);
 INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled)	VALUES (5, 78, '20220106 10:00:00 AM', '20220102 10:00:00 AM', false);
-INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled)	VALUES (1, 32, '20220107 10:00:00 AM', '20220104 10:00:00 AM', false);
+INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled)	VALUES (1, 32, '20220131 10:00:00 AM', '20220120 10:00:00 AM', false);
 INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled)	VALUES (6, 10, '20220108 10:00:00 AM', '20220101 10:00:00 AM', false);
 
 INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled)	VALUES (6, 84, '20191010 10:00:00 AM', '20191005 10:00:00 AM', false);

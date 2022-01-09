@@ -6,8 +6,8 @@
     <div
       class="cal-cell-top"
       [ngClass]="{
-        available: day.events.length > 0,
-        unavailable: day.events.length == 0
+        available: day.events.length == 1,
+        unavailable: day.events.length == 2
       }"
     >
       <span class="cal-day-number">{{

@@ -94,8 +94,9 @@
     <hr />
     <div>
       <entity-calendar
-        *ngIf="boat.id != 0"
+        *ngIf="boat.id != 0 && reservationsLoaded"
         [availableDates]="boat.availableTimePeriods"
+        [reservationDates]="reservations"
       ></entity-calendar>
     </div>
     <h3>Reviews</h3>
