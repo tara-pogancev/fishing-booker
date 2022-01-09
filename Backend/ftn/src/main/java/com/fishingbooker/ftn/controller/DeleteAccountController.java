@@ -8,6 +8,7 @@ import com.fishingbooker.ftn.dto.CreateDeleteAccountRequestDto;
 import com.fishingbooker.ftn.dto.DeleteAccountRequestDto;
 import com.fishingbooker.ftn.service.interfaces.DeleteAccountService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,6 +29,7 @@ public class DeleteAccountController {
     }
 
     @PostMapping()
+    @PreAuthorize("hasRole('REGISTERED_CLIENT')")
     public Long createRequest(@RequestBody CreateDeleteAccountRequestDto dto) {
         DeleteAccountRequest deleteAccountRequest = new DeleteAccountRequest(dto.getUserId(), dto.getDescription(), RequestApproval.WAITING);
         return deleteAccountService.create(deleteAccountRequest);
@@ -44,6 +46,7 @@ public class DeleteAccountController {
     }
 
     @GetMapping("/active-request/{id}")
+    @PreAuthorize("hasRole('REGISTERED_CLIENT')")
     public Boolean clientHasActiveRequest(@PathVariable Long id) {
         return deleteAccountService.clientHasActiveRequest(id);
     }

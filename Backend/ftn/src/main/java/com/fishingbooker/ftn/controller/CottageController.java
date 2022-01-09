@@ -13,6 +13,7 @@ import com.fishingbooker.ftn.service.interfaces.ReservationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -47,6 +48,7 @@ public class CottageController {
 
     // Post because of request body
     @PostMapping("/search/{userId}")
+    @PreAuthorize("hasRole('REGISTERED_CLIENT')")
     public ResponseEntity<List<CottageDto>> getSearch(@RequestBody EntitySearchDto filterDto, @PathVariable Long userId) {
         if (clientService.clientHasOverlappingReservation(filterDto.startDate, filterDto.endDate, userId)) {
             return new ResponseEntity<>(null, HttpStatus.CONFLICT);

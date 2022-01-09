@@ -20,7 +20,6 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/client")
-@PreAuthorize("hasRole('REGISTERED_CLIENT')")
 public class ClientController {
 
     private final DataConverter converter;
@@ -45,6 +44,7 @@ public class ClientController {
     }
 
     @PutMapping
+    @PreAuthorize("hasRole('REGISTERED_CLIENT')")
     public void update(@RequestBody RegisteredClientDto dto) {
         clientService.update(dto);
     }
@@ -61,30 +61,35 @@ public class ClientController {
     }
 
     @GetMapping("/{id}/past-reservations/cottages")
+    @PreAuthorize("hasRole('REGISTERED_CLIENT')")
     public List<ViewReservationDto> getPastCottageReservations(@PathVariable Long id) {
         List<Reservation> reservations = clientService.getPastCottageReservations(id);
         return converter.convert(reservations, ViewReservationDto.class);
     }
 
     @GetMapping("/{id}/past-reservations/boats")
+    @PreAuthorize("hasRole('REGISTERED_CLIENT')")
     public List<ViewReservationDto> getPastBoatReservations(@PathVariable Long id) {
         List<Reservation> reservations = clientService.getPastBoatReservations(id);
         return converter.convert(reservations, ViewReservationDto.class);
     }
 
     @GetMapping("/{id}/past-reservations/adventures")
+    @PreAuthorize("hasRole('REGISTERED_CLIENT')")
     public List<ViewReservationDto> getPastAdventureReservations(@PathVariable Long id) {
         List<Reservation> reservations = clientService.getPastAdventureReservations(id);
         return converter.convert(reservations, ViewReservationDto.class);
     }
 
     @GetMapping("/{id}/upcoming-reservations")
+    @PreAuthorize("hasRole('REGISTERED_CLIENT')")
     public List<ViewReservationDto> getUpcomingReservations(@PathVariable Long id) {
         List<Reservation> reservations = clientService.getUpcomingReservations(id);
         return converter.convert(reservations, ViewReservationDto.class);
     }
 
     @DeleteMapping("/{id}/cancel/{reservationId}")
+    @PreAuthorize("hasRole('REGISTERED_CLIENT')")
     public ResponseEntity cancelReservation(@PathVariable Long id, @PathVariable Long reservationId) {
         reservationService.cancel(reservationId);
         return new ResponseEntity(HttpStatus.OK);
@@ -103,6 +108,7 @@ public class ClientController {
     }
 
     @PostMapping("/client-dates-overlap/{userId}")
+    @PreAuthorize("hasRole('REGISTERED_CLIENT')")
     public Boolean clientDatesOverlap(@PathVariable Long userId, @RequestBody EntitySearchDto filterDto) {
         return clientService.clientHasOverlappingReservation(filterDto.startDate, filterDto.endDate, userId);
     }

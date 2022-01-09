@@ -8,6 +8,7 @@ import com.fishingbooker.ftn.dto.ViewReservationDto;
 import com.fishingbooker.ftn.service.interfaces.ComplaintService;
 import com.fishingbooker.ftn.service.interfaces.ReviewService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,12 +25,14 @@ public class ReviewController {
     private final ComplaintService complaintService;
 
     @GetMapping("/available-reviews/{clientId}")
+    @PreAuthorize("hasRole('REGISTERED_CLIENT')")
     public List<ViewReservationDto> getAvailableClientReviews(@PathVariable Long clientId) {
         List<Reservation> reservations = reviewService.getAvailableClientReviews(clientId);
         return converter.convert(reservations, ViewReservationDto.class);
     }
 
     @GetMapping("/client-reviews-complaints/{clientId}")
+    @PreAuthorize("hasRole('REGISTERED_CLIENT')")
     public List<ReviewDto> getClientReviewsComplaints(@PathVariable Long clientId) {
         List<ReviewDto> reviews = converter.convert(reviewService.getReviewsByClient(clientId), ReviewDto.class);
         List<ReviewDto> complaints = converter.convert(complaintService.getComplaintsByUser(clientId), ReviewDto.class);
@@ -38,6 +41,7 @@ public class ReviewController {
     }
 
     @PostMapping("/new-review")
+    @PreAuthorize("hasRole('REGISTERED_CLIENT')")
     public void writeReview(@RequestBody ReviewDto dto) {
         reviewService.create(dto);
     }

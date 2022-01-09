@@ -103,6 +103,7 @@ public class AdventureController {
     }
 
     // Post because of request body
+    @PreAuthorize("hasRole('REGISTERED_CLIENT')")
     @PostMapping("/search/{userId}")
     public ResponseEntity<List<AdventureDto>> getSearch(@RequestBody EntitySearchDto filterDto, @PathVariable Long userId) {
         if (clientService.clientHasOverlappingReservation(filterDto.startDate, filterDto.endDate, userId)) {
