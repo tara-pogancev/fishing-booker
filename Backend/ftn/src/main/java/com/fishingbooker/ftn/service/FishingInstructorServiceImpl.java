@@ -7,6 +7,7 @@ import com.fishingbooker.ftn.bom.adventures.AdventureReservation;
 import com.fishingbooker.ftn.bom.users.FishingInstructor;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.ApplicationUserDto;
+import com.fishingbooker.ftn.repository.AdventureReservationRepository;
 import com.fishingbooker.ftn.repository.FishingInstructorRepository;
 import com.fishingbooker.ftn.service.interfaces.AddressService;
 import com.fishingbooker.ftn.service.interfaces.FishingInstructorService;
@@ -24,8 +25,9 @@ import java.util.List;
 public class FishingInstructorServiceImpl implements FishingInstructorService {
 
     private final DataConverter converter;
-    private final FishingInstructorRepository instructorRepository;
     private final AddressService addressService;
+    private final FishingInstructorRepository instructorRepository;
+    private final AdventureReservationRepository adventureReservationRepository;
 
     @Override
     public List<FishingInstructor> findAll() {
@@ -75,6 +77,11 @@ public class FishingInstructorServiceImpl implements FishingInstructorService {
             ret.addAll(reservations);
         }
         return ret;
+    }
+
+    @Override
+    public List<AdventureReservation> getNonCanceledInstructorReservations(Long id) {
+        return adventureReservationRepository.getInstructorReservations(id);
     }
 
     @Override

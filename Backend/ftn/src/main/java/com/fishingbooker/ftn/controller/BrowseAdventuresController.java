@@ -45,7 +45,7 @@ public class BrowseAdventuresController {
 
     @GetMapping("/reservations/{adventureId}")
     public List<ViewReservationDto> getInstructorReservations(@PathVariable Long adventureId) {
-        List<AdventureReservation> reservations = fishingInstructorService.getInstructorReservations(adventureService.get(adventureId).getInstructor().getId());
+        List<AdventureReservation> reservations = fishingInstructorService.getNonCanceledInstructorReservations(adventureService.get(adventureId).getInstructor().getId());
         return converter.convert(reservations, ViewReservationDto.class);
     }
 

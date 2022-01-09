@@ -125,18 +125,39 @@ public class CottageServiceImpl implements CottageService {
     }
 
     @Override
-    public List<Cottage> findFiltered(EntitySearchDto filterDto) {
+    public List<Cottage> findFiltered(EntitySearchDto filterDto, Long userId) {
         filterDto.setEndDate(UnixTimeToLocalDateTimeConverter.adjustDefaultTimeZone(filterDto.endDate));
         filterDto.setStartDate(UnixTimeToLocalDateTimeConverter.adjustDefaultTimeZone(filterDto.startDate));
 
         List<Cottage> cottages = new ArrayList<>();
+        List<Cottage> formerlyCanceled = getFormerlyCanceledCottagesByUserByDate(filterDto, userId);
 
         for (Cottage cottage : filterByDate(filterDto.startDate, filterDto.endDate)) {
-            if (cottage.getGuestLimit() >= filterDto.people && (cottage.getAddress().getCountry().equals(filterDto.country) || filterDto.country.equals("")))
+            if (!isIdInList(formerlyCanceled, cottage.getId()) && cottage.getGuestLimit() >= filterDto.people && (cottage.getAddress().getCountry().equals(filterDto.country) || filterDto.country.equals("")))
                 cottages.add(cottage);
         }
 
         return cottages;
+    }
+
+    private List<Cottage> getFormerlyCanceledCottagesByUserByDate(EntitySearchDto filterDto, Long userId) {
+        List<CottageReservation> canceled = reservationRepository.getClientCanceledCottageReservations(userId);
+        List<Cottage> formerlyCanceledCottages = new ArrayList<>();
+        for (CottageReservation reservation : canceled) {
+            if (dateService.doDatesMatchNearby(filterDto.startDate, filterDto.endDate, reservation.getReservationStart(), reservation.getReservationEnd())) {
+                formerlyCanceledCottages.add(reservation.getCottage());
+            }
+        }
+        return formerlyCanceledCottages;
+    }
+
+    private boolean isIdInList (List<Cottage> list, Long id) {
+        for (Cottage cottage : list) {
+            if (cottage.getId() == id) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

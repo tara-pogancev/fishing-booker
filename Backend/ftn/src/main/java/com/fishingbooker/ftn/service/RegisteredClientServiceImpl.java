@@ -100,7 +100,7 @@ public class RegisteredClientServiceImpl implements RegisteredClientService {
         List<Reservation> reservations = new ArrayList<>();
         if (client != null) {
             for (CottageReservation cottageReservation : client.getCottageReservations())
-                if (cottageReservation.getReservationStart().isBefore(LocalDateTime.now()))
+                if (cottageReservation.getReservationStart().isBefore(LocalDateTime.now()) && !cottageReservation.getIsCanceled())
                     reservations.add(cottageReservation);
         }
         return reservations;
@@ -112,7 +112,7 @@ public class RegisteredClientServiceImpl implements RegisteredClientService {
         List<Reservation> reservations = new ArrayList<>();
         if (client != null) {
             for (BoatReservation boatReservation : client.getBoatReservations())
-                if (boatReservation.getReservationStart().isBefore(LocalDateTime.now()))
+                if (boatReservation.getReservationStart().isBefore(LocalDateTime.now()) && !boatReservation.getIsCanceled())
                     reservations.add(boatReservation);
         }
         return reservations;
@@ -124,7 +124,7 @@ public class RegisteredClientServiceImpl implements RegisteredClientService {
         List<Reservation> reservations = new ArrayList<>();
         if (client != null) {
             for (AdventureReservation adventureReservation : client.getAdventureReservations())
-                if (adventureReservation.getReservationStart().isBefore(LocalDateTime.now()))
+                if (adventureReservation.getReservationStart().isBefore(LocalDateTime.now()) && !adventureReservation.getIsCanceled())
                     reservations.add(adventureReservation);
         }
         return reservations;

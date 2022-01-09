@@ -5,6 +5,8 @@ import com.fishingbooker.ftn.bom.adventures.Adventure;
 import com.fishingbooker.ftn.bom.adventures.AdventureReservation;
 import com.fishingbooker.ftn.bom.boats.Boat;
 import com.fishingbooker.ftn.bom.boats.BoatReservation;
+import com.fishingbooker.ftn.bom.cottages.Cottage;
+import com.fishingbooker.ftn.bom.cottages.CottageReservation;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.conversion.UnixTimeToLocalDateTimeConverter;
 import com.fishingbooker.ftn.dto.BoatDto;
@@ -73,18 +75,39 @@ public class BoatServiceImpl implements BoatService {
     }
 
     @Override
-    public List<Boat> findFiltered(EntitySearchDto filterDto) {
+    public List<Boat> findFiltered(EntitySearchDto filterDto, Long userId) {
         filterDto.setEndDate(UnixTimeToLocalDateTimeConverter.adjustDefaultTimeZone(filterDto.endDate));
         filterDto.setStartDate(UnixTimeToLocalDateTimeConverter.adjustDefaultTimeZone(filterDto.startDate));
 
         List<Boat> boats = new ArrayList<>();
+        List<Boat> formerlyCanceled = getFormerlyCanceledBoatsByUserByDate(filterDto, userId);
 
         for (Boat boat : filterByDate(filterDto.startDate, filterDto.endDate)) {
-            if (boat.getGuestLimit() >= filterDto.people && (boat.getAddress().getCountry().equals(filterDto.country) || filterDto.country.equals("")))
+            if (!isIdInList(formerlyCanceled, boat.getId()) && boat.getGuestLimit() >= filterDto.people && (boat.getAddress().getCountry().equals(filterDto.country) || filterDto.country.equals("")))
                 boats.add(boat);
         }
 
         return boats;
+    }
+
+    private List<Boat> getFormerlyCanceledBoatsByUserByDate(EntitySearchDto filterDto, Long userId) {
+        List<BoatReservation> canceled = boatReservationRepository.getClientCanceledBoatReservations(userId);
+        List<Boat> formerlyCanceledBoats = new ArrayList<>();
+        for (BoatReservation reservation : canceled) {
+            if (dateService.doDatesMatchNearby(filterDto.startDate, filterDto.endDate, reservation.getReservationStart(), reservation.getReservationEnd())) {
+                formerlyCanceledBoats.add(reservation.getBoat());
+            }
+        }
+        return formerlyCanceledBoats;
+    }
+
+    private boolean isIdInList (List<Boat> list, Long id) {
+        for (Boat boat : list) {
+            if (boat.getId() == id) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

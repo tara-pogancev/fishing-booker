@@ -84,4 +84,17 @@ public class DateServiceImpl implements DateService {
         return false;
     }
 
+    /**
+     * Takes the start of day for both start and both end dates and compares them.
+     * @param start1
+     * @param end1
+     * @param start2
+     * @param end2
+     * @return
+     */
+    @Override
+    public boolean doDatesMatchNearby(LocalDateTime start1, LocalDateTime end1, LocalDateTime start2, LocalDateTime end2) {
+        return (start1.toLocalDate().isEqual(start2.toLocalDate()) && end1.toLocalDate().isEqual(end2.toLocalDate()));
+    }
+
 }

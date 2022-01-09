@@ -23,4 +23,6 @@ public interface DateService {
 
     boolean doDatesOverlapWithCottagePeriodSet(LocalDateTime start, LocalDateTime end, Set<AvailableCottageTimePeriod> periods);
 
+    boolean doDatesMatchNearby(LocalDateTime start1, LocalDateTime end1, LocalDateTime start2, LocalDateTime end2);
+
 }

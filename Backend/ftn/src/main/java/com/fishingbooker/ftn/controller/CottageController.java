@@ -53,7 +53,7 @@ public class CottageController {
         if (clientService.clientHasOverlappingReservation(filterDto.startDate, filterDto.endDate, userId)) {
             return new ResponseEntity<>(null, HttpStatus.CONFLICT);
         } else {
-            List<Cottage> cottages = cottageService.findFiltered(filterDto);
+            List<Cottage> cottages = cottageService.findFiltered(filterDto, userId);
             List<CottageDto> dtoRetVal = converter.convert(cottages, CottageDto.class);
             return new ResponseEntity<>(dtoRetVal, HttpStatus.OK);
         }

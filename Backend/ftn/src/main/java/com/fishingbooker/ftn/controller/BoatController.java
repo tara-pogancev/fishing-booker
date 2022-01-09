@@ -41,7 +41,7 @@ public class BoatController {
         if (clientService.clientHasOverlappingReservation(filterDto.startDate, filterDto.endDate, userId)) {
             return new ResponseEntity<>(null, HttpStatus.CONFLICT);
         } else {
-            List<Boat> boats = boatService.findFiltered(filterDto);
+            List<Boat> boats = boatService.findFiltered(filterDto, userId);
             List<BoatDto> dtoRetVal = converter.convert(boats, BoatDto.class);
             return new ResponseEntity<>(dtoRetVal, HttpStatus.OK);
         }

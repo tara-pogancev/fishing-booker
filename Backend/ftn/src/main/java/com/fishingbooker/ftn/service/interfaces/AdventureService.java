@@ -31,7 +31,7 @@ public interface AdventureService {
 
     List<Adventure> filterByDate(LocalDateTime startDate, LocalDateTime endDate);
 
-    List<Adventure> findFiltered(EntitySearchDto filterDto);
+    List<Adventure> findFiltered(EntitySearchDto filterDto, Long userId);
 
     Long createQuickReservation(AdventureQuickReservation reservation);
 

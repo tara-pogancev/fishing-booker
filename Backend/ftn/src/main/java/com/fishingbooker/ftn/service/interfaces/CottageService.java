@@ -26,7 +26,7 @@ public interface CottageService {
 
     List<Cottage> filterByDate(LocalDateTime startDate, LocalDateTime endDate);
 
-    List<Cottage> findFiltered(EntitySearchDto filterDto);
+    List<Cottage> findFiltered(EntitySearchDto filterDto, Long userId);
 
     List<CottageReservation> getReservationsByCottage(Long cottageId);
 

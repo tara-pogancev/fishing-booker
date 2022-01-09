@@ -109,7 +109,7 @@ public class AdventureController {
         if (clientService.clientHasOverlappingReservation(filterDto.startDate, filterDto.endDate, userId)) {
             return new ResponseEntity<>(null, HttpStatus.CONFLICT);
         } else {
-            List<Adventure> adventures = adventureService.findFiltered(filterDto);
+            List<Adventure> adventures = adventureService.findFiltered(filterDto, userId);
             List<AdventureDto> dtoRetVal = converter.convert(adventures, AdventureDto.class);
             return new ResponseEntity<>(dtoRetVal, HttpStatus.OK);
         }

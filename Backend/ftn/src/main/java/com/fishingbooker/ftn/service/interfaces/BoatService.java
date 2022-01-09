@@ -18,7 +18,7 @@ public interface BoatService {
 
     List<Boat> filterByDate(LocalDateTime startDate, LocalDateTime endDate);
 
-    List<Boat> findFiltered(EntitySearchDto filterDto);
+    List<Boat> findFiltered(EntitySearchDto filterDto, Long userId);
 
     Boat get(Long entityId);
 

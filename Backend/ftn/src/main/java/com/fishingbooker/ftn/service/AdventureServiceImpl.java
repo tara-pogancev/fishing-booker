@@ -4,6 +4,8 @@ import com.fishingbooker.ftn.bom.Address;
 import com.fishingbooker.ftn.bom.AvailableTimePeriod;
 import com.fishingbooker.ftn.bom.RuleOfConduct;
 import com.fishingbooker.ftn.bom.adventures.*;
+import com.fishingbooker.ftn.bom.cottages.Cottage;
+import com.fishingbooker.ftn.bom.cottages.CottageReservation;
 import com.fishingbooker.ftn.bom.users.FishingInstructor;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.conversion.UnixTimeToLocalDateTimeConverter;
@@ -157,25 +159,46 @@ public class AdventureServiceImpl implements AdventureService {
     }
 
     @Override
-    public List<Adventure> findFiltered(EntitySearchDto filterDto) {
+    public List<Adventure> findFiltered(EntitySearchDto filterDto, Long userId) {
         // todo
         filterDto.setEndDate(UnixTimeToLocalDateTimeConverter.adjustDefaultTimeZone(filterDto.endDate));
         filterDto.setStartDate(UnixTimeToLocalDateTimeConverter.adjustDefaultTimeZone(filterDto.startDate));
 
         List<Adventure> adventures = new ArrayList<>();
+        List<Adventure> formerlyCanceled = getFormerlyCanceledAdventuresByUserByDate(filterDto, userId);
 
         for (Adventure adventure : filterByDate(filterDto.startDate, filterDto.endDate)) {
-            if (adventure.getGuestLimit() >= filterDto.people && (adventure.getAddress().getCountry().equals(filterDto.country) || filterDto.country.equals("")))
+            if (!isIdInList(formerlyCanceled, adventure.getId()) && adventure.getGuestLimit() >= filterDto.people && (adventure.getAddress().getCountry().equals(filterDto.country) || filterDto.country.equals("")))
                 adventures.add(adventure);
         }
 
         return adventures;
     }
 
+    private List<Adventure> getFormerlyCanceledAdventuresByUserByDate(EntitySearchDto filterDto, Long userId) {
+        List<AdventureReservation> canceled = adventureReservationRepository.getClientCanceledAdventureReservations(userId);
+        List<Adventure> formerlyCanceledAdventures = new ArrayList<>();
+        for (AdventureReservation reservation : canceled) {
+            if (dateService.doDatesMatchNearby(filterDto.startDate, filterDto.endDate, reservation.getReservationStart(), reservation.getReservationEnd())) {
+                formerlyCanceledAdventures.add(reservation.getAdventure());
+            }
+        }
+        return formerlyCanceledAdventures;
+    }
+
+    private boolean isIdInList (List<Adventure> list, Long id) {
+        for (Adventure adventure : list) {
+            if (adventure.getId() == id) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public Long createQuickReservation(AdventureQuickReservation reservation) {
         if (!validate(reservation.getAdventure().getInstructor().getId(), reservation.getActionStart(), reservation.getActionEnd())) {
-            return -1l;
+            return -1L;
         } else {
             AdventureQuickReservation persistedReservation = adventureQuickReservationRepository.save(reservation);
             return persistedReservation.getId();
@@ -186,7 +209,7 @@ public class AdventureServiceImpl implements AdventureService {
         Adventure adventure = adventureRepository.getById(dto.getAdventureId());
 
         if (!validate(adventure.getInstructor().getId(), UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getStartDate()), UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getEndDate()))) {
-            return -1l;
+            return -1L;
         } else {
             AdventureReservation adventureReservation = new AdventureReservation();
             adventureReservation.setAdventure(adventure);
