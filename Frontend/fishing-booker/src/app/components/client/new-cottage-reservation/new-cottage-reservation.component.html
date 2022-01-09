@@ -46,7 +46,9 @@
 
       <div class="columns">
         <div class="column">
-          <h2 class="confirm">Total price: ${{ reservation.price }}</h2>
+          <h2 class="confirm">
+            Total price: ${{ reservation.price | number }}
+          </h2>
         </div>
       </div>
 

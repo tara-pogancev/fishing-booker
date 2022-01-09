@@ -35,7 +35,7 @@
         <div class="column">
           <label class="checkbox" *ngFor="let utility of adventure.utilities">
             <input type="checkbox" (change)="this.alterPrice(utility)" />
-            {{ utility.name }} (${{ utility.price }})
+            {{ utility.name }} (${{ utility.price | number }})
           </label>
         </div>
       </div>

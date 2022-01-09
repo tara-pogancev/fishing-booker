@@ -13,15 +13,13 @@ import { LoginService } from './login.service';
   providedIn: 'root',
 })
 export class AdvetnureService {
-
-
   getAdventureUtilities(adventureId: number) {
-    const id=this.loginService.getCurrentUser().id;
-    const url = server + 'api/adventures/get-adventure-utilities/'+id;
+    const id = this.loginService.getCurrentUser().id;
+    const url = server + 'api/adventures/get-adventure-utilities/' + id;
     const headers = this.loginService.getHeaders();
     return this._http.get<any>(url, { headers: headers });
   }
-  
+
   createAdventureReservation(reservation: InstructorNewReservation) {
     const url = server + 'api/adventures/add-reservation';
     const headers = this.loginService.getHeaders();
@@ -54,8 +52,10 @@ export class AdvetnureService {
   }
 
   getSearch(filter: SearchFilter) {
-    const url = server + 'browse/adventures/search';
-    return this._http.post<any>(url, filter);
+    const headers = this.loginService.getHeaders();
+    const userId = this.loginService.getCurrentUser().id;
+    const url = server + 'api/adventures/search/' + userId;
+    return this._http.post<any>(url, filter, { headers: headers });
   }
 
   getAdventure(id: any) {
@@ -80,27 +80,27 @@ export class AdvetnureService {
     const url = this.url + '/reviews/' + id;
     return this._http.get<any>(url);
   }
-  createAdventureQuickReservation(reservation:AdventureQuickReservation){
+  createAdventureQuickReservation(reservation: AdventureQuickReservation) {
     const url = server + 'api/adventures/add-quick-reservation';
     const headers = this.loginService.getHeaders();
-    return this._http.post<any>(url,reservation, { headers: headers });
+    return this._http.post<any>(url, reservation, { headers: headers });
   }
 
-  getQuickReservationForCalendar(id:number){
-    const url = server + 'api/adventures/get-quick-reservations-calendar/'+id;
+  getQuickReservationForCalendar(id: number) {
+    const url = server + 'api/adventures/get-quick-reservations-calendar/' + id;
     const headers = this.loginService.getHeaders();
-    return this._http.get<any>(url,{ headers: headers });
+    return this._http.get<any>(url, { headers: headers });
   }
 
-  getReservation(id:number){
-    const url = server + 'api/adventures/get-reservation/'+id;
+  getReservation(id: number) {
+    const url = server + 'api/adventures/get-reservation/' + id;
     const headers = this.loginService.getHeaders();
-    return this._http.get<any>(url,{headers:headers});
+    return this._http.get<any>(url, { headers: headers });
   }
 
-  getQuickReservation(id:number){
-    const url = server + 'api/adventures/get-quick-reservation/'+id;
+  getQuickReservation(id: number) {
+    const url = server + 'api/adventures/get-quick-reservation/' + id;
     const headers = this.loginService.getHeaders();
-    return this._http.get<any>(url,{headers:headers});
+    return this._http.get<any>(url, { headers: headers });
   }
 }

@@ -1,7 +1,4 @@
-import { DatePipe, formatDate } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { fil } from 'date-fns/locale';
-import { start } from 'repl';
 import { Boat } from 'src/app/model/boat-model';
 import { Client } from 'src/app/model/client-model';
 import { EntityModel } from 'src/app/model/entity-model';
@@ -25,19 +22,14 @@ export class BoatReservationsComponent implements OnInit {
   people: number = 2;
 
   didSearch: boolean = false;
+  datesOverlap: boolean = false;
 
   constructor(
     private boatService: BoatService,
     private searchService: SearchService
   ) {}
 
-  ngOnInit(): void {
-    let filter = new SearchFilter();
-    this.boatService.getSearch(filter).subscribe((data) => {
-      this.boatsAll = data;
-      this.boats = this.searchService.filter(this.boatsAll, filter)!;
-    });
-  }
+  ngOnInit(): void {}
 
   search(filter: SearchFilter) {
     this.people = filter.people;
@@ -53,11 +45,21 @@ export class BoatReservationsComponent implements OnInit {
     ) {
       alert('Invalid date input!');
     } else {
-      this.boatService.getSearch(filter).subscribe((data) => {        
-        this.didSearch = true;
-        this.boatsAll = data;
-        this.boats = this.searchService.filter(this.boatsAll, filter)!;
-      });
+      this.boatService.getSearch(filter).subscribe(
+        (data) => {
+          this.didSearch = true;
+          this.datesOverlap = false;
+          this.boatsAll = data;
+          this.boats = this.searchService.filter(this.boatsAll, filter)!;
+          console.log(data);
+        },
+        (err) => {
+          if (err.status == 409) {
+            this.datesOverlap = true;
+            this.didSearch = true;
+          }
+        }
+      );
     }
   }
 

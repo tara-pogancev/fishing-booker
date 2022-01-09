@@ -1,4 +1,3 @@
-import { formatDate } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { Client } from 'src/app/model/client-model';
 import { Cottage } from 'src/app/model/cottage-model';
@@ -23,20 +22,14 @@ export class CottageReservationsComponent implements OnInit {
   people: number = 2;
 
   didSearch: boolean = false;
+  datesOverlap: boolean = false;
 
   constructor(
     private cottageService: CottageService,
     private searchService: SearchService
   ) {}
 
-  ngOnInit(): void {
-    let filter = new SearchFilter();
-    this.cottageService.getSearch(filter).subscribe((data) => {
-      this.didSearch = true;
-      this.cottagesAll = data;
-      this.cottages = this.searchService.filter(this.cottagesAll, filter)!;
-    });
-  }
+  ngOnInit(): void {}
 
   search(filter: SearchFilter) {
     this.people = filter.people;
@@ -52,10 +45,21 @@ export class CottageReservationsComponent implements OnInit {
     ) {
       alert('Invalid date input!');
     } else {
-      this.cottageService.getSearch(filter).subscribe((data) => {
-        this.cottagesAll = data;
-        this.cottages = this.searchService.filter(this.cottagesAll, filter)!;
-      });
+      this.cottageService.getSearch(filter).subscribe(
+        (data) => {
+          this.didSearch = true;
+          this.datesOverlap = false;
+          this.cottagesAll = data;
+          this.cottages = this.searchService.filter(this.cottagesAll, filter)!;
+          console.log(data);
+        },
+        (err) => {
+          if (err.status == 409) {
+            this.datesOverlap = true;
+            this.didSearch = true;
+          }
+        }
+      );
     }
   }
 

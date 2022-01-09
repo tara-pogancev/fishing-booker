@@ -4,24 +4,54 @@
   <div>
     <reservation-search (doSearch)="search($event)"></reservation-search>
     <hr />
-    <div *ngIf="cottages.length == 0">
-      <p>No cottages to show. Try changing the dates or search parameters.</p>
-    </div>
-    <div *ngFor="let cottage of cottages">
-      <reservation-card
-        [name]="cottage.name"
-        [description]="cottage.description"
-        [address]="cottage.address"
-        [ownerName]="cottage.ownerName"
-        [utilities]="cottage.utilities"
-        [price]="cottage.price"
-        [rating]="cottage.rating"
-        [id]="cottage.id"
-        [imageUrls]="cottage.imageUrls"
-        type="cottage"
-        (doNewReservation)="newReservation($event)"
-        (doPreviewEntity)="previewEntity($event)"
-      ></reservation-card>
+
+    <article class="message is-success shadow" *ngIf="didSearch == false">
+      <div class="message-header">
+        <p>Select your journey's dates before starting!</p>
+      </div>
+      <div class="message-body">
+        This is the <b>first step</b> to creating a wonderful collection of
+        memories, friends and events! Feel free to browse cottages that
+        perfectly fit your needs. The information about the starting and ending
+        dates, as well as the number of people travelling with will be
+        transfered to the next step: booking, so make sure the data is correct.
+      </div>
+    </article>
+
+    <article class="message is-warning shadow" *ngIf="datesOverlap == true">
+      <div class="message-header">
+        <p>Whoa! Slow down!</p>
+      </div>
+      <div class="message-body">
+        Looks like you <b>already have a reservation</b> booked for this time
+        period. Make sure they dont overlap! To take a look at your upcomming
+        reservations, <a href="client-db/UPCOMING">click here</a>! If you
+        believe we made a mistake, please contact us at
+        <b>fishing.booker.service@gmail.com</b>.
+      </div>
+    </article>
+
+    <div *ngIf="didSearch == true && datesOverlap == false">
+      <div *ngIf="cottages.length == 0">
+        <p>No cottages to show. Try changing the dates or search parameters.</p>
+      </div>
+
+      <div *ngFor="let cottage of cottages">
+        <reservation-card
+          [name]="cottage.name"
+          [description]="cottage.description"
+          [address]="cottage.address"
+          [ownerName]="cottage.ownerName"
+          [utilities]="cottage.utilities"
+          [price]="cottage.price"
+          [rating]="cottage.rating"
+          [id]="cottage.id"
+          [imageUrls]="cottage.imageUrls"
+          type="cottage"
+          (doNewReservation)="newReservation($event)"
+          (doPreviewEntity)="previewEntity($event)"
+        ></reservation-card>
+      </div>
     </div>
   </div>
 </div>

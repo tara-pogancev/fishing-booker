@@ -30,8 +30,9 @@ export class CottageService {
   }
 
   getSearch(filter: SearchFilter) {
-    const url = server + 'api/cottages/search';
     const headers = this.loginService.getHeaders();
+    const userId = this.loginService.getCurrentUser().id;
+    const url = server + 'api/cottages/search/' + userId;
     return this._http.post<any>(url, filter, { headers: headers });
   }
 

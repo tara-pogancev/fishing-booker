@@ -4,6 +4,8 @@ import com.fishingbooker.ftn.bom.reservations.Reservation;
 import com.fishingbooker.ftn.bom.users.RegisteredClient;
 import com.fishingbooker.ftn.dto.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface RegisteredClientService {
@@ -39,4 +41,7 @@ public interface RegisteredClientService {
     List<InstructorSubscriptionDto> getClientInstructorSubscription(Long id);
 
     List<RegisteredClient> getClientsWithReservation(Long instructorId);
+
+    Boolean clientHasOverlappingReservation(LocalDateTime start, LocalDateTime end, Long clientId);
+
 }

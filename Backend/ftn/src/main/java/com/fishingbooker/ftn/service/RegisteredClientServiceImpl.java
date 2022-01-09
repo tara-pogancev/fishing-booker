@@ -13,7 +13,9 @@ import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.*;
 import com.fishingbooker.ftn.repository.AddressRepository;
 import com.fishingbooker.ftn.repository.RegisteredClientRepository;
+import com.fishingbooker.ftn.service.interfaces.DateService;
 import com.fishingbooker.ftn.service.interfaces.RegisteredClientService;
+import com.fishingbooker.ftn.service.interfaces.ReservationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -29,9 +31,11 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class RegisteredClientServiceImpl implements RegisteredClientService {
 
-    private final RegisteredClientRepository clientRepository;
-    private final AddressRepository addressRepository;
     private final DataConverter converter;
+    private final DateService dateService;
+    private final AddressRepository addressRepository;
+    private final ReservationService reservationService;
+    private final RegisteredClientRepository clientRepository;
 
     @Override
     public List<RegisteredClientDto> findAll() {
@@ -191,6 +195,19 @@ public class RegisteredClientServiceImpl implements RegisteredClientService {
         List<Long> clientsIds = clientRepository.getUsersWithReservationInMoment(instructorId);
         List<RegisteredClient> clients = clientsIds.stream().map(id -> clientRepository.get(id)).collect(Collectors.toList());
         return clients;
+    }
+
+    @Override
+    public Boolean clientHasOverlappingReservation(LocalDateTime start, LocalDateTime end, Long clientId) {
+        RegisteredClient client = clientRepository.getById(clientId);
+        if (client != null) {
+            for (Reservation reservation : reservationService.findAllByClient(clientId)) {
+                if (dateService.doPeriodsOverlap(reservation.getReservationStart(), reservation.getReservationEnd(), start, end))
+                    return true;
+            }
+        }
+
+        return false;
     }
 
 

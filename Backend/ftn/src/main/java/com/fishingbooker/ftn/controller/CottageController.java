@@ -1,16 +1,21 @@
 package com.fishingbooker.ftn.controller;
 
 import com.fishingbooker.ftn.bom.cottages.Cottage;
+import com.fishingbooker.ftn.bom.users.RegisteredClient;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.CottageCreationDto;
 import com.fishingbooker.ftn.dto.CottageDto;
 import com.fishingbooker.ftn.dto.EntitySearchDto;
 import com.fishingbooker.ftn.dto.ReservationDto;
 import com.fishingbooker.ftn.service.interfaces.CottageService;
+import com.fishingbooker.ftn.service.interfaces.RegisteredClientService;
 import com.fishingbooker.ftn.service.interfaces.ReservationService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -21,6 +26,7 @@ public class CottageController {
     private final DataConverter converter;
     private final CottageService cottageService;
     private final ReservationService reservationService;
+    private final RegisteredClientService clientService;
 
     @GetMapping()
     public List<CottageDto> get() {
@@ -40,10 +46,15 @@ public class CottageController {
     }
 
     // Post because of request body
-    @PostMapping("/search")
-    public List<CottageDto> getSearch(@RequestBody EntitySearchDto filterDto) {
-        List<Cottage> cottages = cottageService.findFiltered(filterDto);
-        return converter.convert(cottages, CottageDto.class);
+    @PostMapping("/search/{userId}")
+    public ResponseEntity<List<CottageDto>> getSearch(@RequestBody EntitySearchDto filterDto, @PathVariable Long userId) {
+        if (clientService.clientHasOverlappingReservation(filterDto.startDate, filterDto.endDate, userId)) {
+            return new ResponseEntity<>(null, HttpStatus.CONFLICT);
+        } else {
+            List<Cottage> cottages = cottageService.findFiltered(filterDto);
+            List<CottageDto> dtoRetVal = converter.convert(cottages, CottageDto.class);
+            return new ResponseEntity<>(dtoRetVal, HttpStatus.OK);
+        }
     }
 
     @PostMapping("add-cottage")

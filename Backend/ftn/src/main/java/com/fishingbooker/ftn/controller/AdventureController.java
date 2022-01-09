@@ -5,11 +5,15 @@ import com.fishingbooker.ftn.bom.adventures.Adventure;
 import com.fishingbooker.ftn.bom.adventures.AdventureQuickReservation;
 import com.fishingbooker.ftn.bom.adventures.AdventureReservation;
 import com.fishingbooker.ftn.bom.adventures.AdventureUtility;
+import com.fishingbooker.ftn.bom.cottages.Cottage;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.*;
 import com.fishingbooker.ftn.service.interfaces.AdventureService;
+import com.fishingbooker.ftn.service.interfaces.RegisteredClientService;
 import com.fishingbooker.ftn.service.interfaces.ReservationService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,8 +25,9 @@ import java.util.List;
 public class AdventureController {
 
     private final DataConverter converter;
-    private final ReservationService reservationService;
     private final AdventureService adventureService;
+    private final ReservationService reservationService;
+    private final RegisteredClientService clientService;
 
     @PostMapping("add-adventure")
     @PreAuthorize("hasRole('FISHING_INSTRUCTOR')")
@@ -95,6 +100,18 @@ public class AdventureController {
         List<AdventureUtility> utilities = adventureService.getAdventureUtilities(id);
         List<AdventureUtilityDto> utilityDtos = converter.convert(utilities, AdventureUtilityDto.class);
         return utilityDtos;
+    }
+
+    // Post because of request body
+    @PostMapping("/search/{userId}")
+    public ResponseEntity<List<AdventureDto>> getSearch(@RequestBody EntitySearchDto filterDto, @PathVariable Long userId) {
+        if (clientService.clientHasOverlappingReservation(filterDto.startDate, filterDto.endDate, userId)) {
+            return new ResponseEntity<>(null, HttpStatus.CONFLICT);
+        } else {
+            List<Adventure> adventures = adventureService.findFiltered(filterDto);
+            List<AdventureDto> dtoRetVal = converter.convert(adventures, AdventureDto.class);
+            return new ResponseEntity<>(dtoRetVal, HttpStatus.OK);
+        }
     }
 
 

@@ -32,13 +32,6 @@ public class BrowseAdventuresController {
         return adventureService.findById(id);
     }
 
-    // Post because of request body
-    @PostMapping("/search")
-    public List<AdventureDto> getSearch(@RequestBody EntitySearchDto filterDto) {
-        List<Adventure> adventures = adventureService.findFiltered(filterDto);
-        return converter.convert(adventures, AdventureDto.class);
-    }
-
     @GetMapping("/reviews/{id}")
     public List<ReviewDto> getClientReviewsComplaints(@PathVariable Long id) {
         List<Review> reviews = reviewService.getEntityReviews("adventure", id);

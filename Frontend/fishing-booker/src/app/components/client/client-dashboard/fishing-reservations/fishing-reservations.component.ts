@@ -23,19 +23,14 @@ export class FishingReservationsComponent implements OnInit {
   people: number = 2;
 
   didSearch: boolean = false;
+  datesOverlap: boolean = false;
 
   constructor(
     private adventureService: AdvetnureService,
     private searchService: SearchService
   ) {}
 
-  ngOnInit(): void {
-    let filter = new SearchFilter();
-    this.adventureService.getSearch(filter).subscribe((data) => {
-      this.adventuresAll = data;
-      this.adventures = this.searchService.filter(this.adventuresAll, filter)!;
-    });
-  }
+  ngOnInit(): void {}
 
   search(filter: SearchFilter) {
     this.people = filter.people;
@@ -51,14 +46,24 @@ export class FishingReservationsComponent implements OnInit {
     ) {
       alert('Invalid date input!');
     } else {
-      this.adventureService.getSearch(filter).subscribe((data) => {
-        this.didSearch = true;
-        this.adventuresAll = data;
-        this.adventures = this.searchService.filter(
-          this.adventuresAll,
-          filter
-        )!;
-      });
+      this.adventureService.getSearch(filter).subscribe(
+        (data) => {
+          this.didSearch = true;
+          this.datesOverlap = false;
+          this.adventuresAll = data;
+          this.adventures = this.searchService.filter(
+            this.adventuresAll,
+            filter
+          )!;
+          console.log(data);
+        },
+        (err) => {
+          if (err.status == 409) {
+            this.datesOverlap = true;
+            this.didSearch = true;
+          }
+        }
+      );
     }
   }
 
