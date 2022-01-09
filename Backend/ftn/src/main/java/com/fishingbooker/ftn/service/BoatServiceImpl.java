@@ -81,7 +81,7 @@ public class BoatServiceImpl implements BoatService {
 
     @Override
     public List<BoatReservation> getReservationsByBoat(Long boatId) {
-        return boatReservationRepository.getWaitingComplaints(boatId);
+        return boatReservationRepository.getBoatReservations(boatId);
     }
 
 

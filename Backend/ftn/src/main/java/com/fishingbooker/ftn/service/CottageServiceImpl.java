@@ -4,6 +4,7 @@ import com.fishingbooker.ftn.bom.Address;
 import com.fishingbooker.ftn.bom.AvailableTimePeriod;
 import com.fishingbooker.ftn.bom.RuleOfConduct;
 import com.fishingbooker.ftn.bom.cottages.Cottage;
+import com.fishingbooker.ftn.bom.cottages.CottageReservation;
 import com.fishingbooker.ftn.bom.cottages.CottageUtility;
 import com.fishingbooker.ftn.bom.cottages.Room;
 import com.fishingbooker.ftn.bom.users.CottageOwner;
@@ -15,6 +16,7 @@ import com.fishingbooker.ftn.dto.EntitySearchDto;
 import com.fishingbooker.ftn.dto.RoomDto;
 import com.fishingbooker.ftn.repository.CottageOwnerRepository;
 import com.fishingbooker.ftn.repository.CottageRepository;
+import com.fishingbooker.ftn.repository.CottageReservationRepository;
 import com.fishingbooker.ftn.service.interfaces.CottageService;
 import com.fishingbooker.ftn.service.interfaces.ImageService;
 import com.fishingbooker.ftn.service.interfaces.RuleOfConductService;
@@ -37,11 +39,12 @@ import java.util.stream.Collectors;
 public class CottageServiceImpl implements CottageService {
 
     private final CottageRepository cottageRepository;
-    private final CottageOwnerRepository cottageOwnerRepository;
     private final DataConverter converter;
-    private final RuleOfConductService ruleOfConductService;
     private final ImageService imageService;
     private final UtilityService utilityService;
+    private final RuleOfConductService ruleOfConductService;
+    private final CottageReservationRepository reservationRepository;
+    private final CottageOwnerRepository cottageOwnerRepository;
 
     @Override
     public List<Cottage> findAll() {
@@ -125,6 +128,11 @@ public class CottageServiceImpl implements CottageService {
         }
 
         return cottages;
+    }
+
+    @Override
+    public List<CottageReservation> getReservationsByCottage(Long cottageId) {
+        return reservationRepository.getCottageReservations(cottageId);
     }
 
     private Set<Room> convertDtoToModel(List<RoomDto> rooms, Cottage cottage) {

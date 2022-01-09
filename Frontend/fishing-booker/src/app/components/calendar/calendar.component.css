@@ -6,7 +6,7 @@
 }
 
 .available {
-  background-color: rgba(151, 252, 205, 0.377) !important;
+  background-color: rgb(235, 247, 255) !important;
   color: black;
   font-weight: 900;
 }

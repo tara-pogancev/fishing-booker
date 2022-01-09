@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Adventure } from 'src/app/model/adventure-model';
+import { ReservationModel } from 'src/app/model/reservation-model';
 import { ReviewModel } from 'src/app/model/review-model';
 import { AdvetnureService } from 'src/app/service/adventure-service';
 import { ImageService } from 'src/app/service/image.service';
@@ -15,6 +16,8 @@ import { SubscriptionService } from 'src/app/service/subscription-service';
 export class FishingPageComponent implements OnInit {
   id: number = 0;
   adventure: Adventure = new Adventure();
+  reservations: ReservationModel[] = [];
+  reservationsLoaded: boolean = false;
   navEquipment: string = '';
   image: any = 'assets/images/placeholder.jpg';
   reviews: ReviewModel[] = [];
@@ -39,6 +42,13 @@ export class FishingPageComponent implements OnInit {
       this.navEquipment = this.navEquipment.slice(0, -2);
       if (this.navEquipment == '') this.navEquipment = 'None';
     });
+
+    this.adventureService
+      .getAdventureReservations(this.id)
+      .subscribe((data) => {
+        this.reservations = data;
+        this.reservationsLoaded = true;
+      });
 
     this.adventureService.getReviews(this.id).subscribe((data) => {
       this.reviews = data;

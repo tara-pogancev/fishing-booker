@@ -1,6 +1,7 @@
 package com.fishingbooker.ftn.repository;
 
 import com.fishingbooker.ftn.bom.adventures.AdventureReservation;
+import com.fishingbooker.ftn.bom.boats.BoatReservation;
 import com.fishingbooker.ftn.repository.base.EntityRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -20,5 +21,7 @@ public interface AdventureReservationRepository extends EntityRepository<Adventu
             "WHERE adventure_id=:id and ((:startDate between reservation_start and reservation_end) or (:endDate  between reservation_start and reservation_end))", nativeQuery = true)
     List<AdventureReservation> getOverlappedWithNewAction(@Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate, @Param("id") Long id);
 
+    @Query("SELECT r FROM AdventureReservation r WHERE r.adventure.id = :id")
+    List<AdventureReservation> getAdventureReservations(Long id);
 
 }

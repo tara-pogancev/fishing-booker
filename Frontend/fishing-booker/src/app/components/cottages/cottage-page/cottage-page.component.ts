@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Cottage } from 'src/app/model/cottage-model';
+import { ReservationModel } from 'src/app/model/reservation-model';
 import { ReviewModel } from 'src/app/model/review-model';
 import { CottageService } from 'src/app/service/cottage.service';
 import { ImageService } from 'src/app/service/image.service';
@@ -14,6 +15,8 @@ import { SubscriptionService } from 'src/app/service/subscription-service';
 export class CottagePageComponent implements OnInit {
   id: number = 0;
   cottage: Cottage = new Cottage();
+  reservations: ReservationModel[] = [];
+  reservationsLoaded: boolean = false;
   image: any = 'assets/images/placeholder.jpg';
   reviews: ReviewModel[] = [];
   isSubscribed: boolean = false;
@@ -30,6 +33,11 @@ export class CottagePageComponent implements OnInit {
     this.cottageService.findById(this.id).subscribe((data) => {
       this.cottage = data;
     });
+
+    this.cottageService.getCottageReservations(this.id).subscribe((data) => {
+      this.reservations = data;
+      this.reservationsLoaded = true;
+    })
 
     this.cottageService.getReviews(this.id).subscribe((data) => {
       this.reviews = data;

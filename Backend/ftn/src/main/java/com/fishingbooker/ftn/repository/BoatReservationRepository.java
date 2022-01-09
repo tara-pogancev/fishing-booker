@@ -11,6 +11,6 @@ import java.util.List;
 public interface BoatReservationRepository extends EntityRepository<BoatReservation> {
 
     @Query("SELECT r FROM BoatReservation r WHERE r.boat.id = :id")
-    List<BoatReservation> getWaitingComplaints(Long id);
+    List<BoatReservation> getBoatReservations(Long id);
 
 }

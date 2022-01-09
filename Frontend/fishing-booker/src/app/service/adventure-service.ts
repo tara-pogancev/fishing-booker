@@ -64,6 +64,11 @@ export class AdvetnureService {
     return this._http.get<any>(url + id, { headers: headers });
   }
 
+  getAdventureReservations(id: number) {
+    const url = this.url + '/reservations/' + id;
+    return this._http.get<any>(url);
+  }
+
   deleteAdventure(id: number) {
     const localurl = server + 'api/adventures/' + id;
     const headers = this.loginService.getHeaders();

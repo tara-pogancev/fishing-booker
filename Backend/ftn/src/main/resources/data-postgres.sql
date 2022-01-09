@@ -279,8 +279,8 @@ INSERT INTO public.available_time_period(start_date, end_date)	VALUES ('20220105
 INSERT INTO public.available_time_period(start_date, end_date)	VALUES ('20211205 10:00:00 AM', '20211225 10:00:00 AM');
 INSERT INTO public.available_time_period(start_date, end_date)	VALUES ('20211205 10:00:00 AM', '20211210 10:00:00 AM');
 INSERT INTO public.available_time_period(start_date, end_date)	VALUES ('20211225 10:00:00 AM', '20211230 10:00:00 AM');
-INSERT INTO public.available_time_period(start_date, end_date)	VALUES ('20220105 10:00:00 AM', '20220210 10:00:00 AM');
-INSERT INTO public.available_time_period(start_date, end_date)	VALUES ('20220113 10:00:00 AM', '20220224 10:00:00 AM');
+INSERT INTO public.available_time_period(start_date, end_date)	VALUES ('20220105 10:00:00 AM', '20220110 10:00:00 AM');
+INSERT INTO public.available_time_period(start_date, end_date)	VALUES ('20220113 10:00:00 AM', '20220324 10:00:00 AM');
 
 -- BOAT AVAILABILITY
 

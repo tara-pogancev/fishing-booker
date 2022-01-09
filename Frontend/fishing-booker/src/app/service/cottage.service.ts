@@ -42,6 +42,11 @@ export class CottageService {
     return this._http.post<any>(url, reservation, { headers: headers });
   }
 
+  getCottageReservations(id: number) {
+    const url = this.url + '/reservations/' + id;
+    return this._http.get<any>(url);
+  }
+
   getCottage(id: any) {
     const url = server + 'api/cottages/';
     const headers = this.loginService.getHeaders();

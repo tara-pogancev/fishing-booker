@@ -2,7 +2,21 @@
 </mwl-demo-utils-calendar-header>
 
 <div [ngSwitch]="view">
-  <ng-template #customCellTemplate let-day="day" let-locale="locale">
+  <ng-template
+    #customCellTemplate
+    let-day="day"
+    let-openDay="openDay"
+    let-locale="locale"
+    let-tooltipPlacement="tooltipPlacement"
+    let-highlightDay="highlightDay"
+    let-unhighlightDay="unhighlightDay"
+    let-eventClicked="eventClicked"
+    let-tooltipTemplate="tooltipTemplate"
+    let-tooltipAppendToBody="tooltipAppendToBody"
+    let-tooltipDelay="tooltipDelay"
+    let-trackByEventId="trackByEventId"
+    let-validateDrag="validateDrag"
+  >
     <div
       class="cal-cell-top"
       [ngClass]="{
@@ -13,6 +27,34 @@
       <span class="cal-day-number">{{
         day.date | calendarDate: "monthViewDayNumber":locale
       }}</span>
+
+      <div class="cal-events" *ngIf="day.events.length > 0">
+        <div
+          class="cal-event"
+          *ngFor="let event of day.events; trackBy: trackByEventId"
+          [ngStyle]="{ backgroundColor: event.color?.primary }"
+          [ngClass]="event?.cssClass"
+          (mouseenter)="highlightDay.emit({ event: event })"
+          (mouseleave)="unhighlightDay.emit({ event: event })"
+          [mwlCalendarTooltip]="
+            event.title | calendarEventTitle: 'monthTooltip':event
+          "
+          [tooltipPlacement]="tooltipPlacement"
+          [tooltipEvent]="event"
+          [tooltipTemplate]="tooltipTemplate"
+          [tooltipAppendToBody]="tooltipAppendToBody"
+          [tooltipDelay]="tooltipDelay"
+          mwlDraggable
+          [class.cal-draggable]="event.draggable"
+          dragActiveClass="cal-drag-active"
+          [dropData]="{ event: event, draggedFrom: day }"
+          [dragAxis]="{ x: event.draggable, y: event.draggable }"
+          [validateDrag]="validateDrag"
+          [touchStartLongPress]="{ delay: 300, delta: 30 }"
+          (mwlClick)="eventClicked.emit({ event: event, sourceEvent: $event })"
+          [attr.aria-hidden]="{} | calendarA11y: 'hideMonthCellEvents'"
+        ></div>
+      </div>
     </div>
   </ng-template>
 

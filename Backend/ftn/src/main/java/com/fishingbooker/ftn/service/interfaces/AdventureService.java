@@ -2,7 +2,9 @@ package com.fishingbooker.ftn.service.interfaces;
 
 import com.fishingbooker.ftn.bom.adventures.Adventure;
 import com.fishingbooker.ftn.bom.adventures.AdventureQuickReservation;
+import com.fishingbooker.ftn.bom.adventures.AdventureReservation;
 import com.fishingbooker.ftn.bom.adventures.AdventureUtility;
+import com.fishingbooker.ftn.bom.boats.BoatReservation;
 import com.fishingbooker.ftn.dto.AdventureCreationDto;
 import com.fishingbooker.ftn.dto.AdventureDto;
 import com.fishingbooker.ftn.dto.EntitySearchDto;
@@ -38,4 +40,5 @@ public interface AdventureService {
     Long createReservation(InstructorNewReservationDto dto);
 
     List<AdventureUtility> getAdventureUtilities(Long id);
+
 }
