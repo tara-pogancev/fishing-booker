@@ -110,6 +110,7 @@ import { FlatpickrModule } from 'angularx-flatpickr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SpecialOfferReservationCardComponent } from './components/client/special-offer-reservation-card/special-offer-reservation-card.component';
 import { CalendarHeaderComponent } from './components/calendar/calendar-header/calendar-header.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -214,6 +215,7 @@ import { CalendarHeaderComponent } from './components/calendar/calendar-header/c
     QuickReservationsCalendarComponent,
     SpecialOfferReservationCardComponent,
     CalendarHeaderComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,

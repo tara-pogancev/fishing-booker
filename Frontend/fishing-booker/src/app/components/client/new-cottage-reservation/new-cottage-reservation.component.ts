@@ -16,6 +16,7 @@ export class NewCottageReservationComponent implements OnInit {
   reservation: ReservationModel = new ReservationModel();
   client: Client = new Client();
   cottage: Cottage = new Cottage();
+  loader: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -100,8 +101,10 @@ export class NewCottageReservationComponent implements OnInit {
   }
 
   createReservation() {
+    this.loader = true;
     this.cottageService.bookCottage(this.reservation).subscribe((data) => {
-      window.location.href = '/client-db/UPCOMING';
+      this.loader = false;
+      window.location.href = '/client-db/UPCOMING';      
       alert('Thank you! Your reservation is booked.');
     });
   }

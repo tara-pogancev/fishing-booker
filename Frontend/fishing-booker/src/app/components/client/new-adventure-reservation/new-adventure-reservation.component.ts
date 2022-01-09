@@ -16,6 +16,7 @@ export class NewAdventureReservationComponent implements OnInit {
   reservation: ReservationModel = new ReservationModel();
   client: Client = new Client();
   adventure: Adventure = new Adventure();
+  loader: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -102,7 +103,9 @@ export class NewAdventureReservationComponent implements OnInit {
   }
 
   createReservation() {
+    this.loader = true;
     this.adventureService.bookAdventure(this.reservation).subscribe((data) => {
+      this.loader = false;
       window.location.href = '/client-db/UPCOMING';
       alert('Thank you! Your reservation is booked.');
     });

@@ -16,6 +16,7 @@ export class NewBoatReservationComponent implements OnInit {
   reservation: ReservationModel = new ReservationModel();
   client: Client = new Client();
   boat: Boat = new Boat();
+  loader: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -100,7 +101,9 @@ export class NewBoatReservationComponent implements OnInit {
   }
 
   createReservation() {
+    this.loader = true;
     this.boatService.bookBoat(this.reservation).subscribe((data) => {
+      this.loader = false;
       window.location.href = '/client-db/UPCOMING';
       alert('Thank you! Your reservation is booked.');
     });
