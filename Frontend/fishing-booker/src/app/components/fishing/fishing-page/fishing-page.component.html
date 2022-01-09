@@ -99,6 +99,8 @@
         [reservationDates]="reservations"
       ></entity-calendar>
     </div>
+
+    <hr />
     <h3>Reviews</h3>
     <div *ngIf="reviews.length > 0">
       <div *ngFor="let review of this.reviews">
@@ -107,6 +109,15 @@
     </div>
     <div *ngIf="reviews.length == 0">
       <p>No reviews to show.</p>
+    </div>
+
+    <hr />
+    <h3>Special Offers</h3>
+    <div *ngIf="actions.length == 0">
+      <p>No Special Offers Found.</p>
+    </div>
+    <div *ngFor="let action of actions">
+      <special-offer-card [action]="action"></special-offer-card>
     </div>
   </div>
 </div>
