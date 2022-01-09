@@ -9,10 +9,7 @@ import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.conversion.UnixTimeToLocalDateTimeConverter;
 import com.fishingbooker.ftn.dto.*;
 import com.fishingbooker.ftn.repository.*;
-import com.fishingbooker.ftn.service.interfaces.AdventureService;
-import com.fishingbooker.ftn.service.interfaces.ImageService;
-import com.fishingbooker.ftn.service.interfaces.RuleOfConductService;
-import com.fishingbooker.ftn.service.interfaces.UtilityService;
+import com.fishingbooker.ftn.service.interfaces.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -31,15 +28,17 @@ import java.util.stream.Collectors;
 public class AdventureServiceImpl implements AdventureService {
 
     private final DataConverter converter;
-    private final AdventureRepository adventureRepository;
-    private final FishingInstructorRepository instructorRepository;
-    private final RuleOfConductService ruleOfConductService;
+    private final DateService dateService;
     private final ImageService imageService;
     private final UtilityService utilityService;
-    private final AdventureQuickReservationRepository adventureQuickReservationRepository;
-    private final AdventureReservationRepository adventureReservationRepository;
-    private final AvailableInstructorTimeRepository instructorTimeRepository;
+    private final AdventureRepository adventureRepository;
+    private final RuleOfConductService ruleOfConductService;
     private final RegisteredClientRepository clientRepository;
+    private final FishingInstructorRepository instructorRepository;
+    private final FishingInstructorService fishingInstructorService;
+    private final AvailableInstructorTimeRepository instructorTimeRepository;
+    private final AdventureReservationRepository adventureReservationRepository;
+    private final AdventureQuickReservationRepository adventureQuickReservationRepository;
 
     @Override
     public List<AdventureDto> findAll() {
@@ -137,19 +136,29 @@ public class AdventureServiceImpl implements AdventureService {
     public List<Adventure> filterByDate(LocalDateTime startDate, LocalDateTime endDate) {
         List<Adventure> adventures = new ArrayList<>();
         for (Adventure adventure : adventureRepository.findAll()) {
-            for (AvailableTimePeriod period : adventure.getInstructor().getAvailableTimePeriods()) {
-                if ((period.getStartDate().isBefore(startDate) || period.getStartDate().isEqual(startDate))
-                        && (period.getEndDate().isAfter(endDate) || period.getStartDate().isEqual(endDate))) {
-                    adventures.add(adventure);
-                    break;
+
+            if (dateService.doDatesOverlapWithInstructorPeriodSet(startDate, endDate, adventure.getInstructor().getAvailableTimePeriods())) {
+                // Passed availability check
+
+                boolean reservationOverlap = false;
+                for (AdventureReservation reservation : fishingInstructorService.getInstructorReservations(adventure.getInstructor().getId())) {
+                    if (dateService.doPeriodsOverlap(reservation.getReservationStart(), reservation.getReservationEnd(), startDate, endDate)) {
+                        reservationOverlap = true;
+                        break;
+                    }
                 }
+
+                if (!reservationOverlap)
+                    adventures.add(adventure);
             }
+
         }
         return adventures;
     }
 
     @Override
     public List<Adventure> findFiltered(EntitySearchDto filterDto) {
+        // todo
         filterDto.setEndDate(UnixTimeToLocalDateTimeConverter.adjustDefaultTimeZone(filterDto.endDate));
         filterDto.setStartDate(UnixTimeToLocalDateTimeConverter.adjustDefaultTimeZone(filterDto.startDate));
 

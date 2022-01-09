@@ -1,6 +1,8 @@
 package com.fishingbooker.ftn.service;
 
 import com.fishingbooker.ftn.bom.AvailableTimePeriod;
+import com.fishingbooker.ftn.bom.adventures.Adventure;
+import com.fishingbooker.ftn.bom.adventures.AdventureReservation;
 import com.fishingbooker.ftn.bom.boats.Boat;
 import com.fishingbooker.ftn.bom.boats.BoatReservation;
 import com.fishingbooker.ftn.conversion.DataConverter;
@@ -10,6 +12,7 @@ import com.fishingbooker.ftn.dto.EntitySearchDto;
 import com.fishingbooker.ftn.repository.BoatRepository;
 import com.fishingbooker.ftn.repository.BoatReservationRepository;
 import com.fishingbooker.ftn.service.interfaces.BoatService;
+import com.fishingbooker.ftn.service.interfaces.DateService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +27,7 @@ import java.util.List;
 public class BoatServiceImpl implements BoatService {
 
     private final DataConverter converter;
+    private final DateService dateService;
     private final BoatRepository boatRepository;
     private final BoatReservationRepository boatReservationRepository;
 
@@ -47,14 +51,23 @@ public class BoatServiceImpl implements BoatService {
     @Override
     public List<Boat> filterByDate(LocalDateTime startDate, LocalDateTime endDate) {
         List<Boat> boats = new ArrayList<>();
-        for (Boat boat : findAll()) {
-            for (AvailableTimePeriod period : boat.getAvailableTimePeriods()) {
-                if ((period.getStartDate().isBefore(startDate) || period.getStartDate().isEqual(startDate))
-                        && (period.getEndDate().isAfter(endDate) || period.getStartDate().isEqual(endDate))) {
-                    boats.add(boat);
-                    break;
+        for (Boat boat : boatRepository.findAll()) {
+
+            if (dateService.doDatesOverlapWithBoatPeriodSet(startDate, endDate, boat.getAvailableTimePeriods())) {
+                // Passed availability check
+
+                boolean reservationOverlap = false;
+                for (BoatReservation reservation : getReservationsByBoat(boat.getId())) {
+                    if (dateService.doPeriodsOverlap(reservation.getReservationStart(), reservation.getReservationEnd(), startDate, endDate)) {
+                        reservationOverlap = true;
+                        break;
+                    }
                 }
+
+                if (!reservationOverlap)
+                    boats.add(boat);
             }
+
         }
         return boats;
     }

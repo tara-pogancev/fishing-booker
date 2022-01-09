@@ -3,6 +3,8 @@ package com.fishingbooker.ftn.service;
 import com.fishingbooker.ftn.bom.Address;
 import com.fishingbooker.ftn.bom.AvailableTimePeriod;
 import com.fishingbooker.ftn.bom.RuleOfConduct;
+import com.fishingbooker.ftn.bom.boats.Boat;
+import com.fishingbooker.ftn.bom.boats.BoatReservation;
 import com.fishingbooker.ftn.bom.cottages.Cottage;
 import com.fishingbooker.ftn.bom.cottages.CottageReservation;
 import com.fishingbooker.ftn.bom.cottages.CottageUtility;
@@ -17,10 +19,7 @@ import com.fishingbooker.ftn.dto.RoomDto;
 import com.fishingbooker.ftn.repository.CottageOwnerRepository;
 import com.fishingbooker.ftn.repository.CottageRepository;
 import com.fishingbooker.ftn.repository.CottageReservationRepository;
-import com.fishingbooker.ftn.service.interfaces.CottageService;
-import com.fishingbooker.ftn.service.interfaces.ImageService;
-import com.fishingbooker.ftn.service.interfaces.RuleOfConductService;
-import com.fishingbooker.ftn.service.interfaces.UtilityService;
+import com.fishingbooker.ftn.service.interfaces.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -38,13 +37,14 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class CottageServiceImpl implements CottageService {
 
-    private final CottageRepository cottageRepository;
+    private final DateService dateService;
     private final DataConverter converter;
     private final ImageService imageService;
     private final UtilityService utilityService;
+    private final CottageRepository cottageRepository;
     private final RuleOfConductService ruleOfConductService;
-    private final CottageReservationRepository reservationRepository;
     private final CottageOwnerRepository cottageOwnerRepository;
+    private final CottageReservationRepository reservationRepository;
 
     @Override
     public List<Cottage> findAll() {
@@ -103,14 +103,23 @@ public class CottageServiceImpl implements CottageService {
     @Override
     public List<Cottage> filterByDate(LocalDateTime startDate, LocalDateTime endDate) {
         List<Cottage> cottages = new ArrayList<>();
-        for (Cottage cottage : findAll()) {
-            for (AvailableTimePeriod period : cottage.getAvailableTimePeriods()) {
-                if ((period.getStartDate().isBefore(startDate) || period.getStartDate().isEqual(startDate))
-                        && (period.getEndDate().isAfter(endDate) || period.getStartDate().isEqual(endDate))) {
-                    cottages.add(cottage);
-                    break;
+        for (Cottage cottage : cottageRepository.findAll()) {
+
+            if (dateService.doDatesOverlapWithCottagePeriodSet(startDate, endDate, cottage.getAvailableTimePeriods())) {
+                // Passed availability check
+
+                boolean reservationOverlap = false;
+                for (CottageReservation reservation : getReservationsByCottage(cottage.getId())) {
+                    if (dateService.doPeriodsOverlap(reservation.getReservationStart(), reservation.getReservationEnd(), startDate, endDate)) {
+                        reservationOverlap = true;
+                        break;
+                    }
                 }
+
+                if (!reservationOverlap)
+                    cottages.add(cottage);
             }
+
         }
         return cottages;
     }
