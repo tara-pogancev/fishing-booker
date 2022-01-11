@@ -3,13 +3,17 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+	"postinstall": "ng build --prod"
   },
   "private": true,
-  "dependencies": {
+  "dependencies": {	    
+	"@angular/cli": "^12.2.14",
+    "@angular-devkit/build-angular": "^12.2.14",
+	"@angular/compiler-cli": "^12.2.15",
     "@angular/animations": "^12.2.15",
     "@angular/common": "^12.2.15",
     "@angular/compiler": "^12.2.15",
