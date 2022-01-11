@@ -34,8 +34,9 @@ public class DtoToAdventureQuickReservationConverter implements Converter<Advent
         adventureQuickReservation.setActionStart(source.getActionStart());
         adventureQuickReservation.setActionEnd(source.getActionEnd());
         adventureQuickReservation.setGuestLimit(source.getGuestLimit());
-        //adventureQuickReservation.setPrice(source.getPrice());
+        adventureQuickReservation.setPrice(source.getPrice());
         adventureQuickReservation.setUtilities(convertUtilityDtoToUtility(source.getAdventureUtilityDtoList()));
+        adventureQuickReservation.recalculateFullPrice();
         return adventureQuickReservation;
     }
 

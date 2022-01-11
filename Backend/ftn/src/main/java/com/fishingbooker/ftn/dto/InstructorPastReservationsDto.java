@@ -21,4 +21,5 @@ public class InstructorPastReservationsDto {
     private String clientMail;
     private String clientfullAddress;
     private String clientPhoneNumber;
+    private boolean createdReport;
 }

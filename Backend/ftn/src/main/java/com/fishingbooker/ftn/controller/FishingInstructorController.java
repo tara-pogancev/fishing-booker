@@ -6,6 +6,8 @@ import com.fishingbooker.ftn.bom.users.FishingInstructor;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.FishingInstructorDto;
 import com.fishingbooker.ftn.dto.InstructorCalendarReservationDto;
+import com.fishingbooker.ftn.dto.InstructorPastReservationsDto;
+import com.fishingbooker.ftn.dto.ReservationDto;
 import com.fishingbooker.ftn.service.interfaces.FishingInstructorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -71,6 +73,17 @@ public class FishingInstructorController {
         List<InstructorCalendarReservationDto> quickReservationDtos = converter.convert(quickReservations, InstructorCalendarReservationDto.class);
         List<InstructorCalendarReservationDto> ret = new ArrayList<InstructorCalendarReservationDto>(reservationDtos);
         ret.addAll(quickReservationDtos);
+        return ret;
+    }
+
+    @GetMapping("/get-instructor-past-reservations/{id}")
+    public List<InstructorPastReservationsDto> getInstructorPastReservations(@PathVariable() Long id){
+        List<AdventureReservation> reservations=fishingInstructorService.getInstructorPastReservations(id);
+        List<AdventureQuickReservation> quickReservations=fishingInstructorService.getInsturctorPastQuickReservations(id);
+        List<InstructorPastReservationsDto> instructorPastReservationsDtos=converter.convert(reservations,InstructorPastReservationsDto.class);
+        List<InstructorPastReservationsDto> instructorQuickPackReservations=converter.convert(quickReservations,InstructorPastReservationsDto.class);
+        List<InstructorPastReservationsDto> ret=new ArrayList<>(instructorPastReservationsDtos);
+        ret.addAll(instructorQuickPackReservations);
         return ret;
     }
 

@@ -1,0 +1,33 @@
+<div style="margin:7%"> 
+    <div class="content is-medium">
+        <h1 class="title">Create Reservation Report</h1>
+    </div>
+
+    <div class="field">
+        <div class="control">
+          <textarea class="textarea" placeholder="Enter your comment" [(ngModel)]="reservationReport.comment"></textarea>
+        </div>
+    </div>
+
+      <div class="control" style="margin-top: 50px;">
+        <label class="radio" style="font-size: x-large;">
+          <input type="radio" value="negative" name="foobar" (change)="onItemChange($any($event.target).value)">
+          Bad experience with client
+          <p style="font-size: small; margin-left: 7%;">(Select if your comment is negative)</p>
+        </label>
+        <label class="radio" style="font-size: x-large; margin-left: 15%;">
+          <input type="radio" value="noClient" name="foobar" (change)="onItemChange($any($event.target).value)">
+          Guest doesn't show up
+          <p style="font-size: small; margin-left: 17%;">(Select if client does not show up)</p>
+        </label>
+        <label class="radio" style="font-size: x-large; float: right;">
+            <input type="radio" value="positive" name="foobar" (change)="onItemChange($any($event.target).value)">
+            Positive experience
+            
+          </label>
+      </div>
+
+      <div>
+        <button class="button is-success" style="margin-left: 40%; margin-right:40%; margin-top: 100px; width: 20%;" (click)="saveReport()">Save report!</button>
+      </div>
+</div>

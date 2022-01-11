@@ -10,6 +10,8 @@ import { LoginService } from './login.service';
   providedIn: 'root'
 })
 export class FishingInstructorService {
+
+
   updateFreeSlot(timePeriod: ChangeTimeSlot) {
     const headers = this.loginService.getHeaders();
     const id = this.loginService.getCurrentUser().id;
@@ -25,6 +27,15 @@ export class FishingInstructorService {
     const headers = this.loginService.getHeaders();
     return this._http.get<any>(url,{headers:headers});
   }
+
+  getInstructorPastReservations() {
+    const id = this.loginService.getCurrentUser().id;
+    const url = this.url + '/get-instructor-past-reservations/'+id;
+    const headers = this.loginService.getHeaders();
+    return this._http.get<any>(url,{headers:headers});
+  }
+
+
 
   deleteAvailableTimePeriod(id:number){
     const headers = this.loginService.getHeaders();

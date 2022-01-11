@@ -88,7 +88,7 @@ export class QuickReservationsComponent implements OnInit {
         if (data!=-1){
           alert('Adventure successfully added!');
         }else{
-          alert('Mistake');
+          alert('Reservation in selected date already exist');
         }
       });
       this.reservation=new AdventureQuickReservation();

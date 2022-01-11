@@ -30,4 +30,12 @@ public class AdventureQuickReservation extends QuickReservation {
             inverseJoinColumns = @JoinColumn(name = "adventure_utility_id"))
     private Set<QuickReservationUtility> utilities;
 
+    public void recalculateFullPrice(){
+        double fullPrice=0;
+        for(QuickReservationUtility utility:this.utilities){
+            fullPrice+=utility.getPrice();
+        }
+        this.setPrice(this.getPrice()+fullPrice);
+    }
+
 }

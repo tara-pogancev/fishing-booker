@@ -7,6 +7,17 @@ import { LoginService } from './login.service';
   providedIn: 'root'
 })
 export class AdminService {
+  getBusinessReportInDate(startDate: Date, endDate: Date) {
+    const url = this.url + '/business-report';
+    const headers = this.loginService.getHeaders();
+    return this._http.put<any>(url,{startDate:startDate,endDate:endDate},{ headers: headers });
+  }
+
+  getBusinessReport() {
+    const url = this.url + '/business-report';
+    const headers = this.loginService.getHeaders();
+    return this._http.get<any>(url, { headers: headers });
+  }
   
   url = server + 'api/admin';
 

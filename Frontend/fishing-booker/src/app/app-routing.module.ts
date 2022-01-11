@@ -26,6 +26,8 @@ import { CottageOwnerEditCottageComponent } from './components/cottages/cottage-
 import { NewBoatReservationComponent } from './components/client/new-boat-reservation/new-boat-reservation.component';
 import { NewCottageReservationComponent } from './components/client/new-cottage-reservation/new-cottage-reservation.component';
 import { NewAdventureReservationComponent } from './components/client/new-adventure-reservation/new-adventure-reservation.component';
+import { AdventureReservationReport } from './model/adventure-reservation-report';
+import { AdventureReservationReportComponent } from './components/fishing/fishing-instructor-dashboard/adventure-reservation-report/adventure-reservation-report.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -66,7 +68,9 @@ const routes: Routes = [
   { path: 'edit-cottage/:id', component: CottageOwnerEditCottageComponent },
   { path: '', component: HomeComponent },
   { path: '401', component: NotAllowedComponent },
+  { path: 'adventure-reservation-report/:id',component: AdventureReservationReportComponent},
   { path: '**', component: NotFoundComponent },
+  
 ];
 
 @NgModule({

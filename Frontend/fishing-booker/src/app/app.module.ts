@@ -111,6 +111,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SpecialOfferReservationCardComponent } from './components/client/special-offer-reservation-card/special-offer-reservation-card.component';
 import { CalendarHeaderComponent } from './components/calendar/calendar-header/calendar-header.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import { AdventureReservationReportComponent } from './components/fishing/fishing-instructor-dashboard/adventure-reservation-report/adventure-reservation-report.component';
+import { ReservationReportComponent } from './components/admin/admin-dashboard/reservation-report/reservation-report.component';
+import { BusinessReportComponent } from './components/admin/admin-dashboard/business-report/business-report.component';
 
 @NgModule({
   declarations: [
@@ -216,6 +219,9 @@ import { LoaderComponent } from './components/loader/loader.component';
     SpecialOfferReservationCardComponent,
     CalendarHeaderComponent,
     LoaderComponent,
+    AdventureReservationReportComponent,
+    ReservationReportComponent,
+    BusinessReportComponent
   ],
   imports: [
     BrowserModule,

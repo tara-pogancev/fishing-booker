@@ -11,39 +11,31 @@
             <th><abbr title="End Date">End Date</abbr></th>
             <th><abbr title="No. of People">No. of People</abbr></th>
             <th><abbr title="Price">Price</abbr></th>
+            <th><abbr title="Price">Reservation Type</abbr></th>
             <th><abbr title="Create Report">Create Report</abbr></th>
           </tr>
         </thead>
   
-        <tr>
+        <tr *ngFor="let reservation of reservations">
           
           <td>
-            Fishy Adventure
+            {{reservation.adventureName}}
           </td>
-          <td><a (click)=openModalUser()>John Smith</a></td>
-          <td>23/04/2021</td>
-          <td>25/04/2021</td>
-          <td>3</td>
-          <td>$75</td>
-          <td><a (click)=openModalReport()>Create Report</a></td>
+          <td><a (click)=openModalUser(reservation)>{{reservation.clientName}}  {{reservation.clientLastName}}</a></td>
+          <td>{{reservation.startDate}}</td>
+          <td>{{reservation.endDate}}</td>
+          <td>{{reservation.numberOfPeople}}</td>
+          <td>{{reservation.price}}</td>
+          <td>{{reservation.reservationType}}</td>
+          <td><a *ngIf="reservation.createdReport==false" (click)=openModalReport(reservation)>Create Report</a></td>
         </tr>
   
-        <tr>
-          <td>
-            Fishy Adventure
-          </td>
-          <td><a (click)=openModalUser()>John Smith</a> </td>
-          <td>23/04/2021</td>
-          <td>25/04/2021</td>
-          <td>3</td>
-          <td>$75</td>
-          <td><a (click)=openModalReport()>Create Report</a></td>
-        </tr>
+        
   
         
       </table>
     </div>
-    <div class="modal" id='modalUser'>
+    <div class="modal" id='modalUser' *ngFor="let reservation of reservations">
       <div class="modal-background"></div>
       <div class="modal-card">
         <header class="modal-card-head">
@@ -55,27 +47,27 @@
             <div class="column">
               <div class="mb-6">
                 <h4>First Name:</h4>
-                <p>John</p>
+                <p>{{reservation.clientName}}</p>
               </div>
               <div class="mb-6">
                 <h4>Last Name:</h4>
-                <p>Smith</p>
+                <p>{{reservation.clientLastName}}</p>
               </div>
         
               <div class="mb-6">
                 <h4>Phone:</h4>
-                <p>004568424845</p>
+                <p>{{reservation.clientPhoneNumber}}</p>
               </div>
               <div class="mb-6">
                 <h4>Address:</h4>
-                <p>Alekse Santica 4, Novi Sad
+                <p>{{reservation.clientfullAddress}}
                 </p>
               </div>
             </div>
             <div class="column">
               <div class="mb-6">
                 <h4>Email:</h4>
-                <p>john.smith@gmail.com</p>
+                <p>{{reservation.clientMail}}</p>
               </div>
             </div>
           </div>
@@ -87,17 +79,5 @@
         </footer>
       </div>
     </div>
-    <div class="modal" id='modalReport'>
-        <div class="modal-background"></div>
-        <div class="modal-card">
-          <header class="modal-card-head">
-            <p class="modal-card-title">Create Registration Report</p>
-            <button class="delete" aria-label="close" (click)="closeModalReport()"></button>
-          </header>
-          <section class="modal-card-body">
-            <p>Funkcionalnost 3.23</p>
-          </section>
-          
-        </div>
-      </div>
+    
   </div>

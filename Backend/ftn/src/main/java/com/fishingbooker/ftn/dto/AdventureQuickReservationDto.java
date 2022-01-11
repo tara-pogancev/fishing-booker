@@ -13,5 +13,5 @@ public class AdventureQuickReservationDto {
     private Integer guestLimit;
     private LocalDateTime actionStart;
     private LocalDateTime actionEnd;
-    private Integer price;
+    private Double price;
 }

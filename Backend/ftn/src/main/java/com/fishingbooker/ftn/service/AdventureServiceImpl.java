@@ -7,6 +7,7 @@ import com.fishingbooker.ftn.bom.adventures.*;
 import com.fishingbooker.ftn.bom.cottages.Cottage;
 import com.fishingbooker.ftn.bom.cottages.CottageReservation;
 import com.fishingbooker.ftn.bom.users.FishingInstructor;
+import com.fishingbooker.ftn.bom.users.RegisteredClient;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.conversion.UnixTimeToLocalDateTimeConverter;
 import com.fishingbooker.ftn.dto.*;
@@ -41,6 +42,8 @@ public class AdventureServiceImpl implements AdventureService {
     private final AvailableInstructorTimeRepository instructorTimeRepository;
     private final AdventureReservationRepository adventureReservationRepository;
     private final AdventureQuickReservationRepository adventureQuickReservationRepository;
+    private final SubscriptionService subscriptionService;
+    private final MailingService mailingService;
 
     @Override
     public List<AdventureDto> findAll() {
@@ -197,10 +200,14 @@ public class AdventureServiceImpl implements AdventureService {
 
     @Override
     public Long createQuickReservation(AdventureQuickReservation reservation) {
-        if (!validate(reservation.getAdventure().getInstructor().getId(), reservation.getActionStart(), reservation.getActionEnd())) {
-            return -1L;
-        } else {
-            AdventureQuickReservation persistedReservation = adventureQuickReservationRepository.save(reservation);
+        if(!validate(reservation.getAdventure().getInstructor().getId(),reservation.getActionStart(),reservation.getActionEnd())){
+            return -1l;
+        }else{
+            AdventureQuickReservation persistedReservation=adventureQuickReservationRepository.save(reservation);
+            List<RegisteredClient> clients=subscriptionService.getInstructorSubscribers(persistedReservation.getAdventure().getInstructor().getId());
+            for(RegisteredClient client:clients){
+                mailingService.sendMailToSubscribedUsers(client,persistedReservation.getReservationClient().getFullName());
+            }
             return persistedReservation.getId();
         }
     }

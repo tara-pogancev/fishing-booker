@@ -11,6 +11,8 @@ import com.fishingbooker.ftn.dto.ActionDto;
 import com.fishingbooker.ftn.dto.ReservationDto;
 
 import javax.swing.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface ReservationService {
@@ -39,4 +41,7 @@ public interface ReservationService {
 
     AdventureQuickReservation getAdventureQuickReservation(Long id);
 
+    List<Reservation> getAll();
+
+    List<Reservation> getInDate(LocalDate startDate, LocalDate endDate);
 }

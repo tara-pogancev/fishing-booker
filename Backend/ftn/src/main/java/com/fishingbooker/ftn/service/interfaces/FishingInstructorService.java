@@ -26,4 +26,8 @@ public interface FishingInstructorService {
     List<AdventureReservation> getNonCanceledInstructorReservations(Long id);
 
     List<AdventureQuickReservation> getInstructorQuickReservations(Long id);
+
+    List<AdventureReservation> getInstructorPastReservations(Long id);
+
+    List<AdventureQuickReservation> getInsturctorPastQuickReservations(Long id);
 }
