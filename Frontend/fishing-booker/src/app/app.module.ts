@@ -112,6 +112,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdventureReservationReportComponent } from './components/fishing/fishing-instructor-dashboard/adventure-reservation-report/adventure-reservation-report.component';
 import { ReservationReportComponent } from './components/admin/admin-dashboard/reservation-report/reservation-report.component';
+import { BusinessReportComponent } from './components/admin/admin-dashboard/business-report/business-report.component';
 
 @NgModule({
   declarations: [
@@ -215,7 +216,8 @@ import { ReservationReportComponent } from './components/admin/admin-dashboard/r
     AdminReviewComponent,
     QuickReservationsCalendarComponent,
     AdventureReservationReportComponent,
-    ReservationReportComponent
+    ReservationReportComponent,
+    BusinessReportComponent
   ],
   imports: [
     BrowserModule,

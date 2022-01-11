@@ -3,7 +3,6 @@ package com.fishingbooker.ftn.service;
 import com.fishingbooker.ftn.bom.adventures.AdventureReservation;
 import com.fishingbooker.ftn.bom.reservation_report.AdventureReservationReport;
 import com.fishingbooker.ftn.bom.reservation_report.ReservationReportStatus;
-import com.fishingbooker.ftn.bom.users.ApplicationUser;
 import com.fishingbooker.ftn.bom.users.RegisteredClient;
 import com.fishingbooker.ftn.dto.CreateAdventureReservationReportDto;
 import com.fishingbooker.ftn.dto.ReservationReportDto;
@@ -65,6 +64,25 @@ public class AdventureReservationReportServiceImpl implements AdventureReservati
 
     }
 
+    @Override
+    public Long forgiveClient(ReservationReportDto reportDto) {
+        if (reportDto.getReportType().equalsIgnoreCase("Adventure")){
+            return forgiveForAdventureReservation(reportDto);
+        }
+
+        return null;
+    }
+
+    private Long forgiveForAdventureReservation(ReservationReportDto reportDto) {
+        RegisteredClient client;
+        AdventureReservationReport report=adventureReservationReportRepository.getById(reportDto.getReportId());
+        report.setProcessedByAdmin(true);
+        adventureReservationReportRepository.save(report);
+        client=registeredClientRepository.getById(report.getAdventureReservation().getReservationClient().getId());
+        mailingService.sendMailToUsersAboutNotGivingPenalty(client,report.getAdventureReservation().getAdventure().getInstructor());
+        return report.getId();
+    }
+
     private Long givePenaltyForAdventureReservation(ReservationReportDto reportDto) {
         RegisteredClient client;
         AdventureReservationReport report=adventureReservationReportRepository.getById(reportDto.getReportId());
@@ -73,7 +91,12 @@ public class AdventureReservationReportServiceImpl implements AdventureReservati
         client=registeredClientRepository.getById(report.getAdventureReservation().getReservationClient().getId());
         client.setPenalties(client.getPenalties()+1);
         registeredClientRepository.save(client);
-        mailingService.sendMailToClientAboutPenalty(client,report.getAdventureReservation().getAdventure().getInstructor());
+        mailingService.sendMailToUsersAboutGivingPenalty(client,report.getAdventureReservation().getAdventure().getInstructor());
         return report.getId();
+    }
+
+    public boolean existsReportForAdventureReservation(Long adventureReservationId){
+        AdventureReservationReport report=adventureReservationReportRepository.getReport(adventureReservationId);
+        return report!=null;
     }
 }

@@ -5,14 +5,12 @@ import com.fishingbooker.ftn.bom.AvailableTimePeriod;
 import com.fishingbooker.ftn.bom.RuleOfConduct;
 import com.fishingbooker.ftn.bom.adventures.*;
 import com.fishingbooker.ftn.bom.users.FishingInstructor;
+import com.fishingbooker.ftn.bom.users.RegisteredClient;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.conversion.UnixTimeToLocalDateTimeConverter;
 import com.fishingbooker.ftn.dto.*;
 import com.fishingbooker.ftn.repository.*;
-import com.fishingbooker.ftn.service.interfaces.AdventureService;
-import com.fishingbooker.ftn.service.interfaces.ImageService;
-import com.fishingbooker.ftn.service.interfaces.RuleOfConductService;
-import com.fishingbooker.ftn.service.interfaces.UtilityService;
+import com.fishingbooker.ftn.service.interfaces.*;
 import lombok.RequiredArgsConstructor;
 import org.apache.tomcat.jni.Local;
 import org.springframework.stereotype.Service;
@@ -42,6 +40,8 @@ public class AdventureServiceImpl implements AdventureService {
     private final AdventureReservationRepository adventureReservationRepository;
     private final AvailableInstructorTimeRepository instructorTimeRepository;
     private final RegisteredClientRepository clientRepository;
+    private final SubscriptionService subscriptionService;
+    private final MailingService mailingService;
 
     @Override
     public List<AdventureDto> findAll() {
@@ -171,6 +171,10 @@ public class AdventureServiceImpl implements AdventureService {
             return -1l;
         }else{
             AdventureQuickReservation persistedReservation=adventureQuickReservationRepository.save(reservation);
+            List<RegisteredClient> clients=subscriptionService.getInstructorSubscribers(persistedReservation.getAdventure().getInstructor().getId());
+            for(RegisteredClient client:clients){
+                mailingService.sendMailToSubscribedUsers(client,persistedReservation.getReservationClient().getFullName());
+            }
             return persistedReservation.getId();
         }
     }

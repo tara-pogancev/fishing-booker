@@ -20,11 +20,19 @@ export class ReservationReportComponent implements OnInit {
 
    givePenalty(report:AdventureReservationReport){
       this.reservationReportService.givePenalty(report).subscribe(data=>{
+        if (data!=null){
+          alert('Successfully')
+        }
       });
    }
 
    forgiveClient(report:AdventureReservationReport){
-    this.reservationReportService.forgiveClient(report);
+    this.reservationReportService.forgiveClient(report).subscribe(data=>{
+        if (data!=null){
+          alert('Successfully!');
+        }
+        
+    });
   }
 
    

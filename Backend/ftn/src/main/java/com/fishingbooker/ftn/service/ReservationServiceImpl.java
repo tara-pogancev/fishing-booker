@@ -26,6 +26,8 @@ import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
 import javax.transaction.Transactional;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -200,6 +202,16 @@ public class ReservationServiceImpl implements ReservationService {
         return adventureQuickReservationRepository.get(id);
     }
 
+    @Override
+    public List<Reservation> getAll() {
+        return reservationRepository.findAll();
+    }
+
+    @Override
+    public List<Reservation> getInDate(LocalDate startDate, LocalDate endDate) {
+        return reservationRepository.getReservationsInDate(startDate,endDate);
+    }
+
     public void sendReservationConfirmationEmail(ApplicationUser user, ReservationDto reservationDto) {
         ClientReservationConfirmationEmailContext emailContext = new ClientReservationConfirmationEmailContext();
         emailContext.init(user);
@@ -210,6 +222,8 @@ public class ReservationServiceImpl implements ReservationService {
             e.printStackTrace();
         }
     }
+
+
 
 
 }

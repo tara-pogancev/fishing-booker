@@ -9,6 +9,8 @@ import { SystemPropertiesService } from 'src/app/service/system-properties.servi
 export class CommisionPrecentageComponent implements OnInit {
 
 
+  startDate=new Date();
+  endDate=new Date();
   commissionPercentage:Number=0;
   constructor(private systemPropertiesService:SystemPropertiesService) { }
 
@@ -22,6 +24,9 @@ export class CommisionPrecentageComponent implements OnInit {
       data=>alert('Successfully changed'),
       error =>console.log('Error')
     );
+  }
+
+  search(){
     
   }
 

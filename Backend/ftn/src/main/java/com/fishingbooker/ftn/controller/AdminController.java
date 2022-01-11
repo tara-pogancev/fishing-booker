@@ -1,16 +1,18 @@
 package com.fishingbooker.ftn.controller;
 
 import com.fishingbooker.ftn.bom.Address;
+import com.fishingbooker.ftn.bom.reservations.Reservation;
 import com.fishingbooker.ftn.bom.users.Administrator;
 import com.fishingbooker.ftn.conversion.DataConverter;
-import com.fishingbooker.ftn.dto.AdminChangePasswordDto;
-import com.fishingbooker.ftn.dto.AdministratorDto;
-import com.fishingbooker.ftn.dto.ApplicationUserDto;
+import com.fishingbooker.ftn.dto.*;
 import com.fishingbooker.ftn.service.interfaces.AdministratorService;
+import com.fishingbooker.ftn.service.interfaces.ReservationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -20,6 +22,7 @@ public class AdminController {
 
     private final AdministratorService adminService;
     private final DataConverter converter;
+    private final ReservationService reservationService;
 
     @GetMapping("/{id}")
 
@@ -57,5 +60,19 @@ public class AdminController {
     @PutMapping("/change-password")
     public void changePassword(@RequestBody AdminChangePasswordDto adminDto) {
         adminService.changePassword(adminDto);
+    }
+
+    @GetMapping("/business-report")
+    public List<AdminReservationStatisticsDto> getReservations(){
+        List<Reservation> reservations= reservationService.getAll();
+        List<AdminReservationStatisticsDto> reservationStatisticsDtos=converter.convert(reservations,AdminReservationStatisticsDto.class);
+        return reservationStatisticsDtos;
+    }
+
+    @PutMapping("/business-report")
+    public List<AdminReservationStatisticsDto> getReservationsInDate(@RequestBody DateRangeDto dateRangeDto){
+        List<Reservation> reservations= reservationService.getInDate(dateRangeDto.getStartDate(),dateRangeDto.getEndDate());
+        List<AdminReservationStatisticsDto> reservationStatisticsDtos=converter.convert(reservations,AdminReservationStatisticsDto.class);
+        return reservationStatisticsDtos;
     }
 }

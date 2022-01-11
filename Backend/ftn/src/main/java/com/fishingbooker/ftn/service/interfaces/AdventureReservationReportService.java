@@ -12,4 +12,8 @@ public interface AdventureReservationReportService {
     Long createAdventureReservationReport(CreateAdventureReservationReportDto adventureReportDto);
 
     Long givePenaltyToClient(ReservationReportDto reportId);
+
+    Long forgiveClient(ReservationReportDto reservationReportDto);
+
+    boolean existsReportForAdventureReservation(Long adventureReservationId);
 }

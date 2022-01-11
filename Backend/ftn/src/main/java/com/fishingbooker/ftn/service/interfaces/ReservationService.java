@@ -7,6 +7,8 @@ import com.fishingbooker.ftn.bom.cottages.CottageReservation;
 import com.fishingbooker.ftn.bom.reservations.Reservation;
 import com.fishingbooker.ftn.dto.ReservationDto;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface ReservationService {
@@ -34,4 +36,8 @@ public interface ReservationService {
     AdventureReservation getAdventureReservation(Long id);
 
     AdventureQuickReservation getAdventureQuickReservation(Long id);
+
+    List<Reservation> getAll();
+
+    List<Reservation> getInDate(LocalDate startDate, LocalDate endDate);
 }

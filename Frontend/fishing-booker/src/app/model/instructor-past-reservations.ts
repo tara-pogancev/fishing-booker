@@ -14,6 +14,7 @@ export class InstructorPastReservation{
         public clientMail:string='',
         public clientfullAddress:string='',
         public clientPhoneNumber:string='',
+        public createdReport:boolean=false
     ){
 
     }

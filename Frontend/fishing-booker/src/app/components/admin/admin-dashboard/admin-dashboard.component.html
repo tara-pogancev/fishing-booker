@@ -24,6 +24,13 @@
             >Commision precentage</a
           >
         </li>
+        <li>
+          <a
+            [ngClass]="{ 'is-active': activeTab === 'BUSINESS_REPORT' }"
+            (click)="changeTab('BUSINESS_REPORT')"
+            >Business Report</a
+          >
+        </li>
       </ul>
       <p class="menu-label">Users</p>
       <ul class="menu-list">
@@ -146,6 +153,10 @@
       </div>
       <div *ngIf="activeTab == 'COMMISION'">
         <app-commision-precentage></app-commision-precentage>
+      </div>
+
+      <div *ngIf="activeTab == 'BUSINESS_REPORT'">
+        <app-business-report></app-business-report>
       </div>
       <div *ngIf="activeTab == 'COTTAGE_OWNERS'">
         <app-cottage-owner-list></app-cottage-owner-list>

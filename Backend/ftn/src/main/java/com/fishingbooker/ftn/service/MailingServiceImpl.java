@@ -62,7 +62,7 @@ public class MailingServiceImpl implements MailingService {
     }
 
     @Override
-    public void sendMailToClientAboutPenalty(RegisteredClient registeredClient, ApplicationUser owner) {
+    public void sendMailToUsersAboutGivingPenalty(RegisteredClient registeredClient, ApplicationUser owner) {
         ClientPenaltyNotification emailContext=new ClientPenaltyNotification();
         emailContext.setDate(registeredClient.getFullName(),owner.getFullName());
         emailContext.init(registeredClient);
@@ -77,6 +77,39 @@ public class MailingServiceImpl implements MailingService {
         ownerEmailContext.init(owner);
         try {
             emailService.sendMail(ownerEmailContext);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void sendMailToUsersAboutNotGivingPenalty(RegisteredClient registeredClient, ApplicationUser owner) {
+        ClientNoPenaltyNotification emailContext=new ClientNoPenaltyNotification();
+        emailContext.setDate(registeredClient.getFullName(),owner.getFullName());
+        emailContext.init(registeredClient);
+        try {
+            emailService.sendMail(emailContext);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+
+        OwnerNoPenaltyNotification ownerEmailContext=new OwnerNoPenaltyNotification();
+        ownerEmailContext.setDate(registeredClient.getFullName(),owner.getFullName());
+        ownerEmailContext.init(owner);
+        try {
+            emailService.sendMail(ownerEmailContext);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void sendMailToSubscribedUsers(RegisteredClient client, String fullName) {
+        QuickActionSubscription emailContext=new QuickActionSubscription();
+        emailContext.setDate(client.getFullName(),fullName);
+        emailContext.init(client);
+        try {
+            emailService.sendMail(emailContext);
         } catch (MessagingException e) {
             e.printStackTrace();
         }

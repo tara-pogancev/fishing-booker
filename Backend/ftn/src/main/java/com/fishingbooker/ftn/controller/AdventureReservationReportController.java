@@ -37,7 +37,8 @@ public class AdventureReservationReportController {
     }
 
     @PutMapping("/forgive-client")
-    public Long forgiveClient(@PathVariable("id") Long reportId){
-        return  1l;
+    public Long forgiveClient(@RequestBody ReservationReportDto reservationReportDto){
+        return adventureReservationReportService.forgiveClient(reservationReportDto);
+
     }
 }

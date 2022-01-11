@@ -27,7 +27,7 @@
           <td>{{reservation.numberOfPeople}}</td>
           <td>{{reservation.price}}</td>
           <td>{{reservation.reservationType}}</td>
-          <td><a (click)=openModalReport(reservation)>Create Report</a></td>
+          <td><a *ngIf="reservation.createdReport==false" (click)=openModalReport(reservation)>Create Report</a></td>
         </tr>
   
         
