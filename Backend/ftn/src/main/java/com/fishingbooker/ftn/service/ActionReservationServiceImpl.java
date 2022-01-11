@@ -1,6 +1,8 @@
 package com.fishingbooker.ftn.service;
 
-import com.fishingbooker.ftn.bom.adventures.*;
+import com.fishingbooker.ftn.bom.adventures.Adventure;
+import com.fishingbooker.ftn.bom.adventures.AdventureQuickReservation;
+import com.fishingbooker.ftn.bom.adventures.AdventureReservation;
 import com.fishingbooker.ftn.bom.boats.Boat;
 import com.fishingbooker.ftn.bom.boats.BoatQuickReservation;
 import com.fishingbooker.ftn.bom.boats.BoatReservation;
@@ -12,21 +14,16 @@ import com.fishingbooker.ftn.bom.reservations.Reservation;
 import com.fishingbooker.ftn.bom.users.ApplicationUser;
 import com.fishingbooker.ftn.bom.users.RegisteredClient;
 import com.fishingbooker.ftn.conversion.DataConverter;
-import com.fishingbooker.ftn.conversion.UnixTimeToLocalDateTimeConverter;
 import com.fishingbooker.ftn.dto.ReservationDto;
 import com.fishingbooker.ftn.email.context.ClientReservationConfirmationEmailContext;
 import com.fishingbooker.ftn.email.service.EmailService;
 import com.fishingbooker.ftn.repository.*;
 import com.fishingbooker.ftn.service.interfaces.ActionReservationService;
-import com.fishingbooker.ftn.service.interfaces.AdventureService;
-import com.fishingbooker.ftn.service.interfaces.CottageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
 import javax.transaction.Transactional;
-import java.util.HashSet;
-import java.util.Set;
 
 @Service
 @Transactional

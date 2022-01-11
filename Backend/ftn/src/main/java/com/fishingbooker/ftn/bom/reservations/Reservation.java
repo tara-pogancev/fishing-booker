@@ -29,7 +29,7 @@ public class Reservation extends DatabaseEntity {
     private Boolean isCanceled = false;
 
     @ManyToOne
-    @JoinColumn(name="quickReservation_id", nullable=true)
+    @JoinColumn(name = "quickReservation_id", nullable = true)
     private QuickReservation quickReservation;
 
 }

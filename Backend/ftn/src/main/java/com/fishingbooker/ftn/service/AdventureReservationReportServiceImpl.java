@@ -29,25 +29,25 @@ public class AdventureReservationReportServiceImpl implements AdventureReservati
 
     @Override
     public List<AdventureReservationReport> getUnprocessedReports() {
-        List<AdventureReservationReport> reservationReports=adventureReservationReportRepository.getUnprocessedReports();
+        List<AdventureReservationReport> reservationReports = adventureReservationReportRepository.getUnprocessedReports();
         return reservationReports;
     }
 
     @Override
     public Long createAdventureReservationReport(CreateAdventureReservationReportDto adventureReportDto) {
-        AdventureReservationReport adventureReservationReport=new AdventureReservationReport();
-        AdventureReservation adventureReservation=adventureReservationRepository.getById(adventureReportDto.getReservationId());
+        AdventureReservationReport adventureReservationReport = new AdventureReservationReport();
+        AdventureReservation adventureReservation = adventureReservationRepository.getById(adventureReportDto.getReservationId());
         adventureReservationReport.setComment(adventureReportDto.getComment());
         adventureReservationReport.setProcessedByAdmin(false);
         adventureReservationReport.setAdventureReservation(adventureReservation);
         adventureReservationReport.setReservationReportStatus(ReservationReportStatus.POSITIVE);
-        if (adventureReportDto.isBadComment()==true){
+        if (adventureReportDto.isBadComment() == true) {
             adventureReservationReport.setReservationReportStatus(ReservationReportStatus.NEGATIVE);
-        }else if(adventureReportDto.isNoClient()==true){
+        } else if (adventureReportDto.isNoClient() == true) {
             adventureReservationReport.setReservationReportStatus(ReservationReportStatus.NO_CLIENT);
             adventureReservationReport.setProcessedByAdmin(true);
-            RegisteredClient registeredClient=registeredClientRepository.getById(adventureReservation.getReservationClient().getId());
-            registeredClient.setPenalties(registeredClient.getPenalties()+1);
+            RegisteredClient registeredClient = registeredClientRepository.getById(adventureReservation.getReservationClient().getId());
+            registeredClient.setPenalties(registeredClient.getPenalties() + 1);
             registeredClientRepository.save(registeredClient);
         }
         return adventureReservationReportRepository.save(adventureReservationReport).getId();
@@ -55,7 +55,7 @@ public class AdventureReservationReportServiceImpl implements AdventureReservati
 
     @Override
     public Long givePenaltyToClient(ReservationReportDto reportDto) {
-        if (reportDto.getReportType().equalsIgnoreCase("Adventure")){
+        if (reportDto.getReportType().equalsIgnoreCase("Adventure")) {
             return givePenaltyForAdventureReservation(reportDto);
         }
         //todo for other type of reservation
@@ -66,7 +66,7 @@ public class AdventureReservationReportServiceImpl implements AdventureReservati
 
     @Override
     public Long forgiveClient(ReservationReportDto reportDto) {
-        if (reportDto.getReportType().equalsIgnoreCase("Adventure")){
+        if (reportDto.getReportType().equalsIgnoreCase("Adventure")) {
             return forgiveForAdventureReservation(reportDto);
         }
 
@@ -75,28 +75,28 @@ public class AdventureReservationReportServiceImpl implements AdventureReservati
 
     private Long forgiveForAdventureReservation(ReservationReportDto reportDto) {
         RegisteredClient client;
-        AdventureReservationReport report=adventureReservationReportRepository.getById(reportDto.getReportId());
+        AdventureReservationReport report = adventureReservationReportRepository.getById(reportDto.getReportId());
         report.setProcessedByAdmin(true);
         adventureReservationReportRepository.save(report);
-        client=registeredClientRepository.getById(report.getAdventureReservation().getReservationClient().getId());
-        mailingService.sendMailToUsersAboutNotGivingPenalty(client,report.getAdventureReservation().getAdventure().getInstructor());
+        client = registeredClientRepository.getById(report.getAdventureReservation().getReservationClient().getId());
+        mailingService.sendMailToUsersAboutNotGivingPenalty(client, report.getAdventureReservation().getAdventure().getInstructor());
         return report.getId();
     }
 
     private Long givePenaltyForAdventureReservation(ReservationReportDto reportDto) {
         RegisteredClient client;
-        AdventureReservationReport report=adventureReservationReportRepository.getById(reportDto.getReportId());
+        AdventureReservationReport report = adventureReservationReportRepository.getById(reportDto.getReportId());
         report.setProcessedByAdmin(true);
         adventureReservationReportRepository.save(report);
-        client=registeredClientRepository.getById(report.getAdventureReservation().getReservationClient().getId());
-        client.setPenalties(client.getPenalties()+1);
+        client = registeredClientRepository.getById(report.getAdventureReservation().getReservationClient().getId());
+        client.setPenalties(client.getPenalties() + 1);
         registeredClientRepository.save(client);
-        mailingService.sendMailToUsersAboutGivingPenalty(client,report.getAdventureReservation().getAdventure().getInstructor());
+        mailingService.sendMailToUsersAboutGivingPenalty(client, report.getAdventureReservation().getAdventure().getInstructor());
         return report.getId();
     }
 
-    public boolean existsReportForAdventureReservation(Long adventureReservationId){
-        AdventureReservationReport report=adventureReservationReportRepository.getReport(adventureReservationId);
-        return report!=null;
+    public boolean existsReportForAdventureReservation(Long adventureReservationId) {
+        AdventureReservationReport report = adventureReservationReportRepository.getReport(adventureReservationId);
+        return report != null;
     }
 }

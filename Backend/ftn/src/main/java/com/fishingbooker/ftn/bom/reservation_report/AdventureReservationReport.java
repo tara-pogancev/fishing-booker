@@ -7,7 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Table(name="adventureReservationReport")
+@Table(name = "adventureReservationReport")
 @Entity
 @Setter
 @Getter
@@ -17,13 +17,13 @@ public class AdventureReservationReport extends DatabaseEntity {
     @JoinColumn(name = "adventure_reservation", referencedColumnName = "id")
     private AdventureReservation adventureReservation;
 
-    @Column(name="comment")
+    @Column(name = "comment")
     private String comment;
 
-    @Column(name="reportStatus")
+    @Column(name = "reportStatus")
     private ReservationReportStatus reservationReportStatus;
 
-    @Column(name="processed_by_admin")
+    @Column(name = "processed_by_admin")
     private boolean processedByAdmin;
 
 }

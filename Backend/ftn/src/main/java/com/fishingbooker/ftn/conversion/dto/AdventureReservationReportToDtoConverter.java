@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class AdventureReservationReportToDtoConverter implements Converter<AdventureReservationReport, ReservationReportDto> {
     @Override
     public ReservationReportDto convert(AdventureReservationReport source) {
-        ReservationReportDto dto=new ReservationReportDto();
+        ReservationReportDto dto = new ReservationReportDto();
         dto.setReportId(source.getId());
         dto.setAdventureName(source.getAdventureReservation().getAdventure().getName());
         dto.setOwnerName(source.getAdventureReservation().getAdventure().getInstructor().getFullName());

@@ -4,7 +4,6 @@ import com.fishingbooker.ftn.bom.reservations.Reservation;
 import com.fishingbooker.ftn.bom.users.RegisteredClient;
 import com.fishingbooker.ftn.dto.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 

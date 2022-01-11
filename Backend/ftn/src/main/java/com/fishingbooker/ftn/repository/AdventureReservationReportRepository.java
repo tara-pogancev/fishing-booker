@@ -13,6 +13,6 @@ public interface AdventureReservationReportRepository extends EntityRepository<A
     List<AdventureReservationReport> getUnprocessedReports();
 
     @Query(value = "SELECT *\n" +
-            "\tFROM public.adventure_reservation_report WHERE adventure_reservation=:adventureReservationId",nativeQuery = true)
+            "\tFROM public.adventure_reservation_report WHERE adventure_reservation=:adventureReservationId", nativeQuery = true)
     AdventureReservationReport getReport(@Param("adventureReservationId") Long adventureReservationId);
 }

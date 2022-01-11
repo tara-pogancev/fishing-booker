@@ -1,10 +1,7 @@
 package com.fishingbooker.ftn.service;
 
 import com.fishingbooker.ftn.bom.Address;
-import com.fishingbooker.ftn.bom.AvailableTimePeriod;
 import com.fishingbooker.ftn.bom.RuleOfConduct;
-import com.fishingbooker.ftn.bom.boats.Boat;
-import com.fishingbooker.ftn.bom.boats.BoatReservation;
 import com.fishingbooker.ftn.bom.cottages.Cottage;
 import com.fishingbooker.ftn.bom.cottages.CottageReservation;
 import com.fishingbooker.ftn.bom.cottages.CottageUtility;
@@ -151,7 +148,7 @@ public class CottageServiceImpl implements CottageService {
         return formerlyCanceledCottages;
     }
 
-    private boolean isIdInList (List<Cottage> list, Long id) {
+    private boolean isIdInList(List<Cottage> list, Long id) {
         for (Cottage cottage : list) {
             if (cottage.getId() == id) {
                 return true;

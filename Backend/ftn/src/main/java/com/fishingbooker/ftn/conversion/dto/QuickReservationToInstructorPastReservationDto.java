@@ -1,7 +1,6 @@
 package com.fishingbooker.ftn.conversion.dto;
 
 import com.fishingbooker.ftn.bom.adventures.AdventureQuickReservation;
-import com.fishingbooker.ftn.bom.reservations.QuickReservation;
 import com.fishingbooker.ftn.dto.InstructorPastReservationsDto;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;

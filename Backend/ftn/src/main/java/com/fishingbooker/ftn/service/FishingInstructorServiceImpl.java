@@ -101,26 +101,26 @@ public class FishingInstructorServiceImpl implements FishingInstructorService {
 
     @Override
     public List<AdventureReservation> getInstructorPastReservations(Long id) {
-       List<AdventureReservation> adventureReservations=this.getInstructorReservations(id);
-       for(int i=0;i<adventureReservations.size();i++){
-           if (adventureReservations.get(i).getReservationEnd().isAfter(LocalDateTime.now())){
-               adventureReservations.remove(i);
-               i--;
-           }
-       }
-       return adventureReservations;
+        List<AdventureReservation> adventureReservations = this.getInstructorReservations(id);
+        for (int i = 0; i < adventureReservations.size(); i++) {
+            if (adventureReservations.get(i).getReservationEnd().isAfter(LocalDateTime.now())) {
+                adventureReservations.remove(i);
+                i--;
+            }
+        }
+        return adventureReservations;
     }
 
     @Override
     public List<AdventureQuickReservation> getInsturctorPastQuickReservations(Long id) {
-        List<AdventureQuickReservation> adventureQuickReservations=this.getInstructorQuickReservations(id);
-        for(int i=0;i<adventureQuickReservations.size();i++){
-            if (adventureQuickReservations.get(i).getActionEnd().isAfter(LocalDateTime.now())){
+        List<AdventureQuickReservation> adventureQuickReservations = this.getInstructorQuickReservations(id);
+        for (int i = 0; i < adventureQuickReservations.size(); i++) {
+            if (adventureQuickReservations.get(i).getActionEnd().isAfter(LocalDateTime.now())) {
                 adventureQuickReservations.remove(i);
                 i--;
             }
         }
-        return  adventureQuickReservations;
+        return adventureQuickReservations;
     }
 
 

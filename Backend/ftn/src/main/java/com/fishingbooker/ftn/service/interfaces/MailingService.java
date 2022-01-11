@@ -1,7 +1,6 @@
 package com.fishingbooker.ftn.service.interfaces;
 
 import com.fishingbooker.ftn.bom.users.ApplicationUser;
-import com.fishingbooker.ftn.bom.users.FishingInstructor;
 import com.fishingbooker.ftn.bom.users.RegisteredClient;
 
 public interface MailingService {
@@ -10,7 +9,7 @@ public interface MailingService {
 
     void sendRefuseDeleteAccountMail(ApplicationUser user, String description);
 
-    void sendComplaintResponse(ApplicationUser client, ApplicationUser owner,String response,String complaint);
+    void sendComplaintResponse(ApplicationUser client, ApplicationUser owner, String response, String complaint);
 
     void sendMailToUsersAboutGivingPenalty(RegisteredClient registeredClient, ApplicationUser owner);
 

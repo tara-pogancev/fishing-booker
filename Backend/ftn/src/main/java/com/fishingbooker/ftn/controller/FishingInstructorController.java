@@ -7,7 +7,6 @@ import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.FishingInstructorDto;
 import com.fishingbooker.ftn.dto.InstructorCalendarReservationDto;
 import com.fishingbooker.ftn.dto.InstructorPastReservationsDto;
-import com.fishingbooker.ftn.dto.ReservationDto;
 import com.fishingbooker.ftn.service.interfaces.FishingInstructorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -77,12 +76,12 @@ public class FishingInstructorController {
     }
 
     @GetMapping("/get-instructor-past-reservations/{id}")
-    public List<InstructorPastReservationsDto> getInstructorPastReservations(@PathVariable() Long id){
-        List<AdventureReservation> reservations=fishingInstructorService.getInstructorPastReservations(id);
-        List<AdventureQuickReservation> quickReservations=fishingInstructorService.getInsturctorPastQuickReservations(id);
-        List<InstructorPastReservationsDto> instructorPastReservationsDtos=converter.convert(reservations,InstructorPastReservationsDto.class);
-        List<InstructorPastReservationsDto> instructorQuickPackReservations=converter.convert(quickReservations,InstructorPastReservationsDto.class);
-        List<InstructorPastReservationsDto> ret=new ArrayList<>(instructorPastReservationsDtos);
+    public List<InstructorPastReservationsDto> getInstructorPastReservations(@PathVariable() Long id) {
+        List<AdventureReservation> reservations = fishingInstructorService.getInstructorPastReservations(id);
+        List<AdventureQuickReservation> quickReservations = fishingInstructorService.getInsturctorPastQuickReservations(id);
+        List<InstructorPastReservationsDto> instructorPastReservationsDtos = converter.convert(reservations, InstructorPastReservationsDto.class);
+        List<InstructorPastReservationsDto> instructorQuickPackReservations = converter.convert(quickReservations, InstructorPastReservationsDto.class);
+        List<InstructorPastReservationsDto> ret = new ArrayList<>(instructorPastReservationsDtos);
         ret.addAll(instructorQuickPackReservations);
         return ret;
     }

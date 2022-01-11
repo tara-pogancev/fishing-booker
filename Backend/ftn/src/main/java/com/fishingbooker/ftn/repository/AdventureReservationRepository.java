@@ -1,8 +1,6 @@
 package com.fishingbooker.ftn.repository;
 
 import com.fishingbooker.ftn.bom.adventures.AdventureReservation;
-import com.fishingbooker.ftn.bom.boats.BoatReservation;
-import com.fishingbooker.ftn.bom.cottages.CottageReservation;
 import com.fishingbooker.ftn.repository.base.EntityRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

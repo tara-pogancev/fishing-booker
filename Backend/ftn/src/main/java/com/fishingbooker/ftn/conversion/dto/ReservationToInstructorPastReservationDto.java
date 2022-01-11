@@ -26,6 +26,7 @@ import org.springframework.stereotype.Component;
 public class ReservationToInstructorPastReservationDto implements Converter<AdventureReservation, InstructorPastReservationsDto> {
 
     private final AdventureReservationReportService reservationReportService;
+
     @Override
     public InstructorPastReservationsDto convert(AdventureReservation source) {
         InstructorPastReservationsDto dto = new InstructorPastReservationsDto();

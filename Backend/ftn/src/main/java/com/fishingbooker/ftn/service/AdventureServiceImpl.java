@@ -1,11 +1,8 @@
 package com.fishingbooker.ftn.service;
 
 import com.fishingbooker.ftn.bom.Address;
-import com.fishingbooker.ftn.bom.AvailableTimePeriod;
 import com.fishingbooker.ftn.bom.RuleOfConduct;
 import com.fishingbooker.ftn.bom.adventures.*;
-import com.fishingbooker.ftn.bom.cottages.Cottage;
-import com.fishingbooker.ftn.bom.cottages.CottageReservation;
 import com.fishingbooker.ftn.bom.users.FishingInstructor;
 import com.fishingbooker.ftn.bom.users.RegisteredClient;
 import com.fishingbooker.ftn.conversion.DataConverter;
@@ -189,7 +186,7 @@ public class AdventureServiceImpl implements AdventureService {
         return formerlyCanceledAdventures;
     }
 
-    private boolean isIdInList (List<Adventure> list, Long id) {
+    private boolean isIdInList(List<Adventure> list, Long id) {
         for (Adventure adventure : list) {
             if (adventure.getId() == id) {
                 return true;
@@ -200,13 +197,13 @@ public class AdventureServiceImpl implements AdventureService {
 
     @Override
     public Long createQuickReservation(AdventureQuickReservation reservation) {
-        if(!validate(reservation.getAdventure().getInstructor().getId(),reservation.getActionStart(),reservation.getActionEnd())){
+        if (!validate(reservation.getAdventure().getInstructor().getId(), reservation.getActionStart(), reservation.getActionEnd())) {
             return -1l;
-        }else{
-            AdventureQuickReservation persistedReservation=adventureQuickReservationRepository.save(reservation);
-            List<RegisteredClient> clients=subscriptionService.getInstructorSubscribers(persistedReservation.getAdventure().getInstructor().getId());
-            for(RegisteredClient client:clients){
-                mailingService.sendMailToSubscribedUsers(client,persistedReservation.getReservationClient().getFullName());
+        } else {
+            AdventureQuickReservation persistedReservation = adventureQuickReservationRepository.save(reservation);
+            List<RegisteredClient> clients = subscriptionService.getInstructorSubscribers(persistedReservation.getAdventure().getInstructor().getId());
+            for (RegisteredClient client : clients) {
+                mailingService.sendMailToSubscribedUsers(client, persistedReservation.getReservationClient().getFullName());
             }
             return persistedReservation.getId();
         }

@@ -5,12 +5,13 @@ import com.fishingbooker.ftn.bom.boats.Boat;
 import com.fishingbooker.ftn.bom.boats.BoatReservation;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.BoatDto;
-import com.fishingbooker.ftn.dto.ReservationDto;
 import com.fishingbooker.ftn.dto.ReviewDto;
 import com.fishingbooker.ftn.dto.ViewReservationDto;
 import com.fishingbooker.ftn.service.interfaces.BoatService;
 import com.fishingbooker.ftn.service.interfaces.ReviewService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,8 +36,13 @@ public class BrowseBoatsController {
     }
 
     @GetMapping("{id}")
-    public BoatDto findById(@PathVariable Long id) {
-        return boatService.findById(id);
+    public ResponseEntity<BoatDto> findById(@PathVariable Long id) {
+        BoatDto boatDto = boatService.findById(id);
+        if (boatDto == null) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(boatDto, HttpStatus.OK);
+        }
     }
 
     @GetMapping("/reviews/{id}")

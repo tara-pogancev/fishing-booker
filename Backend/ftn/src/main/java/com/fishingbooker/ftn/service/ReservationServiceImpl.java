@@ -15,7 +15,6 @@ import com.fishingbooker.ftn.bom.reservations.Reservation;
 import com.fishingbooker.ftn.bom.users.ApplicationUser;
 import com.fishingbooker.ftn.bom.users.RegisteredClient;
 import com.fishingbooker.ftn.conversion.UnixTimeToLocalDateTimeConverter;
-import com.fishingbooker.ftn.dto.ActionDto;
 import com.fishingbooker.ftn.dto.ReservationDto;
 import com.fishingbooker.ftn.email.context.ClientReservationConfirmationEmailContext;
 import com.fishingbooker.ftn.email.service.EmailService;
@@ -23,15 +22,12 @@ import com.fishingbooker.ftn.repository.*;
 import com.fishingbooker.ftn.service.interfaces.AdventureService;
 import com.fishingbooker.ftn.service.interfaces.CottageService;
 import com.fishingbooker.ftn.service.interfaces.ReservationService;
-import com.sun.xml.bind.v2.model.annotation.Quick;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
-import javax.swing.*;
 import javax.transaction.Transactional;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -224,7 +220,7 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     public List<Reservation> getInDate(LocalDate startDate, LocalDate endDate) {
-        return reservationRepository.getReservationsInDate(startDate,endDate);
+        return reservationRepository.getReservationsInDate(startDate, endDate);
     }
 
     public void sendReservationConfirmationEmail(ApplicationUser user, ReservationDto reservationDto) {
@@ -237,8 +233,6 @@ public class ReservationServiceImpl implements ReservationService {
             e.printStackTrace();
         }
     }
-
-
 
 
 }

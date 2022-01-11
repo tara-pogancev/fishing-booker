@@ -2,7 +2,7 @@ package com.fishingbooker.ftn.email.context;
 
 import com.fishingbooker.ftn.bom.users.ApplicationUser;
 
-public class OwnerPenaltyNotification extends AbstractEmailContext{
+public class OwnerPenaltyNotification extends AbstractEmailContext {
 
     public <T> void init(T context) {
         //we can do any common configuration setup here
@@ -15,8 +15,8 @@ public class OwnerPenaltyNotification extends AbstractEmailContext{
         setTo(user.getEmail());
     }
 
-    public void setDate(String clientName,String user){
+    public void setDate(String clientName, String user) {
         put("clientName", clientName);
-        put("user",user);
+        put("user", user);
     }
 }

@@ -1,14 +1,7 @@
 package com.fishingbooker.ftn.student1;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
-
 import com.fishingbooker.ftn.bom.cottages.CottageReservation;
-import com.fishingbooker.ftn.bom.reservations.Reservation;
 import com.fishingbooker.ftn.bom.users.RegisteredClient;
-import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.RegisteredClientDto;
 import com.fishingbooker.ftn.repository.BoatReservationRepository;
 import com.fishingbooker.ftn.repository.RegisteredClientRepository;
@@ -17,21 +10,18 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.time.LocalDateTime;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

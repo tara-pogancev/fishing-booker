@@ -1,12 +1,7 @@
 package com.fishingbooker.ftn.service;
 
-import com.fishingbooker.ftn.bom.AvailableTimePeriod;
-import com.fishingbooker.ftn.bom.adventures.Adventure;
-import com.fishingbooker.ftn.bom.adventures.AdventureReservation;
 import com.fishingbooker.ftn.bom.boats.Boat;
 import com.fishingbooker.ftn.bom.boats.BoatReservation;
-import com.fishingbooker.ftn.bom.cottages.Cottage;
-import com.fishingbooker.ftn.bom.cottages.CottageReservation;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.conversion.UnixTimeToLocalDateTimeConverter;
 import com.fishingbooker.ftn.dto.BoatDto;
@@ -101,7 +96,7 @@ public class BoatServiceImpl implements BoatService {
         return formerlyCanceledBoats;
     }
 
-    private boolean isIdInList (List<Boat> list, Long id) {
+    private boolean isIdInList(List<Boat> list, Long id) {
         for (Boat boat : list) {
             if (boat.getId() == id) {
                 return true;

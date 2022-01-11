@@ -86,6 +86,7 @@ public class DateServiceImpl implements DateService {
 
     /**
      * Takes the start of day for both start and both end dates and compares them.
+     *
      * @param start1
      * @param end1
      * @param start2

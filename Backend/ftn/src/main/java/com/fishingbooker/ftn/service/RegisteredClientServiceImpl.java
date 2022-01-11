@@ -144,7 +144,7 @@ public class RegisteredClientServiceImpl implements RegisteredClientService {
                     reservations.add(cottageReservation);
 
             for (BoatReservation boatReservation : client.getBoatReservations())
-                if (!boatReservation.getIsCanceled() &&(boatReservation.getReservationStart().isAfter(LocalDateTime.now()) || boatReservation.getReservationStart().isEqual(LocalDateTime.now())))
+                if (!boatReservation.getIsCanceled() && (boatReservation.getReservationStart().isAfter(LocalDateTime.now()) || boatReservation.getReservationStart().isEqual(LocalDateTime.now())))
                     reservations.add(boatReservation);
 
         }

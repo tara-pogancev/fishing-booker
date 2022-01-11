@@ -1,15 +1,12 @@
 package com.fishingbooker.ftn.controller;
 
 import com.fishingbooker.ftn.dto.ActionDto;
-import com.fishingbooker.ftn.dto.ReservationDto;
-import com.fishingbooker.ftn.service.interfaces.ActionReservationService;
 import com.fishingbooker.ftn.service.interfaces.ActionService;
-import com.fishingbooker.ftn.service.interfaces.ReservationService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.swing.*;
 import java.util.List;
 
 @RestController

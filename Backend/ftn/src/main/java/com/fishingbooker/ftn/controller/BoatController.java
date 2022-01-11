@@ -1,10 +1,8 @@
 package com.fishingbooker.ftn.controller;
 
 import com.fishingbooker.ftn.bom.boats.Boat;
-import com.fishingbooker.ftn.bom.cottages.Cottage;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.BoatDto;
-import com.fishingbooker.ftn.dto.CottageDto;
 import com.fishingbooker.ftn.dto.EntitySearchDto;
 import com.fishingbooker.ftn.dto.ReservationDto;
 import com.fishingbooker.ftn.service.interfaces.BoatService;

@@ -1,7 +1,6 @@
 package com.fishingbooker.ftn.controller;
 
 import com.fishingbooker.ftn.bom.cottages.Cottage;
-import com.fishingbooker.ftn.bom.users.RegisteredClient;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.CottageCreationDto;
 import com.fishingbooker.ftn.dto.CottageDto;
@@ -16,7 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController

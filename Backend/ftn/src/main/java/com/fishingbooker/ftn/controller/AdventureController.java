@@ -5,7 +5,6 @@ import com.fishingbooker.ftn.bom.adventures.Adventure;
 import com.fishingbooker.ftn.bom.adventures.AdventureQuickReservation;
 import com.fishingbooker.ftn.bom.adventures.AdventureReservation;
 import com.fishingbooker.ftn.bom.adventures.AdventureUtility;
-import com.fishingbooker.ftn.bom.cottages.Cottage;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.*;
 import com.fishingbooker.ftn.service.interfaces.AdventureService;

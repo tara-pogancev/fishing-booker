@@ -61,13 +61,13 @@ public class ActionServiceImpl implements ActionService {
     @Override
     public List<ActionDto> findAll() {
         List<ActionDto> retVal = new ArrayList<>();
-        for(AdventureQuickReservation action : findAllAdventure()) {
+        for (AdventureQuickReservation action : findAllAdventure()) {
             retVal.add(converter.convert(action, ActionDto.class));
         }
-        for(BoatQuickReservation action : findAllBoat()) {
+        for (BoatQuickReservation action : findAllBoat()) {
             retVal.add(converter.convert(action, ActionDto.class));
         }
-        for(CottageQuickReservation action : findAllCottage()) {
+        for (CottageQuickReservation action : findAllCottage()) {
             retVal.add(converter.convert(action, ActionDto.class));
         }
 

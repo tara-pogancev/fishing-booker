@@ -1,18 +1,13 @@
 package com.fishingbooker.ftn.service.interfaces;
 
-import com.fasterxml.jackson.annotation.JacksonInject;
 import com.fishingbooker.ftn.bom.adventures.AdventureQuickReservation;
 import com.fishingbooker.ftn.bom.adventures.AdventureReservation;
 import com.fishingbooker.ftn.bom.boats.BoatReservation;
 import com.fishingbooker.ftn.bom.cottages.CottageReservation;
-import com.fishingbooker.ftn.bom.reservations.QuickReservation;
 import com.fishingbooker.ftn.bom.reservations.Reservation;
-import com.fishingbooker.ftn.dto.ActionDto;
 import com.fishingbooker.ftn.dto.ReservationDto;
 
-import javax.swing.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 public interface ReservationService {

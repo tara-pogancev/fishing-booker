@@ -63,16 +63,16 @@ public class AdminController {
     }
 
     @GetMapping("/business-report")
-    public List<AdminReservationStatisticsDto> getReservations(){
-        List<Reservation> reservations= reservationService.getAll();
-        List<AdminReservationStatisticsDto> reservationStatisticsDtos=converter.convert(reservations,AdminReservationStatisticsDto.class);
+    public List<AdminReservationStatisticsDto> getReservations() {
+        List<Reservation> reservations = reservationService.getAll();
+        List<AdminReservationStatisticsDto> reservationStatisticsDtos = converter.convert(reservations, AdminReservationStatisticsDto.class);
         return reservationStatisticsDtos;
     }
 
     @PutMapping("/business-report")
-    public List<AdminReservationStatisticsDto> getReservationsInDate(@RequestBody DateRangeDto dateRangeDto){
-        List<Reservation> reservations= reservationService.getInDate(dateRangeDto.getStartDate(),dateRangeDto.getEndDate());
-        List<AdminReservationStatisticsDto> reservationStatisticsDtos=converter.convert(reservations,AdminReservationStatisticsDto.class);
+    public List<AdminReservationStatisticsDto> getReservationsInDate(@RequestBody DateRangeDto dateRangeDto) {
+        List<Reservation> reservations = reservationService.getInDate(dateRangeDto.getStartDate(), dateRangeDto.getEndDate());
+        List<AdminReservationStatisticsDto> reservationStatisticsDtos = converter.convert(reservations, AdminReservationStatisticsDto.class);
         return reservationStatisticsDtos;
     }
 }

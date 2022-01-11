@@ -1,7 +1,6 @@
 package com.fishingbooker.ftn.controller;
 
 import com.fishingbooker.ftn.bom.Review;
-import com.fishingbooker.ftn.bom.boats.BoatReservation;
 import com.fishingbooker.ftn.bom.cottages.Cottage;
 import com.fishingbooker.ftn.bom.cottages.CottageReservation;
 import com.fishingbooker.ftn.conversion.DataConverter;
