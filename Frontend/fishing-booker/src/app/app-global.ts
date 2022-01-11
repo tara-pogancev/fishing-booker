@@ -1,3 +1,3 @@
-export const server: string = 'https://fishing-booker-back.herokuapp.com/';
+import { environment} from "src/environments/environment";
+export const server: string = environment.backend_api;
 
-// export const server: string = 'http://localhost:8080/';
