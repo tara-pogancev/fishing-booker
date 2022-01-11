@@ -31,8 +31,6 @@ public class FishingInstructorServiceImpl implements FishingInstructorService {
     private final AdventureReservationRepository adventureReservationRepository;
     private final AdventureQuickReservationRepository adventureQuickReservationRepository;
     private final AddressService addressService;
-    private final FishingInstructorRepository instructorRepository;
-    private final AdventureReservationRepository adventureReservationRepository;
 
     @Override
     public List<FishingInstructor> findAll() {
