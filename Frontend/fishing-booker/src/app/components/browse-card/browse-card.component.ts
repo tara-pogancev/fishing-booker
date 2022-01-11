@@ -25,7 +25,7 @@ export class BrowseCardComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.imageUrls.length != 0) {
-      this.image=this.imageUrls[0];
+      this.image = this.imageUrls[0];
     } else {
       this.image = 'assets/images/placeholder.jpg';
     }
@@ -50,5 +50,9 @@ export class BrowseCardComponent implements OnInit {
     this.imageService.getImage(id).subscribe((data) => {
       this.createImageFromBlob(data);
     });
+  }
+
+  preview() {
+    window.location.href = '/' + this.type + '/' + this.id;
   }
 }
