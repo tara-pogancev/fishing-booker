@@ -73,7 +73,12 @@ public class UtilityServiceImpl implements UtilityService {
             utilityRepository.save(utility);
             cottageUtility = new CottageUtility(utility, dto.getPrice(), cottage);
         } else {
-            utility = utilityRepository.getById(dto.getId());
+            if(utilityRepository.exists(dto.getId())) {
+                utility = utilityRepository.getById(dto.getId());
+            } else {
+                CottageUtility cu = cottageUtilityRepository.getById(dto.getId());
+                utility = cu.getUtility();
+            }
             cottageUtility = new CottageUtility(utility, dto.getPrice(), cottage);
         }
         cottageUtilityRepository.save(cottageUtility);

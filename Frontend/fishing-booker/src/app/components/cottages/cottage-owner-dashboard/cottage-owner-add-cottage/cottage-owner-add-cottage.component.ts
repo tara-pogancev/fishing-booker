@@ -110,6 +110,7 @@ export class CottageOwnerAddCottageComponent implements OnInit {
       utility.name=existingUtility.name;
       utility.utilityId=existingUtility.id;
       utility.price=servicePrice;
+      utility.id = existingUtility.id;
     }
     
     this.newService='';
