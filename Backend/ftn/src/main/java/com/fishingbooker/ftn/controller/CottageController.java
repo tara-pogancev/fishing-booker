@@ -40,6 +40,7 @@ public class CottageController {
     }
 
     @GetMapping("/findByCottageOwnerId/{id}")
+    @PreAuthorize("hasRole('COTTAGE_OWNER')")
     public List<CottageDto> getByCottageOwnerId(@PathVariable("id") long id) {
         return cottageService.findByCottageOwnerId(id);
     }
@@ -58,11 +59,13 @@ public class CottageController {
     }
 
     @PostMapping("add-cottage")
+    @PreAuthorize("hasRole('COTTAGE_OWNER')")
     public Long addCottage(@RequestBody CottageCreationDto cottageDto) {
         return cottageService.create(cottageDto);
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('COTTAGE_OWNER')")
     public Boolean delete(@PathVariable("id") Long id) {
         return cottageService.delete(id);
     }
