@@ -17,7 +17,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.chrono.ChronoLocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -116,6 +118,19 @@ public class FishingInstructorServiceImpl implements FishingInstructorService {
             }
         }
         return adventureQuickReservations;
+    }
+
+    @Override
+    public List<AdventureReservation> getReservationsInDate(LocalDate startDate, LocalDate endDate,Long id) {
+        List<AdventureReservation> reservations=this.getInstructorPastReservations(id);
+        for (int i=0;i<reservations.size();i++){
+            if (reservations.get(i).getReservationEnd().isBefore(startDate.atStartOfDay()) ||
+                reservations.get(i).getReservationStart().isAfter(endDate.atStartOfDay())){
+                reservations.remove(i);
+                i--;
+            }
+        }
+        return reservations;
     }
 
 

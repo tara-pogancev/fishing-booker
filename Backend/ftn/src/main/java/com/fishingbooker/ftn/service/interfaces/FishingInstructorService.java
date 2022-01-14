@@ -5,6 +5,7 @@ import com.fishingbooker.ftn.bom.adventures.AdventureReservation;
 import com.fishingbooker.ftn.bom.users.FishingInstructor;
 import com.fishingbooker.ftn.dto.ApplicationUserDto;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface FishingInstructorService {
@@ -30,4 +31,6 @@ public interface FishingInstructorService {
     List<AdventureReservation> getInstructorPastReservations(Long id);
 
     List<AdventureQuickReservation> getInsturctorPastQuickReservations(Long id);
+
+    List<AdventureReservation> getReservationsInDate(LocalDate startDate, LocalDate endDate,Long id);
 }

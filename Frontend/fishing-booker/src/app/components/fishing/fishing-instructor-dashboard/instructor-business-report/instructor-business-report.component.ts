@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../../../../service/admin.service';
+import { FishingInstructorService } from '../../../../service/fishing-instructor.service';
 
 @Component({
   selector: 'app-instructor-business-report',
@@ -12,10 +13,10 @@ export class InstructorBusinessReportComponent implements OnInit {
   endDate=new Date();
   reservations:any=[]
   price=0;
-  constructor(private adminService:AdminService) { }
+  constructor(private instructorService:FishingInstructorService) { }
 
   ngOnInit(): void {
-    this.adminService.getBusinessReport().subscribe(data=>{
+    this.instructorService.getBusinessReport().subscribe(data=>{
       this.reservations=data;
       this.calculatePrice();
     })
@@ -31,7 +32,7 @@ export class InstructorBusinessReportComponent implements OnInit {
   search(){
     console.log(this.startDate);
     console.log(this.endDate);
-    this.adminService.getBusinessReportInDate(new Date(this.startDate),new Date(this.endDate)).subscribe(data=>{
+    this.instructorService.getBusinessReportInDate(new Date(this.startDate),new Date(this.endDate)).subscribe(data=>{
       this.reservations.length=0;
       this.reservations=data;
       this.calculatePrice();

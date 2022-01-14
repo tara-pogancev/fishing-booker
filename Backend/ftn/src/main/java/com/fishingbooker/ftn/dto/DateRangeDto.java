@@ -9,4 +9,5 @@ public class DateRangeDto {
 
     private LocalDate startDate;
     private LocalDate endDate;
+    private Long id;
 }

@@ -10,6 +10,19 @@ import { LoginService } from './login.service';
   providedIn: 'root'
 })
 export class FishingInstructorService {
+  getBusinessReportInDate(arg0: Date, arg1: Date) {
+    const headers = this.loginService.getHeaders();
+    const id = this.loginService.getCurrentUser().id;
+    const url=this.url+'/instructor-business-report';
+    return this._http.put<any>(url,{startDate:arg0,endDate:arg1,id:id},{headers:headers});
+  }
+  
+  getBusinessReport() {
+    const headers = this.loginService.getHeaders();
+    const id = this.loginService.getCurrentUser().id;
+    const url=this.url+'/instructor-business-report/'+id;
+    return this._http.get<any>(url,{headers:headers});
+  }
 
 
   updateFreeSlot(timePeriod: ChangeTimeSlot) {

@@ -2,11 +2,10 @@ package com.fishingbooker.ftn.controller;
 
 import com.fishingbooker.ftn.bom.adventures.AdventureQuickReservation;
 import com.fishingbooker.ftn.bom.adventures.AdventureReservation;
+import com.fishingbooker.ftn.bom.reservations.Reservation;
 import com.fishingbooker.ftn.bom.users.FishingInstructor;
 import com.fishingbooker.ftn.conversion.DataConverter;
-import com.fishingbooker.ftn.dto.FishingInstructorDto;
-import com.fishingbooker.ftn.dto.InstructorCalendarReservationDto;
-import com.fishingbooker.ftn.dto.InstructorPastReservationsDto;
+import com.fishingbooker.ftn.dto.*;
 import com.fishingbooker.ftn.service.interfaces.FishingInstructorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -84,6 +83,20 @@ public class FishingInstructorController {
         List<InstructorPastReservationsDto> ret = new ArrayList<>(instructorPastReservationsDtos);
         ret.addAll(instructorQuickPackReservations);
         return ret;
+    }
+
+    @GetMapping("instructor-business-report/{id}")
+    public List<InstructorBusinessReportDto> getBusinessReport(@PathVariable() Long id){
+        List<AdventureReservation> reservations=fishingInstructorService.getInstructorPastReservations(id);
+        List<InstructorBusinessReportDto> report=converter.convert(reservations,InstructorBusinessReportDto.class);
+        return report;
+    }
+
+    @PutMapping("instructor-business-report")
+    public List<InstructorBusinessReportDto> getReservationsInDate(@RequestBody DateRangeDto dateRangeDto) {
+        List<AdventureReservation> reservations = fishingInstructorService.getReservationsInDate(dateRangeDto.getStartDate(), dateRangeDto.getEndDate(), dateRangeDto.getId());
+        List<InstructorBusinessReportDto> report=converter.convert(reservations,InstructorBusinessReportDto.class);
+        return report;
     }
 
 
