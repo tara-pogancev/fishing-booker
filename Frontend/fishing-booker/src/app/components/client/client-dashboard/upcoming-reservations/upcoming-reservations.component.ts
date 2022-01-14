@@ -36,6 +36,7 @@ export class UpcomingReservationsComponent implements OnInit {
         this.reservations.push(res);
       }
     });
+    console.log(this.reservations);
   }
 
   cancelReservation(entity: ReservationModel) {

@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface QuickReservationRepository extends EntityRepository<QuickReservation> {
+
 }

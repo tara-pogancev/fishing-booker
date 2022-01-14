@@ -96,6 +96,11 @@ public class RegisteredClientServiceImpl implements RegisteredClientService {
     }
 
     @Override
+    public List<Reservation> getAllClientReservations(Long id) {
+        return reservationService.getAllByClientWithCanceled(id);
+    }
+
+    @Override
     public List<Reservation> getPastCottageReservations(Long id) {
         RegisteredClient client = clientRepository.get(id);
         List<Reservation> reservations = new ArrayList<>();

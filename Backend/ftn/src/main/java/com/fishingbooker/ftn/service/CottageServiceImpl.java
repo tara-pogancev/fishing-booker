@@ -162,6 +162,21 @@ public class CottageServiceImpl implements CottageService {
         return reservationRepository.getCottageReservations(cottageId);
     }
 
+    @Override
+    public Boolean isCottageAvailable(Cottage cottage, LocalDateTime start, LocalDateTime end) {
+        boolean reservationOverlap = false;
+        if (dateService.doDatesOverlapWithCottagePeriodSet(start, end, cottage.getAvailableTimePeriods())) {
+            // Passed availability check
+            for (CottageReservation reservation : getReservationsByCottage(cottage.getId())) {
+                if (dateService.doPeriodsOverlap(reservation.getReservationStart(), reservation.getReservationEnd(), start, end)) {
+                    reservationOverlap = true;
+                    break;
+                }
+            }
+        }
+        return !reservationOverlap;
+    }
+
     private Set<Room> convertDtoToModel(List<RoomDto> rooms, Cottage cottage) {
         return rooms.stream().map(roomDto -> createRoom(roomDto, cottage)).collect(Collectors.toSet());
     }

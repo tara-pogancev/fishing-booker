@@ -164,7 +164,6 @@ public class AdventureServiceImpl implements AdventureService {
 
     @Override
     public List<Adventure> findFiltered(EntitySearchDto filterDto, Long userId) {
-        // todo
         filterDto.setEndDate(UnixTimeToLocalDateTimeConverter.adjustDefaultTimeZone(filterDto.endDate));
         filterDto.setStartDate(UnixTimeToLocalDateTimeConverter.adjustDefaultTimeZone(filterDto.startDate));
 
@@ -239,6 +238,21 @@ public class AdventureServiceImpl implements AdventureService {
     public List<AdventureUtility> getAdventureUtilities(Long id) {
         Adventure adventure = adventureRepository.getById(id);
         return new ArrayList<>(adventure.getUtilities());
+    }
+
+    @Override
+    public Boolean isAdventureAvailable(Adventure adventure, LocalDateTime start, LocalDateTime end) {
+        boolean reservationOverlap = false;
+        if (dateService.doDatesOverlapWithInstructorPeriodSet(start, end, adventure.getInstructor().getAvailableTimePeriods())) {
+            // Passed availability check
+            for (AdventureReservation reservation : fishingInstructorService.getInstructorReservations(adventure.getInstructor().getId())) {
+                if (dateService.doPeriodsOverlap(reservation.getReservationStart(), reservation.getReservationEnd(), start, end)) {
+                    reservationOverlap = true;
+                    break;
+                }
+            }
+        }
+        return !reservationOverlap;
     }
 
     private boolean validate(Long instructorId, LocalDateTime startDate, LocalDateTime endDate) {

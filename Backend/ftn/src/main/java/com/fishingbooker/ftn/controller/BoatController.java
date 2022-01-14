@@ -1,6 +1,7 @@
 package com.fishingbooker.ftn.controller;
 
 import com.fishingbooker.ftn.bom.boats.Boat;
+import com.fishingbooker.ftn.bom.boats.BoatReservation;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.BoatDto;
 import com.fishingbooker.ftn.dto.EntitySearchDto;
@@ -51,8 +52,13 @@ public class BoatController {
     }
 
     @PostMapping("/book")
-    public Long book(@RequestBody ReservationDto reservationDto) {
-        return reservationService.bookBoat(reservationDto).getId();
+    public ResponseEntity<Long> book(@RequestBody ReservationDto reservationDto) {
+        BoatReservation reservation = reservationService.bookBoat(reservationDto);
+        if (reservation == null) {
+            return new ResponseEntity<>(null, HttpStatus.CONFLICT);
+        } else {
+            return new ResponseEntity<>(reservation.getId(), HttpStatus.OK);
+        }
     }
 
 }

@@ -30,9 +30,7 @@ public class RegistrationController {
         } else if (ApplicationRole.getRoleFromString((userDto.getRole())) == ApplicationRole.BOAT_OWNER) {
             return userService.createWithRequest(userDto);
         }
-        //TODO: add registration for other types of user
         return null;
-
     }
 
     @GetMapping("/isEmailUnique/{emailAddress}")

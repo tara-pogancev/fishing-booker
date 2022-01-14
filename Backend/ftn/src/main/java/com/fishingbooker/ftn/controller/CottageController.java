@@ -1,6 +1,7 @@
 package com.fishingbooker.ftn.controller;
 
 import com.fishingbooker.ftn.bom.cottages.Cottage;
+import com.fishingbooker.ftn.bom.reservations.Reservation;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.CottageCreationDto;
 import com.fishingbooker.ftn.dto.CottageDto;
@@ -71,8 +72,13 @@ public class CottageController {
     }
 
     @PostMapping("/book")
-    public Long book(@RequestBody ReservationDto reservationDto) {
-        return reservationService.bookCottage(reservationDto).getId();
+    public ResponseEntity<Long> book(@RequestBody ReservationDto reservationDto) {
+        Reservation reservation = reservationService.bookCottage(reservationDto);
+        if (reservation == null) {
+            return new ResponseEntity<>(null, HttpStatus.CONFLICT);
+        } else {
+            return new ResponseEntity<>(reservation.getId(), HttpStatus.OK);
+        }
     }
 
 

@@ -61,7 +61,11 @@
             </strong>
             <i class="fa fa-star"></i>
             <div class="buttons ml-5">
-              <button class="button is-danger" (click)="book()" [disabled]="datesOverlap">
+              <button
+                class="button is-danger"
+                (click)="book()"
+                [disabled]="datesOverlap || didCancel"
+              >
                 Book Now
               </button>
             </div>

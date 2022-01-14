@@ -29,4 +29,6 @@ public interface CottageService {
 
     List<CottageReservation> getReservationsByCottage(Long cottageId);
 
+    Boolean isCottageAvailable(Cottage cottage, LocalDateTime start, LocalDateTime end);
+
 }

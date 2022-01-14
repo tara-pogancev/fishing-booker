@@ -19,25 +19,26 @@ import com.fishingbooker.ftn.dto.ReservationDto;
 import com.fishingbooker.ftn.email.context.ClientReservationConfirmationEmailContext;
 import com.fishingbooker.ftn.email.service.EmailService;
 import com.fishingbooker.ftn.repository.*;
-import com.fishingbooker.ftn.service.interfaces.AdventureService;
-import com.fishingbooker.ftn.service.interfaces.CottageService;
-import com.fishingbooker.ftn.service.interfaces.ReservationService;
+import com.fishingbooker.ftn.service.interfaces.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.mail.MessagingException;
-import javax.transaction.Transactional;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @Service
-@Transactional
 @RequiredArgsConstructor
 public class ReservationServiceImpl implements ReservationService {
 
+    private final BoatService boatService;
+    private final DateService dateService;
     private final EmailService emailService;
     private final CottageService cottageService;
     private final BoatRepository boatRepository;
@@ -56,6 +57,7 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
     public CottageReservation bookCottage(ReservationDto reservationDto) {
         reservationDto.setEndDate(UnixTimeToLocalDateTimeConverter.adjustDefaultTimeZone(reservationDto.endDate));
         reservationDto.setStartDate(UnixTimeToLocalDateTimeConverter.adjustDefaultTimeZone(reservationDto.startDate));
@@ -64,7 +66,9 @@ public class ReservationServiceImpl implements ReservationService {
         Cottage cottage = cottageService.get(reservationDto.entityId);
         RegisteredClient client = clientRepository.getById(reservationDto.userId);
 
-        if (cottage != null && client != null) {
+        if (cottage != null && client != null
+                && cottageService.isCottageAvailable(cottage, reservationDto.startDate, reservationDto.endDate)
+                && !clientHasOverlappingReservation(reservationDto.startDate, reservationDto.endDate, client.getId())) {
             reservation.setReservationClient(client);
             reservation.setCottage(cottage);
             reservation.setReservationStart(reservationDto.startDate);
@@ -81,12 +85,14 @@ public class ReservationServiceImpl implements ReservationService {
 
             cottageReservationRepository.save(reservation);
             sendReservationConfirmationEmail(client, reservationDto);
+            return reservation;
         }
 
-        return reservation;
+        return null;
     }
 
     @Override
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
     public AdventureReservation bookAdventure(ReservationDto reservationDto) {
         reservationDto.setEndDate(UnixTimeToLocalDateTimeConverter.adjustDefaultTimeZone(reservationDto.endDate));
         reservationDto.setStartDate(UnixTimeToLocalDateTimeConverter.adjustDefaultTimeZone(reservationDto.startDate));
@@ -95,7 +101,9 @@ public class ReservationServiceImpl implements ReservationService {
         Adventure adventure = adventureService.get(reservationDto.entityId);
         RegisteredClient client = clientRepository.getById(reservationDto.userId);
 
-        if (adventure != null && client != null) {
+        if (adventure != null && client != null
+                && adventureService.isAdventureAvailable(adventure, reservationDto.startDate, reservationDto.endDate)
+                && !clientHasOverlappingReservation(reservationDto.startDate, reservationDto.endDate, client.getId())) {
             reservation.setReservationClient(client);
             reservation.setAdventure(adventure);
             reservation.setReservationStart(reservationDto.startDate);
@@ -112,12 +120,14 @@ public class ReservationServiceImpl implements ReservationService {
 
             adventureReservationRepository.save(reservation);
             sendReservationConfirmationEmail(client, reservationDto);
+            return reservation;
         }
 
-        return reservation;
+        return null;
     }
 
     @Override
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
     public BoatReservation bookBoat(ReservationDto reservationDto) {
         reservationDto.setEndDate(UnixTimeToLocalDateTimeConverter.adjustDefaultTimeZone(reservationDto.endDate));
         reservationDto.setStartDate(UnixTimeToLocalDateTimeConverter.adjustDefaultTimeZone(reservationDto.startDate));
@@ -126,7 +136,9 @@ public class ReservationServiceImpl implements ReservationService {
         Boat boat = boatRepository.getById(reservationDto.entityId);
         RegisteredClient client = clientRepository.getById(reservationDto.userId);
 
-        if (boat != null && client != null) {
+        if (boat != null && client != null
+                && boatService.isBoatAvailable(boat, reservationDto.startDate, reservationDto.endDate)
+                && !clientHasOverlappingReservation(reservationDto.startDate, reservationDto.endDate, client.getId())) {
             reservation.setReservationClient(client);
             reservation.setBoat(boat);
             reservation.setReservationStart(reservationDto.startDate);
@@ -143,9 +155,11 @@ public class ReservationServiceImpl implements ReservationService {
 
             boatReservationRepository.save(reservation);
             sendReservationConfirmationEmail(client, reservationDto);
+
+            return reservation;
         }
 
-        return reservation;
+        return null;
     }
 
     @Override
@@ -219,6 +233,27 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
+    public List<Reservation> getAllByClientWithCanceled(Long id) {
+        List<Reservation> reservations = new ArrayList<>();
+        for (CottageReservation reservation : cottageReservationRepository.findAll()) {
+            if (reservation.getReservationClient().getId() == id)
+                reservations.add(reservation);
+        }
+
+        for (BoatReservation reservation : boatReservationRepository.findAll()) {
+            if (reservation.getReservationClient().getId() == id)
+                reservations.add(reservation);
+        }
+
+        for (AdventureReservation reservation : adventureReservationRepository.findAll()) {
+            if (reservation.getReservationClient().getId() == id)
+                reservations.add(reservation);
+        }
+
+        return reservations;
+    }
+
+    @Override
     public List<Reservation> getInDate(LocalDate startDate, LocalDate endDate) {
         return reservationRepository.getReservationsInDate(startDate, endDate);
     }
@@ -232,6 +267,18 @@ public class ReservationServiceImpl implements ReservationService {
         } catch (MessagingException e) {
             e.printStackTrace();
         }
+    }
+
+    private Boolean clientHasOverlappingReservation(LocalDateTime start, LocalDateTime end, Long clientId) {
+        RegisteredClient client = clientRepository.getById(clientId);
+        if (client != null) {
+            for (Reservation reservation : findAllByClient(clientId)) {
+                if (dateService.doPeriodsOverlap(reservation.getReservationStart(), reservation.getReservationEnd(), start, end))
+                    return true;
+            }
+        }
+
+        return false;
     }
 
 

@@ -13,17 +13,19 @@ import com.fishingbooker.ftn.bom.reservations.QuickReservation;
 import com.fishingbooker.ftn.bom.reservations.Reservation;
 import com.fishingbooker.ftn.bom.users.ApplicationUser;
 import com.fishingbooker.ftn.bom.users.RegisteredClient;
-import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.ReservationDto;
 import com.fishingbooker.ftn.email.context.ClientReservationConfirmationEmailContext;
 import com.fishingbooker.ftn.email.service.EmailService;
 import com.fishingbooker.ftn.repository.*;
 import com.fishingbooker.ftn.service.interfaces.ActionReservationService;
+import com.fishingbooker.ftn.service.interfaces.RegisteredClientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.mail.MessagingException;
-import javax.transaction.Transactional;
+import java.util.Objects;
 
 @Service
 @Transactional
@@ -31,7 +33,7 @@ import javax.transaction.Transactional;
 public class ActionReservationServiceImpl implements ActionReservationService {
 
     private final EmailService emailService;
-    private final DataConverter converter;
+    private final RegisteredClientService clientService;
     private final RegisteredClientRepository clientRepository;
     private final QuickReservationRepository quickReservationRepository;
     private final BoatReservationRepository boatReservationRepository;
@@ -42,24 +44,36 @@ public class ActionReservationServiceImpl implements ActionReservationService {
     private final AdventureQuickReservationRepository adventureQuickReservationRepository;
 
     @Override
-    public Long bookAction(Long clientId, Long actionId, String type) {
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
+    public Reservation bookAction(Long clientId, Long actionId, String type) {
         RegisteredClient client = clientRepository.getById(clientId);
         QuickReservation action = quickReservationRepository.getById(actionId);
 
-        if (client != null && action != null) {
+        if (client != null && action != null && !action.getIsReserved()
+                && !clientService.clientHasOverlappingReservation(action.getActionStart(), action.getActionEnd(), clientId)) {
             switch (type) {
                 case "adventure": {
-                    return bookAdventureAction(client, adventureQuickReservationRepository.getById(actionId)).getId();
+                    return bookAdventureAction(client, adventureQuickReservationRepository.getById(actionId));
                 }
                 case "boat": {
-                    return bookBoatAction(client, boatQuickReservationRepository.getById(actionId)).getId();
+                    return bookBoatAction(client, boatQuickReservationRepository.getById(actionId));
                 }
                 case "cottage": {
-                    return bookCottageAction(client, cottageQuickReservationRepository.getById(actionId)).getId();
+                    return bookCottageAction(client, cottageQuickReservationRepository.getById(actionId));
                 }
             }
         }
         return null;
+    }
+
+    @Override
+    public Boolean hasCanceledAction(Long clientId, Long id) {
+        for (Reservation reservation : clientService.getAllClientReservations(clientId)) {
+            if (reservation.getQuickReservation() != null && Objects.equals(reservation.getQuickReservation().getId(), id)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private AdventureReservation bookAdventureAction(RegisteredClient client, AdventureQuickReservation quickReservation) {

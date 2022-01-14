@@ -23,6 +23,8 @@ public interface RegisteredClientService {
 
     RegisteredClient delete(Long id);
 
+    List<Reservation> getAllClientReservations(Long id);
+
     List<Reservation> getPastCottageReservations(Long id);
 
     List<Reservation> getPastBoatReservations(Long id);

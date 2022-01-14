@@ -20,6 +20,8 @@ public interface BoatService {
 
     List<Boat> findFiltered(EntitySearchDto filterDto, Long userId);
 
+    Boolean isBoatAvailable(Boat boat, LocalDateTime start, LocalDateTime end);
+
     Boat get(Long entityId);
 
     List<BoatReservation> getReservationsByBoat(Long boatId);

@@ -94,6 +94,21 @@ public class BoatServiceImpl implements BoatService {
         return boats;
     }
 
+    @Override
+    public Boolean isBoatAvailable(Boat boat, LocalDateTime start, LocalDateTime end) {
+        boolean reservationOverlap = false;
+        if (dateService.doDatesOverlapWithBoatPeriodSet(start, end, boat.getAvailableTimePeriods())) {
+            // Passed availability check
+            for (BoatReservation reservation : getReservationsByBoat(boat.getId())) {
+                if (dateService.doPeriodsOverlap(reservation.getReservationStart(), reservation.getReservationEnd(), start, end)) {
+                    reservationOverlap = true;
+                    break;
+                }
+            }
+        }
+        return !reservationOverlap;
+    }
+
     private List<Boat> getFormerlyCanceledBoatsByUserByDate(EntitySearchDto filterDto, Long userId) {
         List<BoatReservation> canceled = boatReservationRepository.getClientCanceledBoatReservations(userId);
         List<Boat> formerlyCanceledBoats = new ArrayList<>();

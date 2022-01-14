@@ -310,20 +310,20 @@ INSERT INTO public.delete_account_request( description, request_status, user_id)
 
 -- RESERVATIONS
 
-INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled)	VALUES (3, 48, '20201010 10:00:00 AM', '20201005 10:00:00 AM', false);
-INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled)	VALUES (9, 54, '20200215 10:00:00 AM', '20200208 10:00:00 AM', false);
-INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled)	VALUES (2, 86, '20200606 10:00:00 AM', '20200602 10:00:00 AM', false);
+INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled, version)	VALUES (3, 48, '20201010 10:00:00 AM', '20201005 10:00:00 AM', false, 1);
+INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled, version)	VALUES (9, 54, '20200215 10:00:00 AM', '20200208 10:00:00 AM', false, 1);
+INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled, version)	VALUES (2, 86, '20200606 10:00:00 AM', '20200602 10:00:00 AM', false, 1);
 
-INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled)	VALUES (4, 54, '20220205 10:00:00 AM', '20220201 10:00:00 AM', false);
-INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled)	VALUES (5, 78, '20220106 10:00:00 AM', '20220102 10:00:00 AM', false);
-INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled)	VALUES (1, 32, '20220131 10:00:00 AM', '20220120 10:00:00 AM', false);
-INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled)	VALUES (6, 10, '20220108 10:00:00 AM', '20220101 10:00:00 AM', false);
+INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled, version)	VALUES (4, 54, '20220205 10:00:00 AM', '20220201 10:00:00 AM', false, 1);
+INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled, version)	VALUES (5, 78, '20220106 10:00:00 AM', '20220102 10:00:00 AM', false, 1);
+INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled, version)	VALUES (1, 32, '20220131 10:00:00 AM', '20220120 10:00:00 AM', false, 1);
+INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled, version)	VALUES (6, 10, '20220108 10:00:00 AM', '20220101 10:00:00 AM', false, 1);
 
-INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled)	VALUES (6, 84, '20191010 10:00:00 AM', '20191005 10:00:00 AM', false);
-INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled)	VALUES (2, 70, '20190215 10:00:00 AM', '20190208 10:00:00 AM', false);
-INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled)	VALUES (4, 90, '20190606 10:00:00 AM', '20190602 10:00:00 AM', false);
-INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled)	VALUES (3, 98, '20180606 10:00:00 AM', '20180602 10:00:00 AM', false);
-INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled)	VALUES (6, 102, '20220108 10:00:00 AM', '20220101 10:00:00 AM', false);
+INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled, version)	VALUES (6, 84, '20191010 10:00:00 AM', '20191005 10:00:00 AM', false, 1);
+INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled, version)	VALUES (2, 70, '20190215 10:00:00 AM', '20190208 10:00:00 AM', false, 1);
+INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled, version)	VALUES (4, 90, '20190606 10:00:00 AM', '20190602 10:00:00 AM', false, 1);
+INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled, version)	VALUES (3, 98, '20180606 10:00:00 AM', '20180602 10:00:00 AM', false, 1);
+INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled, version)	VALUES (6, 102, '20220108 10:00:00 AM', '20220101 10:00:00 AM', false, 1);
 
 INSERT INTO public.cottage_reservation(id, cottage_id, user_id)	VALUES (1, 1, 1);
 INSERT INTO public.boat_reservation(id, boat_id, user_id)	VALUES (2, 1, 1);
@@ -361,12 +361,12 @@ INSERT INTO public.complaint(approved, date, description, entity_id, reservation
 
 -- ACTIONS
 
-INSERT INTO public.quick_reservation(action_end, action_start, guest_limit, is_reserved, price)
-	VALUES ('20220506 10:00:00 AM', '20220501 10:00:00 AM', 5, false, 20);
-INSERT INTO public.quick_reservation(action_end, action_start, guest_limit, is_reserved, price)
-	VALUES ('20220606 10:00:00 AM', '20220601 10:00:00 AM', 3, false, 15);
-INSERT INTO public.quick_reservation(action_end, action_start, guest_limit, is_reserved, price)
-	VALUES ('20220706 10:00:00 AM', '20220701 10:00:00 AM', 4, false, 35);
+INSERT INTO public.quick_reservation(action_end, action_start, guest_limit, is_reserved, price, version)
+	VALUES ('20220506 10:00:00 AM', '20220501 10:00:00 AM', 5, false, 20, 1);
+INSERT INTO public.quick_reservation(action_end, action_start, guest_limit, is_reserved, price, version)
+	VALUES ('20220606 10:00:00 AM', '20220601 10:00:00 AM', 3, false, 15, 1);
+INSERT INTO public.quick_reservation(action_end, action_start, guest_limit, is_reserved, price, version)
+	VALUES ('20220706 10:00:00 AM', '20220701 10:00:00 AM', 4, false, 35, 1);
 
 INSERT INTO public.quick_reservation_utility(price, utility_id)	VALUES (0, 1);
 INSERT INTO public.quick_reservation_utility(price, utility_id)	VALUES (0, 2);

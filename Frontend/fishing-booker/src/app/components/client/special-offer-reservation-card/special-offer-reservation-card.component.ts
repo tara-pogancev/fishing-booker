@@ -19,6 +19,7 @@ export class SpecialOfferReservationCardComponent implements OnInit {
   daysLeft: number;
 
   datesOverlap = false;
+  didCancel = false;
 
   constructor(
     private imageService: ImageService,
@@ -34,6 +35,12 @@ export class SpecialOfferReservationCardComponent implements OnInit {
     this.clientService.clientDatesOverlap(filter).subscribe((data) => {
       this.datesOverlap = data;
     });
+
+    this.clientService
+      .isActionCanceledByClient(this.action.id)
+      .subscribe((data) => {
+        this.didCancel = data;
+      });
 
     if (this.action.imageUrls.length != 0) {
       this.image = this.action.imageUrls[0];
@@ -82,10 +89,17 @@ export class SpecialOfferReservationCardComponent implements OnInit {
           this.action.entityName
       )
     ) {
-      this.actionService.bookAction(this.action).subscribe((data) => {
-        window.location.href = 'client-db/UPCOMING';
-        alert('Special Offer succesfully booked!');
-      });
+      this.actionService.bookAction(this.action).subscribe(
+        (data) => {
+          window.location.href = 'client-db/UPCOMING';
+          alert('Special Offer succesfully booked!');
+        },
+        (err) => {
+          if (err.status == 409) {
+            window.location.href = 'error';
+          }
+        }
+      );
     }
   }
 }

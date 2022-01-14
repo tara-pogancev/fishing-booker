@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 import org.thymeleaf.util.StringUtils;
 
 import javax.mail.MessagingException;
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Objects;
 
@@ -54,6 +55,7 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
     }
 
     @Override
+    @Transactional
     public ApplicationUser findByEmail(String email) {
         for (ApplicationUser currentUser : findAll()) {
             if (currentUser.getEmail().equals(email))
@@ -63,6 +65,7 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
     }
 
     @Override
+    @Transactional
     public ApplicationUser create(ApplicationUserDto userDto) {
         if (findByEmail(userDto.getEmail()) == null) {
             ApplicationUser user = converter.convert(userDto, ApplicationUser.class);

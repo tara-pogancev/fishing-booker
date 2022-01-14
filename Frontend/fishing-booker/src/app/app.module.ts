@@ -115,6 +115,7 @@ import { AdventureReservationReportComponent } from './components/fishing/fishin
 import { ReservationReportComponent } from './components/admin/admin-dashboard/reservation-report/reservation-report.component';
 import { BusinessReportComponent } from './components/admin/admin-dashboard/business-report/business-report.component';
 import { InstructorBusinessReportComponent } from './components/fishing/fishing-instructor-dashboard/instructor-business-report/instructor-business-report.component';
+import { ErrorComponent } from './pages/error/error.component';
 
 @NgModule({
   declarations: [
@@ -223,7 +224,8 @@ import { InstructorBusinessReportComponent } from './components/fishing/fishing-
     AdventureReservationReportComponent,
     ReservationReportComponent,
     BusinessReportComponent,
-    InstructorBusinessReportComponent
+    InstructorBusinessReportComponent,
+    ErrorComponent,
   ],
   imports: [
     BrowserModule,

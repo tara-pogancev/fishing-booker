@@ -38,5 +38,7 @@ public interface ReservationService {
 
     List<Reservation> getAll();
 
+    List<Reservation> getAllByClientWithCanceled(Long id);
+
     List<Reservation> getInDate(LocalDate startDate, LocalDate endDate);
 }

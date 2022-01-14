@@ -102,11 +102,16 @@ export class NewCottageReservationComponent implements OnInit {
 
   createReservation() {
     this.loader = true;
-    this.cottageService.bookCottage(this.reservation).subscribe((data) => {
-      this.loader = false;
-      window.location.href = '/client-db/UPCOMING';      
-      alert('Thank you! Your reservation is booked.');
-    });
+    this.cottageService.bookCottage(this.reservation).subscribe(
+      (data) => {
+        this.loader = false;
+        window.location.href = '/client-db/UPCOMING';
+        alert('Thank you! Your reservation is booked.');
+      },
+      (err) => {
+        window.location.href = '/error';
+      }
+    );
   }
 
   cancelReservation() {

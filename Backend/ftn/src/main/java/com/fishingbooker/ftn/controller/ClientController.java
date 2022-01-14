@@ -103,14 +103,25 @@ public class ClientController {
     }
 
     @PostMapping("/book-action/{clientId}/{type}/{actionId}")
-    public Long book(@PathVariable Long clientId, @PathVariable Long actionId, @PathVariable String type) {
-        return actionReservationService.bookAction(clientId, actionId, type);
+    public ResponseEntity<Long> bookAction(@PathVariable Long clientId, @PathVariable Long actionId, @PathVariable String type) {
+        Reservation reservation = actionReservationService.bookAction(clientId, actionId, type);
+        if (reservation == null) {
+            return new ResponseEntity<>(null, HttpStatus.CONFLICT);
+        } else {
+            return new ResponseEntity<>(reservation.getId(), HttpStatus.OK);
+        }
     }
 
     @PostMapping("/client-dates-overlap/{userId}")
     @PreAuthorize("hasRole('REGISTERED_CLIENT')")
     public Boolean clientDatesOverlap(@PathVariable Long userId, @RequestBody EntitySearchDto filterDto) {
         return clientService.clientHasOverlappingReservation(filterDto.startDate, filterDto.endDate, userId);
+    }
+
+    @GetMapping("/canceled-action/{clientId}/{actionId}")
+    @PreAuthorize("hasRole('REGISTERED_CLIENT')")
+    public Boolean isActionCanceledByClient(@PathVariable Long clientId, @PathVariable Long actionId) {
+        return actionReservationService.hasCanceledAction(clientId, actionId);
     }
 
 }

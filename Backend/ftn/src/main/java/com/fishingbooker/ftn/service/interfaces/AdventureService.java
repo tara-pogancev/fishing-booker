@@ -39,4 +39,6 @@ public interface AdventureService {
 
     List<AdventureUtility> getAdventureUtilities(Long id);
 
+    Boolean isAdventureAvailable(Adventure adventure, LocalDateTime start, LocalDateTime end);
+
 }

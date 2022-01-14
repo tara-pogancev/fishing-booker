@@ -5,6 +5,7 @@ import com.fishingbooker.ftn.bom.adventures.Adventure;
 import com.fishingbooker.ftn.bom.adventures.AdventureQuickReservation;
 import com.fishingbooker.ftn.bom.adventures.AdventureReservation;
 import com.fishingbooker.ftn.bom.adventures.AdventureUtility;
+import com.fishingbooker.ftn.bom.reservations.Reservation;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.*;
 import com.fishingbooker.ftn.service.interfaces.AdventureService;
@@ -56,8 +57,13 @@ public class AdventureController {
     }
 
     @PostMapping("/book")
-    public Long book(@RequestBody ReservationDto reservationDto) {
-        return reservationService.bookAdventure(reservationDto).getId();
+    public ResponseEntity<Long> book(@RequestBody ReservationDto reservationDto) {
+        Reservation reservation = reservationService.bookAdventure(reservationDto);
+        if (reservation == null) {
+            return new ResponseEntity<>(null, HttpStatus.CONFLICT);
+        } else {
+            return new ResponseEntity<>(reservation.getId(), HttpStatus.OK);
+        }
     }
 
 

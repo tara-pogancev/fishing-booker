@@ -104,11 +104,16 @@ export class NewAdventureReservationComponent implements OnInit {
 
   createReservation() {
     this.loader = true;
-    this.adventureService.bookAdventure(this.reservation).subscribe((data) => {
-      this.loader = false;
-      window.location.href = '/client-db/UPCOMING';
-      alert('Thank you! Your reservation is booked.');
-    });
+    this.adventureService.bookAdventure(this.reservation).subscribe(
+      (data) => {
+        this.loader = false;
+        window.location.href = '/client-db/UPCOMING';
+        alert('Thank you! Your reservation is booked.');
+      },
+      (err) => {
+        window.location.href = '/error';
+      }
+    );
   }
 
   cancelReservation() {

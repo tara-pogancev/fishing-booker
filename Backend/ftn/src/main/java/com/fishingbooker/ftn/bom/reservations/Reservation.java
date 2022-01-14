@@ -32,4 +32,8 @@ public class Reservation extends DatabaseEntity {
     @JoinColumn(name = "quickReservation_id", nullable = true)
     private QuickReservation quickReservation;
 
+    @Version
+    @Column(name = "version", nullable = false)
+    private Long version = 1L;
+
 }

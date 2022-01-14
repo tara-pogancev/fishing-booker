@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { server } from '../app-global';
+import { ActionModel } from '../model/action-model';
 import { Client } from '../model/client-model';
 import { SearchFilter } from '../model/search-filter-model';
 import { LoginService } from './login.service';
@@ -97,5 +98,12 @@ export class ClientService {
     const url = this.url + '/client-dates-overlap/' + id;
     const headers = this.loginService.getHeaders();
     return this._http.post<any>(url, filter, { headers: headers });
+  }
+
+  isActionCanceledByClient(actionId: number) {
+    const id = this.loginService.getCurrentUser().id;
+    const url = this.url + '/canceled-action/' + id + '/' + actionId;
+    const headers = this.loginService.getHeaders();
+    return this._http.get<any>(url, { headers: headers });
   }
 }
