@@ -31,18 +31,25 @@ public class ReservationToInstructorPastReservationDto implements Converter<Adve
     public InstructorPastReservationsDto convert(AdventureReservation source) {
         InstructorPastReservationsDto dto = new InstructorPastReservationsDto();
         dto.setReservationId(source.getId());
-        dto.setAdventureId(source.getAdventure().getId());
-        dto.setAdventureName(source.getAdventure().getName());
+        if(source.getAdventure()!=null){
+            dto.setAdventureId(source.getAdventure().getId());
+            dto.setAdventureName(source.getAdventure().getName());
+        }
         dto.setStartDate(source.getReservationStart());
         dto.setEndDate(source.getReservationEnd());
         dto.setNumberOfPeople(source.getGuestNumber());
         dto.setPrice(source.getPrice());
-        dto.setClientId(source.getReservationClient().getId());
-        dto.setClientName(source.getReservationClient().getName());
-        dto.setClientLastName(source.getReservationClient().getLastName());
-        dto.setClientMail(source.getReservationClient().getEmail());
-        dto.setClientfullAddress(source.getReservationClient().getUserAddress().getStreet() + ',' + source.getReservationClient().getUserAddress().getCity() + ',' + source.getReservationClient().getUserAddress().getCountry());
-        dto.setClientPhoneNumber(source.getReservationClient().getPhone());
+        if (source.getReservationClient()!=null){
+            dto.setClientId(source.getReservationClient().getId());
+            dto.setClientName(source.getReservationClient().getName());
+            dto.setClientLastName(source.getReservationClient().getLastName());
+            dto.setClientMail(source.getReservationClient().getEmail());
+            dto.setClientfullAddress(source.getReservationClient().getUserAddress().getStreet() + ',' + source.getReservationClient().getUserAddress().getCity() + ',' + source.getReservationClient().getUserAddress().getCountry());
+            dto.setClientPhoneNumber(source.getReservationClient().getPhone());
+        }else{
+            dto.setClientName("Client is deleted and information is not available");
+        }
+
         dto.setReservationType("Reservation");
         dto.setCreatedReport(reservationReportService.existsReportForAdventureReservation(source.getId()));
         return dto;

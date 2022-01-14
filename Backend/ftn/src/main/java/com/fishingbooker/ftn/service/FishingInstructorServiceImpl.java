@@ -73,12 +73,7 @@ public class FishingInstructorServiceImpl implements FishingInstructorService {
     @Override
     public List<AdventureReservation> getInstructorReservations(Long id) {
         FishingInstructor instructor = instructorRepository.getById(id);
-        List<Adventure> adventures = new ArrayList<>(instructor.getAdventures());
-        List<AdventureReservation> ret = new ArrayList<>();
-        for (Adventure adventure : adventures) {
-            List<AdventureReservation> reservations = new ArrayList<>(adventure.getUnCanceledReservations());
-            ret.addAll(reservations);
-        }
+        List<AdventureReservation> ret = adventureReservationRepository.getInstructorReservations(id);
         return ret;
     }
 

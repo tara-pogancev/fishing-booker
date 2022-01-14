@@ -17,6 +17,13 @@
               >Profile</a
             >
           </li>
+          <li>
+            <a
+              [ngClass]="{ 'is-active': activeTab === 'BUSINESS_REPORT' }"
+              (click)="changeTab('BUSINESS_REPORT')"
+              >Business Report</a
+            >
+          </li>
           
         </ul>
         <p class="menu-label">Reservations</p>
@@ -91,6 +98,10 @@
         
         <div *ngIf="activeTab == 'SETTINGS'">
           <app-instructor-settings></app-instructor-settings>
+        </div>
+
+        <div *ngIf="activeTab == 'BUSINESS_REPORT'">
+          <app-instructor-business-report></app-instructor-business-report>
         </div>
         <div *ngIf="activeTab == 'ADD_ADVENTURES'">
           <app-add-adventure></app-add-adventure>

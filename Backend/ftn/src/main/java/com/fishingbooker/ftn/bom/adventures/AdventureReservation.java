@@ -19,6 +19,9 @@ public class AdventureReservation extends Reservation {
     @JoinColumn(name = "adventure_id")
     private Adventure adventure;
 
+    @Column(name = "instructor_id")
+    private Long instructorId;
+
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private RegisteredClient reservationClient;

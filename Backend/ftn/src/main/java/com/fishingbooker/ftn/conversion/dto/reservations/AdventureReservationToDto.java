@@ -11,15 +11,18 @@ public class AdventureReservationToDto implements Converter<AdventureReservation
     @Override
     public ViewReservationDto convert(AdventureReservation source) {
         ViewReservationDto dto = new ViewReservationDto();
-        dto.setOwnerName(source.getAdventure().getInstructor().getName() + " " + source.getAdventure().getInstructor().getLastName());
         dto.setEndDate(source.getReservationEnd());
         dto.setStartDate(source.getReservationStart());
-        dto.setEntityId(source.getAdventure().getId());
         dto.setId(source.getId());
         dto.setPeople(source.getGuestNumber());
         dto.setPrice(source.getPrice());
-        dto.setEntityName(source.getAdventure().getName());
-        dto.setEntityType("adventure");
+        if (source.getAdventure()!=null){
+            dto.setEntityType("adventure");
+            dto.setEntityName(source.getAdventure().getName());
+            dto.setEntityId(source.getAdventure().getId());
+            dto.setOwnerName(source.getAdventure().getInstructor().getName() + " " + source.getAdventure().getInstructor().getLastName());
+        }
+
         return dto;
     }
 }

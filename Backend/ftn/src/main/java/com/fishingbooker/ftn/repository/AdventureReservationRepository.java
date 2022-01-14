@@ -23,10 +23,12 @@ public interface AdventureReservationRepository extends EntityRepository<Adventu
     @Query("SELECT r FROM AdventureReservation r WHERE r.adventure.id = :id")
     List<AdventureReservation> getAdventureReservations(Long id);
 
-    @Query("SELECT r FROM AdventureReservation r WHERE r.adventure.instructor.id = :id and r.isCanceled = false")
+    @Query("SELECT r FROM AdventureReservation r WHERE r.instructorId = :id and r.isCanceled = false")
     List<AdventureReservation> getInstructorReservations(Long id);
 
     @Query("SELECT r FROM AdventureReservation r WHERE r.reservationClient.id = :id AND r.isCanceled = true")
     List<AdventureReservation> getClientCanceledAdventureReservations(Long id);
+
+
 
 }

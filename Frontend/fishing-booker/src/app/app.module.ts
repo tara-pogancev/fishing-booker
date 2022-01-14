@@ -114,6 +114,7 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { AdventureReservationReportComponent } from './components/fishing/fishing-instructor-dashboard/adventure-reservation-report/adventure-reservation-report.component';
 import { ReservationReportComponent } from './components/admin/admin-dashboard/reservation-report/reservation-report.component';
 import { BusinessReportComponent } from './components/admin/admin-dashboard/business-report/business-report.component';
+import { InstructorBusinessReportComponent } from './components/fishing/fishing-instructor-dashboard/instructor-business-report/instructor-business-report.component';
 
 @NgModule({
   declarations: [
@@ -221,7 +222,8 @@ import { BusinessReportComponent } from './components/admin/admin-dashboard/busi
     LoaderComponent,
     AdventureReservationReportComponent,
     ReservationReportComponent,
-    BusinessReportComponent
+    BusinessReportComponent,
+    InstructorBusinessReportComponent
   ],
   imports: [
     BrowserModule,

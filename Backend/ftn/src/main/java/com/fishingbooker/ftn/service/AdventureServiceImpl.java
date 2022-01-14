@@ -127,11 +127,22 @@ public class AdventureServiceImpl implements AdventureService {
     @Override
     public boolean deleteAdventure(Long id) {
         Adventure adventure = adventureRepository.getById(id);
-        if ((adventure.getAdventureReservations() == null || adventure.getAdventureReservations().size() == 0) && (adventure.getAdventureQuickReservations() == null || adventure.getAdventureQuickReservations().size() == 0)) {
+        for(AdventureReservation adventureReservation:adventure.getAdventureReservations()){
+            adventureReservation.setAdventure(null);
+            adventureReservationRepository.save(adventureReservation);
+        }
+        for(AdventureQuickReservation adventureReservation:adventure.getAdventureQuickReservations()){
+            adventureReservation.setAdventure(null);
+            adventureQuickReservationRepository.save(adventureReservation);
+        }
+        adventureRepository.deleteById(id);
+        return true;
+        /*if ((adventure.getAdventureReservations() == null || adventure.getAdventureReservations().size() == 0) && (adventure.getAdventureQuickReservations() == null || adventure.getAdventureQuickReservations().size() == 0)) {
             adventureRepository.deleteById(id);
             return true;
         }
-        return false;
+
+        return false;*/
     }
 
     @Override
