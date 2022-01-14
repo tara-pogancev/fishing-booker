@@ -181,9 +181,11 @@ public class CottageServiceImpl implements CottageService {
     @Override
     public Boolean delete(Long id) {
         Cottage cottage = cottageRepository.getById(id);
+        //TODO change condition of delete
         if ((cottage.getCottageReservations() == null || cottage.getCottageReservations().size() == 0)
                 && (cottage.getCottageQuickReservations() == null || cottage.getCottageQuickReservations().size() == 0)) {
-            cottageRepository.deleteById(id);
+            cottage.setDeleted(true);
+            cottageRepository.save(cottage);
             return true;
         }
         return false;

@@ -23,12 +23,12 @@ INSERT INTO public.address(city, country, street)	VALUES ('Hanover', 'Indiana', 
 
 -- USERS
 
-INSERT INTO public.application_user(email, enabled, last_name, first_name, password, phone, role, address)	VALUES ('client.email@fishing.com', true, 'Tiegan', 'Glass', '$2a$10$KqyJ6IcfwIwV4pkjbfQ7LeGlhRRHTlIKtPKS7ElLJ0NcsOP2Zgpqm', '210-822-0348', '0', '1');
-INSERT INTO public.application_user(email, enabled, last_name, first_name, password, phone, role, address)	VALUES ('cottage@fishing.com', true, 'Korben', 'Williams', '$2a$10$KqyJ6IcfwIwV4pkjbfQ7LeGlhRRHTlIKtPKS7ElLJ0NcsOP2Zgpqm', '812-758-6034', '1', '2');
-INSERT INTO public.application_user(email, enabled, last_name, first_name, password, phone, role, address)	VALUES ('boat@fishing.com', true, 'Ellouise', 'Price', '$2a$10$KqyJ6IcfwIwV4pkjbfQ7LeGlhRRHTlIKtPKS7ElLJ0NcsOP2Zgpqm', '218-851-2525', '2', '3');
-INSERT INTO public.application_user(email, enabled, last_name, first_name, password, phone, role, address)	VALUES ('adventures@fishing.com', true, 'Filip', 'Magana', '$2a$10$KqyJ6IcfwIwV4pkjbfQ7LeGlhRRHTlIKtPKS7ElLJ0NcsOP2Zgpqm', '310-793-7864', '3', '4');
-INSERT INTO public.application_user(email, enabled, last_name, first_name, password, phone, role, address)	VALUES ('admin@fishing.com', true, 'Admin', 'Admin', '$2a$10$KqyJ6IcfwIwV4pkjbfQ7LeGlhRRHTlIKtPKS7ElLJ0NcsOP2Zgpqm', '978-809-5104', '4', '5');
-INSERT INTO public.application_user(email, enabled, last_name, first_name, password, phone, role, address)	VALUES ('djordje1499@gmail.com', true, 'Admin', 'Admin', '$2a$10$KqyJ6IcfwIwV4pkjbfQ7LeGlhRRHTlIKtPKS7ElLJ0NcsOP2Zgpqm', '978-809-5104', '4', '18');
+INSERT INTO public.application_user(deleted,email, enabled, last_name, first_name, password, phone, role, address)	VALUES (false,'client.email@fishing.com', true, 'Tiegan', 'Glass', '$2a$10$KqyJ6IcfwIwV4pkjbfQ7LeGlhRRHTlIKtPKS7ElLJ0NcsOP2Zgpqm', '210-822-0348', '0', '1');
+INSERT INTO public.application_user(deleted,email, enabled, last_name, first_name, password, phone, role, address)	VALUES (false,'cottage@fishing.com', true, 'Korben', 'Williams', '$2a$10$KqyJ6IcfwIwV4pkjbfQ7LeGlhRRHTlIKtPKS7ElLJ0NcsOP2Zgpqm', '812-758-6034', '1', '2');
+INSERT INTO public.application_user(deleted,email, enabled, last_name, first_name, password, phone, role, address)	VALUES (false,'boat@fishing.com', true, 'Ellouise', 'Price', '$2a$10$KqyJ6IcfwIwV4pkjbfQ7LeGlhRRHTlIKtPKS7ElLJ0NcsOP2Zgpqm', '218-851-2525', '2', '3');
+INSERT INTO public.application_user(deleted,email, enabled, last_name, first_name, password, phone, role, address)	VALUES (false,'adventures@fishing.com', true, 'Filip', 'Magana', '$2a$10$KqyJ6IcfwIwV4pkjbfQ7LeGlhRRHTlIKtPKS7ElLJ0NcsOP2Zgpqm', '310-793-7864', '3', '4');
+INSERT INTO public.application_user(deleted,email, enabled, last_name, first_name, password, phone, role, address)	VALUES (false,'admin@fishing.com', true, 'Admin', 'Admin', '$2a$10$KqyJ6IcfwIwV4pkjbfQ7LeGlhRRHTlIKtPKS7ElLJ0NcsOP2Zgpqm', '978-809-5104', '4', '5');
+INSERT INTO public.application_user(deleted,email, enabled, last_name, first_name, password, phone, role, address)	VALUES (false,'djordje1499@gmail.com', true, 'Admin', 'Admin', '$2a$10$KqyJ6IcfwIwV4pkjbfQ7LeGlhRRHTlIKtPKS7ElLJ0NcsOP2Zgpqm', '978-809-5104', '4', '18');
 
 INSERT INTO public.registered_client(is_blocked, penalties, user_id, rank)	VALUES (false, 0, 1, null);
 INSERT INTO public.cottage_owner(user_id, rank)	VALUES (2, null);
@@ -95,18 +95,18 @@ INSERT INTO public.navigational_equipment(name)	VALUES (5);
 
 -- BOATS
 
-INSERT INTO public.boat(
+INSERT INTO public.boat(deleted,
 	boat_length, boat_type, cancellation_percentage_keep, description, engine_power, fishing_equipment, guest_limit, max_speed, name, number_of_engines, price, rating, address, boat_owner)
-	VALUES (30.5, 1, 15.0, 'Mauris volutpat molestie venentis. Phasellus lobortis bibendum est, et fringilla magna tempus tempor. Integer pellentesque sem ac tortor euismod finibus. In hac habitasse platea dictumst. Aliquam tincidunt consequat iaculis.', 58.5, 'Basic equipment', 8, 120.0, 'Laura', 4, 35.0, 0.0, 6, 3);
-INSERT INTO public.boat(
+	VALUES (false,30.5, 1, 15.0, 'Mauris volutpat molestie venentis. Phasellus lobortis bibendum est, et fringilla magna tempus tempor. Integer pellentesque sem ac tortor euismod finibus. In hac habitasse platea dictumst. Aliquam tincidunt consequat iaculis.', 58.5, 'Basic equipment', 8, 120.0, 'Laura', 4, 35.0, 0.0, 6, 3);
+INSERT INTO public.boat(deleted,
 	boat_length, boat_type, cancellation_percentage_keep, description, engine_power, fishing_equipment, guest_limit, max_speed, name, number_of_engines, price, rating, address, boat_owner)
-	VALUES (45.8, 2, 10.0, 'Vivamus quam purus, tempus sit amet tristique at, commodo vitae nisl. Sed eleifend ornare massa, at mattis tellus gravida ac.', 65.5, 'Advanced equipment!', 5, 80.0, 'Sophia', 8, 42.0, 4.0, 7, 3);
-INSERT INTO public.boat(
+	VALUES (false,45.8, 2, 10.0, 'Vivamus quam purus, tempus sit amet tristique at, commodo vitae nisl. Sed eleifend ornare massa, at mattis tellus gravida ac.', 65.5, 'Advanced equipment!', 5, 80.0, 'Sophia', 8, 42.0, 4.0, 7, 3);
+INSERT INTO public.boat(deleted,
 	boat_length, boat_type, cancellation_percentage_keep, description, engine_power, fishing_equipment, guest_limit, max_speed, name, number_of_engines, price, rating, address, boat_owner)
-	VALUES (20.0, 3, 15.8, 'Fusce fermentum metus a finibus ultricies. Sed ullamcorper placerat felis quis consectetur. Donec sodales sem sit amet nisi tempus.', 20.1, 'Basic equipment!', 6, 75.0, 'Tifa', 7, 85.0, 0.0, 8, 3);
-INSERT INTO public.boat(
+	VALUES (false,20.0, 3, 15.8, 'Fusce fermentum metus a finibus ultricies. Sed ullamcorper placerat felis quis consectetur. Donec sodales sem sit amet nisi tempus.', 20.1, 'Basic equipment!', 6, 75.0, 'Tifa', 7, 85.0, 0.0, 8, 3);
+INSERT INTO public.boat(deleted,
 	boat_length, boat_type, cancellation_percentage_keep, description, engine_power, fishing_equipment, guest_limit, max_speed, name, number_of_engines, price, rating, address, boat_owner)
-	VALUES (85.6, 4, 7.2, 'Praesent auctor erat eros, nec egestas ante fringilla at. In ut enim feugiat, ultricies eros a, lacinia lorem. Aliquam pulvinar id lorem commodo bibendum.', 120.5, 'Premium equipment!', 15, 150.0, 'Scarlet', 10, 60.0, 0.0, 9, 3);
+	VALUES (false,85.6, 4, 7.2, 'Praesent auctor erat eros, nec egestas ante fringilla at. In ut enim feugiat, ultricies eros a, lacinia lorem. Aliquam pulvinar id lorem commodo bibendum.', 120.5, 'Premium equipment!', 15, 150.0, 'Scarlet', 10, 60.0, 0.0, 9, 3);
 
 -- BOAT UTILITIES
 
@@ -155,14 +155,14 @@ INSERT INTO public.boat_images(boat_id, image_id)	VALUES (1, 8);
 
 -- COTTAGES
 
-INSERT INTO public.cottage(description, guest_limit, name, price, rating, address, cottage_owner)
-	VALUES ('Ut aliquam magna congue pulvinar interdum. Vestibulum at risus pretium lectus rutrum fringilla non id mi.', 20, 'ShinRa RnR', 65.5, 5.0, 10, 2);
-INSERT INTO public.cottage(description, guest_limit, name, price, rating, address, cottage_owner)
-	VALUES ('Quisque magna ante, molestie quis erat sit amet, interdum dignissim urna. Integer eget turpis varius, dapibus ex sed, finibus turpis. Fusce pharetra maximus purus eget blandit.', 15, 'Peace&Calm', 30.0, 0, 11, 2);
-INSERT INTO public.cottage(description, guest_limit, name, price, rating, address, cottage_owner)
-	VALUES ('Praesent auctor erat eros, nec egestas ante fringilla at. In ut enim feugiat, ultricies eros a, lacinia lorem. Aliquam pulvinar id lorem commodo bibendum.', 8, 'Ocean Reset', 45.2, 3.0, 12, 2);
-INSERT INTO public.cottage(description, guest_limit, name, price, rating, address, cottage_owner)
-	VALUES ('Vivamus pellentesque ex vel ligula lobortis, vel interdum libero pellentesque.', 9, 'Forest Dreams', 29.9, 0, 13, 2);
+INSERT INTO public.cottage(deleted,description, guest_limit, name, price, rating, address, cottage_owner)
+	VALUES (false,'Ut aliquam magna congue pulvinar interdum. Vestibulum at risus pretium lectus rutrum fringilla non id mi.', 20, 'ShinRa RnR', 65.5, 5.0, 10, 2);
+INSERT INTO public.cottage(deleted,description, guest_limit, name, price, rating, address, cottage_owner)
+	VALUES (false,'Quisque magna ante, molestie quis erat sit amet, interdum dignissim urna. Integer eget turpis varius, dapibus ex sed, finibus turpis. Fusce pharetra maximus purus eget blandit.', 15, 'Peace&Calm', 30.0, 0, 11, 2);
+INSERT INTO public.cottage(deleted,description, guest_limit, name, price, rating, address, cottage_owner)
+	VALUES (false,'Praesent auctor erat eros, nec egestas ante fringilla at. In ut enim feugiat, ultricies eros a, lacinia lorem. Aliquam pulvinar id lorem commodo bibendum.', 8, 'Ocean Reset', 45.2, 3.0, 12, 2);
+INSERT INTO public.cottage(deleted,description, guest_limit, name, price, rating, address, cottage_owner)
+	VALUES (false,'Vivamus pellentesque ex vel ligula lobortis, vel interdum libero pellentesque.', 9, 'Forest Dreams', 29.9, 0, 13, 2);
 
 -- ROOMS
 
@@ -208,14 +208,14 @@ INSERT INTO public.cottage_images(cottage_id, image_id)	VALUES (4, 12);
 
 -- ADVENTURES
 
-INSERT INTO public.adventure(cancellation_percentage_keep, description, guest_limit, name, price, rating, address, instructor)
-	VALUES (5.5, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu nibh consequat, accumsan tortor id, pretium dolor. Aenean eget interdum nisl, nec tempor dolor.', 10, 'Wild Fishing', 25.6, 0.0, 14, 4);
-INSERT INTO public.adventure(cancellation_percentage_keep, description, guest_limit, name, price, rating, address, instructor)
-	VALUES (2.5, 'Nunc nec commodo lacus, pretium elementum dui. Quisque pellentesque elementum laoreet. Etiam viverra libero libero, vel fermentum odio.', 8, 'Outdoor Retreat', 30.9, 0.0, 15, 4);
-INSERT INTO public.adventure(cancellation_percentage_keep, description, guest_limit, name, price, rating, address, instructor)
-	VALUES (10.0, 'Proin sodales lobortis pharetra. Curabitur lacus nisl, sagittis ut pretium a, scelerisque sed turpis. Fusce varius laoreet orci a posuere.', 12, 'Calm Rivers', 39.9, 5.0, 16, 4);
-INSERT INTO public.adventure(cancellation_percentage_keep, description, guest_limit, name, price, rating, address, instructor)
-	VALUES (5.8, 'Nam congue, eros at porttitor porta, justo eros congue mauris, vitae suscipit augue nulla vel mi. Sed vel ante egestas, scelerisque neque a.', 6, 'Fishing With Friends', 45.0, 0.0, 17, 4);
+INSERT INTO public.adventure(deleted,cancellation_percentage_keep, description, guest_limit, name, price, rating, address, instructor)
+	VALUES (false,5.5, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu nibh consequat, accumsan tortor id, pretium dolor. Aenean eget interdum nisl, nec tempor dolor.', 10, 'Wild Fishing', 25.6, 0.0, 14, 4);
+INSERT INTO public.adventure(deleted,cancellation_percentage_keep, description, guest_limit, name, price, rating, address, instructor)
+	VALUES (false,2.5, 'Nunc nec commodo lacus, pretium elementum dui. Quisque pellentesque elementum laoreet. Etiam viverra libero libero, vel fermentum odio.', 8, 'Outdoor Retreat', 30.9, 0.0, 15, 4);
+INSERT INTO public.adventure(deleted,cancellation_percentage_keep, description, guest_limit, name, price, rating, address, instructor)
+	VALUES (false,10.0, 'Proin sodales lobortis pharetra. Curabitur lacus nisl, sagittis ut pretium a, scelerisque sed turpis. Fusce varius laoreet orci a posuere.', 12, 'Calm Rivers', 39.9, 5.0, 16, 4);
+INSERT INTO public.adventure(deleted,cancellation_percentage_keep, description, guest_limit, name, price, rating, address, instructor)
+	VALUES (false,5.8, 'Nam congue, eros at porttitor porta, justo eros congue mauris, vitae suscipit augue nulla vel mi. Sed vel ante egestas, scelerisque neque a.', 6, 'Fishing With Friends', 45.0, 0.0, 17, 4);
 
 -- ADVENTURE RULES
 
@@ -306,7 +306,7 @@ INSERT INTO public.available_instructor_time_period(id, instructor)	VALUES (12, 
 
 -- DELETE ACCOUNT REQUESTS
 
-INSERT INTO public.delete_account_request( description, request_status, user_id) VALUES ( 'neki opis', 0, 6);
+INSERT INTO public.delete_account_request( description, request_status, user_id) VALUES ( 'neki opis', 1, 6);
 
 -- RESERVATIONS
 

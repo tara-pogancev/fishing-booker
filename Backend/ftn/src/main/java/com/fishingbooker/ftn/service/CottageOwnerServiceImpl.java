@@ -64,7 +64,9 @@ public class CottageOwnerServiceImpl implements CottageOwnerService {
 
     @Override
     public Long delete(Long id) {
-        cottageOwnerRepository.deleteById(id);
-        return id;
+        CottageOwner cottageOwner=cottageOwnerRepository.getById(id);
+        cottageOwner.setDeleted(true);
+        cottageOwnerRepository.save(cottageOwner);
+        return cottageOwner.getId();
     }
 }

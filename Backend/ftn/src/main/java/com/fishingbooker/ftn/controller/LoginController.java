@@ -37,8 +37,8 @@ public class LoginController {
         }
 
         ApplicationUser user = userService.findByEmail(authenticationRequest.getEmail());
-        if (!user.getEnabled()) {
-            throw new Exception("Account is not verified. Please check your email or contact the administrator.");
+        if (!user.getEnabled() || user.isDeleted()==true) {
+            throw new Exception("Account is deleted or  not verified. Please check your email or contact the administrator.");
         }
 
         final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getEmail());

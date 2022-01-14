@@ -35,8 +35,9 @@ public class DeleteAccountServiceImpl implements DeleteAccountService {
             request.setRequestStatus(RequestApproval.APPROVED);
             deleteAccountRequestRepository.save(request);
             applicationUser = applicationUserRepository.get(request.getUserId());
+            applicationUser.setDeleted(true);
+            applicationUserRepository.save(applicationUser);
             mailingService.sendAcceptDeleteAccountMail(applicationUser, description);
-            applicationUserRepository.delete(applicationUser);
             result = true;
         }
         return result;

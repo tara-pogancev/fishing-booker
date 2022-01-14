@@ -47,4 +47,7 @@ public class ApplicationUser extends DatabaseEntity {
         return this.name + " " + this.lastName;
     }
 
+    @Column(name = "deleted")
+    private boolean deleted=false;
+
 }

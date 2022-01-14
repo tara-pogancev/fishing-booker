@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface CottageOwnerRepository extends EntityRepository<CottageOwner> {
 
-    @Query("SELECT c from CottageOwner c WHERE c.enabled=true")
+    @Query("SELECT c from CottageOwner c WHERE c.enabled=true and c.deleted=false")
     List<CottageOwner> getRegisteredOwners();
 }

@@ -30,7 +30,14 @@ public class BoatServiceImpl implements BoatService {
 
     @Override
     public List<Boat> findAll() {
-        return boatRepository.findAll();
+        List<Boat> boats=boatRepository.findAll();
+        for(int i=0;i<boats.size();i++){
+            if (boats.get(i).isDeleted()==true){
+                boats.remove(i);
+                i--;
+            }
+        }
+        return boats;
     }
 
     @Override
@@ -41,8 +48,10 @@ public class BoatServiceImpl implements BoatService {
 
     @Override
     public Long delete(Long id) {
-        boatRepository.deleteById(id);
-        return id;
+        Boat boat=boatRepository.getById(id);
+        boat.setDeleted(true);
+        boatRepository.save(boat);
+        return boat.getId();
     }
 
     @Override

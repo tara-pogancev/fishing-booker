@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface FishingInstructorRepository extends EntityRepository<FishingInstructor> {
 
-    @Query("SELECT i from FishingInstructor i WHERE i.enabled=true")
+    @Query("SELECT i from FishingInstructor i WHERE i.enabled=true and i.deleted=false")
     List<FishingInstructor> getEnabledInstructors();
 
     @Query(value = "SELECT *\n" +

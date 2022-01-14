@@ -25,7 +25,7 @@ public class FishingInstructorController {
 
     @GetMapping
     List<FishingInstructorDto> get() {
-        List<FishingInstructor> insturctors = fishingInstructorService.findAll();
+        List<FishingInstructor> insturctors = fishingInstructorService.getEnabledInstructors();
         List<FishingInstructorDto> instructorDtos = converter.convert(insturctors, FishingInstructorDto.class);
         return instructorDtos;
     }

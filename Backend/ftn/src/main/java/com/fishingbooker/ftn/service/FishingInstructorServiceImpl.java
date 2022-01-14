@@ -62,9 +62,12 @@ public class FishingInstructorServiceImpl implements FishingInstructorService {
     public Long delete(Long id) {
 
         if (instructorRepository.existsById(id)) {
-            instructorRepository.deleteById(id);
+            FishingInstructor instructor=instructorRepository.getById(id);
+            instructor.setDeleted(true);
+            instructorRepository.save(instructor);
+            return instructor.getId();
         }
-        return id;
+        return -1l;
     }
 
     @Override

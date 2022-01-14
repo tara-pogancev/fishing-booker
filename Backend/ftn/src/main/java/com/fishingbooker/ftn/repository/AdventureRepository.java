@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface AdventureRepository extends EntityRepository<Adventure> {
 
-    @Query("SELECT a FROM Adventure a where a.instructor.id=?1")
+    @Query("SELECT a FROM Adventure a where a.instructor.id=?1 and a.deleted=false")
     List<Adventure> getInstructorAdventures(Long id);
 }

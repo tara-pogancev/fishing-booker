@@ -34,7 +34,7 @@ export class BoatService {
   }
 
   getBoats() {
-    //admin reading cottages
+    //admin reading boats
     const url = server + 'api/boats';
     const headers = this.loginService.getHeaders();
     return this._http.get<any>(url, { headers: headers });

@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -86,16 +87,24 @@ public class Adventure extends DatabaseEntity {
 
         return uncanceled;
     }
+    @Column(name = "deleted")
+    private boolean deleted=false;
 
-    /*public List<AdventureQuickReservation> getUnCanceledQuickReservations(){
-        List<AdventureQuickReservation> uncanceled=new ArrayList<>();
-        for(AdventureQuickReservation adventureReservation:this.adventureQuickReservations){
-            if (adventureReservation.getIsCanceled()==false){
-                uncanceled.add(adventureReservation);
+    public boolean existsReservations() {
+        for (AdventureReservation reservation:this.adventureReservations){
+            if (reservation.getReservationEnd().isAfter(LocalDateTime.now())){
+                return true;
             }
         }
+        return false;
+    }
 
-        return uncanceled;
-    }*/
-
+    public boolean existsQuickReservations() {
+        for (AdventureQuickReservation reservation:this.adventureQuickReservations){
+            if (reservation.getActionEnd().isAfter(LocalDateTime.now())){
+                return true;
+            }
+        }
+        return false;
+    }
 }

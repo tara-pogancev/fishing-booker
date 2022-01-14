@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface BoatOwnerRepository extends EntityRepository<BoatOwner> {
 
-    @Query("SELECT b from BoatOwner b where b.enabled=true")
+    @Query("SELECT b from BoatOwner b where b.enabled=true and b.deleted=false")
     List<BoatOwner> getRegisteredBoatOwners();
 }
