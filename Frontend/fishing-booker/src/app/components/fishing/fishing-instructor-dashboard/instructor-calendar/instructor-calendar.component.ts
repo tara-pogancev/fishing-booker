@@ -259,7 +259,7 @@ export class InstructorCalendarComponent implements OnInit{
     const index=this.events.indexOf(event);
     var selectedEndDate=new Date(event.endDateString)
     var selectedStartDate=new Date(event.startDateString);
-    if (selectedEndDate<selectedStartDate || selectedStartDate<new Date() || selectedEndDate < new Date()){
+    if (selectedEndDate<selectedStartDate  || selectedEndDate < new Date()){
       alert('Chose valid date');
       return;
     }

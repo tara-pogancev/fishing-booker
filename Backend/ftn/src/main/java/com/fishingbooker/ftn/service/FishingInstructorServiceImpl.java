@@ -76,7 +76,7 @@ public class FishingInstructorServiceImpl implements FishingInstructorService {
         List<Adventure> adventures = new ArrayList<>(instructor.getAdventures());
         List<AdventureReservation> ret = new ArrayList<>();
         for (Adventure adventure : adventures) {
-            List<AdventureReservation> reservations = new ArrayList<>(adventure.getAdventureReservations());
+            List<AdventureReservation> reservations = new ArrayList<>(adventure.getUnCanceledReservations());
             ret.addAll(reservations);
         }
         return ret;

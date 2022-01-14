@@ -9,6 +9,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -73,5 +75,27 @@ public class Adventure extends DatabaseEntity {
     @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "instructor")
     private FishingInstructor instructor;
+
+    public List<AdventureReservation> getUnCanceledReservations(){
+        List<AdventureReservation> uncanceled=new ArrayList<>();
+        for(AdventureReservation adventureReservation:this.adventureReservations){
+            if (adventureReservation.getIsCanceled()==false){
+                uncanceled.add(adventureReservation);
+            }
+        }
+
+        return uncanceled;
+    }
+
+    /*public List<AdventureQuickReservation> getUnCanceledQuickReservations(){
+        List<AdventureQuickReservation> uncanceled=new ArrayList<>();
+        for(AdventureQuickReservation adventureReservation:this.adventureQuickReservations){
+            if (adventureReservation.getIsCanceled()==false){
+                uncanceled.add(adventureReservation);
+            }
+        }
+
+        return uncanceled;
+    }*/
 
 }
