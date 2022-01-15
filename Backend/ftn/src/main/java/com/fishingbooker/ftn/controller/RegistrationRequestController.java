@@ -26,12 +26,12 @@ public class RegistrationRequestController {
     }
 
     @PutMapping("/approve/{id}")
-    public void approveRequest(@PathVariable("id") Long id) {
-        registratinRequestService.approveRequest(id);
+    public boolean approveRequest(@PathVariable("id") Long id) {
+        return registratinRequestService.approveRequest(id);
     }
 
     @PutMapping("/reject")
-    public void rejectRequest(@RequestBody AdminResponseDto requestDto) {
-        registratinRequestService.rejectRequest(requestDto);
+    public boolean rejectRequest(@RequestBody AdminResponseDto requestDto) {
+        return registratinRequestService.rejectRequest(requestDto);
     }
 }

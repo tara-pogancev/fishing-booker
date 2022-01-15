@@ -18,5 +18,5 @@ public interface ComplaintService {
 
     List<Complaint> getWaitingComplaints();
 
-    void createResponse(ComplaintResponseDto dto);
+    boolean createResponse(ComplaintResponseDto dto);
 }

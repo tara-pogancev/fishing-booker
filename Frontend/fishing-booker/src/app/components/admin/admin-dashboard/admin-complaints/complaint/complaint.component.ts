@@ -30,13 +30,25 @@ export class ComplaintComponent implements OnInit {
       alert('Insert your explanation');
       return;
     }
-    this.complaintService.createResponse(this.comment,this.selectedComplaint.id).subscribe();
+    this.complaintService.createResponse(this.comment,this.selectedComplaint.id).subscribe(data=>{
+      if (data==false){
+        alert('Response is already created!');
+      }else{
+        alert('Success!');
+      }
+      this.removeFromFrontend();
+    });
     document.getElementById('modal')?.classList.toggle('is-active');
-    alert('Success');
+    
   }
 
   closeModalTab():void{
     document.getElementById('modal')?.classList.toggle('is-active');
+  }
+
+  removeFromFrontend(){
+    const index=this.complaints.indexOf(this.selectedComplaint);
+    this.complaints.splice(index,1);
   }
 
 }

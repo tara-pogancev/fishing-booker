@@ -26,4 +26,5 @@ public class RegistrationRequest extends DatabaseEntity {
     @Column(name = "registrationDescription", nullable = true)
     private String registrationDescription;
 
+
 }

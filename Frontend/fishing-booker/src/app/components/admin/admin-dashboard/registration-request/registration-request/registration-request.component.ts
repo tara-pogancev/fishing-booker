@@ -21,8 +21,21 @@ export class RegistrationRequestComponent implements OnInit {
   }
 
   acceptRegistration(request:RegistrationRequest):void{
-    this.requestService.approveRequest(request.id);
-    alert('Successfully approved');
+    this.requestService.approveRequest(request.id).subscribe(data=>{
+      if (data==false){
+        alert('Failure');
+      }else{
+        this.removeRequestFromFront();
+        alert('Successfully approved');
+        
+      }
+    });
+    
+  }
+
+  removeRequestFromFront(){
+    const index=this.registrationRequests.indexOf(this.selectedRequest);
+    this.registrationRequests.splice(index,1);
   }
 
   openModalTab(request:RegistrationRequest):void{
@@ -39,9 +52,15 @@ export class RegistrationRequestComponent implements OnInit {
       alert('Insert your explanation');
       return;
     }
-    this.requestService.rejectRequest(this.selectedRequest.id,this.comment);
+    this.requestService.rejectRequest(this.selectedRequest.id,this.comment).subscribe(data=>{
+      if (data==false){
+        alert('Failure');
+      }else{
+        this.removeRequestFromFront();
+        alert('Successfully approved');
+      }
+    });
     document.getElementById('modal')?.classList.toggle('is-active');
-    alert('Success');
   }
   
   

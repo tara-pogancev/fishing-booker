@@ -44,9 +44,15 @@ export class DeleteAccountRequestsComponent implements OnInit {
       alert('Insert your explanation');
       return;
     }
-    this.deleteAccountService.approveRequest(this.selectedRequest.id,this.comment);
-    this.removeRequestFromFront();
-    alert('Success');
+    this.deleteAccountService.approveRequest(this.selectedRequest.id,this.comment).subscribe(data=>{
+      if (data==false){
+        alert('Failure');
+      }else{
+        this.removeRequestFromFront();
+        alert('Success');
+      }
+    });
+    
   }
 
   openModalTab(request:DeleteAccountRequest):void{
@@ -63,9 +69,14 @@ export class DeleteAccountRequestsComponent implements OnInit {
       alert('Insert your explanation');
       return;
     }
-    this.deleteAccountService.rejectRequest(this.selectedRequest.id,this.comment);
-    this.removeRequestFromFront();
-    alert('Success');
+    this.deleteAccountService.rejectRequest(this.selectedRequest.id,this.comment).subscribe(data=>{
+      if (data==false){
+        alert('Failure');
+      }else{
+        this.removeRequestFromFront();
+        alert('Success');
+      }
+    });
   }
 
   removeRequestFromFront(){

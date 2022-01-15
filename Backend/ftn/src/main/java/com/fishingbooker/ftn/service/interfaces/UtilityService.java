@@ -3,6 +3,7 @@ package com.fishingbooker.ftn.service.interfaces;
 import com.fishingbooker.ftn.bom.Utility;
 import com.fishingbooker.ftn.bom.adventures.Adventure;
 import com.fishingbooker.ftn.bom.adventures.AdventureUtility;
+import com.fishingbooker.ftn.bom.adventures.QuickReservationUtility;
 import com.fishingbooker.ftn.bom.cottages.Cottage;
 import com.fishingbooker.ftn.bom.cottages.CottageUtility;
 import com.fishingbooker.ftn.dto.AdventureUtilityDto;
@@ -17,4 +18,6 @@ public interface UtilityService {
     Set<AdventureUtility> convertStringToUtility(List<AdventureUtilityDto> utilityDtos, Adventure adventure);
 
     Set<CottageUtility> convertStringToUtility(List<UtilityDto> utilityDtos, Cottage cottage);
+
+    Set<QuickReservationUtility> convertUtilityDtoToUtility(List<AdventureUtilityDto> utilityDtos);
 }

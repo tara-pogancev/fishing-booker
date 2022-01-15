@@ -17,20 +17,18 @@ export class DeleteAccountService {
     return this._http.get<DeleteAccountRequest[]>(url, { headers: headers });
   }
 
-  approveRequest(id: string, description: string): void {
+  approveRequest(id: string, description: string){
     const headers = this.loginService.getHeaders();
     const url = server + 'api/delete-account/approve';
-    this._http
-      .put<any>(url, { id: id, description: description }, { headers: headers })
-      .subscribe(console.log);
+    return this._http.put<any>(url, { id: id, description: description }, { headers: headers });
   }
 
   rejectRequest(id: string, description: string) {
     const headers = this.loginService.getHeaders();
     const url = server + 'api/delete-account/reject';
-    this._http
+    return this._http
       .put<any>(url, { id: id, description: description }, { headers: headers })
-      .subscribe(console.log);
+      
   }
 
   sendRequest(description: string): void {

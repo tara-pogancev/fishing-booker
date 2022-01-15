@@ -2,6 +2,7 @@ package com.fishingbooker.ftn.service;
 
 import com.fishingbooker.ftn.bom.Address;
 import com.fishingbooker.ftn.bom.RuleOfConduct;
+import com.fishingbooker.ftn.bom.Utility;
 import com.fishingbooker.ftn.bom.adventures.*;
 import com.fishingbooker.ftn.bom.users.FishingInstructor;
 import com.fishingbooker.ftn.bom.users.RegisteredClient;
@@ -11,6 +12,7 @@ import com.fishingbooker.ftn.dto.*;
 import com.fishingbooker.ftn.repository.*;
 import com.fishingbooker.ftn.service.interfaces.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.PessimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -41,6 +43,8 @@ public class AdventureServiceImpl implements AdventureService {
     private final AdventureQuickReservationRepository adventureQuickReservationRepository;
     private final SubscriptionService subscriptionService;
     private final MailingService mailingService;
+    private final UtilityRepository utilityRepository;
+    private final QuickReservationUtilityRepository quickReservationUtilityRepository;
 
     @Override
     public List<AdventureDto> findAll() {
@@ -199,38 +203,58 @@ public class AdventureServiceImpl implements AdventureService {
     }
 
     @Override
-    public Long createQuickReservation(AdventureQuickReservation reservation) {
-        if (!validate(reservation.getAdventure().getInstructor().getId(), reservation.getActionStart(), reservation.getActionEnd())) {
-            return -1l;
-        } else {
-            AdventureQuickReservation persistedReservation = adventureQuickReservationRepository.save(reservation);
-            List<RegisteredClient> clients = subscriptionService.getInstructorSubscribers(persistedReservation.getAdventure().getInstructor().getId());
-            for (RegisteredClient client : clients) {
-                mailingService.sendMailToSubscribedUsers(client, persistedReservation.getReservationClient().getFullName());
+    public Long createQuickReservation(AdventureQuickReservationDto dto) {
+        try{
+            Adventure adventure = adventureRepository.getAdventure(dto.getAdventureId());
+            if (!validate(adventure.getInstructor().getId(), dto.getActionStart(), dto.getActionEnd())) {
+                return -1l;
+            } else {
+                AdventureQuickReservation adventureQuickReservation = new AdventureQuickReservation();
+                adventureQuickReservation.setAdventure(adventure);
+                adventureQuickReservation.setActionStart(dto.getActionStart());
+                adventureQuickReservation.setActionEnd(dto.getActionEnd());
+                adventureQuickReservation.setGuestLimit(dto.getGuestLimit());
+                adventureQuickReservation.setPrice(dto.getPrice());
+                adventureQuickReservation.setUtilities(utilityService.convertUtilityDtoToUtility(dto.getAdventureUtilityDtoList()));
+                adventureQuickReservation.recalculateFullPrice();
+                AdventureQuickReservation persistedReservation = adventureQuickReservationRepository.save(adventureQuickReservation);
+                List<RegisteredClient> clients = subscriptionService.getInstructorSubscribers(persistedReservation.getAdventure().getInstructor().getId());
+                for (RegisteredClient client : clients) {
+                    mailingService.sendMailToSubscribedUsers(client, persistedReservation.getReservationClient().getFullName());
+                }
+                return persistedReservation.getId();
             }
-            return persistedReservation.getId();
+        }catch (Exception e){
+            System.out.println("Locking exception");
+            return -1l;
         }
     }
 
+
+
     public Long createReservation(InstructorNewReservationDto dto) {
-        Adventure adventure = adventureRepository.getById(dto.getAdventureId());
+        try{
+            Adventure adventure = adventureRepository.getAdventure(dto.getAdventureId());
 
-        if (!validate(adventure.getInstructor().getId(), UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getStartDate()), UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getEndDate()))) {
-            return -1L;
-        } else {
-            AdventureReservation adventureReservation = new AdventureReservation();
-            adventureReservation.setAdventure(adventure);
-            adventureReservation.setReservationClient(clientRepository.getById(dto.getClientId()));
-            adventureReservation.setReservationStart(UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getStartDate()));
-            adventureReservation.setReservationEnd(UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getEndDate()));
-            adventureReservation.setGuestNumber(dto.getGuestNumber());
-            adventureReservation.setPrice(dto.getPrice());
-            adventureReservation.setGuestNumber(dto.getGuestNumber());
-            adventureReservation.setPrice(dto.getPrice());
-            Set<AdventureUtility> utilities = utilityService.convertStringToUtility(dto.getUtilities(), adventure);
-            adventureReservation.setUtilities(utilities);
-            return adventureReservationRepository.save(adventureReservation).getId();
-
+            if (!validate(adventure.getInstructor().getId(), UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getStartDate()), UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getEndDate()))) {
+                return -1L;
+            } else {
+                AdventureReservation adventureReservation = new AdventureReservation();
+                adventureReservation.setAdventure(adventure);
+                adventureReservation.setReservationClient(clientRepository.getById(dto.getClientId()));
+                adventureReservation.setReservationStart(UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getStartDate()));
+                adventureReservation.setReservationEnd(UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getEndDate()));
+                adventureReservation.setGuestNumber(dto.getGuestNumber());
+                adventureReservation.setPrice(dto.getPrice());
+                adventureReservation.setGuestNumber(dto.getGuestNumber());
+                adventureReservation.setPrice(dto.getPrice());
+                Set<AdventureUtility> utilities = utilityService.convertStringToUtility(dto.getUtilities(), adventure);
+                adventureReservation.setUtilities(utilities);
+                return adventureReservationRepository.save(adventureReservation).getId();
+            }
+        }catch (PessimisticLockingFailureException  e){
+            System.out.println("Locking exception");
+            return -1l;
         }
     }
 

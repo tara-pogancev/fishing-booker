@@ -98,7 +98,7 @@ public class ReservationServiceImpl implements ReservationService {
         reservationDto.setStartDate(UnixTimeToLocalDateTimeConverter.adjustDefaultTimeZone(reservationDto.startDate));
         AdventureReservation reservation = new AdventureReservation();
 
-        Adventure adventure = adventureService.get(reservationDto.entityId);
+        Adventure adventure = adventureService.get(reservationDto.entityId); //TODO add getAdventure with pessimistic lock
         RegisteredClient client = clientRepository.getById(reservationDto.userId);
 
         if (adventure != null && client != null

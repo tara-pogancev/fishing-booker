@@ -15,6 +15,6 @@ public interface AdventureQuickReservationRepository extends EntityRepository<Ad
 
     @Query(value = "SELECT *\n" +
             "\tFROM public.adventure_quick_reservation natural join public.quick_reservation\n" +
-            "where adventure_id=:id and  ((:startDate between action_start and action_end) or (:endDate  between action_start and action_end))", nativeQuery = true)
+            "where adventure_id=:id and  ((:startDate between action_start and action_end) or (:endDate  between action_start and action_end)) FOR SHARE NOWAIT", nativeQuery = true)
     List<AdventureQuickReservation> getOverlappedWithNewAction(LocalDateTime startDate, LocalDateTime endDate, Long id);
 }

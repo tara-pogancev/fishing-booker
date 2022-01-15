@@ -3,10 +3,7 @@ package com.fishingbooker.ftn.service.interfaces;
 import com.fishingbooker.ftn.bom.adventures.Adventure;
 import com.fishingbooker.ftn.bom.adventures.AdventureQuickReservation;
 import com.fishingbooker.ftn.bom.adventures.AdventureUtility;
-import com.fishingbooker.ftn.dto.AdventureCreationDto;
-import com.fishingbooker.ftn.dto.AdventureDto;
-import com.fishingbooker.ftn.dto.EntitySearchDto;
-import com.fishingbooker.ftn.dto.InstructorNewReservationDto;
+import com.fishingbooker.ftn.dto.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -31,7 +28,7 @@ public interface AdventureService {
 
     List<Adventure> findFiltered(EntitySearchDto filterDto, Long userId);
 
-    Long createQuickReservation(AdventureQuickReservation reservation);
+    Long createQuickReservation(AdventureQuickReservationDto reservation);
 
     List<AdventureQuickReservation> getQuickReservations(Long id);
 

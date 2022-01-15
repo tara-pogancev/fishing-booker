@@ -7,6 +7,7 @@ import com.fishingbooker.ftn.repository.ApplicationUserRepository;
 import com.fishingbooker.ftn.repository.DeleteAccountRequestRepository;
 import com.fishingbooker.ftn.service.interfaces.DeleteAccountService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.PessimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -30,15 +31,19 @@ public class DeleteAccountServiceImpl implements DeleteAccountService {
     public boolean approve(Long requestId, String description) {
         boolean result = false;
         ApplicationUser applicationUser;
-        if (deleteAccountRequestRepository.exists(requestId)) {
-            DeleteAccountRequest request = deleteAccountRequestRepository.get(requestId);
-            request.setRequestStatus(RequestApproval.APPROVED);
-            deleteAccountRequestRepository.save(request);
-            applicationUser = applicationUserRepository.get(request.getUserId());
-            applicationUser.setDeleted(true);
-            applicationUserRepository.save(applicationUser);
-            mailingService.sendAcceptDeleteAccountMail(applicationUser, description);
-            result = true;
+        try{
+            DeleteAccountRequest request = deleteAccountRequestRepository.getRequest(requestId);
+            if (request.getRequestStatus()==RequestApproval.WAITING){
+                request.setRequestStatus(RequestApproval.APPROVED);
+                deleteAccountRequestRepository.save(request);
+                applicationUser = applicationUserRepository.get(request.getUserId());
+                applicationUser.setDeleted(true);
+                applicationUserRepository.save(applicationUser);
+                mailingService.sendAcceptDeleteAccountMail(applicationUser, description);
+                result = true;
+            }
+        }catch (PessimisticLockingFailureException e){
+            System.out.println("Locking exception");
         }
         return result;
     }
@@ -46,13 +51,17 @@ public class DeleteAccountServiceImpl implements DeleteAccountService {
     @Override
     public boolean reject(Long requestId, String description) {
         boolean result = false;
-        if (deleteAccountRequestRepository.exists(requestId)) {
-            DeleteAccountRequest request = deleteAccountRequestRepository.get(requestId);
-            request.setRequestStatus(RequestApproval.DECLINED);
-            deleteAccountRequestRepository.save(request);
-            ApplicationUser applicationUser = applicationUserRepository.get(request.getUserId());
-            mailingService.sendRefuseDeleteAccountMail(applicationUser, description);
-            result = true;
+        try{
+            DeleteAccountRequest request = deleteAccountRequestRepository.getRequest(requestId);
+            if (request.getRequestStatus()==RequestApproval.WAITING){
+                request.setRequestStatus(RequestApproval.DECLINED);
+                deleteAccountRequestRepository.save(request);
+                ApplicationUser applicationUser = applicationUserRepository.get(request.getUserId());
+                mailingService.sendRefuseDeleteAccountMail(applicationUser, description);
+                result = true;
+            }
+        }catch (PessimisticLockingFailureException e){
+            System.out.println("Locking exception");
         }
         return result;
     }

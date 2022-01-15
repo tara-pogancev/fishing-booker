@@ -19,14 +19,14 @@ export class RegistrationRequestService {
     return this._http.get<RegistrationRequest[]>(this.url,{headers:headers});
   }
 
-  approveRequest(id:string):void{
+  approveRequest(id:string){
     const headers = this.loginService.getHeaders();
-    this._http.put<any>(this.url+'/approve/'+id,{},{headers:headers}).subscribe(console.log);
+    return this._http.put<any>(this.url+'/approve/'+id,{},{headers:headers});
   }
 
   rejectRequest(id:string,explanation:string){
     const headers = this.loginService.getHeaders();
-    this._http.put<any>(this.url+'/reject',{id:id,causeOfRejection:explanation},{headers:headers}).subscribe(console.log);
+    return this._http.put<any>(this.url+'/reject',{id:id,causeOfRejection:explanation},{headers:headers});
   }
 
   erroHandler(error: HttpErrorResponse) {

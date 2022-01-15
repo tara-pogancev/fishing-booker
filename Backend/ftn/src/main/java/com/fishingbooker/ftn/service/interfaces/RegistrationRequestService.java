@@ -9,9 +9,9 @@ public interface RegistrationRequestService {
 
     List<RegistrationRequest> get();
 
-    void approveRequest(Long id);
+    boolean approveRequest(Long id);
 
-    void rejectRequest(AdminResponseDto requestDto);
+    boolean rejectRequest(AdminResponseDto requestDto);
 
 
 }

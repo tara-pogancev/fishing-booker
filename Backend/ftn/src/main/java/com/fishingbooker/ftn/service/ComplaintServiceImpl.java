@@ -22,6 +22,7 @@ import com.fishingbooker.ftn.service.interfaces.ComplaintService;
 import com.fishingbooker.ftn.service.interfaces.MailingService;
 import com.fishingbooker.ftn.service.interfaces.ReservationService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.PessimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -130,11 +131,24 @@ public class ComplaintServiceImpl implements ComplaintService {
     }
 
     @Override
-    public void createResponse(ComplaintResponseDto dto) {
-        Complaint complaint = complaintRepository.get(dto.getComplaintId());
-        ApplicationUser client = complaint.getUser();
-        complaint.setApproval(RequestApproval.PROCESSED);
-        complaintRepository.save(complaint);
+    public boolean createResponse(ComplaintResponseDto dto) {
+        try{
+            Complaint complaint = complaintRepository.getComplaint(dto.getComplaintId());
+            if(complaint.getApproval()==RequestApproval.PROCESSED){
+                return false;
+            }
+            ApplicationUser client = complaint.getUser();
+            complaint.setApproval(RequestApproval.PROCESSED);
+            complaintRepository.save(complaint);
+            sendNotificationMail(dto, complaint, client);
+        }catch (PessimisticLockingFailureException e){
+            System.out.println("Locking exception");
+            return false;
+        }
+        return true;
+    }
+
+    private void sendNotificationMail(ComplaintResponseDto dto, Complaint complaint, ApplicationUser client) {
         if (complaint.getReservationType() == EntityType.BOAT) {
             Boat boat = boatRepository.get(complaint.getEntityId());
             ApplicationUser owner = boat.getBoatOwner();

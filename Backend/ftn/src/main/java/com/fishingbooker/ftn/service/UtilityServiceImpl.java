@@ -3,12 +3,14 @@ package com.fishingbooker.ftn.service;
 import com.fishingbooker.ftn.bom.Utility;
 import com.fishingbooker.ftn.bom.adventures.Adventure;
 import com.fishingbooker.ftn.bom.adventures.AdventureUtility;
+import com.fishingbooker.ftn.bom.adventures.QuickReservationUtility;
 import com.fishingbooker.ftn.bom.cottages.Cottage;
 import com.fishingbooker.ftn.bom.cottages.CottageUtility;
 import com.fishingbooker.ftn.dto.AdventureUtilityDto;
 import com.fishingbooker.ftn.dto.UtilityDto;
 import com.fishingbooker.ftn.repository.AdventureUtilityRepository;
 import com.fishingbooker.ftn.repository.CottageUtilityRepository;
+import com.fishingbooker.ftn.repository.QuickReservationUtilityRepository;
 import com.fishingbooker.ftn.repository.UtilityRepository;
 import com.fishingbooker.ftn.service.interfaces.UtilityService;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +30,7 @@ public class UtilityServiceImpl implements UtilityService {
     private final UtilityRepository utilityRepository;
     private final AdventureUtilityRepository adventureUtilityRepository;
     private final CottageUtilityRepository cottageUtilityRepository;
+    private final QuickReservationUtilityRepository quickReservationUtilityRepository;
 
     @Override
     public List<Utility> get() {
@@ -83,6 +86,29 @@ public class UtilityServiceImpl implements UtilityService {
         }
         cottageUtilityRepository.save(cottageUtility);
         return cottageUtility;
+    }
+
+    public Set<QuickReservationUtility> convertUtilityDtoToUtility(List<AdventureUtilityDto> utilityDtos) {
+        if (utilityDtos == null || utilityDtos.size() == 0)
+            return null;
+        List<QuickReservationUtility> utilities = utilityDtos.stream().map(utilityDto -> createUtilityObject(utilityDto)).collect(Collectors.toList());
+        return new HashSet<QuickReservationUtility>(utilities);
+    }
+
+    private QuickReservationUtility createUtilityObject(AdventureUtilityDto dto) {
+        Utility utility;
+
+        QuickReservationUtility quickReservationUtility;
+        if (dto.getId() == -1) {
+            utility = new Utility(dto.getName());
+            utilityRepository.save(utility);
+            quickReservationUtility = new QuickReservationUtility(utility, dto.getPrice());
+        } else {
+            utility = utilityRepository.getById(dto.getUtilityId());
+            quickReservationUtility = new QuickReservationUtility(utility, dto.getPrice());
+        }
+        quickReservationUtilityRepository.save(quickReservationUtility);
+        return quickReservationUtility;
     }
 
 

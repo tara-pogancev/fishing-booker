@@ -71,7 +71,7 @@ public class AdventureController {
     @PostMapping("/add-quick-reservation")
     public Long addQuickReservation(@RequestBody AdventureQuickReservationDto dto) {
         AdventureQuickReservation reservation = converter.convert(dto, AdventureQuickReservation.class);
-        return adventureService.createQuickReservation(reservation);
+        return adventureService.createQuickReservation(dto);
     }
 
     @PostMapping("/add-reservation")

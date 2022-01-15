@@ -35,7 +35,7 @@ public class ComplaintController {
     }
 
     @GetMapping("/get-waiting-complaints")
-    @PreAuthorize("hasRole('REGISTERED_CLIENT')")
+    @PreAuthorize("hasRole('ADMINISTRATOR')")
     public List<ComplaintDto> getWaitingComplaints() {
         List<Complaint> complaints = complaintService.getWaitingComplaints();
         List<ComplaintDto> complaintDtos = converter.convert(complaints, ComplaintDto.class);
@@ -43,8 +43,9 @@ public class ComplaintController {
     }
 
     @PostMapping("/create-response")
-    public void createResponse(@RequestBody ComplaintResponseDto dto) {
-        complaintService.createResponse(dto);
+    @PreAuthorize("hasRole('ADMINISTRATOR')")
+    public boolean createResponse(@RequestBody ComplaintResponseDto dto) {
+        return complaintService.createResponse(dto);
     }
 
 }
