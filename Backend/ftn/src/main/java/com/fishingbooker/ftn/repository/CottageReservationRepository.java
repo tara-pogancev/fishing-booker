@@ -13,6 +13,9 @@ public interface CottageReservationRepository extends EntityRepository<CottageRe
     @Query("SELECT r FROM CottageReservation r WHERE r.cottage.id = :id and r.isCanceled = false")
     List<CottageReservation> getCottageReservations(Long id);
 
+    @Query("SELECT r FROM CottageReservation r WHERE r.cottage.cottageOwner.id = :id and r.isCanceled = false")
+    List<CottageReservation> getCottageReservationsByCottageOwner(Long id);
+
     @Query("SELECT r FROM CottageReservation r WHERE r.reservationClient.id = :id AND r.isCanceled = true")
     List<CottageReservation> getClientCanceledCottageReservations(Long id);
 

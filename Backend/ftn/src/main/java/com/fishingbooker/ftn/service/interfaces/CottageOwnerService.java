@@ -1,5 +1,7 @@
 package com.fishingbooker.ftn.service.interfaces;
 
+import com.fishingbooker.ftn.bom.cottages.CottageReservation;
+import com.fishingbooker.ftn.bom.reservations.Reservation;
 import com.fishingbooker.ftn.bom.users.CottageOwner;
 import com.fishingbooker.ftn.dto.ApplicationUserDto;
 import com.fishingbooker.ftn.dto.CottageOwnerDto;
@@ -19,4 +21,6 @@ public interface CottageOwnerService {
     List<CottageOwner> getRegisteredOwners();
 
     Long delete(Long id);
+
+    List<CottageReservation> getPastAdventureReservations(Long id);
 }

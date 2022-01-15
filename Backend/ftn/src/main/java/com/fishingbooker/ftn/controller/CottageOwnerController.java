@@ -1,11 +1,16 @@
 package com.fishingbooker.ftn.controller;
 
+import com.fishingbooker.ftn.bom.cottages.CottageReservation;
+import com.fishingbooker.ftn.bom.reservations.Reservation;
 import com.fishingbooker.ftn.bom.users.CottageOwner;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.ApplicationUserDto;
 import com.fishingbooker.ftn.dto.CottageOwnerDto;
+import com.fishingbooker.ftn.dto.ReservationDto;
+import com.fishingbooker.ftn.dto.ViewReservationDto;
 import com.fishingbooker.ftn.service.interfaces.CottageOwnerService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,6 +44,13 @@ public class CottageOwnerController {
     @DeleteMapping("/{id}")
     public Long delete(@PathVariable("id") Long id) {
         return cottageOwnerService.delete(id);
+    }
+
+    @GetMapping("/{id}/past-reservations")
+    @PreAuthorize("hasRole('COTTAGE_OWNER')")
+    public List<ReservationDto> getPastAdventureReservations(@PathVariable Long id) {
+        List<CottageReservation> reservations = cottageOwnerService.getPastAdventureReservations(id);
+        return converter.convert(reservations, ReservationDto.class);
     }
 
 
