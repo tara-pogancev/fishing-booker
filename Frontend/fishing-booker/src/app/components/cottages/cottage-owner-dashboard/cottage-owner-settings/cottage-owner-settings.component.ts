@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CottageOwnerService } from 'src/app/service/cottage-owner.service';
+import { DeleteAccountService } from 'src/app/service/delete-account.service';
 
 @Component({
   selector: 'app-cottage-owner-settings',
@@ -15,7 +16,7 @@ export class CottageOwnerSettingsComponent implements OnInit {
   requestSent=false;
   requestText='';
 
-  constructor(private cottageOwnerService: CottageOwnerService) { }
+  constructor(private cottageOwnerService: CottageOwnerService, private deleteAccountService: DeleteAccountService) { }
 
   ngOnInit(): void {
     this.cottageOwnerService.getCurrentCottageOwner().subscribe((data: any) => {
@@ -60,6 +61,7 @@ export class CottageOwnerSettingsComponent implements OnInit {
       alert('You must enter message');
       return;
     }
+    this.deleteAccountService.sendRequest(this.requestText);
     this.requestSent=true;
     this.requestText='';
   }

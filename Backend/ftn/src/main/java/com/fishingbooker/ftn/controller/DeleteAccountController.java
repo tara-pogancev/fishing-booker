@@ -29,7 +29,7 @@ public class DeleteAccountController {
     }
 
     @PostMapping()
-    @PreAuthorize("hasRole('REGISTERED_CLIENT')")
+    @PreAuthorize("hasAnyRole('REGISTERED_CLIENT', 'COTTAGE_OWNER', 'FISHING_INSTRUCTOR', 'BOAT_OWNER')")
     public Long createRequest(@RequestBody CreateDeleteAccountRequestDto dto) {
         DeleteAccountRequest deleteAccountRequest = new DeleteAccountRequest(dto.getUserId(), dto.getDescription(), RequestApproval.WAITING);
         return deleteAccountService.create(deleteAccountRequest);
