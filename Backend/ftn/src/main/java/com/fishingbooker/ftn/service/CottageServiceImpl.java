@@ -16,6 +16,7 @@ import com.fishingbooker.ftn.dto.RoomDto;
 import com.fishingbooker.ftn.repository.CottageOwnerRepository;
 import com.fishingbooker.ftn.repository.CottageRepository;
 import com.fishingbooker.ftn.repository.CottageReservationRepository;
+import com.fishingbooker.ftn.repository.RoomRepository;
 import com.fishingbooker.ftn.service.interfaces.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -42,6 +43,7 @@ public class CottageServiceImpl implements CottageService {
     private final RuleOfConductService ruleOfConductService;
     private final CottageOwnerRepository cottageOwnerRepository;
     private final CottageReservationRepository reservationRepository;
+    private final RoomRepository roomRepository;
 
     @Override
     public List<Cottage> findAll() {
@@ -91,6 +93,7 @@ public class CottageServiceImpl implements CottageService {
             e.printStackTrace();
         }
         Cottage savedCottage = cottageRepository.save(cottage);
+        roomRepository.deleteRoomsByCottageId(cottage.getId());
         savedCottage.setRooms(convertDtoToModel(cottageDto.getRooms(), savedCottage));
         Set<CottageUtility> utilities = utilityService.convertStringToUtility(cottageDto.getAdditionalServices(), savedCottage);
         savedCottage.setUtilities(utilities);
