@@ -2,7 +2,6 @@ package com.fishingbooker.ftn.service;
 
 import com.fishingbooker.ftn.bom.Address;
 import com.fishingbooker.ftn.bom.RuleOfConduct;
-import com.fishingbooker.ftn.bom.Utility;
 import com.fishingbooker.ftn.bom.adventures.*;
 import com.fishingbooker.ftn.bom.users.FishingInstructor;
 import com.fishingbooker.ftn.bom.users.RegisteredClient;
@@ -131,12 +130,12 @@ public class AdventureServiceImpl implements AdventureService {
     @Override
     public boolean deleteAdventure(Long id) {
 
-        Adventure adventure=adventureRepository.getById(id);
-        if (adventure.existsReservations()==false && adventure.existsQuickReservations()==false){
+        Adventure adventure = adventureRepository.getById(id);
+        if (adventure.existsReservations() == false && adventure.existsQuickReservations() == false) {
             adventure.setDeleted(true);
             adventureRepository.save(adventure);
             return true;
-        }else{
+        } else {
             return false;
         }
 
@@ -204,7 +203,7 @@ public class AdventureServiceImpl implements AdventureService {
 
     @Override
     public Long createQuickReservation(AdventureQuickReservationDto dto) {
-        try{
+        try {
             Adventure adventure = adventureRepository.getAdventure(dto.getAdventureId());
             if (!validate(adventure.getInstructor().getId(), dto.getActionStart(), dto.getActionEnd())) {
                 return -1l;
@@ -224,16 +223,15 @@ public class AdventureServiceImpl implements AdventureService {
                 }
                 return persistedReservation.getId();
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Locking exception");
             return -1l;
         }
     }
 
 
-
     public Long createReservation(InstructorNewReservationDto dto) {
-        try{
+        try {
             Adventure adventure = adventureRepository.getAdventure(dto.getAdventureId());
 
             if (!validate(adventure.getInstructor().getId(), UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getStartDate()), UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getEndDate()))) {
@@ -252,7 +250,7 @@ public class AdventureServiceImpl implements AdventureService {
                 adventureReservation.setUtilities(utilities);
                 return adventureReservationRepository.save(adventureReservation).getId();
             }
-        }catch (PessimisticLockingFailureException  e){
+        } catch (PessimisticLockingFailureException e) {
             System.out.println("Locking exception");
             return -1l;
         }

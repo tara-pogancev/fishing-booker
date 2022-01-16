@@ -2,7 +2,6 @@ package com.fishingbooker.ftn.controller;
 
 import com.fishingbooker.ftn.bom.adventures.AdventureQuickReservation;
 import com.fishingbooker.ftn.bom.adventures.AdventureReservation;
-import com.fishingbooker.ftn.bom.reservations.Reservation;
 import com.fishingbooker.ftn.bom.users.FishingInstructor;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.*;
@@ -86,20 +85,18 @@ public class FishingInstructorController {
     }
 
     @GetMapping("instructor-business-report/{id}")
-    public List<InstructorBusinessReportDto> getBusinessReport(@PathVariable() Long id){
-        List<AdventureReservation> reservations=fishingInstructorService.getInstructorPastReservations(id);
-        List<InstructorBusinessReportDto> report=converter.convert(reservations,InstructorBusinessReportDto.class);
+    public List<InstructorBusinessReportDto> getBusinessReport(@PathVariable() Long id) {
+        List<AdventureReservation> reservations = fishingInstructorService.getInstructorPastReservations(id);
+        List<InstructorBusinessReportDto> report = converter.convert(reservations, InstructorBusinessReportDto.class);
         return report;
     }
 
     @PutMapping("instructor-business-report")
     public List<InstructorBusinessReportDto> getReservationsInDate(@RequestBody DateRangeDto dateRangeDto) {
         List<AdventureReservation> reservations = fishingInstructorService.getReservationsInDate(dateRangeDto.getStartDate(), dateRangeDto.getEndDate(), dateRangeDto.getId());
-        List<InstructorBusinessReportDto> report=converter.convert(reservations,InstructorBusinessReportDto.class);
+        List<InstructorBusinessReportDto> report = converter.convert(reservations, InstructorBusinessReportDto.class);
         return report;
     }
-
-
 
 
 }

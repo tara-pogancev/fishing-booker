@@ -46,10 +46,10 @@ public class Adventure extends DatabaseEntity {
     @Column(name = "guestLimit", nullable = false)
     private Integer guestLimit;
 
-    @OneToMany(mappedBy = "adventure", fetch = FetchType.EAGER,cascade = {CascadeType.DETACH,CascadeType.REFRESH,CascadeType.MERGE})
+    @OneToMany(mappedBy = "adventure", fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.REFRESH, CascadeType.MERGE})
     private Set<AdventureQuickReservation> adventureQuickReservations;
 
-    @OneToMany(mappedBy = "adventure", fetch = FetchType.EAGER,cascade = {CascadeType.DETACH,CascadeType.REFRESH,CascadeType.MERGE})
+    @OneToMany(mappedBy = "adventure", fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.REFRESH, CascadeType.MERGE})
     private Set<AdventureReservation> adventureReservations;
 
     @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
@@ -77,22 +77,23 @@ public class Adventure extends DatabaseEntity {
     @JoinColumn(name = "instructor")
     private FishingInstructor instructor;
 
-    public List<AdventureReservation> getUnCanceledReservations(){
-        List<AdventureReservation> uncanceled=new ArrayList<>();
-        for(AdventureReservation adventureReservation:this.adventureReservations){
-            if (adventureReservation.getIsCanceled()==false){
+    public List<AdventureReservation> getUnCanceledReservations() {
+        List<AdventureReservation> uncanceled = new ArrayList<>();
+        for (AdventureReservation adventureReservation : this.adventureReservations) {
+            if (adventureReservation.getIsCanceled() == false) {
                 uncanceled.add(adventureReservation);
             }
         }
 
         return uncanceled;
     }
+
     @Column(name = "deleted")
-    private boolean deleted=false;
+    private boolean deleted = false;
 
     public boolean existsReservations() {
-        for (AdventureReservation reservation:this.adventureReservations){
-            if (reservation.getReservationEnd().isAfter(LocalDateTime.now())){
+        for (AdventureReservation reservation : this.adventureReservations) {
+            if (reservation.getReservationEnd().isAfter(LocalDateTime.now())) {
                 return true;
             }
         }
@@ -100,8 +101,8 @@ public class Adventure extends DatabaseEntity {
     }
 
     public boolean existsQuickReservations() {
-        for (AdventureQuickReservation reservation:this.adventureQuickReservations){
-            if (reservation.getActionEnd().isAfter(LocalDateTime.now())){
+        for (AdventureQuickReservation reservation : this.adventureQuickReservations) {
+            if (reservation.getActionEnd().isAfter(LocalDateTime.now())) {
                 return true;
             }
         }

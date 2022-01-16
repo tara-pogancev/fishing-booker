@@ -47,22 +47,28 @@ public class ActionReservationServiceImpl implements ActionReservationService {
     @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
     public Reservation bookAction(Long clientId, Long actionId, String type) {
         RegisteredClient client = clientRepository.getById(clientId);
-        QuickReservation action = quickReservationRepository.getById(actionId);
 
-        if (client != null && action != null && !action.getIsReserved()
-                && !clientService.clientHasOverlappingReservation(action.getActionStart(), action.getActionEnd(), clientId)) {
-            switch (type) {
-                case "adventure": {
-                    return bookAdventureAction(client, adventureQuickReservationRepository.getById(actionId));
-                }
-                case "boat": {
-                    return bookBoatAction(client, boatQuickReservationRepository.getById(actionId));
-                }
-                case "cottage": {
-                    return bookCottageAction(client, cottageQuickReservationRepository.getById(actionId));
+        try {
+            QuickReservation action = quickReservationRepository.getLock(actionId);
+
+            if (client != null && action != null && !action.getIsReserved()
+                    && !clientService.clientHasOverlappingReservation(action.getActionStart(), action.getActionEnd(), clientId)) {
+                switch (type) {
+                    case "adventure": {
+                        return bookAdventureAction(client, adventureQuickReservationRepository.getById(actionId));
+                    }
+                    case "boat": {
+                        return bookBoatAction(client, boatQuickReservationRepository.getById(actionId));
+                    }
+                    case "cottage": {
+                        return bookCottageAction(client, cottageQuickReservationRepository.getById(actionId));
+                    }
                 }
             }
+        } catch (Exception e) {
+            System.out.println("Pessimistic lock: Action");
         }
+
         return null;
     }
 

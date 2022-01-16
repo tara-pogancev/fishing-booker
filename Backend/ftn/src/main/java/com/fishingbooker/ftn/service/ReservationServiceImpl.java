@@ -43,6 +43,8 @@ public class ReservationServiceImpl implements ReservationService {
     private final CottageService cottageService;
     private final BoatRepository boatRepository;
     private final AdventureService adventureService;
+    private final CottageRepository cottageRepository;
+    private final AdventureRepository adventureRepository;
     private final ReservationRepository reservationRepository;
     private final RegisteredClientRepository clientRepository;
     private final BoatReservationRepository boatReservationRepository;
@@ -63,31 +65,34 @@ public class ReservationServiceImpl implements ReservationService {
         reservationDto.setStartDate(UnixTimeToLocalDateTimeConverter.adjustDefaultTimeZone(reservationDto.startDate));
         CottageReservation reservation = new CottageReservation();
 
-        Cottage cottage = cottageService.get(reservationDto.entityId);
-        RegisteredClient client = clientRepository.getById(reservationDto.userId);
+        try {
+            Cottage cottage = cottageRepository.getLock(reservationDto.entityId);
+            RegisteredClient client = clientRepository.getById(reservationDto.userId);
 
-        if (cottage != null && client != null
-                && cottageService.isCottageAvailable(cottage, reservationDto.startDate, reservationDto.endDate)
-                && !clientHasOverlappingReservation(reservationDto.startDate, reservationDto.endDate, client.getId())) {
-            reservation.setReservationClient(client);
-            reservation.setCottage(cottage);
-            reservation.setReservationStart(reservationDto.startDate);
-            reservation.setReservationEnd(reservationDto.endDate);
-            reservation.setPrice(reservationDto.price);
-            reservation.setGuestNumber(reservationDto.people);
+            if (cottage != null && client != null
+                    && cottageService.isCottageAvailable(cottage, reservationDto.startDate, reservationDto.endDate)
+                    && !clientHasOverlappingReservation(reservationDto.startDate, reservationDto.endDate, client.getId())) {
+                reservation.setReservationClient(client);
+                reservation.setCottage(cottage);
+                reservation.setReservationStart(reservationDto.startDate);
+                reservation.setReservationEnd(reservationDto.endDate);
+                reservation.setPrice(reservationDto.price);
+                reservation.setGuestNumber(reservationDto.people);
 
-            Set<CottageUtility> utilities = new HashSet<>();
-            for (CottageUtility utility : cottage.getUtilities()) {
-                if (reservationDto.utilityIds.contains(utility.getId()))
-                    utilities.add(utility);
+                Set<CottageUtility> utilities = new HashSet<>();
+                for (CottageUtility utility : cottage.getUtilities()) {
+                    if (reservationDto.utilityIds.contains(utility.getId()))
+                        utilities.add(utility);
+                }
+                reservation.setUtilities(utilities);
+
+                cottageReservationRepository.save(reservation);
+                sendReservationConfirmationEmail(client, reservationDto);
+                return reservation;
             }
-            reservation.setUtilities(utilities);
-
-            cottageReservationRepository.save(reservation);
-            sendReservationConfirmationEmail(client, reservationDto);
-            return reservation;
+        } catch (Exception e) {
+            System.out.println("Pessimistic lock: Cottage");
         }
-
         return null;
     }
 
@@ -98,29 +103,33 @@ public class ReservationServiceImpl implements ReservationService {
         reservationDto.setStartDate(UnixTimeToLocalDateTimeConverter.adjustDefaultTimeZone(reservationDto.startDate));
         AdventureReservation reservation = new AdventureReservation();
 
-        Adventure adventure = adventureService.get(reservationDto.entityId); //TODO add getAdventure with pessimistic lock
-        RegisteredClient client = clientRepository.getById(reservationDto.userId);
+        try {
+            Adventure adventure = adventureRepository.getLock(reservationDto.entityId);
+            RegisteredClient client = clientRepository.getById(reservationDto.userId);
 
-        if (adventure != null && client != null
-                && adventureService.isAdventureAvailable(adventure, reservationDto.startDate, reservationDto.endDate)
-                && !clientHasOverlappingReservation(reservationDto.startDate, reservationDto.endDate, client.getId())) {
-            reservation.setReservationClient(client);
-            reservation.setAdventure(adventure);
-            reservation.setReservationStart(reservationDto.startDate);
-            reservation.setReservationEnd(reservationDto.endDate);
-            reservation.setPrice(reservationDto.price);
-            reservation.setGuestNumber(reservationDto.people);
+            if (adventure != null && client != null
+                    && adventureService.isAdventureAvailable(adventure, reservationDto.startDate, reservationDto.endDate)
+                    && !clientHasOverlappingReservation(reservationDto.startDate, reservationDto.endDate, client.getId())) {
+                reservation.setReservationClient(client);
+                reservation.setAdventure(adventure);
+                reservation.setReservationStart(reservationDto.startDate);
+                reservation.setReservationEnd(reservationDto.endDate);
+                reservation.setPrice(reservationDto.price);
+                reservation.setGuestNumber(reservationDto.people);
 
-            Set<AdventureUtility> utilities = new HashSet<>();
-            for (AdventureUtility utility : adventure.getUtilities()) {
-                if (reservationDto.utilityIds.contains(utility.getId()))
-                    utilities.add(utility);
+                Set<AdventureUtility> utilities = new HashSet<>();
+                for (AdventureUtility utility : adventure.getUtilities()) {
+                    if (reservationDto.utilityIds.contains(utility.getId()))
+                        utilities.add(utility);
+                }
+                reservation.setUtilities(utilities);
+
+                adventureReservationRepository.save(reservation);
+                sendReservationConfirmationEmail(client, reservationDto);
+                return reservation;
             }
-            reservation.setUtilities(utilities);
-
-            adventureReservationRepository.save(reservation);
-            sendReservationConfirmationEmail(client, reservationDto);
-            return reservation;
+        } catch (Exception e) {
+            System.out.println("Pessimistic lock: Adventure");
         }
 
         return null;
@@ -133,30 +142,34 @@ public class ReservationServiceImpl implements ReservationService {
         reservationDto.setStartDate(UnixTimeToLocalDateTimeConverter.adjustDefaultTimeZone(reservationDto.startDate));
         BoatReservation reservation = new BoatReservation();
 
-        Boat boat = boatRepository.getById(reservationDto.entityId);
-        RegisteredClient client = clientRepository.getById(reservationDto.userId);
+        try {
+            Boat boat = boatRepository.getLock(reservationDto.entityId);
+            RegisteredClient client = clientRepository.getById(reservationDto.userId);
 
-        if (boat != null && client != null
-                && boatService.isBoatAvailable(boat, reservationDto.startDate, reservationDto.endDate)
-                && !clientHasOverlappingReservation(reservationDto.startDate, reservationDto.endDate, client.getId())) {
-            reservation.setReservationClient(client);
-            reservation.setBoat(boat);
-            reservation.setReservationStart(reservationDto.startDate);
-            reservation.setReservationEnd(reservationDto.endDate);
-            reservation.setPrice(reservationDto.price);
-            reservation.setGuestNumber(reservationDto.people);
+            if (boat != null && client != null
+                    && boatService.isBoatAvailable(boat, reservationDto.startDate, reservationDto.endDate)
+                    && !clientHasOverlappingReservation(reservationDto.startDate, reservationDto.endDate, client.getId())) {
+                reservation.setReservationClient(client);
+                reservation.setBoat(boat);
+                reservation.setReservationStart(reservationDto.startDate);
+                reservation.setReservationEnd(reservationDto.endDate);
+                reservation.setPrice(reservationDto.price);
+                reservation.setGuestNumber(reservationDto.people);
 
-            Set<BoatUtility> utilities = new HashSet<>();
-            for (BoatUtility utility : boat.getUtilities()) {
-                if (reservationDto.utilityIds.contains(utility.getId()))
-                    utilities.add(utility);
+                Set<BoatUtility> utilities = new HashSet<>();
+                for (BoatUtility utility : boat.getUtilities()) {
+                    if (reservationDto.utilityIds.contains(utility.getId()))
+                        utilities.add(utility);
+                }
+                reservation.setUtilities(utilities);
+
+                boatReservationRepository.save(reservation);
+                sendReservationConfirmationEmail(client, reservationDto);
+
+                return reservation;
             }
-            reservation.setUtilities(utilities);
-
-            boatReservationRepository.save(reservation);
-            sendReservationConfirmationEmail(client, reservationDto);
-
-            return reservation;
+        } catch (Exception e) {
+            System.out.println("Pessimistic lock: Boat");
         }
 
         return null;

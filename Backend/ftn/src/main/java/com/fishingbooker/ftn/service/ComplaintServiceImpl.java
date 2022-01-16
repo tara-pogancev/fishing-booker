@@ -132,16 +132,16 @@ public class ComplaintServiceImpl implements ComplaintService {
 
     @Override
     public boolean createResponse(ComplaintResponseDto dto) {
-        try{
+        try {
             Complaint complaint = complaintRepository.getComplaint(dto.getComplaintId());
-            if(complaint.getApproval()==RequestApproval.PROCESSED){
+            if (complaint.getApproval() == RequestApproval.PROCESSED) {
                 return false;
             }
             ApplicationUser client = complaint.getUser();
             complaint.setApproval(RequestApproval.PROCESSED);
             complaintRepository.save(complaint);
             sendNotificationMail(dto, complaint, client);
-        }catch (PessimisticLockingFailureException e){
+        } catch (PessimisticLockingFailureException e) {
             System.out.println("Locking exception");
             return false;
         }

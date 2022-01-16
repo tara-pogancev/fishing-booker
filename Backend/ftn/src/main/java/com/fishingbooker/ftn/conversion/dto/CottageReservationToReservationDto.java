@@ -2,8 +2,6 @@ package com.fishingbooker.ftn.conversion.dto;
 
 import com.fishingbooker.ftn.bom.cottages.CottageReservation;
 import com.fishingbooker.ftn.dto.ReservationDto;
-import com.fishingbooker.ftn.dto.ViewReservationDto;
-import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 

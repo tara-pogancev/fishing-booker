@@ -17,8 +17,8 @@ import java.util.Set;
 @Table(name = "Boat")
 public class Boat extends DatabaseEntity {
 
-    @Column(name="deleted")
-    private boolean deleted=false;
+    @Column(name = "deleted")
+    private boolean deleted = false;
 
     @Column(name = "name", nullable = false)
     private String name;

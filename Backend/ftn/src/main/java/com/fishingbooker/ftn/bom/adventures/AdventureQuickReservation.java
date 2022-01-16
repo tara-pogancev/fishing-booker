@@ -32,7 +32,7 @@ public class AdventureQuickReservation extends QuickReservation {
 
     public void recalculateFullPrice() {
         double fullPrice = 0;
-        if (this.utilities==null){
+        if (this.utilities == null) {
             return;
         }
         for (QuickReservationUtility utility : this.utilities) {

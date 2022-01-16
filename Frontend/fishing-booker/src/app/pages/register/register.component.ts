@@ -13,7 +13,9 @@ export class RegisterComponent implements OnInit {
   validPassword: boolean = true;
   validEmail: boolean = true;
   validForm: boolean = true;
-  selectedClient:boolean=true;
+  selectedClient: boolean = true;
+
+  loader = false;
 
   constructor(
     private registrationService: RegistrationService,
@@ -46,6 +48,7 @@ export class RegisterComponent implements OnInit {
           this.validEmail = data;
 
           if (this.validEmail) {
+            this.loader = true;
             this.registerUser();
           }
         });
@@ -53,17 +56,21 @@ export class RegisterComponent implements OnInit {
   }
 
   registerUser() {
-    this.registrationService
-      .register(this.user)
-      .subscribe((data) => console.log(data));
-    this.route.navigate(['thank-you-registration']);
+    this.registrationService.register(this.user).subscribe((data) => {
+      this.loader = false;
+      if (data != null) {
+        this.route.navigate(['thank-you-registration']);
+      } else {
+        this.route.navigate(['error']);
+      }
+    });
   }
 
-  changeRegistrationType(){
-    if (this.user.role==='Registered Client'){
-      this.selectedClient=true;
-    }else{
-      this.selectedClient=false;
+  changeRegistrationType() {
+    if (this.user.role === 'Registered Client') {
+      this.selectedClient = true;
+    } else {
+      this.selectedClient = false;
     }
   }
 }

@@ -17,6 +17,6 @@ public interface ComplaintRepository extends EntityRepository<Complaint> {
 
     @Query("SELECT c FROM Complaint c WHERE c.id=:complaintId")
     @Lock(LockModeType.PESSIMISTIC_WRITE)
-    @QueryHints({@QueryHint(name = "javax.persistence.lock.timeout", value ="0")})
+    @QueryHints({@QueryHint(name = "javax.persistence.lock.timeout", value = "0")})
     Complaint getComplaint(Long complaintId);
 }
