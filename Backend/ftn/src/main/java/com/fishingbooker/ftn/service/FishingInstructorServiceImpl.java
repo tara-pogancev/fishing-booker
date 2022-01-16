@@ -19,7 +19,6 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.chrono.ChronoLocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,7 +61,7 @@ public class FishingInstructorServiceImpl implements FishingInstructorService {
     public Long delete(Long id) {
 
         if (instructorRepository.existsById(id)) {
-            FishingInstructor instructor=instructorRepository.getById(id);
+            FishingInstructor instructor = instructorRepository.getById(id);
             instructor.setDeleted(true);
             instructorRepository.save(instructor);
             return instructor.getId();
@@ -124,11 +123,11 @@ public class FishingInstructorServiceImpl implements FishingInstructorService {
     }
 
     @Override
-    public List<AdventureReservation> getReservationsInDate(LocalDate startDate, LocalDate endDate,Long id) {
-        List<AdventureReservation> reservations=this.getInstructorPastReservations(id);
-        for (int i=0;i<reservations.size();i++){
+    public List<AdventureReservation> getReservationsInDate(LocalDate startDate, LocalDate endDate, Long id) {
+        List<AdventureReservation> reservations = this.getInstructorPastReservations(id);
+        for (int i = 0; i < reservations.size(); i++) {
             if (reservations.get(i).getReservationEnd().isBefore(startDate.atStartOfDay()) ||
-                reservations.get(i).getReservationStart().isAfter(endDate.atStartOfDay())){
+                    reservations.get(i).getReservationStart().isAfter(endDate.atStartOfDay())) {
                 reservations.remove(i);
                 i--;
             }

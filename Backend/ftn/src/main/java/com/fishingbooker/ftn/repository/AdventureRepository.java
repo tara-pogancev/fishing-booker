@@ -18,7 +18,13 @@ public interface AdventureRepository extends EntityRepository<Adventure> {
     List<Adventure> getInstructorAdventures(Long id);
 
     @Lock(LockModeType.PESSIMISTIC_WRITE)
-    @Query ("SELECT a FROM Adventure a WHERE a.id=:id")
-    @QueryHints({@QueryHint(name = "javax.persistence.lock.timeout", value ="0")})
-    public Adventure getAdventure(Long id);
+    @Query("SELECT a FROM Adventure a WHERE a.id=:id")
+    @QueryHints({@QueryHint(name = "javax.persistence.lock.timeout", value = "0")})
+    Adventure getAdventure(Long id);
+
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    @Query("SELECT a FROM Adventure a WHERE a.id=:id")
+    @QueryHints({@QueryHint(name = "javax.persistence.lock.timeout", value = "10000")})
+    Adventure getLock(Long id);
+
 }

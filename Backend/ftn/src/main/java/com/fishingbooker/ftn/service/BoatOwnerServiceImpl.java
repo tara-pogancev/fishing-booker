@@ -42,7 +42,7 @@ public class BoatOwnerServiceImpl implements BoatOwnerService {
 
     @Override
     public Long delete(Long id) {
-        BoatOwner boatOwner=boatOwnerRepository.getById(id);
+        BoatOwner boatOwner = boatOwnerRepository.getById(id);
         boatOwner.setDeleted(true);
         boatOwnerRepository.save(boatOwner);
         return boatOwner.getId();

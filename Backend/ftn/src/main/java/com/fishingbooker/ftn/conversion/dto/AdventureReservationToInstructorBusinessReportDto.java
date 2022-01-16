@@ -9,12 +9,12 @@ import org.springframework.stereotype.Component;
 public class AdventureReservationToInstructorBusinessReportDto implements Converter<AdventureReservation, InstructorBusinessReportDto> {
     @Override
     public InstructorBusinessReportDto convert(AdventureReservation source) {
-        InstructorBusinessReportDto dto=new InstructorBusinessReportDto();
+        InstructorBusinessReportDto dto = new InstructorBusinessReportDto();
         dto.setEndDate(source.getReservationEnd());
         dto.setStartDate(source.getReservationStart());
-        if(source.getAdventure()!=null){
+        if (source.getAdventure() != null) {
             dto.setAdventureName(source.getAdventure().getName());
-        }else{
+        } else {
             dto.setAdventureName("Deleted");
         }
         dto.setId(source.getId());

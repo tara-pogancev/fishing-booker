@@ -20,8 +20,8 @@ public class Cottage extends DatabaseEntity {
 
     //todo: vikendica moze da ima periode zauzetosti koje definise vlasnik
 
-    @Column(name="deleted")
-    private boolean deleted=false;
+    @Column(name = "deleted")
+    private boolean deleted = false;
 
     @Column(name = "name", nullable = false, unique = true)
     private String name;

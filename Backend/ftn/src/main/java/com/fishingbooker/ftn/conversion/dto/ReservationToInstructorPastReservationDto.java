@@ -31,7 +31,7 @@ public class ReservationToInstructorPastReservationDto implements Converter<Adve
     public InstructorPastReservationsDto convert(AdventureReservation source) {
         InstructorPastReservationsDto dto = new InstructorPastReservationsDto();
         dto.setReservationId(source.getId());
-        if(source.getAdventure()!=null){
+        if (source.getAdventure() != null) {
             dto.setAdventureId(source.getAdventure().getId());
             dto.setAdventureName(source.getAdventure().getName());
         }
@@ -39,14 +39,14 @@ public class ReservationToInstructorPastReservationDto implements Converter<Adve
         dto.setEndDate(source.getReservationEnd());
         dto.setNumberOfPeople(source.getGuestNumber());
         dto.setPrice(source.getPrice());
-        if (source.getReservationClient()!=null){
+        if (source.getReservationClient() != null) {
             dto.setClientId(source.getReservationClient().getId());
             dto.setClientName(source.getReservationClient().getName());
             dto.setClientLastName(source.getReservationClient().getLastName());
             dto.setClientMail(source.getReservationClient().getEmail());
             dto.setClientfullAddress(source.getReservationClient().getUserAddress().getStreet() + ',' + source.getReservationClient().getUserAddress().getCity() + ',' + source.getReservationClient().getUserAddress().getCountry());
             dto.setClientPhoneNumber(source.getReservationClient().getPhone());
-        }else{
+        } else {
             dto.setClientName("Client is deleted and information is not available");
         }
 

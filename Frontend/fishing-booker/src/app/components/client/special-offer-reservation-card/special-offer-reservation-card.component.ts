@@ -1,12 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { fi } from 'date-fns/locale';
-import { AsyncAction } from 'rxjs/internal/scheduler/AsyncAction';
 import { ActionModel } from 'src/app/model/action-model';
 import { SearchFilter } from 'src/app/model/search-filter-model';
 import { ActionService } from 'src/app/service/action.service';
 import { ClientService } from 'src/app/service/client.service';
 import { ImageService } from 'src/app/service/image.service';
-import { LoginService } from 'src/app/service/login.service';
 
 @Component({
   selector: 'special-offer-reservation-card',

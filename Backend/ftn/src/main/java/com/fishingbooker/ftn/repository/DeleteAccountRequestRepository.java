@@ -16,6 +16,6 @@ public interface DeleteAccountRequestRepository extends EntityRepository<DeleteA
 
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     @Query("SELECT r FROM DeleteAccountRequest r WHERE r.id=:requestId")
-    @QueryHints({@QueryHint(name = "javax.persistence.lock.timeout", value ="0")})
+    @QueryHints({@QueryHint(name = "javax.persistence.lock.timeout", value = "0")})
     DeleteAccountRequest getRequest(Long requestId);
 }

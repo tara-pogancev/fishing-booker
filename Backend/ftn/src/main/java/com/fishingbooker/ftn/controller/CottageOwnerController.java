@@ -1,13 +1,11 @@
 package com.fishingbooker.ftn.controller;
 
 import com.fishingbooker.ftn.bom.cottages.CottageReservation;
-import com.fishingbooker.ftn.bom.reservations.Reservation;
 import com.fishingbooker.ftn.bom.users.CottageOwner;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.ApplicationUserDto;
 import com.fishingbooker.ftn.dto.CottageOwnerDto;
 import com.fishingbooker.ftn.dto.ReservationDto;
-import com.fishingbooker.ftn.dto.ViewReservationDto;
 import com.fishingbooker.ftn.service.interfaces.CottageOwnerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
