@@ -116,6 +116,7 @@ import { ReservationReportComponent } from './components/admin/admin-dashboard/r
 import { BusinessReportComponent } from './components/admin/admin-dashboard/business-report/business-report.component';
 import { InstructorBusinessReportComponent } from './components/fishing/fishing-instructor-dashboard/instructor-business-report/instructor-business-report.component';
 import { ErrorComponent } from './pages/error/error.component';
+import { CottageReservationReportComponent } from './components/cottages/cottage-owner-dashboard/cottage-reservation-report/cottage-reservation-report.component';
 
 @NgModule({
   declarations: [
@@ -226,6 +227,7 @@ import { ErrorComponent } from './pages/error/error.component';
     BusinessReportComponent,
     InstructorBusinessReportComponent,
     ErrorComponent,
+    CottageReservationReportComponent,
   ],
   imports: [
     BrowserModule,

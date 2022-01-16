@@ -29,6 +29,8 @@ import { NewAdventureReservationComponent } from './components/client/new-advent
 import { AdventureReservationReport } from './model/adventure-reservation-report';
 import { AdventureReservationReportComponent } from './components/fishing/fishing-instructor-dashboard/adventure-reservation-report/adventure-reservation-report.component';
 import { ErrorComponent } from './pages/error/error.component';
+import { CottageReservationReportComponent } from './components/cottages/cottage-owner-dashboard/cottage-reservation-report/cottage-reservation-report.component';
+
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -71,6 +73,7 @@ const routes: Routes = [
   { path: '401', component: NotAllowedComponent },
   { path: 'error', component: ErrorComponent },
   { path: 'adventure-reservation-report/:id',component: AdventureReservationReportComponent},
+  { path: 'cottage-reservation-report/:id',component: CottageReservationReportComponent},
   { path: '**', component: NotFoundComponent },
   
 ];
