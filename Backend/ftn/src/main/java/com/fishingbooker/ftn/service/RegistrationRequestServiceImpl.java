@@ -65,17 +65,17 @@ public class RegistrationRequestServiceImpl implements RegistrationRequestServic
     }
 
     @Override
-    public boolean rejectRequest(AdminResponseDto requestDto) {
+    public boolean rejectRequest(AdminResponseDto responseDto) {
         boolean retVal=true;
         try{
-            RegistrationRequest request = registrationRequestRepository.getRequest(requestDto.getId());
+            RegistrationRequest request = registrationRequestRepository.getRequest(responseDto.getId());
             if (request.getApproved()!=RequestApproval.WAITING){
                 retVal=false;
             }else{
                 request.setApproved(RequestApproval.DECLINED);
-                request.setCausesOfRejection(requestDto.getDescription());
+                request.setCausesOfRejection(responseDto.getDescription());
                 registrationRequestRepository.save(request);
-                sendRefuseRegistrationEmail(request.getUser(), requestDto.getDescription());
+                sendRefuseRegistrationEmail(request.getUser(), responseDto.getDescription());
             }
         }catch (PessimisticLockingFailureException e){
             System.out.println("Exception pessimistic locking! Concurrent access");

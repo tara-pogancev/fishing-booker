@@ -36,11 +36,15 @@ public class DeleteAccountController {
     }
 
     @PutMapping("/approve")
+    @PreAuthorize("hasRole('ADMINISTRATOR')")
     public boolean approveRequest(@RequestBody AdminResponseDto responseDto) {
-        return deleteAccountService.approve(responseDto.getId(), responseDto.getDescription());
+        return deleteAccountService.
+                approve(responseDto.getId(),
+                        responseDto.getDescription());
     }
 
     @PutMapping("/reject")
+    @PreAuthorize("hasRole('ADMINISTRATOR')")
     public boolean rejectRequest(@RequestBody AdminResponseDto responseDto) {
         return deleteAccountService.reject(responseDto.getId(), responseDto.getDescription());
     }
