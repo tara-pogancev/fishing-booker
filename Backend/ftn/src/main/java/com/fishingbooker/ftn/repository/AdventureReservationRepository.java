@@ -30,5 +30,4 @@ public interface AdventureReservationRepository extends EntityRepository<Adventu
     List<AdventureReservation> getClientCanceledAdventureReservations(Long id);
 
 
-
 }

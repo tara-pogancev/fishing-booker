@@ -19,6 +19,6 @@ public interface RegistrationRequestRepository extends EntityRepository<Registra
 
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     @Query("SELECT r FROM RegistrationRequest r WHERE r.id=:id")
-    @QueryHints({@QueryHint(name = "javax.persistence.lock.timeout", value ="0")})
+    @QueryHints({@QueryHint(name = "javax.persistence.lock.timeout", value = "0")})
     RegistrationRequest getRequest(Long id);
 }

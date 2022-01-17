@@ -32,5 +32,5 @@ public interface FishingInstructorService {
 
     List<AdventureQuickReservation> getInsturctorPastQuickReservations(Long id);
 
-    List<AdventureReservation> getReservationsInDate(LocalDate startDate, LocalDate endDate,Long id);
+    List<AdventureReservation> getReservationsInDate(LocalDate startDate, LocalDate endDate, Long id);
 }

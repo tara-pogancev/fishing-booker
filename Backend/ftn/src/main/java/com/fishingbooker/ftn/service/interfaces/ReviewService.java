@@ -3,6 +3,7 @@ package com.fishingbooker.ftn.service.interfaces;
 import com.fishingbooker.ftn.bom.Review;
 import com.fishingbooker.ftn.bom.reservations.Reservation;
 import com.fishingbooker.ftn.dto.ReviewDto;
+import org.springframework.cache.annotation.Cacheable;
 
 import java.util.List;
 

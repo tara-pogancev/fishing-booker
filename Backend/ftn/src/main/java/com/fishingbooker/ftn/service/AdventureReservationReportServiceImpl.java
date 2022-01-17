@@ -10,6 +10,7 @@ import com.fishingbooker.ftn.repository.AdventureReservationReportRepository;
 import com.fishingbooker.ftn.repository.AdventureReservationRepository;
 import com.fishingbooker.ftn.repository.RegisteredClientRepository;
 import com.fishingbooker.ftn.service.interfaces.AdventureReservationReportService;
+import com.fishingbooker.ftn.service.interfaces.CottageReservationReportService;
 import com.fishingbooker.ftn.service.interfaces.MailingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,7 @@ public class AdventureReservationReportServiceImpl implements AdventureReservati
     private final AdventureReservationRepository adventureReservationRepository;
     private final RegisteredClientRepository registeredClientRepository;
     private final MailingService mailingService;
+    private final CottageReservationReportService cottageReservationReportService;
 
     @Override
     public List<AdventureReservationReport> getUnprocessedReports() {
@@ -58,7 +60,12 @@ public class AdventureReservationReportServiceImpl implements AdventureReservati
         if (reportDto.getReportType().equalsIgnoreCase("Adventure")) {
             return givePenaltyForAdventureReservation(reportDto);
         }
-        //todo for other type of reservation
+        else if (reportDto.getReportType().equalsIgnoreCase("Cottage")) {
+            return cottageReservationReportService.givePenaltyForCottageReservation(reportDto);
+        }
+        else if (reportDto.getReportType().equalsIgnoreCase("Boat")) {
+            //return givePenaltyForBoatReservation(reportDto);
+        }
 
         return null;
 

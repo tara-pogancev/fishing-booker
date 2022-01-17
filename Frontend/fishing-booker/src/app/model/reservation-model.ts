@@ -11,6 +11,7 @@ export class ReservationModel {
     public people: number = 0,
     public utilityIds: number[] = [],
     public id: number = 0,
-    public canCancel: boolean = true
+    public canCancel: boolean = true,
+    public createdReport = false
   ) {}
 }

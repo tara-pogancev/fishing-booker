@@ -16,6 +16,7 @@ import com.fishingbooker.ftn.security.registration.RegistrationTokenService;
 import com.fishingbooker.ftn.service.interfaces.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.util.StringUtils;
@@ -50,6 +51,7 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
     }
 
     @Override
+    @CacheEvict
     public ApplicationUser findById(Long id) {
         return userRepository.get(id);
     }
@@ -57,9 +59,13 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
     @Override
     @Transactional
     public ApplicationUser findByEmail(String email) {
-        for (ApplicationUser currentUser : findAll()) {
-            if (currentUser.getEmail().equals(email))
-                return currentUser;
+        try {
+            for (ApplicationUser currentUser : userRepository.findAllLock()) {
+                if (currentUser.getEmail().equals(email))
+                    return currentUser;
+            }
+        } catch (Exception e) {
+            System.out.println("Pessimistic lock: User Email");
         }
         return null;
     }
@@ -67,33 +73,37 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
     @Override
     @Transactional
     public ApplicationUser create(ApplicationUserDto userDto) {
-        if (findByEmail(userDto.getEmail()) == null) {
-            ApplicationUser user = converter.convert(userDto, ApplicationUser.class);
-            switch (user.getRole()) {
-                case ADMINISTRATOR:
-                    user = administratorService.create(userDto);
-                    break;
-                case BOAT_OWNER:
-                    user = boatOwnerService.create(userDto);
-                    break;
-                case COTTAGE_OWNER:
-                    user = cottageOwnerService.create(userDto);
-                    break;
-                case FISHING_INSTRUCTOR:
-                    user = fishingInstructorService.create(userDto);
-                    break;
-                default:
-                    user = clientService.create(userDto);
-                    break;
-            }
-            sendRegistrationConfirmationEmail(user);
+        try {
+            if (findByEmail(userDto.getEmail()) == null) {
+                ApplicationUser user = converter.convert(userDto, ApplicationUser.class);
+                switch (user.getRole()) {
+                    case ADMINISTRATOR:
+                        user = administratorService.create(userDto);
+                        break;
+                    case BOAT_OWNER:
+                        user = boatOwnerService.create(userDto);
+                        break;
+                    case COTTAGE_OWNER:
+                        user = cottageOwnerService.create(userDto);
+                        break;
+                    case FISHING_INSTRUCTOR:
+                        user = fishingInstructorService.create(userDto);
+                        break;
+                    default:
+                        user = clientService.create(userDto);
+                        break;
+                }
+                sendRegistrationConfirmationEmail(user);
 
-            Address userAddress = addressService.create(userDto);
-            user.setUserAddress(userAddress);
-            user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
-            update(user);
-            System.out.println("User added!");
-            return user;
+                Address userAddress = addressService.create(userDto);
+                user.setUserAddress(userAddress);
+                user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+                update(user);
+                System.out.println("User added!");
+                return user;
+            }
+        } catch (Exception e) {
+            System.out.println("Pessimistic lock: Create user");
         }
         return null;
     }

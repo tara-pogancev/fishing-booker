@@ -76,7 +76,7 @@ public class UtilityServiceImpl implements UtilityService {
             utilityRepository.save(utility);
             cottageUtility = new CottageUtility(utility, dto.getPrice(), cottage);
         } else {
-            if(utilityRepository.exists(dto.getId())) {
+            if (utilityRepository.exists(dto.getId())) {
                 utility = utilityRepository.getById(dto.getId());
             } else {
                 CottageUtility cu = cottageUtilityRepository.getById(dto.getId());

@@ -3,9 +3,7 @@ package com.fishingbooker.ftn.service;
 
 import com.fishingbooker.ftn.bom.Address;
 import com.fishingbooker.ftn.bom.cottages.CottageReservation;
-import com.fishingbooker.ftn.bom.reservations.Reservation;
 import com.fishingbooker.ftn.bom.users.CottageOwner;
-import com.fishingbooker.ftn.bom.users.RegisteredClient;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.ApplicationUserDto;
 import com.fishingbooker.ftn.dto.CottageOwnerDto;
@@ -71,7 +69,7 @@ public class CottageOwnerServiceImpl implements CottageOwnerService {
 
     @Override
     public Long delete(Long id) {
-        CottageOwner cottageOwner=cottageOwnerRepository.getById(id);
+        CottageOwner cottageOwner = cottageOwnerRepository.getById(id);
         cottageOwner.setDeleted(true);
         cottageOwnerRepository.save(cottageOwner);
         return cottageOwner.getId();

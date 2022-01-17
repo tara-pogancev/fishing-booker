@@ -16,7 +16,7 @@ public class AdventureReservationToDto implements Converter<AdventureReservation
         dto.setId(source.getId());
         dto.setPeople(source.getGuestNumber());
         dto.setPrice(source.getPrice());
-        if (source.getAdventure()!=null){
+        if (source.getAdventure() != null) {
             dto.setEntityType("adventure");
             dto.setEntityName(source.getAdventure().getName());
             dto.setEntityId(source.getAdventure().getId());

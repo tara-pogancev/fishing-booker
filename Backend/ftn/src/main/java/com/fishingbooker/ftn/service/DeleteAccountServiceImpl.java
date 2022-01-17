@@ -31,9 +31,9 @@ public class DeleteAccountServiceImpl implements DeleteAccountService {
     public boolean approve(Long requestId, String description) {
         boolean result = false;
         ApplicationUser applicationUser;
-        try{
+        try {
             DeleteAccountRequest request = deleteAccountRequestRepository.getRequest(requestId);
-            if (request.getRequestStatus()==RequestApproval.WAITING){
+            if (request.getRequestStatus() == RequestApproval.WAITING) {
                 request.setRequestStatus(RequestApproval.APPROVED);
                 deleteAccountRequestRepository.save(request);
                 applicationUser = applicationUserRepository.get(request.getUserId());
@@ -42,7 +42,7 @@ public class DeleteAccountServiceImpl implements DeleteAccountService {
                 mailingService.sendAcceptDeleteAccountMail(applicationUser, description);
                 result = true;
             }
-        }catch (PessimisticLockingFailureException e){
+        } catch (PessimisticLockingFailureException e) {
             System.out.println("Locking exception");
         }
         return result;
@@ -51,16 +51,16 @@ public class DeleteAccountServiceImpl implements DeleteAccountService {
     @Override
     public boolean reject(Long requestId, String description) {
         boolean result = false;
-        try{
+        try {
             DeleteAccountRequest request = deleteAccountRequestRepository.getRequest(requestId);
-            if (request.getRequestStatus()==RequestApproval.WAITING){
+            if (request.getRequestStatus() == RequestApproval.WAITING) {
                 request.setRequestStatus(RequestApproval.DECLINED);
                 deleteAccountRequestRepository.save(request);
                 ApplicationUser applicationUser = applicationUserRepository.get(request.getUserId());
                 mailingService.sendRefuseDeleteAccountMail(applicationUser, description);
                 result = true;
             }
-        }catch (PessimisticLockingFailureException e){
+        } catch (PessimisticLockingFailureException e) {
             System.out.println("Locking exception");
         }
         return result;

@@ -21,6 +21,7 @@ import com.fishingbooker.ftn.service.interfaces.ApplicationUserService;
 import com.fishingbooker.ftn.service.interfaces.ReservationService;
 import com.fishingbooker.ftn.service.interfaces.ReviewService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;

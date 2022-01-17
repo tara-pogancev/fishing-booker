@@ -48,6 +48,6 @@ public class ApplicationUser extends DatabaseEntity {
     }
 
     @Column(name = "deleted")
-    private boolean deleted=false;
+    private boolean deleted = false;
 
 }

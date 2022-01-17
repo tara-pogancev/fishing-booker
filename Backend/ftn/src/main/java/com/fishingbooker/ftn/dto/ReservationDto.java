@@ -17,5 +17,6 @@ public class ReservationDto {
     public Double price;
     public Set<Long> utilityIds;
     public Integer people;
+    public Boolean createdReport;
 
 }

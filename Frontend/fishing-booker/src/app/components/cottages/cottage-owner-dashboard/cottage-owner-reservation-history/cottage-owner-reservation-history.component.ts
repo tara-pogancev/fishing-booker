@@ -72,8 +72,8 @@ export class CottageOwnerReservationHistoryComponent implements OnInit {
     document.getElementById('modalUser')?.classList.toggle('is-active');
   }
 
-  createReport() {
-    alert("Report Creation");
+  createReport(reservation: ReservationModel) {
+    window.location.href='cottage-reservation-report/'+reservation.id;
   }
 
 }

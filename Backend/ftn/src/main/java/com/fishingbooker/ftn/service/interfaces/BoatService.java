@@ -4,6 +4,7 @@ import com.fishingbooker.ftn.bom.boats.Boat;
 import com.fishingbooker.ftn.bom.boats.BoatReservation;
 import com.fishingbooker.ftn.dto.BoatDto;
 import com.fishingbooker.ftn.dto.EntitySearchDto;
+import org.springframework.cache.annotation.Cacheable;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -12,6 +13,7 @@ public interface BoatService {
 
     List<Boat> findAll();
 
+    @Cacheable("boatDto")
     BoatDto findById(long id);
 
     Long delete(Long id);
