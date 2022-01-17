@@ -5,6 +5,7 @@ import com.fishingbooker.ftn.bom.cottages.CottageReservation;
 import com.fishingbooker.ftn.dto.CottageCreationDto;
 import com.fishingbooker.ftn.dto.CottageDto;
 import com.fishingbooker.ftn.dto.EntitySearchDto;
+import org.springframework.cache.annotation.Cacheable;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -13,6 +14,7 @@ public interface CottageService {
 
     List<Cottage> findAll();
 
+    @Cacheable("cottageDto")
     CottageDto findById(long id);
 
     Cottage get(Long id);

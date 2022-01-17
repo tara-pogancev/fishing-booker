@@ -16,6 +16,7 @@ import com.fishingbooker.ftn.security.registration.RegistrationTokenService;
 import com.fishingbooker.ftn.service.interfaces.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.util.StringUtils;
@@ -50,6 +51,7 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
     }
 
     @Override
+    @CacheEvict
     public ApplicationUser findById(Long id) {
         return userRepository.get(id);
     }
