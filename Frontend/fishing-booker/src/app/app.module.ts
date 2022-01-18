@@ -117,6 +117,8 @@ import { BusinessReportComponent } from './components/admin/admin-dashboard/busi
 import { InstructorBusinessReportComponent } from './components/fishing/fishing-instructor-dashboard/instructor-business-report/instructor-business-report.component';
 import { ErrorComponent } from './pages/error/error.component';
 import { CottageReservationReportComponent } from './components/cottages/cottage-owner-dashboard/cottage-reservation-report/cottage-reservation-report.component';
+import { BoatOwnerPersonalInfoComponent } from './components/boats/boat-owner-dashboard/boat-owner-personal-info/boat-owner-personal-info.component';
+import { BoatOwnerSettingsComponent } from './components/boats/boat-owner-dashboard/boat-owner-settings/boat-owner-settings.component';
 
 @NgModule({
   declarations: [
@@ -228,6 +230,8 @@ import { CottageReservationReportComponent } from './components/cottages/cottage
     InstructorBusinessReportComponent,
     ErrorComponent,
     CottageReservationReportComponent,
+    BoatOwnerPersonalInfoComponent,
+    BoatOwnerSettingsComponent,
   ],
   imports: [
     BrowserModule,

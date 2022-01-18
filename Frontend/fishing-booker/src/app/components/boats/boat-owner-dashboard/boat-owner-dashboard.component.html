@@ -1,1 +1,60 @@
-<p>boat-owner-dashboard works!</p>
+<div class="columns db-container">
+    <div class="colum is-two-fifths px-6 pt-5 side-menu">
+      <aside class="menu">
+        <p class="menu-label">General</p>
+        <ul class="menu-list">
+          <li>
+            <a [ngClass]="{ 'is-active': activeTab === 'PERSONAL_INFO' }" (click)="changeTab('PERSONAL_INFO')">Personal
+              Info</a>
+          </li>
+          <li>
+            <a [ngClass]="{ 'is-active': activeTab === 'SETTINGS' }" (click)="changeTab('SETTINGS')">Settings</a>
+          </li>
+        </ul>
+        <!--<p class="menu-label">Boats</p>
+        <ul class="menu-list">
+          <li>
+            <a [ngClass]="{ 'is-active': activeTab === 'MY_BOATS' }" (click)="changeTab('MY_BOATS')">My Boats</a>
+          </li>
+        </ul>
+        <p class="menu-label">Reservations</p>
+        <ul class="menu-list">
+          <li>
+            <a [ngClass]="{ 'is-active': activeTab === 'RESERVATION_HISTORY' }" (click)="changeTab('RESERVATION_HISTORY')">Reservation History</a>
+          </li>
+          <li>
+            <a [ngClass]="{ 'is-active': activeTab === 'DEFINE_AVAILABLE_PERIODS' }" (click)="changeTab('DEFINE_AVAILABLE_PERIODS')">Define Available Periods</a>
+          </li>
+        </ul>-->
+      </aside>
+    </div>
+  
+    <div class="column db-content">
+      <div class="hero is-primary">
+        <div class="hero-body">
+          <p class="title">Welcome, {{ boatOwner.name }} {{ boatOwner.lastName }}</p>
+          <p class="subtitle">Boat Owner Dashboard</p>
+        </div>
+      </div>
+      <div class="m-5">
+        <div *ngIf="activeTab == 'PERSONAL_INFO'">
+          <app-boat-owner-personal-info [boatOwner]="boatOwner"></app-boat-owner-personal-info>
+        </div>
+        <div *ngIf="activeTab == 'SETTINGS'">
+          <app-boat-owner-settings [boatOwner]="boatOwner"></app-boat-owner-settings>
+        </div>
+        <!--<div *ngIf="activeTab == 'MY_BOATS'">
+          <app-boat-owner-boats [boatOwner]="boatOwner"></app-boat-owner-boats>
+        </div>
+        <div *ngIf="activeTab == 'ADD_BOAT'">
+          <app-boat-owner-add-boat [boatOwner]="boatOwner"></app-boat-owner-add-boat>
+        </div>
+        <div *ngIf="activeTab == 'RESERVATION_HISTORY'">
+          <app-boat-owner-reservation-history [boatOwner]="boatOwner"></app-boat-owner-reservation-history>
+        </div>
+        <div *ngIf="activeTab == 'DEFINE_AVAILABLE_PERIODS'">
+          <app-boat-owner-available-periods [boatOwner]="boatOwner"></app-boat-owner-available-periods>
+        </div>-->
+      </div>
+    </div>
+  </div>

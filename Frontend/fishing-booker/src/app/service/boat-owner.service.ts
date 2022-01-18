@@ -20,4 +20,16 @@ export class BoatOwnerService {
     const headers=this.loginService.getHeaders();
     return this._http.delete<any>(this.url+'/'+id,{headers:headers});
   }
+
+  getCurrentBoatOwner() {
+    const id = this.loginService.getCurrentUser().id;
+    const url = this.url + '/' + id;
+    const headers = this.loginService.getHeaders();
+    return this._http.get<any>(url, { headers: headers });
+  }
+
+  updateBoatOwnerData(boatOwner: any) {
+    const headers = this.loginService.getHeaders();
+    return this._http.put<any>(this.url, boatOwner, { headers: headers });
+  }
 }
