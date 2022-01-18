@@ -30,6 +30,8 @@ import { AdventureReservationReport } from './model/adventure-reservation-report
 import { AdventureReservationReportComponent } from './components/fishing/fishing-instructor-dashboard/adventure-reservation-report/adventure-reservation-report.component';
 import { ErrorComponent } from './pages/error/error.component';
 import { CottageReservationReportComponent } from './components/cottages/cottage-owner-dashboard/cottage-reservation-report/cottage-reservation-report.component';
+import { BoatOwnerBoatPreviewComponent } from './components/boats/boat-owner-dashboard/boat-owner-boat-preview/boat-owner-boat-preview.component';
+import { BoatOwnerEditBoatComponent } from './components/boats/boat-owner-dashboard/boat-owner-edit-boat/boat-owner-edit-boat.component';
 
 
 const routes: Routes = [
@@ -64,18 +66,16 @@ const routes: Routes = [
   { path: 'adventure/:id', component: FishingPageComponent },
   { path: 'preview-adventure/:id', component: EditAdventureComponent },
   { path: 'edit-adventure/:id', component: ChangeAdventureComponent },
-  {
-    path: 'preview-cottage/:id',
-    component: CottageOwnerCottagePreviewComponent,
-  },
+  { path: 'preview-cottage/:id', component: CottageOwnerCottagePreviewComponent },
   { path: 'edit-cottage/:id', component: CottageOwnerEditCottageComponent },
+  { path: 'preview-boat/:id', component: BoatOwnerBoatPreviewComponent },
+  { path: 'edit-boat/:id', component: BoatOwnerEditBoatComponent },
   { path: '', component: HomeComponent },
   { path: '401', component: NotAllowedComponent },
   { path: 'error', component: ErrorComponent },
   { path: 'adventure-reservation-report/:id',component: AdventureReservationReportComponent},
   { path: 'cottage-reservation-report/:id',component: CottageReservationReportComponent},
   { path: '**', component: NotFoundComponent },
-  
 ];
 
 @NgModule({

@@ -1,0 +1,94 @@
+<div class="body-wrapper">
+    <div class="container content my-6">
+      <h1>{{ boat.address }}</h1>
+      <hr />
+      <div class="columns">
+        <div class="figure column max-height-600" *ngIf="boat.id != 0">
+          <image-carousel [imageUrls]="boat.imageUrls"></image-carousel>
+        </div>
+  
+        <div class="column">
+          <h2>{{ boat.name }}</h2>
+          <hr />
+          <div><strong>Owner: </strong> {{ boat.ownerName }}</div>
+          <hr />
+          <div>
+            <div class="columns">
+              <div class="column"><strong>Guest Limit: </strong> {{ boat.guestLimit }}</div>
+              <div class="column"><strong>Engine Power: </strong> {{ boat.enginePower }} W</div>
+            </div>
+            <hr />
+            <div class="columns">
+              <div class="column"><strong>Type: </strong> {{ boatTypeToString(boat.boatType) }}</div>
+              <div class="column"><strong>Max Speed: </strong> {{ boat.maxSpeed }} km/h</div>
+            </div>
+            <hr />
+            <div class="columns">
+              <div class="column"><strong>Length: </strong> {{ boat.boatLength }} m</div>
+              <div class="column"><strong>Fishing Equipment: </strong> {{ boat.fishingEquipment }}</div>
+            </div>
+            <hr />
+            <div class="columns">
+              <div class="column"><strong>Number Of Engines: </strong> {{ boat.numberOfEngines }}</div>
+              <div class="column"><strong>Navigational Equipment: </strong> {{ navigationalEquipmentToString(boat.navigationalEquipments) }}</div>
+            </div>
+            <hr />
+            <div class="columns">
+              <div class="column">
+                <span class="tag is-large rating">{{ boat.rating }} <i class="ml-1 fa fa-star"></i></span>
+              </div>
+              <div class="column">
+                <button class="button is-success is-large" (click)="editBoat()">Edit Boat</button>
+              </div>
+            </div>
+            <hr />
+                <gap height="20"></gap>
+                <div>
+                  <h4>Price per day: ${{ boat.price }}</h4>
+                </div>
+
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div>
+        <h2>Description:</h2>
+        <p>
+          {{ boat.description }}
+        </p>
+      </div>
+      <hr />
+      <div class="columns">
+        <div class="column">
+          <h3>Boat Rules</h3>
+          <div *ngIf="boat.rules.length == 0">
+            <p>No Rules Added.</p>
+          </div>
+          <div *ngFor="let rule of boat.rules">
+            <rule [rule]="rule"></rule>
+          </div>
+        </div>
+        <div class="column">
+          <h3>Boat Utilities</h3>
+          <div *ngIf="boat.utilities.length == 0">
+            <p>No Utilities Added.</p>
+          </div>
+          <div *ngFor="let utility of boat.utilities">
+            <utility [utility]="utility.name" [price]="utility.price"></utility>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div class="columns">
+        <div class="column" *ngIf="boat.address">
+          <app-map [address]="boat.address"></app-map>
+        </div>
+      </div>
+      <hr />
+      <div>
+        <entity-calendar></entity-calendar>
+      </div>
+    </div>
+  </div>
+  
+  <app-footer></app-footer>
