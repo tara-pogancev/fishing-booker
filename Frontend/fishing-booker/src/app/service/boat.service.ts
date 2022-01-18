@@ -56,4 +56,10 @@ export class BoatService {
     const url = this.url + '/reviews/' + id;
     return this._http.get<any>(url);
   }
+
+  findByBoatOwnerId(id: any) {
+    const url = server + 'api/boats/findByBoatOwnerId/' + id;
+    const headers = this.loginService.getHeaders();
+    return this._http.get<any>(url, { headers: headers });
+  }
 }

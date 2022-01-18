@@ -15,7 +15,7 @@ import java.util.List;
 @Repository
 public interface CottageRepository extends EntityRepository<Cottage> {
 
-    @Query("SELECT c FROM Cottage c WHERE c.cottageOwner.id=:id")
+    @Query("SELECT c FROM Cottage c WHERE c.cottageOwner.id=:id and c.deleted = false")
     List<Cottage> findByCottageOwnerId(@Param("id") long id);
 
     @Lock(LockModeType.PESSIMISTIC_WRITE)

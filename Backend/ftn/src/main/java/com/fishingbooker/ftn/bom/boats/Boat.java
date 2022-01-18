@@ -71,6 +71,9 @@ public class Boat extends DatabaseEntity {
     @OneToMany(mappedBy = "boat")
     private Set<BoatQuickReservation> boatQuickReservations;
 
+    @OneToMany(mappedBy = "boat")
+    private Set<BoatReservation> boatReservations;
+
     @ManyToMany
     @JoinTable(
             name = "boat_rules",

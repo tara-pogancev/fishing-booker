@@ -47,7 +47,8 @@ public class BoatController {
     }
 
     @DeleteMapping("/{id}")
-    public Long delete(@PathVariable("id") Long id) {
+    @PreAuthorize("hasRole('BOAT_OWNER')")
+    public Boolean delete(@PathVariable("id") Long id) {
         return boatService.delete(id);
     }
 
@@ -59,6 +60,12 @@ public class BoatController {
         } else {
             return new ResponseEntity<>(reservation.getId(), HttpStatus.OK);
         }
+    }
+
+    @GetMapping("/findByBoatOwnerId/{id}")
+    @PreAuthorize("hasRole('BOAT_OWNER')")
+    public List<BoatDto> getByBoatOwnerId(@PathVariable("id") long id) {
+        return boatService.findByBoatOwnerId(id);
     }
 
 }

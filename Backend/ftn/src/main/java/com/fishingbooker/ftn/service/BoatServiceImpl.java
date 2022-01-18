@@ -47,11 +47,15 @@ public class BoatServiceImpl implements BoatService {
     }
 
     @Override
-    public Long delete(Long id) {
+    public Boolean delete(Long id) {
         Boat boat = boatRepository.getById(id);
-        boat.setDeleted(true);
-        boatRepository.save(boat);
-        return boat.getId();
+        if ((boat.getBoatReservations() == null || boat.getBoatReservations().size() == 0)
+                && (boat.getBoatQuickReservations() == null || boat.getBoatQuickReservations().size() == 0)) {
+            boat.setDeleted(true);
+            boatRepository.save(boat);
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -134,10 +138,14 @@ public class BoatServiceImpl implements BoatService {
         return boatRepository.get(entityId);
     }
 
-    @Override
+        @Override
     public List<BoatReservation> getReservationsByBoat(Long boatId) {
         return boatReservationRepository.getBoatReservations(boatId);
     }
 
-
+    @Override
+    public List<BoatDto> findByBoatOwnerId(long id) {
+        return converter.convert(boatRepository.findByBoatOwnerId(id), BoatDto.class);
+    }
+    
 }

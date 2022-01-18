@@ -119,6 +119,9 @@ import { ErrorComponent } from './pages/error/error.component';
 import { CottageReservationReportComponent } from './components/cottages/cottage-owner-dashboard/cottage-reservation-report/cottage-reservation-report.component';
 import { BoatOwnerPersonalInfoComponent } from './components/boats/boat-owner-dashboard/boat-owner-personal-info/boat-owner-personal-info.component';
 import { BoatOwnerSettingsComponent } from './components/boats/boat-owner-dashboard/boat-owner-settings/boat-owner-settings.component';
+import { BoatOwnerBoatsComponent } from './components/boats/boat-owner-dashboard/boat-owner-boats/boat-owner-boats.component';
+import { BoatOwnerBoatCardComponent } from './components/boats/boat-owner-dashboard/boat-owner-boat-card/boat-owner-boat-card.component';
+import { BoatOwnerAddBoatComponent } from './components/boats/boat-owner-dashboard/boat-owner-add-boat/boat-owner-add-boat.component';
 
 @NgModule({
   declarations: [
@@ -232,6 +235,9 @@ import { BoatOwnerSettingsComponent } from './components/boats/boat-owner-dashbo
     CottageReservationReportComponent,
     BoatOwnerPersonalInfoComponent,
     BoatOwnerSettingsComponent,
+    BoatOwnerBoatsComponent,
+    BoatOwnerBoatCardComponent,
+    BoatOwnerAddBoatComponent,
   ],
   imports: [
     BrowserModule,

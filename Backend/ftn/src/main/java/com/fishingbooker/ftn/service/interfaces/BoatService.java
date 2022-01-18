@@ -16,7 +16,7 @@ public interface BoatService {
     @Cacheable("boatDto")
     BoatDto findById(long id);
 
-    Long delete(Long id);
+    Boolean delete(Long id);
 
     List<Boat> filterByDate(LocalDateTime startDate, LocalDateTime endDate);
 
@@ -28,4 +28,5 @@ public interface BoatService {
 
     List<BoatReservation> getReservationsByBoat(Long boatId);
 
+    List<BoatDto> findByBoatOwnerId(long id);
 }
