@@ -33,4 +33,14 @@ public class CottageQuickReservation extends QuickReservation {
     @JsonBackReference
     private Cottage cottage;
 
+    public void recalculateFullPrice() {
+        double fullPrice = 0;
+        if (this.utilities == null) {
+            return;
+        }
+        for (QuickReservationUtility utility : this.utilities) {
+            fullPrice += utility.getPrice();
+        }
+        this.setPrice(this.getPrice() + fullPrice);
+    }
 }

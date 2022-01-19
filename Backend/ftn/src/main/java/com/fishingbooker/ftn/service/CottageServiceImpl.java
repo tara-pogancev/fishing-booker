@@ -2,23 +2,17 @@ package com.fishingbooker.ftn.service;
 
 import com.fishingbooker.ftn.bom.Address;
 import com.fishingbooker.ftn.bom.RuleOfConduct;
-import com.fishingbooker.ftn.bom.cottages.Cottage;
-import com.fishingbooker.ftn.bom.cottages.CottageReservation;
-import com.fishingbooker.ftn.bom.cottages.CottageUtility;
-import com.fishingbooker.ftn.bom.cottages.Room;
+import com.fishingbooker.ftn.bom.cottages.*;
 import com.fishingbooker.ftn.bom.users.CottageOwner;
+import com.fishingbooker.ftn.bom.users.RegisteredClient;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.conversion.UnixTimeToLocalDateTimeConverter;
-import com.fishingbooker.ftn.dto.CottageCreationDto;
-import com.fishingbooker.ftn.dto.CottageDto;
-import com.fishingbooker.ftn.dto.EntitySearchDto;
-import com.fishingbooker.ftn.dto.RoomDto;
-import com.fishingbooker.ftn.repository.CottageOwnerRepository;
-import com.fishingbooker.ftn.repository.CottageRepository;
-import com.fishingbooker.ftn.repository.CottageReservationRepository;
-import com.fishingbooker.ftn.repository.RoomRepository;
+import com.fishingbooker.ftn.dto.*;
+import com.fishingbooker.ftn.repository.*;
 import com.fishingbooker.ftn.service.interfaces.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -44,6 +38,14 @@ public class CottageServiceImpl implements CottageService {
     private final CottageOwnerRepository cottageOwnerRepository;
     private final CottageReservationRepository reservationRepository;
     private final RoomRepository roomRepository;
+    private SubscriptionService subscriptionService;
+    @Autowired
+    public void setSubscriptionService(@Lazy SubscriptionService subscriptionService) {
+        this.subscriptionService = subscriptionService;
+    }
+    private final MailingService mailingService;
+    private final CottageQuickReservationRepository cottageQuickReservationRepository;
+    private final AvailableCottageTimePeriodRepository availableCottageTimePeriodRepository;
 
     @Override
     public List<Cottage> findAll() {
@@ -178,6 +180,46 @@ public class CottageServiceImpl implements CottageService {
             }
         }
         return !reservationOverlap;
+    }
+
+    @Override
+    public Long createQuickReservation(AdventureQuickReservationDto dto) {
+        Cottage cottage = cottageRepository.getById(dto.getAdventureId());
+        if (!validate(cottage, dto.getActionStart(), dto.getActionEnd())) {
+            return -1l;
+        } else {
+            CottageQuickReservation cottageQuickReservation = new CottageQuickReservation();
+            cottageQuickReservation.setCottage(cottage);
+            cottageQuickReservation.setActionStart(dto.getActionStart());
+            cottageQuickReservation.setActionEnd(dto.getActionEnd());
+            cottageQuickReservation.setGuestLimit(dto.getGuestLimit());
+            cottageQuickReservation.setPrice(dto.getPrice());
+            cottageQuickReservation.setUtilities(utilityService.convertUtilityDtoToUtility(dto.getAdventureUtilityDtoList()));
+            cottageQuickReservation.recalculateFullPrice();
+            CottageQuickReservation persistedReservation = cottageQuickReservationRepository.save(cottageQuickReservation);
+            List<RegisteredClient> clients = subscriptionService.getCottageSubscribers(persistedReservation.getCottage().getCottageOwner().getId());
+            for (RegisteredClient client : clients) {
+                mailingService.sendMailToSubscribedUsers(client, persistedReservation.getReservationClient().getFullName());
+            }
+            return persistedReservation.getId();
+        }
+    }
+
+    private boolean validate(Cottage cottage, LocalDateTime startDate, LocalDateTime endDate) {
+        List<CottageQuickReservation> quickReservations = cottageQuickReservationRepository.getOverlappedWithNewAction(startDate, endDate, cottage.getId());
+        if (quickReservations.size() != 0) { //vec postoji kreiranja brza rezervacija u ovom periodu
+            return false;
+        }
+        List<CottageReservation> cottageReservations = reservationRepository.getOverlappedWithNewAction(startDate, endDate, cottage.getId());
+        if (cottageReservations.size() != 0) {//vec postoji kreirana obicna rezervacija u ovom periodu
+            return false;
+        }
+        List<AvailableCottageTimePeriod> periods = availableCottageTimePeriodRepository.getAvailabilityForDate(startDate, endDate, cottage.getId());
+        if (periods.size() == 0) { //znaci da vikendica nije dostupna za vrijeme kreiranja
+            return false;
+        }
+
+        return true;
     }
 
     private Set<Room> convertDtoToModel(List<RoomDto> rooms, Cottage cottage) {

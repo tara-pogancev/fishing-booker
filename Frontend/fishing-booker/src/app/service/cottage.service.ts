@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { server } from '../app-global';
+import { AdventureQuickReservation } from '../model/adventure-quick-reservation-model';
 import { CreateCottageModel } from '../model/create-cottage-model';
 import { ReservationModel } from '../model/reservation-model';
 import { SearchFilter } from '../model/search-filter-model';
@@ -75,5 +76,11 @@ export class CottageService {
   getReviews(id: number) {
     const url = this.url + '/reviews/' + id;
     return this._http.get<any>(url);
+  }
+
+  createCottageQuickReservation(reservation: AdventureQuickReservation) {
+    const url = server + 'api/cottages/add-quick-reservation';
+    const headers = this.loginService.getHeaders();
+    return this._http.post<any>(url, reservation, { headers: headers });
   }
 }

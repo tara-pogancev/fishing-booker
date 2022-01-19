@@ -25,6 +25,9 @@
         <li>
           <a [ngClass]="{ 'is-active': activeTab === 'DEFINE_AVAILABLE_PERIODS' }" (click)="changeTab('DEFINE_AVAILABLE_PERIODS')">Define Available Periods</a>
         </li>
+        <li>
+          <a [ngClass]="{ 'is-active': activeTab === 'QUICK_RESERVATIONS' }" (click)="changeTab('QUICK_RESERVATIONS')">Quick Reservations</a>
+        </li>
       </ul>
     </aside>
   </div>
@@ -54,6 +57,9 @@
       </div>
       <div *ngIf="activeTab == 'DEFINE_AVAILABLE_PERIODS'">
         <app-cottage-owner-available-periods [cottageOwner]="cottageOwner"></app-cottage-owner-available-periods>
+      </div>
+      <div *ngIf="activeTab == 'QUICK_RESERVATIONS'">
+        <app-cottage-owner-quick-reservations [cottageOwner]="cottageOwner"></app-cottage-owner-quick-reservations>
       </div>
     </div>
   </div>
