@@ -9,6 +9,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
@@ -46,6 +48,7 @@ public class AdventureServiceTests {
 
         assertThat(adventures).hasSize(1);
         assertEquals(adventures.get(0).getName(),"Arctic Fishing");
+        verify(adventureRepositoryMock, times(1)).getInstructorAdventures(1l);
     }
 
     @Test
