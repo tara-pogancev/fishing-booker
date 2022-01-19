@@ -107,7 +107,7 @@ public class UtilityServiceImpl implements UtilityService {
             if (utilityRepository.exists(dto.getId())) {
                 utility = utilityRepository.getById(dto.getId());
             } else {
-                CottageUtility cu = cottageUtilityRepository.getById(dto.getId());
+                BoatUtility cu = boatUtilityRepository.getById(dto.getId());
                 utility = cu.getUtility();
             }
             boatUtility = new BoatUtility(utility, dto.getPrice(), boat);

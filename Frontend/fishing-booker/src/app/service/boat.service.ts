@@ -82,4 +82,10 @@ export class BoatService {
     const headers = this.loginService.getHeaders();
     return this._http.get<any>(url, { headers: headers });
   }
+
+  getBoat(id: any) {
+    const url = server + 'api/boats/';
+    const headers = this.loginService.getHeaders();
+    return this._http.get<any>(url + id, { headers: headers });
+  }
 }

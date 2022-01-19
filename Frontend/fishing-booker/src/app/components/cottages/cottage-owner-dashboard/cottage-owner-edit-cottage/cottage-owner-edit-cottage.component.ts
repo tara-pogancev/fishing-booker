@@ -38,9 +38,9 @@ export class CottageOwnerEditCottageComponent implements OnInit {
   ngOnInit(): void {
     this.id = +this.route.snapshot.paramMap.get('id')!;
     this.utilityService.getUtilities().subscribe((data: any) => this.utilities = data);
-    this.cottageService.getCottage(this.id).subscribe(data => { 
+    this.cottageService.getCottage(this.id).subscribe(data => {
       this.cottage = data;
-      console.log(this.cottage); 
+      console.log(this.cottage);
     });
   }
 

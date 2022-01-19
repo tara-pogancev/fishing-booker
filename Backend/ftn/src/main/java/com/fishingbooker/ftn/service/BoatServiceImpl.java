@@ -194,10 +194,12 @@ public class BoatServiceImpl implements BoatService {
             e.printStackTrace();
         }
         Boat savedBoat = boatRepository.save(boat);
-        boat.setNavigationalEquipments(boatDto.getNavigationalEquipments().stream().map(navEq -> new NavigationalEquipment(NavigationalEquipmentEnum.valueOf(navEq))).collect(Collectors.toSet()));
+        savedBoat.setNavigationalEquipments(boatDto.getNavigationalEquipments().stream().map(navEq -> getNavigationalEquipmentByName(navEq)).collect(Collectors.toSet()));
         Set<BoatUtility> utilities = utilityService.convertStringToUtility(boatDto.getAdditionalServices(), savedBoat);
+        
         savedBoat.setUtilities(utilities);
         return boatRepository.save(savedBoat).getId();
+
     }
 
     @Override
@@ -208,6 +210,15 @@ public class BoatServiceImpl implements BoatService {
     @Override
     public List<NavigationalEquipment> getNavigationalEquipment() {
         return navigationalEquipmentRepository.findAll();
+    }
+
+    private NavigationalEquipment getNavigationalEquipmentByName(String name) {
+        List<NavigationalEquipment> navigationalEquipments = navigationalEquipmentRepository.findAll();
+        return navigationalEquipments.stream()
+                .filter(navigationalEquipment -> name.equals(navigationalEquipment.getName().toString()))
+                .findAny()
+                .orElse(null);
+
     }
 
 }
