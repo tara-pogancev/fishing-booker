@@ -25,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
         "APP_URL=https://localhost:8080",
         "EPASS=***",
         "EMAIL=fishing.booker.service@gmail.com",
-        "PASS=2331"})
+        "PASS=admin"})
 @AutoConfigureMockMvc
 public class BrowseBoatsControllerTests {
 

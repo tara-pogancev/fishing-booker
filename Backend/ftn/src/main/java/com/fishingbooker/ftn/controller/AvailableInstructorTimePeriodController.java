@@ -5,6 +5,9 @@ import com.fishingbooker.ftn.dto.AvailableInstructorTimePeriodDto;
 import com.fishingbooker.ftn.dto.ChangeTimeSlotDto;
 import com.fishingbooker.ftn.service.interfaces.AvailableInstructorTimePeriodService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,8 +25,14 @@ public class AvailableInstructorTimePeriodController {
     }
 
     @PostMapping
-    public Long createOrUpdate(@RequestBody AvailableInstructorTimePeriodDto availableTime) {
-        return availableInstructorTimePeriodService.create(availableTime);
+    public HttpEntity<Long> createOrUpdate(@RequestBody AvailableInstructorTimePeriodDto availableTime) {
+        Long id=availableInstructorTimePeriodService.create(availableTime);
+        if (id!=-1l){
+            return new ResponseEntity<>(id, HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(id,HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     @DeleteMapping("/{id}")

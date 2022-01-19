@@ -75,8 +75,13 @@ public class AdventureController {
     }
 
     @PostMapping("/add-reservation")
-    public Long addReservation(@RequestBody InstructorNewReservationDto dto) {
-        return adventureService.createReservation(dto);
+    public ResponseEntity<Long> addReservation(@RequestBody InstructorNewReservationDto dto) {
+        Long ret=adventureService.createReservation(dto);
+        if (ret!=-1){
+            return new ResponseEntity<Long>(ret,HttpStatus.OK);
+        }else{
+            return new ResponseEntity<Long>(ret,HttpStatus.BAD_REQUEST);
+        }
     }
 
     @GetMapping("/get-quick-reservations-calendar/{id}")
