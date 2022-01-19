@@ -2,6 +2,7 @@ package com.fishingbooker.ftn.service.interfaces;
 
 import com.fishingbooker.ftn.bom.cottages.Cottage;
 import com.fishingbooker.ftn.bom.cottages.CottageReservation;
+import com.fishingbooker.ftn.dto.AdventureQuickReservationDto;
 import com.fishingbooker.ftn.dto.CottageCreationDto;
 import com.fishingbooker.ftn.dto.CottageDto;
 import com.fishingbooker.ftn.dto.EntitySearchDto;
@@ -33,4 +34,5 @@ public interface CottageService {
 
     Boolean isCottageAvailable(Cottage cottage, LocalDateTime start, LocalDateTime end);
 
+    Long createQuickReservation(AdventureQuickReservationDto dto);
 }

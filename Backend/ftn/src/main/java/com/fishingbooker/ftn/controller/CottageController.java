@@ -1,12 +1,10 @@
 package com.fishingbooker.ftn.controller;
 
+import com.fishingbooker.ftn.bom.adventures.AdventureQuickReservation;
 import com.fishingbooker.ftn.bom.cottages.Cottage;
 import com.fishingbooker.ftn.bom.reservations.Reservation;
 import com.fishingbooker.ftn.conversion.DataConverter;
-import com.fishingbooker.ftn.dto.CottageCreationDto;
-import com.fishingbooker.ftn.dto.CottageDto;
-import com.fishingbooker.ftn.dto.EntitySearchDto;
-import com.fishingbooker.ftn.dto.ReservationDto;
+import com.fishingbooker.ftn.dto.*;
 import com.fishingbooker.ftn.service.interfaces.CottageService;
 import com.fishingbooker.ftn.service.interfaces.RegisteredClientService;
 import com.fishingbooker.ftn.service.interfaces.ReservationService;
@@ -81,5 +79,9 @@ public class CottageController {
         }
     }
 
-
+    @PreAuthorize("hasRole('COTTAGE_OWNER')")
+    @PostMapping("/add-quick-reservation")
+    public Long addQuickReservation(@RequestBody AdventureQuickReservationDto dto) {
+        return cottageService.createQuickReservation(dto);
+    }
 }
