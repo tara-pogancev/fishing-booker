@@ -380,4 +380,14 @@ INSERT INTO public.adventure_quick_reservation_utilities(adventure_reservation_i
 INSERT INTO public.boat_quick_reservation_utilities(boat_reservation_id, boat_utility_id)	VALUES (2, 2);
 INSERT INTO public.cottage_quick_reservation_utilities(cottage_reservation_id, cottage_utility_id)	VALUES (3, 3);
 
+INSERT INTO public.boat_type(id, name)	VALUES (1, 0);
+INSERT INTO public.boat_type(id, name)	VALUES (2, 1);
+INSERT INTO public.boat_type(id, name)	VALUES (3, 2);
+INSERT INTO public.boat_type(id, name)	VALUES (4, 3);
+INSERT INTO public.boat_type(id, name)	VALUES (5, 4);
+INSERT INTO public.boat_type(id, name)	VALUES (6, 5);
+INSERT INTO public.boat_type(id, name)	VALUES (7, 6);
+INSERT INTO public.boat_type(id, name)	VALUES (8, 7);
+
+
 

@@ -21,6 +21,7 @@ export class Boat {
     public utilities: Utility[] = [],
     public ownerName: string = '',
     public imageUrls: string[] = [],
-    public availableTimePeriods: AvailableTimePeriod[] = []
+    public availableTimePeriods: AvailableTimePeriod[] = [],
+    public cancellationPercentageKeep: number = 0
   ) {}
 }

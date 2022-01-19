@@ -1,22 +1,27 @@
 package com.fishingbooker.ftn.service;
 
-import com.fishingbooker.ftn.bom.boats.Boat;
-import com.fishingbooker.ftn.bom.boats.BoatReservation;
+import com.fishingbooker.ftn.bom.Address;
+import com.fishingbooker.ftn.bom.RuleOfConduct;
+import com.fishingbooker.ftn.bom.boats.*;
+import com.fishingbooker.ftn.bom.users.BoatOwner;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.conversion.UnixTimeToLocalDateTimeConverter;
+import com.fishingbooker.ftn.dto.BoatCreationDto;
 import com.fishingbooker.ftn.dto.BoatDto;
 import com.fishingbooker.ftn.dto.EntitySearchDto;
-import com.fishingbooker.ftn.repository.BoatRepository;
-import com.fishingbooker.ftn.repository.BoatReservationRepository;
-import com.fishingbooker.ftn.service.interfaces.BoatService;
-import com.fishingbooker.ftn.service.interfaces.DateService;
+import com.fishingbooker.ftn.repository.*;
+import com.fishingbooker.ftn.service.interfaces.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -27,6 +32,12 @@ public class BoatServiceImpl implements BoatService {
     private final DateService dateService;
     private final BoatRepository boatRepository;
     private final BoatReservationRepository boatReservationRepository;
+    private final BoatOwnerRepository boatOwnerRepository;
+    private final ImageService imageService;
+    private final RuleOfConductService ruleOfConductService;
+    private final UtilityService utilityService;
+    private final BoatTypeRepository boatTypeRepository;
+    private final NavigationalEquipmentRepository navigationalEquipmentRepository;
 
     @Override
     public List<Boat> findAll() {
@@ -147,5 +158,56 @@ public class BoatServiceImpl implements BoatService {
     public List<BoatDto> findByBoatOwnerId(long id) {
         return converter.convert(boatRepository.findByBoatOwnerId(id), BoatDto.class);
     }
-    
+
+    @Override
+    public Long create(BoatCreationDto boatDto) {
+        Boat boat;
+        if (boatDto.getId() == -1) {
+            boat = new Boat();
+        } else {
+            boat = boatRepository.getById(boatDto.getId());
+        }
+
+        BoatOwner boatOwner = boatOwnerRepository.getById(boatDto.getOwnerId());
+        Address address = new Address();
+        boat.setName(boatDto.getName());
+        address.setCity(boatDto.getCity());
+        address.setCountry(boatDto.getCountry());
+        address.setStreet(boatDto.getStreet());
+        boat.setAddress(address);
+        boat.setPrice(boatDto.getPrice());
+        boat.setBoatOwner(boatOwner);
+        boat.setBoatLength(boatDto.getBoatLength());
+        boat.setBoatType(boatDto.getBoatType());
+        boat.setEnginePower(boatDto.getEnginePower());
+        boat.setNumberOfEngines(boatDto.getNumberOfEngines());
+        boat.setFishingEquipment(boatDto.getFishingEquipment());
+        boat.setMaxSpeed(boatDto.getMaxSpeed());
+        boat.setCancellationPercentageKeep(boatDto.getCancellationPercentageKeep());
+        List<RuleOfConduct> rules = ruleOfConductService.createRulesFromString(boatDto.getRules());
+        boat.setRules(new HashSet<>(rules));
+        boat.setDescription(boatDto.getDescription());
+        boat.setGuestLimit(boatDto.getGuestLimit());
+        try {
+            boat.setImages(imageService.saveImages(boatDto.getImages()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Boat savedBoat = boatRepository.save(boat);
+        boat.setNavigationalEquipments(boatDto.getNavigationalEquipments().stream().map(navEq -> new NavigationalEquipment(NavigationalEquipmentEnum.valueOf(navEq))).collect(Collectors.toSet()));
+        Set<BoatUtility> utilities = utilityService.convertStringToUtility(boatDto.getAdditionalServices(), savedBoat);
+        savedBoat.setUtilities(utilities);
+        return boatRepository.save(savedBoat).getId();
+    }
+
+    @Override
+    public List<BoatType> getBoatTypes() {
+        return boatTypeRepository.findAll();
+    }
+
+    @Override
+    public List<NavigationalEquipment> getNavigationalEquipment() {
+        return navigationalEquipmentRepository.findAll();
+    }
+
 }

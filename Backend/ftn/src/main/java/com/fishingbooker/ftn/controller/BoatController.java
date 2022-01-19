@@ -1,8 +1,8 @@
 package com.fishingbooker.ftn.controller;
 
-import com.fishingbooker.ftn.bom.boats.Boat;
-import com.fishingbooker.ftn.bom.boats.BoatReservation;
+import com.fishingbooker.ftn.bom.boats.*;
 import com.fishingbooker.ftn.conversion.DataConverter;
+import com.fishingbooker.ftn.dto.BoatCreationDto;
 import com.fishingbooker.ftn.dto.BoatDto;
 import com.fishingbooker.ftn.dto.EntitySearchDto;
 import com.fishingbooker.ftn.dto.ReservationDto;
@@ -66,6 +66,24 @@ public class BoatController {
     @PreAuthorize("hasRole('BOAT_OWNER')")
     public List<BoatDto> getByBoatOwnerId(@PathVariable("id") long id) {
         return boatService.findByBoatOwnerId(id);
+    }
+
+    @PostMapping("add-boat")
+    @PreAuthorize("hasRole('BOAT_OWNER')")
+    public Long addBoat(@RequestBody BoatCreationDto boatDto) {
+        return boatService.create(boatDto);
+    }
+
+    @GetMapping("/getBoatTypes/")
+    @PreAuthorize("hasRole('BOAT_OWNER')")
+    public List<BoatType> getBoatTypes() {
+        return boatService.getBoatTypes();
+    }
+
+    @GetMapping("/getNavigationalEquipment/")
+    @PreAuthorize("hasRole('BOAT_OWNER')")
+    public List<NavigationalEquipment> getNavigationalEquipment() {
+        return boatService.getNavigationalEquipment();
     }
 
 }

@@ -24,7 +24,7 @@ public class Boat extends DatabaseEntity {
     private String name;
 
     @Column(name = "boatType", nullable = false)
-    private BoatType boatType;
+    private BoatTypeEnum boatType;
 
     @Column(name = "boatLength", nullable = false)
     private Double boatLength;
@@ -44,21 +44,21 @@ public class Boat extends DatabaseEntity {
     @Column(name = "price", nullable = false)
     private Double price = 0.0;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "boat_navigational_equipment",
             joinColumns = @JoinColumn(name = "boat_id"),
             inverseJoinColumns = @JoinColumn(name = "equipment_id"))
     private Set<NavigationalEquipment> navigationalEquipments;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "address", referencedColumnName = "id")
     private Address address;
 
     @Column(name = "description", nullable = false)
     private String description;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "boat_images",
             joinColumns = @JoinColumn(name = "boat_id"),
@@ -94,7 +94,7 @@ public class Boat extends DatabaseEntity {
     @Column(name = "cancellationPercentageKeep", nullable = false)
     private Double cancellationPercentageKeep;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "boatOwner")
     private BoatOwner boatOwner;
 

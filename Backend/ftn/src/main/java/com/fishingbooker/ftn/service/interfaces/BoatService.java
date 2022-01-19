@@ -2,6 +2,9 @@ package com.fishingbooker.ftn.service.interfaces;
 
 import com.fishingbooker.ftn.bom.boats.Boat;
 import com.fishingbooker.ftn.bom.boats.BoatReservation;
+import com.fishingbooker.ftn.bom.boats.BoatType;
+import com.fishingbooker.ftn.bom.boats.NavigationalEquipment;
+import com.fishingbooker.ftn.dto.BoatCreationDto;
 import com.fishingbooker.ftn.dto.BoatDto;
 import com.fishingbooker.ftn.dto.EntitySearchDto;
 import org.springframework.cache.annotation.Cacheable;
@@ -29,4 +32,10 @@ public interface BoatService {
     List<BoatReservation> getReservationsByBoat(Long boatId);
 
     List<BoatDto> findByBoatOwnerId(long id);
+
+    Long create(BoatCreationDto boatDto);
+
+    List<BoatType> getBoatTypes();
+
+    List<NavigationalEquipment> getNavigationalEquipment();
 }

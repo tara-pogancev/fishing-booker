@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { server } from '../app-global';
+import { CreateBoatModel } from '../model/create-boat-model';
 import { ReservationModel } from '../model/reservation-model';
 import { SearchFilter } from '../model/search-filter-model';
 import { LoginService } from './login.service';
@@ -59,6 +60,25 @@ export class BoatService {
 
   findByBoatOwnerId(id: any) {
     const url = server + 'api/boats/findByBoatOwnerId/' + id;
+    const headers = this.loginService.getHeaders();
+    return this._http.get<any>(url, { headers: headers });
+  }
+
+  createBoat(boat: CreateBoatModel) {
+    const url = server + 'api/boats/add-boat';
+    const headers = this.loginService.getHeaders();
+    boat.ownerId = this.loginService.getCurrentUser().id;
+    return this._http.post<any>(url, boat, { headers: headers });
+  }
+
+  getBoatTypes() {
+    const url = server + 'api/boats/getBoatTypes/';
+    const headers = this.loginService.getHeaders();
+    return this._http.get<any>(url, { headers: headers });
+  }
+
+  getNavigationalEquipment() {
+    const url = server + 'api/boats/getNavigationalEquipment/';
     const headers = this.loginService.getHeaders();
     return this._http.get<any>(url, { headers: headers });
   }

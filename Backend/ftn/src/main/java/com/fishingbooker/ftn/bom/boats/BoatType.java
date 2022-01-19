@@ -1,14 +1,22 @@
 package com.fishingbooker.ftn.bom.boats;
 
-public enum BoatType {
+import com.fishingbooker.ftn.bom.DatabaseEntity;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
-    ALL_PURPOSE,
-    ALUMINUM_FISHING_BOAT,
-    BASS_BOAT,
-    BAY_BOAT,
-    BOW_RIDER,
-    CABIN_CRUISER,
-    JET_BOAT,
-    DECK_BOAT
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
+@Entity
+@RequiredArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@Table(name = "BoatType")
+public class BoatType extends DatabaseEntity {
+    @Column(name = "name", nullable = false)
+    private BoatTypeEnum name;
 }

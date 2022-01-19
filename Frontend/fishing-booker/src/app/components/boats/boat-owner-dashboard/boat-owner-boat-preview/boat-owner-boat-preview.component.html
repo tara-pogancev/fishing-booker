@@ -42,10 +42,12 @@
               </div>
             </div>
             <hr />
-                <gap height="20"></gap>
-                <div>
-                  <h4>Price per day: ${{ boat.price }}</h4>
-                </div>
+            <div class="columns">
+              <div class="column">
+                <h4>Price per day: ${{ boat.price }}</h4>
+              </div>
+              <div class="column"><strong>Cancellation Percentage: </strong> {{ boat.cancellationPercentageKeep }}</div>
+            </div>
 
           </div>
         </div>
