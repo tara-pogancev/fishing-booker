@@ -32,4 +32,10 @@ export class BoatOwnerService {
     const headers = this.loginService.getHeaders();
     return this._http.put<any>(this.url, boatOwner, { headers: headers });
   }
+
+  getPastReservations(id:number){
+    const url = this.url + '/' + id + '/past-reservations';
+    const headers = this.loginService.getHeaders();
+    return this._http.get<any>(url, { headers: headers });
+  }
 }

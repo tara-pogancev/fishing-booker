@@ -46,8 +46,8 @@ public class CottageOwnerController {
 
     @GetMapping("/{id}/past-reservations")
     @PreAuthorize("hasRole('COTTAGE_OWNER')")
-    public List<ReservationDto> getPastAdventureReservations(@PathVariable Long id) {
-        List<CottageReservation> reservations = cottageOwnerService.getPastAdventureReservations(id);
+    public List<ReservationDto> getPastCottageReservations(@PathVariable Long id) {
+        List<CottageReservation> reservations = cottageOwnerService.getPastCottageReservations(id);
         return converter.convert(reservations, ReservationDto.class);
     }
 

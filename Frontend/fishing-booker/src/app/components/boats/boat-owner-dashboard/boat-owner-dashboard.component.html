@@ -18,14 +18,14 @@
           </li>
         </ul>
         <p class="menu-label">Reservations</p>
-        <!--<ul class="menu-list">
+        <ul class="menu-list">
           <li>
             <a [ngClass]="{ 'is-active': activeTab === 'RESERVATION_HISTORY' }" (click)="changeTab('RESERVATION_HISTORY')">Reservation History</a>
           </li>
-          <li>
+          <!--<li>
             <a [ngClass]="{ 'is-active': activeTab === 'DEFINE_AVAILABLE_PERIODS' }" (click)="changeTab('DEFINE_AVAILABLE_PERIODS')">Define Available Periods</a>
-          </li>
-        </ul>-->
+          </li>-->
+        </ul>
       </aside>
     </div>
   
@@ -49,10 +49,10 @@
         <div *ngIf="activeTab == 'ADD_BOAT'">
           <app-boat-owner-add-boat [boatOwner]="boatOwner"></app-boat-owner-add-boat>
         </div>
-        <!--<div *ngIf="activeTab == 'RESERVATION_HISTORY'">
+        <div *ngIf="activeTab == 'RESERVATION_HISTORY'">
           <app-boat-owner-reservation-history [boatOwner]="boatOwner"></app-boat-owner-reservation-history>
         </div>
-        <div *ngIf="activeTab == 'DEFINE_AVAILABLE_PERIODS'">
+        <!--<div *ngIf="activeTab == 'DEFINE_AVAILABLE_PERIODS'">
           <app-boat-owner-available-periods [boatOwner]="boatOwner"></app-boat-owner-available-periods>
         </div>-->
       </div>

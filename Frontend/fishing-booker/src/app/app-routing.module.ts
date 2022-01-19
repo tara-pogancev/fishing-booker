@@ -32,6 +32,7 @@ import { ErrorComponent } from './pages/error/error.component';
 import { CottageReservationReportComponent } from './components/cottages/cottage-owner-dashboard/cottage-reservation-report/cottage-reservation-report.component';
 import { BoatOwnerBoatPreviewComponent } from './components/boats/boat-owner-dashboard/boat-owner-boat-preview/boat-owner-boat-preview.component';
 import { BoatOwnerEditBoatComponent } from './components/boats/boat-owner-dashboard/boat-owner-edit-boat/boat-owner-edit-boat.component';
+import { BoatReservationReportComponent } from './components/boats/boat-owner-dashboard/boat-reservation-report/boat-reservation-report.component';
 
 
 const routes: Routes = [
@@ -75,6 +76,7 @@ const routes: Routes = [
   { path: 'error', component: ErrorComponent },
   { path: 'adventure-reservation-report/:id',component: AdventureReservationReportComponent},
   { path: 'cottage-reservation-report/:id',component: CottageReservationReportComponent},
+  { path: 'boat-reservation-report/:id',component: BoatReservationReportComponent},
   { path: '**', component: NotFoundComponent },
 ];
 

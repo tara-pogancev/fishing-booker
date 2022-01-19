@@ -1,6 +1,7 @@
 package com.fishingbooker.ftn.repository;
 
 import com.fishingbooker.ftn.bom.boats.BoatReservation;
+import com.fishingbooker.ftn.bom.cottages.CottageReservation;
 import com.fishingbooker.ftn.repository.base.EntityRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -15,5 +16,8 @@ public interface BoatReservationRepository extends EntityRepository<BoatReservat
 
     @Query("SELECT r FROM BoatReservation r WHERE r.reservationClient.id = :id AND r.isCanceled = true")
     List<BoatReservation> getClientCanceledBoatReservations(Long id);
+
+    @Query("SELECT r FROM BoatReservation r WHERE r.boat.boatOwner.id = :id and r.isCanceled = false")
+    List<BoatReservation> getBoatReservationsByBoatOwner(Long id);
 
 }

@@ -21,5 +21,5 @@ public interface CottageOwnerService {
 
     Long delete(Long id);
 
-    List<CottageReservation> getPastAdventureReservations(Long id);
+    List<CottageReservation> getPastCottageReservations(Long id);
 }

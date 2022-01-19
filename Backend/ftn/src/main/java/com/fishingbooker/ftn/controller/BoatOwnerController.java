@@ -1,11 +1,14 @@
 package com.fishingbooker.ftn.controller;
 
+import com.fishingbooker.ftn.bom.boats.BoatReservation;
 import com.fishingbooker.ftn.bom.users.BoatOwner;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.ApplicationUserDto;
 import com.fishingbooker.ftn.dto.BoatOwnerDto;
+import com.fishingbooker.ftn.dto.ReservationDto;
 import com.fishingbooker.ftn.service.interfaces.BoatOwnerService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,5 +42,12 @@ public class BoatOwnerController {
     @PutMapping
     public void update(@RequestBody BoatOwnerDto dto) {
         boatOwnerService.update(dto);
+    }
+
+    @GetMapping("/{id}/past-reservations")
+    @PreAuthorize("hasRole('BOAT_OWNER')")
+    public List<ReservationDto> getPastBoatReservations(@PathVariable Long id) {
+        List<BoatReservation> reservations = boatOwnerService.getPastBoatReservations(id);
+        return converter.convert(reservations, ReservationDto.class);
     }
 }

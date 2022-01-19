@@ -1,5 +1,6 @@
 package com.fishingbooker.ftn.service.interfaces;
 
+import com.fishingbooker.ftn.bom.boats.BoatReservation;
 import com.fishingbooker.ftn.bom.users.BoatOwner;
 import com.fishingbooker.ftn.dto.ApplicationUserDto;
 import com.fishingbooker.ftn.dto.BoatOwnerDto;
@@ -19,4 +20,6 @@ public interface BoatOwnerService {
     Long delete(Long id);
 
     void update(BoatOwnerDto boatOwnerDto);
+
+    List<BoatReservation> getPastBoatReservations(Long id);
 }

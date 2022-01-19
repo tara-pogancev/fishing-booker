@@ -34,6 +34,12 @@ export class ReservationReportService {
         return this._http.post<any>(url,report,{headers : headers});
     }
 
+    createBoatReservationReport(report:CreateAdventureReservationReport){
+        const url=server+'api/boat-reservation-report'+'/add-boat-reservation-report';
+        const headers=this.loginService.getHeaders();
+        return this._http.post<any>(url,report,{headers : headers});
+    }
+
     getReservationReportsForAdmin(){
         const url=server+'api/adventure-reservation-report/unprocessed';
         const headers=this.loginService.getHeaders();

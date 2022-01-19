@@ -1,0 +1,80 @@
+<div class="content is-medium">
+    <h1 class="title">Past Boat Reservations</h1>
+    <hr />
+    <div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th><abbr title="Boat">Boat</abbr></th>
+            <th><abbr title="Client">Client</abbr></th>
+            <th><abbr title="Start Date">Start Date</abbr></th>
+            <th><abbr title="End Date">End Date</abbr></th>
+            <th><abbr title="No. of People">No. of People</abbr></th>
+            <th><abbr title="Price">Price</abbr></th>
+            <th><abbr title="Create Report">Create Report</abbr></th>
+          </tr>
+        </thead>
+  
+        <tr *ngFor="let reservation of reservations">
+          <td>
+            <a href="preview-boat/{{reservation.entityId}}">{{reservation.entityName}}</a>
+          </td>
+          <td><a (click)=openModalUser()>{{getClient(reservation.userId).name}} {{getClient(reservation.userId).lastName}}</a></td>
+          <td>{{reservation.startDate}}</td>
+          <td>{{reservation.endDate}}</td>
+          <td>{{reservation.people}}</td>
+          <td>{{reservation.price}}</td>
+          <td>
+            <div class="mt-6">
+              <button class="button is-success is-pulled-right" *ngIf="reservation.createdReport == false" (click)="createReport(reservation)">Create</button>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="modal" id='modalUser' *ngFor="let reservation of reservations">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Client</p>
+          <button class="delete" aria-label="close" (click)="closeModalUser()"></button>
+        </header>
+        <section class="modal-card-body">
+          <div class="columns p-5">
+            <div class="column">
+              <div class="mb-6">
+                <h4>First Name:</h4>
+                <p>{{getClient(reservation.userId).name}}</p>
+              </div>
+              <div class="mb-6">
+                <h4>Last Name:</h4>
+                <p>{{getClient(reservation.userId).lastName}}</p>
+              </div>
+  
+              <div class="mb-6">
+                <h4>Phone:</h4>
+                <p>{{getClient(reservation.userId).phone}}</p>
+              </div>
+              <div class="mb-6">
+                <h4>Address:</h4>
+                <p>{{getClient(reservation.userId).street + ', ' + getClient(reservation.userId).city + ', ' + getClient(reservation.userId).country}}
+                </p>
+              </div>
+            </div>
+            <div class="column">
+              <div class="mb-6">
+                <h4>Email:</h4>
+                <p>{{getClient(reservation.userId).email}}</p>
+              </div>
+            </div>
+          </div>
+  
+        </section>
+        <footer class="modal-card-foot">
+  
+  
+        </footer>
+      </div>
+    </div>
+    
+  </div>

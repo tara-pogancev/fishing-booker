@@ -76,7 +76,7 @@ public class CottageOwnerServiceImpl implements CottageOwnerService {
     }
 
     @Override
-    public List<CottageReservation> getPastAdventureReservations(Long id) {
+    public List<CottageReservation> getPastCottageReservations(Long id) {
         CottageOwner cottageOwner = cottageOwnerRepository.get(id);
         List<CottageReservation> reservations = new ArrayList<>();
         if (cottageOwner != null) {
