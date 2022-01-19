@@ -42,8 +42,6 @@ public class AdventureServiceImpl implements AdventureService {
     private final AdventureQuickReservationRepository adventureQuickReservationRepository;
     private final SubscriptionService subscriptionService;
     private final MailingService mailingService;
-    private final UtilityRepository utilityRepository;
-    private final QuickReservationUtilityRepository quickReservationUtilityRepository;
 
     @Override
     public List<AdventureDto> findAll() {
@@ -300,8 +298,13 @@ public class AdventureServiceImpl implements AdventureService {
     @Override
     public List<AdventureQuickReservation> getQuickReservations(Long id) {
         Adventure adventure = adventureRepository.getById(id);
-        List<AdventureQuickReservation> quickReservations = new ArrayList<>(adventure.getAdventureQuickReservations());
-        return quickReservations;
+        if (adventure.getAdventureQuickReservations()==null){
+            return new ArrayList<>();
+        }else{
+            List<AdventureQuickReservation> quickReservations = new ArrayList<>(adventure.getAdventureQuickReservations());
+            return quickReservations;
+        }
+
     }
 
 

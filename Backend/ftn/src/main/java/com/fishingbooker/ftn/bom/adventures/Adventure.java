@@ -92,6 +92,9 @@ public class Adventure extends DatabaseEntity {
     private boolean deleted = false;
 
     public boolean existsReservations() {
+        if (adventureReservations==null){
+            return false;
+        }
         for (AdventureReservation reservation : this.adventureReservations) {
             if (reservation.getReservationEnd().isAfter(LocalDateTime.now())) {
                 return true;
@@ -101,6 +104,9 @@ public class Adventure extends DatabaseEntity {
     }
 
     public boolean existsQuickReservations() {
+        if (this.adventureQuickReservations==null){
+            return false;
+        }
         for (AdventureQuickReservation reservation : this.adventureQuickReservations) {
             if (reservation.getActionEnd().isAfter(LocalDateTime.now())) {
                 return true;
