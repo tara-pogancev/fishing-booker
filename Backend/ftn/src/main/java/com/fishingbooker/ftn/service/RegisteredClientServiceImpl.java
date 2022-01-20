@@ -230,5 +230,4 @@ public class RegisteredClientServiceImpl implements RegisteredClientService {
         return clients;
     }
 
-
 }

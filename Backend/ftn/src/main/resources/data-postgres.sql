@@ -316,7 +316,7 @@ INSERT INTO public.reservation(guest_number, price, reservation_end, reservation
 
 INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled, version)	VALUES (4, 54, '20220205 10:00:00 AM', '20220201 10:00:00 AM', false, 1);
 INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled, version)	VALUES (5, 78, '20220106 10:00:00 AM', '20220102 10:00:00 AM', false, 1);
-INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled, version)	VALUES (1, 32, '20220131 10:00:00 AM', '20220120 10:00:00 AM', false, 1);
+INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled, version)	VALUES (1, 32, '20220121 10:00:00 AM', '20220120 10:00:00 AM', false, 1);
 INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled, version)	VALUES (6, 10, '20220108 10:00:00 AM', '20220101 10:00:00 AM', false, 1);
 
 INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled, version)	VALUES (6, 84, '20191010 10:00:00 AM', '20191005 10:00:00 AM', false, 1);
