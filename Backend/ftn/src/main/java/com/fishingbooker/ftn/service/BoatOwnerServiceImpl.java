@@ -42,6 +42,7 @@ public class BoatOwnerServiceImpl implements BoatOwnerService {
     @Override
     public BoatOwner create(ApplicationUserDto userDto) {
         BoatOwner boatOwner = converter.convert(userDto, BoatOwner.class);
+        boatOwner.setPassword(new BCryptPasswordEncoder().encode(userDto.getPassword()));
         return boatOwnerRepository.save(boatOwner);
     }
 
