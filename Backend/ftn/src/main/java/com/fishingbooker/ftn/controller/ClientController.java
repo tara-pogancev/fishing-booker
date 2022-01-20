@@ -102,6 +102,20 @@ public class ClientController {
         return clientDtos;
     }
 
+    @GetMapping("/users-with-cottage-reservation/{id}")
+    public List<RegisteredClientDto> getClientsWithCottageReservation(@PathVariable("id") Long cottageOwnerId) {
+        List<RegisteredClient> clients = clientService.getClientsWithCottageReservation(cottageOwnerId);
+        List<RegisteredClientDto> clientDtos = converter.convert(clients, RegisteredClientDto.class);
+        return clientDtos;
+    }
+
+    @GetMapping("/users-with-boat-reservation/{id}")
+    public List<RegisteredClientDto> getClientsWithBoatReservation(@PathVariable("id") Long boatOwnerId) {
+        List<RegisteredClient> clients = clientService.getClientsWithBoatReservation(boatOwnerId);
+        List<RegisteredClientDto> clientDtos = converter.convert(clients, RegisteredClientDto.class);
+        return clientDtos;
+    }
+
     @PostMapping("/book-action/{clientId}/{type}/{actionId}")
     public ResponseEntity<Long> bookAction(@PathVariable Long clientId, @PathVariable Long actionId, @PathVariable String type) {
         Reservation reservation = actionReservationService.bookAction(clientId, actionId, type);

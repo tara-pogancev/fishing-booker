@@ -28,6 +28,9 @@
         <li>
           <a [ngClass]="{ 'is-active': activeTab === 'QUICK_RESERVATIONS' }" (click)="changeTab('QUICK_RESERVATIONS')">Quick Reservations</a>
         </li>
+        <li>
+          <a [ngClass]="{ 'is-active': activeTab === 'CREATE_RESERVATION' }" (click)="changeTab('CREATE_RESERVATION')">Create Reservation</a>
+        </li>
       </ul>
     </aside>
   </div>
@@ -60,6 +63,9 @@
       </div>
       <div *ngIf="activeTab == 'QUICK_RESERVATIONS'">
         <app-cottage-owner-quick-reservations [cottageOwner]="cottageOwner"></app-cottage-owner-quick-reservations>
+      </div>
+      <div *ngIf="activeTab == 'CREATE_RESERVATION'">
+        <app-cottage-owner-create-reservation [cottageOwner]="cottageOwner"></app-cottage-owner-create-reservation>
       </div>
     </div>
   </div>

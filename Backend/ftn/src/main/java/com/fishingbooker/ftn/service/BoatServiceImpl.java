@@ -9,14 +9,14 @@ import com.fishingbooker.ftn.bom.boats.AvailableBoatTimePeriod;
 import com.fishingbooker.ftn.bom.boats.Boat;
 import com.fishingbooker.ftn.bom.boats.BoatQuickReservation;
 import com.fishingbooker.ftn.bom.boats.BoatReservation;
+import com.fishingbooker.ftn.bom.boats.Boat;
+import com.fishingbooker.ftn.bom.boats.BoatReservation;
+import com.fishingbooker.ftn.bom.boats.BoatUtility;
 import com.fishingbooker.ftn.bom.users.BoatOwner;
 import com.fishingbooker.ftn.bom.users.RegisteredClient;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.conversion.UnixTimeToLocalDateTimeConverter;
-import com.fishingbooker.ftn.dto.AdventureQuickReservationDto;
-import com.fishingbooker.ftn.dto.BoatCreationDto;
-import com.fishingbooker.ftn.dto.BoatDto;
-import com.fishingbooker.ftn.dto.EntitySearchDto;
+import com.fishingbooker.ftn.dto.*;
 import com.fishingbooker.ftn.repository.*;
 import com.fishingbooker.ftn.service.interfaces.*;
 import lombok.RequiredArgsConstructor;
@@ -56,6 +56,7 @@ public class BoatServiceImpl implements BoatService {
     private final MailingService mailingService;
     private final BoatQuickReservationRepository boatQuickReservationRepository;
     private final AvailableBoatTimePeriodRepository availableBoatTimePeriodRepository;
+    private final RegisteredClientRepository clientRepository;
 
     @Override
     public List<Boat> findAll() {
@@ -250,6 +251,33 @@ public class BoatServiceImpl implements BoatService {
                 mailingService.sendMailToSubscribedUsers(client, persistedReservation.getReservationClient().getFullName());
             }
             return persistedReservation.getId();
+        }
+    }
+
+    @Override
+    public List<BoatUtility> getBoatUtilities(Long id) {
+        Boat boat = boatRepository.getById(id);
+        return new ArrayList<>(boat.getUtilities());
+    }
+
+    @Override
+    public Long createReservation(NewReservationDto dto) {
+        Boat boat = boatRepository.getById(dto.getEntityId());
+        if (!validate(boat, UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getStartDate()), UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getEndDate()))) {
+            return -1L;
+        } else {
+            BoatReservation boatReservation = new BoatReservation();
+            boatReservation.setBoat(boat);
+            boatReservation.setReservationClient(clientRepository.getById(dto.getClientId()));
+            boatReservation.setReservationStart(UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getStartDate()));
+            boatReservation.setReservationEnd(UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getEndDate()));
+            boatReservation.setGuestNumber(dto.getGuestNumber());
+            boatReservation.setPrice(dto.getPrice());
+            boatReservation.setGuestNumber(dto.getGuestNumber());
+            boatReservation.setPrice(dto.getPrice());
+            Set<BoatUtility> utilities = utilityService.convertStringToUtility(dto.getUtilities(), boat);
+            boatReservation.setUtilities(utilities);
+            return boatReservationRepository.save(boatReservation).getId();
         }
     }
 

@@ -36,7 +36,7 @@ public class CottageServiceImpl implements CottageService {
     private final CottageRepository cottageRepository;
     private final RuleOfConductService ruleOfConductService;
     private final CottageOwnerRepository cottageOwnerRepository;
-    private final CottageReservationRepository reservationRepository;
+    private final CottageReservationRepository cottageReservationRepository;
     private final RoomRepository roomRepository;
     private SubscriptionService subscriptionService;
     @Autowired
@@ -46,6 +46,7 @@ public class CottageServiceImpl implements CottageService {
     private final MailingService mailingService;
     private final CottageQuickReservationRepository cottageQuickReservationRepository;
     private final AvailableCottageTimePeriodRepository availableCottageTimePeriodRepository;
+    private final RegisteredClientRepository clientRepository;
 
     @Override
     public List<Cottage> findAll() {
@@ -143,7 +144,7 @@ public class CottageServiceImpl implements CottageService {
     }
 
     private List<Cottage> getFormerlyCanceledCottagesByUserByDate(EntitySearchDto filterDto, Long userId) {
-        List<CottageReservation> canceled = reservationRepository.getClientCanceledCottageReservations(userId);
+        List<CottageReservation> canceled = cottageReservationRepository.getClientCanceledCottageReservations(userId);
         List<Cottage> formerlyCanceledCottages = new ArrayList<>();
         for (CottageReservation reservation : canceled) {
             if (dateService.doDatesMatchNearby(filterDto.startDate, filterDto.endDate, reservation.getReservationStart(), reservation.getReservationEnd())) {
@@ -164,7 +165,7 @@ public class CottageServiceImpl implements CottageService {
 
     @Override
     public List<CottageReservation> getReservationsByCottage(Long cottageId) {
-        return reservationRepository.getCottageReservations(cottageId);
+        return cottageReservationRepository.getCottageReservations(cottageId);
     }
 
     @Override
@@ -205,12 +206,39 @@ public class CottageServiceImpl implements CottageService {
         }
     }
 
+    @Override
+    public List<CottageUtility> getCottageUtilities(Long id) {
+        Cottage cottage = cottageRepository.getById(id);
+        return new ArrayList<>(cottage.getUtilities());
+    }
+
+    @Override
+    public Long createReservation(NewReservationDto dto) {
+        Cottage cottage = cottageRepository.getById(dto.getEntityId());
+        if (!validate(cottage, UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getStartDate()), UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getEndDate()))) {
+            return -1L;
+        } else {
+            CottageReservation cottageReservation = new CottageReservation();
+            cottageReservation.setCottage(cottage);
+            cottageReservation.setReservationClient(clientRepository.getById(dto.getClientId()));
+            cottageReservation.setReservationStart(UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getStartDate()));
+            cottageReservation.setReservationEnd(UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getEndDate()));
+            cottageReservation.setGuestNumber(dto.getGuestNumber());
+            cottageReservation.setPrice(dto.getPrice());
+            cottageReservation.setGuestNumber(dto.getGuestNumber());
+            cottageReservation.setPrice(dto.getPrice());
+            Set<CottageUtility> utilities = utilityService.convertStringToUtility(dto.getUtilities(), cottage);
+            cottageReservation.setUtilities(utilities);
+            return cottageReservationRepository.save(cottageReservation).getId();
+        }
+    }
+
     private boolean validate(Cottage cottage, LocalDateTime startDate, LocalDateTime endDate) {
         List<CottageQuickReservation> quickReservations = cottageQuickReservationRepository.getOverlappedWithNewAction(startDate, endDate, cottage.getId());
         if (quickReservations.size() != 0) { //vec postoji kreiranja brza rezervacija u ovom periodu
             return false;
         }
-        List<CottageReservation> cottageReservations = reservationRepository.getOverlappedWithNewAction(startDate, endDate, cottage.getId());
+        List<CottageReservation> cottageReservations = cottageReservationRepository.getOverlappedWithNewAction(startDate, endDate, cottage.getId());
         if (cottageReservations.size() != 0) {//vec postoji kreirana obicna rezervacija u ovom periodu
             return false;
         }
