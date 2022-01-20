@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Boat } from 'src/app/model/boat-model';
+import { ReservationModel } from 'src/app/model/reservation-model';
 import { BoatService } from 'src/app/service/boat.service';
 import { ImageService } from 'src/app/service/image.service';
 
@@ -13,6 +14,8 @@ export class BoatOwnerBoatPreviewComponent implements OnInit {
   id: number = 0;
   boat: Boat = new Boat();
   image: any = 'assets/images/placeholder.jpg';
+  reservations: ReservationModel[] = [];
+  reservationsLoaded: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -25,6 +28,11 @@ export class BoatOwnerBoatPreviewComponent implements OnInit {
 
     this.boatService.findById(this.id).subscribe((data) => {
       this.boat = data;
+    });
+
+    this.boatService.getBoatReservations(this.id).subscribe((data) => {
+      this.reservations = data;
+      this.reservationsLoaded = true;
     });
   }
 

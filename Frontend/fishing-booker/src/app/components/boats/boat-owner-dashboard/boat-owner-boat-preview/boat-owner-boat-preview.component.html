@@ -88,7 +88,11 @@
       </div>
       <hr />
       <div>
-        <entity-calendar></entity-calendar>
+        <entity-calendar
+          *ngIf="boat.id != 0 && reservationsLoaded"
+          [availableDates]="boat.availableTimePeriods"
+          [reservationDates]="reservations"
+        ></entity-calendar>
       </div>
     </div>
   </div>
