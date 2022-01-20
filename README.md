@@ -67,7 +67,7 @@ ng serve
 ## Sacalibility & Concurrent Database Access
 
  In the folder `docs` you may find separate folders for each student's implementation for the task **4.4 - Concurrent Database Access**.
- In the said folder you will also find the [**Proof of Concept**] (https://github.com/tara-pogancev/fishing-booker/blob/main/docs/Proof%20of%20Concept.pdf) PDF, made for the task **4.8 - Scalability**, as well as the database scheme (PowerDesigner file).
+ In the said folder you will also find the [Proof of Concept] (https://github.com/tara-pogancev/fishing-booker/blob/main/docs/Proof%20of%20Concept.pdf) PDF, made for the task **4.8 - Scalability**, as well as the database scheme (PowerDesigner file).
 
 ## Resources
 
