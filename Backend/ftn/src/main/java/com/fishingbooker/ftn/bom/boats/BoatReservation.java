@@ -24,7 +24,7 @@ public class BoatReservation extends Reservation {
 
     @ManyToMany
     @JoinTable(
-            name = "boat_quick_reservation_utilities",
+            name = "boat_reservation_utilities",
             joinColumns = @JoinColumn(name = "boat_reservation_id"),
             inverseJoinColumns = @JoinColumn(name = "boat_utility_id"))
     private Set<BoatUtility> utilities;

@@ -31,4 +31,15 @@ public class BoatQuickReservation extends QuickReservation {
     @JoinColumn(name = "boat_id")
     private Boat boat;
 
+    public void recalculateFullPrice() {
+        double fullPrice = 0;
+        if (this.utilities == null) {
+            return;
+        }
+        for (QuickReservationUtility utility : this.utilities) {
+            fullPrice += utility.getPrice();
+        }
+        this.setPrice(this.getPrice() + fullPrice);
+    }
+
 }

@@ -90,4 +90,10 @@ public class BoatController {
         return converter.convert(boat, BoatCreationDto.class);
     }
 
+    @PreAuthorize("hasRole('BOAT_OWNER')")
+    @PostMapping("/add-quick-reservation")
+    public Long addQuickReservation(@RequestBody AdventureQuickReservationDto dto) {
+        return boatService.createQuickReservation(dto);
+    }
+
 }

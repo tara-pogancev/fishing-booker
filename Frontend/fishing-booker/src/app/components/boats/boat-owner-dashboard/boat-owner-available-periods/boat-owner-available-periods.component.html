@@ -1,0 +1,51 @@
+<div class="content is-medium">
+    <h1 class="title">Available Time Periods</h1>
+    <div class="columns">
+        <div class="column">
+            <div class="field">
+                <label class="label">Choose Boat </label>
+                <select style="height:40px;width: 200px;" [(ngModel)]="selectedBoatId" (change)="onChange($event)">
+                    <option value="-1">Select Boat</option>
+                    <option *ngFor="let boat of boats" value={{boat.id}}>{{boat.name}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="columns">
+        <div class="column is-4">
+            <div class="field">
+                <label class="label">Select Start Date </label>
+                <input type="date" style="height:40px;width: 200px;" [(ngModel)]="startDate" />
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="field">
+                <label class="label">Select End Date </label>
+                <input type="date" style="height:40px;width: 200px;" [(ngModel)]="endDate" />
+            </div>
+        </div>
+        <div class="column mt-5">
+            <button class="button is-success" (click)="createAvailablePeriod()">Create Available Period</button>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th><abbr title="Boat">Boat</abbr></th>
+            <th><abbr title="Start Date">Start Date</abbr></th>
+            <th><abbr title="End Date">End Date</abbr></th>
+          </tr>
+        </thead>
+  
+        <tr *ngFor="let availablePeriod of availablePeriods">
+          <td>
+            <a href="preview-boat/{{ selectedBoatId }}">{{ selectedBoat.name }}</a>
+          </td>
+          <td>{{ this.pipe.transform(availablePeriod.startDate, 'dd/MM/yyyy') }}</td>
+          <td>{{ this.pipe.transform(availablePeriod.endDate, 'dd/MM/yyyy') }}</td>
+        </tr>
+    </table>
+</div>

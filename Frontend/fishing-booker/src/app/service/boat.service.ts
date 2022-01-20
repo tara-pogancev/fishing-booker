@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { server } from '../app-global';
+import { AdventureQuickReservation } from '../model/adventure-quick-reservation-model';
 import { CreateBoatModel } from '../model/create-boat-model';
 import { ReservationModel } from '../model/reservation-model';
 import { SearchFilter } from '../model/search-filter-model';
@@ -87,5 +88,11 @@ export class BoatService {
     const url = server + 'api/boats/';
     const headers = this.loginService.getHeaders();
     return this._http.get<any>(url + id, { headers: headers });
+  }
+
+  createBoatQuickReservation(reservation: AdventureQuickReservation) {
+    const url = server + 'api/boats/add-quick-reservation';
+    const headers = this.loginService.getHeaders();
+    return this._http.post<any>(url, reservation, { headers: headers });
   }
 }
