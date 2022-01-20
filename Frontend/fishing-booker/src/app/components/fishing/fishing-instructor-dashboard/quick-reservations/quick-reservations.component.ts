@@ -4,6 +4,7 @@ import { UtilityService } from 'src/app/service/utility.service';
 import { Utility } from 'src/app/model/utility-model';
 import { AdvetnureService } from '../../../../service/adventure-service';
 import { AdventureQuickReservation } from '../../../../model/adventure-quick-reservation-model';
+import { CreateAdventureQuickReservation } from '../../../../model/create-quick-reservation';
 
 @Component({
   selector: 'app-quick-reservations',
@@ -12,6 +13,8 @@ import { AdventureQuickReservation } from '../../../../model/adventure-quick-res
 })
 export class QuickReservationsComponent implements OnInit {
 
+  actionEnd:Date=new Date();
+  actionStart:Date=new Date();
   adventures:any=[];
   utilities:Utility[]=[];
   newService:string='';
@@ -19,7 +22,7 @@ export class QuickReservationsComponent implements OnInit {
   selectedService='';
   selectedAdventureId:number=-1;
   chosenUtilities:Utility[]=[];
-  reservation:AdventureQuickReservation=new AdventureQuickReservation();
+  reservation:CreateAdventureQuickReservation=new CreateAdventureQuickReservation();
   validForm=true;
   constructor(private utilityService:UtilityService, private adventureService:AdvetnureService) { 
   }
@@ -79,14 +82,14 @@ export class QuickReservationsComponent implements OnInit {
 
 
   validateForm(){
-    if (this.reservation.actionEnd!=new Date() && this.reservation.actionStart != new Date() && this.reservation.guestLimit>0 && this.reservation.price>0 ){
+    if (this.actionEnd!=new Date() && this.actionStart != new Date() && this.reservation.guestLimit>0 && this.reservation.price>0 ){
       this.validForm=true;
       this.reservation.adventureUtilityDtoList=this.chosenUtilities;
-      this.reservation.actionStart=new Date(this.reservation.actionStart);
-      this.reservation.actionEnd=new Date(this.reservation.actionEnd);
+      this.reservation.actionStart=new Date(this.actionStart).getTime()/1000;
+      this.reservation.actionEnd=new Date(this.actionEnd).getTime()/1000;
       this.adventureService.createAdventureQuickReservation(this.reservation).subscribe(data=>{
         
-          alert('Adventure successfully added!');
+          alert('Reservation is successfully added!');
         
       },
       error=>{
@@ -94,7 +97,7 @@ export class QuickReservationsComponent implements OnInit {
       }
       
       );
-      this.reservation=new AdventureQuickReservation();
+      this.reservation=new CreateAdventureQuickReservation();
     }else{
       this.validForm=false;
     }

@@ -200,16 +200,16 @@ public class AdventureServiceImpl implements AdventureService {
     }
 
     @Override
-    public Long createQuickReservation(AdventureQuickReservationDto dto) {
+    public Long createQuickReservation(CreateAdventureQuickReservationDto dto) {
         try {
             Adventure adventure = adventureRepository.getAdventure(dto.getAdventureId());
-            if (!validate(adventure.getInstructor().getId(), dto.getActionStart(), dto.getActionEnd())) {
+            if (!validate(adventure.getInstructor().getId(), UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getActionStart()), UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getActionEnd()))) {
                 return -1l;
             } else {
                 AdventureQuickReservation adventureQuickReservation = new AdventureQuickReservation();
                 adventureQuickReservation.setAdventure(adventure);
-                adventureQuickReservation.setActionStart(dto.getActionStart());
-                adventureQuickReservation.setActionEnd(dto.getActionEnd());
+                adventureQuickReservation.setActionStart(UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getActionStart()));
+                adventureQuickReservation.setActionEnd(UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getActionEnd()));
                 adventureQuickReservation.setGuestLimit(dto.getGuestLimit());
                 adventureQuickReservation.setPrice(dto.getPrice());
                 adventureQuickReservation.setUtilities(utilityService.convertUtilityDtoToUtility(dto.getAdventureUtilityDtoList()));

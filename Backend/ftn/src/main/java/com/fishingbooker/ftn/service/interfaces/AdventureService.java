@@ -30,7 +30,7 @@ public interface AdventureService {
 
     List<Adventure> findFiltered(EntitySearchDto filterDto, Long userId);
 
-    Long createQuickReservation(AdventureQuickReservationDto reservation);
+    Long createQuickReservation(CreateAdventureQuickReservationDto reservation);
 
     List<AdventureQuickReservation> getQuickReservations(Long id);
 

@@ -4,6 +4,7 @@ import { NumberValueAccessor } from '@angular/forms';
 import { server } from '../app-global';
 import { AdventureQuickReservation } from '../model/adventure-quick-reservation-model';
 import { CreateAdventureModel } from '../model/create-adventure-model';
+import { CreateAdventureQuickReservation } from '../model/create-quick-reservation';
 import { InstructorNewReservation } from '../model/instructor-new-reservation';
 import { ReservationModel } from '../model/reservation-model';
 import { SearchFilter } from '../model/search-filter-model';
@@ -85,7 +86,7 @@ export class AdvetnureService {
     const url = this.url + '/reviews/' + id;
     return this._http.get<any>(url);
   }
-  createAdventureQuickReservation(reservation: AdventureQuickReservation) {
+  createAdventureQuickReservation(reservation: CreateAdventureQuickReservation) {
     const url = server + 'api/adventures/add-quick-reservation';
     const headers = this.loginService.getHeaders();
     return this._http.post<any>(url, reservation, { headers: headers });
