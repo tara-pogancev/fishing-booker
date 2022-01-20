@@ -79,7 +79,11 @@
       </div>
       <hr />
       <div>
-        <entity-calendar></entity-calendar>
+        <entity-calendar
+          *ngIf="cottage.id != 0 && reservationsLoaded"
+          [availableDates]="cottage.availableTimePeriods"
+          [reservationDates]="reservations"
+        ></entity-calendar>
       </div>
     </div>
   </div>
