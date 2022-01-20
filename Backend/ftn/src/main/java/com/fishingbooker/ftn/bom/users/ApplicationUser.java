@@ -40,6 +40,9 @@ public class ApplicationUser extends DatabaseEntity {
     @Column(name = "enabled")
     private Boolean enabled = false;
 
+    @Column(name = "deleted")
+    private boolean deleted = false;
+
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private RegistrationRequest request;
 
@@ -47,7 +50,5 @@ public class ApplicationUser extends DatabaseEntity {
         return this.name + " " + this.lastName;
     }
 
-    @Column(name = "deleted")
-    private boolean deleted = false;
 
 }

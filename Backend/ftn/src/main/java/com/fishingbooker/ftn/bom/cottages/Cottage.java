@@ -18,8 +18,6 @@ import java.util.Set;
 @Table(name = "Cottage")
 public class Cottage extends DatabaseEntity {
 
-    //todo: vikendica moze da ima periode zauzetosti koje definise vlasnik
-
     @Column(name = "deleted")
     private boolean deleted = false;
 
