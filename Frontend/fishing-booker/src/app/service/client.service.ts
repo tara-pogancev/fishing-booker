@@ -112,4 +112,10 @@ export class ClientService {
     const headers = this.loginService.getHeaders();
     return this._http.get<Client[]>(url, { headers: headers });
   }
+
+  getClientsWithBoatReservationAtTheMoment(id: number): Observable<Client[]> {
+    const url = this.url + '/users-with-boat-reservation/' + id;
+    const headers = this.loginService.getHeaders();
+    return this._http.get<Client[]>(url, { headers: headers });
+  }
 }

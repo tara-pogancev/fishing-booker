@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { server } from '../app-global';
 import { AdventureQuickReservation } from '../model/adventure-quick-reservation-model';
 import { CreateBoatModel } from '../model/create-boat-model';
+import { NewReservation } from '../model/new-reservation';
 import { ReservationModel } from '../model/reservation-model';
 import { SearchFilter } from '../model/search-filter-model';
 import { LoginService } from './login.service';
@@ -94,5 +95,18 @@ export class BoatService {
     const url = server + 'api/boats/add-quick-reservation';
     const headers = this.loginService.getHeaders();
     return this._http.post<any>(url, reservation, { headers: headers });
+  }
+
+  createBoatReservation(reservation: NewReservation) {
+    const url = server + 'api/boats/add-reservation';
+    const headers = this.loginService.getHeaders();
+    return this._http.post<any>(url, reservation, { headers: headers });
+  }
+
+  getBoatUtilities(boatId: number) {
+    const id = this.loginService.getCurrentUser().id;
+    const url = server + 'api/boats/get-boat-utilities/' + id;
+    const headers = this.loginService.getHeaders();
+    return this._http.get<any>(url, { headers: headers });
   }
 }

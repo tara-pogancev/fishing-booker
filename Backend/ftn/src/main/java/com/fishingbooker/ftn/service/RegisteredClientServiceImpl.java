@@ -223,5 +223,12 @@ public class RegisteredClientServiceImpl implements RegisteredClientService {
         return false;
     }
 
+    @Override
+    public List<RegisteredClient> getClientsWithBoatReservation(Long boatOwnerId) {
+        List<Long> clientsIds = clientRepository.getUsersWithBoatReservationAtTheMoment(boatOwnerId);
+        List<RegisteredClient> clients = clientsIds.stream().map(id -> clientRepository.get(id)).collect(Collectors.toList());
+        return clients;
+    }
+
 
 }

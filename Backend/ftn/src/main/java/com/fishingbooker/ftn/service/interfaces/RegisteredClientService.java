@@ -47,4 +47,5 @@ public interface RegisteredClientService {
 
     Boolean clientHasOverlappingReservation(LocalDateTime start, LocalDateTime end, Long clientId);
 
+    List<RegisteredClient> getClientsWithBoatReservation(Long boatOwnerId);
 }

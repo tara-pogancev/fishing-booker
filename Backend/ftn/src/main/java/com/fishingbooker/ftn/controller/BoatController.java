@@ -2,6 +2,7 @@ package com.fishingbooker.ftn.controller;
 
 import com.fishingbooker.ftn.bom.boats.*;
 import com.fishingbooker.ftn.bom.boats.Boat;
+import com.fishingbooker.ftn.bom.boats.BoatUtility;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.*;
 import com.fishingbooker.ftn.service.interfaces.BoatService;
@@ -94,6 +95,21 @@ public class BoatController {
     @PostMapping("/add-quick-reservation")
     public Long addQuickReservation(@RequestBody AdventureQuickReservationDto dto) {
         return boatService.createQuickReservation(dto);
+    }
+
+    @PreAuthorize("hasRole('BOAT_OWNER')")
+    @PostMapping("/add-reservation")
+    public Long addReservation(@RequestBody NewReservationDto dto) {
+        Long ret = boatService.createReservation(dto);
+        return ret;
+    }
+
+    @PreAuthorize("hasRole('BOAT_OWNER')")
+    @GetMapping("/get-boat-utilities/{id}")
+    public List<BoatUtilityDto> getBoatUtilities(@PathVariable Long id) {
+        List<BoatUtility> utilities = boatService.getBoatUtilities(id);
+        List<BoatUtilityDto> utilityDtos = converter.convert(utilities, BoatUtilityDto.class);
+        return utilityDtos;
     }
 
 }
