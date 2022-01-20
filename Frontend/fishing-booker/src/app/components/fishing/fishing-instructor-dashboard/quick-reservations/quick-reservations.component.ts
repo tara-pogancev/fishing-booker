@@ -85,12 +85,15 @@ export class QuickReservationsComponent implements OnInit {
       this.reservation.actionStart=new Date(this.reservation.actionStart);
       this.reservation.actionEnd=new Date(this.reservation.actionEnd);
       this.adventureService.createAdventureQuickReservation(this.reservation).subscribe(data=>{
-        if (data!=-1){
+        
           alert('Adventure successfully added!');
-        }else{
-          alert('Reservation in selected date already exist');
-        }
-      });
+        
+      },
+      error=>{
+        alert('Reservation in selected date already exist');
+      }
+      
+      );
       this.reservation=new AdventureQuickReservation();
     }else{
       this.validForm=false;

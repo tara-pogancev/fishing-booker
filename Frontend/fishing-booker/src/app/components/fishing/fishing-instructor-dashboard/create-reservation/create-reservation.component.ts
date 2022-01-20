@@ -42,10 +42,12 @@ export class CreateReservationComponent implements OnInit {
       return;
     }
     this.adventureService.createAdventureReservation(this.reservation).subscribe(data=>{
-      if (data==-1){
-        alert('Reservation in selected date already exists or fishing instructor is not available');
+      alert("Reservation successfully created!");
+      },
+      error=>{
+        alert('Reservation in selected date already exists or fishing instructor is not available')
       }
-    });
+    );
   }
 
   removeService(service:Utility){

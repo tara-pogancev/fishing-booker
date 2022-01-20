@@ -17,7 +17,8 @@ public interface AdventureReservationRepository extends EntityRepository<Adventu
     List<AdventureReservation> getInSelectedDate(@Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate, @Param("id") Long id);
 
     @Query(value = "SELECT * FROM public.adventure_reservation natural join public.reservation\n" +
-            "WHERE adventure_id=:id and ((:startDate between reservation_start and reservation_end) or (:endDate  between reservation_start and reservation_end))", nativeQuery = true)
+            "WHERE adventure_id=:id and  is_canceled=false and ((:startDate between reservation_start and reservation_end) or (:endDate  between reservation_start and reservation_end) " +
+            "or (reservation_start between :startDate and :endDate) or (reservation_end between :startDate and :endDate))", nativeQuery = true)
     List<AdventureReservation> getOverlappedWithNewAction(@Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate, @Param("id") Long id);
 
     @Query("SELECT r FROM AdventureReservation r WHERE r.adventure.id = :id")

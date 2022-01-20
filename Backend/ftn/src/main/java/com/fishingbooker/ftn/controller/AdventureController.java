@@ -69,9 +69,16 @@ public class AdventureController {
 
     //@PreAuthorize("hasRole('FISHING_INSTRUCTOR')")
     @PostMapping("/add-quick-reservation")
-    public Long addQuickReservation(@RequestBody AdventureQuickReservationDto dto) {
+    public ResponseEntity<Long> addQuickReservation(@RequestBody AdventureQuickReservationDto dto) {
+
         AdventureQuickReservation reservation = converter.convert(dto, AdventureQuickReservation.class);
-        return adventureService.createQuickReservation(dto);
+
+        Long id=adventureService.createQuickReservation(dto);
+        if (id!=-1){
+            return new ResponseEntity<Long>(id,HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(id,HttpStatus.BAD_REQUEST);
+        }
     }
 
     @PostMapping("/add-reservation")
