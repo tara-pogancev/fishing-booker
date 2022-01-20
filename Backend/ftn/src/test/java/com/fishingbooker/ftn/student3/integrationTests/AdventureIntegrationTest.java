@@ -3,6 +3,7 @@ package com.fishingbooker.ftn.student3.integrationTests;
 
 import com.fishingbooker.ftn.TestUtil;
 import com.fishingbooker.ftn.dto.AdventureQuickReservationDto;
+import com.fishingbooker.ftn.dto.CreateAdventureQuickReservationDto;
 import com.fishingbooker.ftn.dto.InstructorNewReservationDto;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,6 +21,8 @@ import org.springframework.web.context.WebApplicationContext;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -71,12 +74,19 @@ public class AdventureIntegrationTest {
 
     }
 
-    /*public void testCreateQuickReservation(){
-        AdventureQuickReservationDto dto=new AdventureQuickReservationDto();
+    @Test
+    public void testCreateQuickReservation() throws Exception {
+        CreateAdventureQuickReservationDto dto=new CreateAdventureQuickReservationDto();
         dto.setAdventureId(2l);
         dto.setPrice(210.0);
-        dto.setActionEnd(new LocalDateTime());
-        dto.setActionStart(1642631033l);
-    }*/
+
+        dto.setActionEnd(1649964850l);
+        dto.setActionEnd(1649994850l);
+        dto.setGuestLimit(5);
+
+        String json = TestUtil.json(dto);
+        String url= URL_PREFIX+"/add-quick-reservation";
+        this.mockMvc.perform(post(url).contentType(contentType).content(json)).andExpect(status().isBadRequest());
+    }
 
 }
