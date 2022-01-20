@@ -4,6 +4,7 @@ import com.fishingbooker.ftn.bom.boats.Boat;
 import com.fishingbooker.ftn.bom.boats.BoatReservation;
 import com.fishingbooker.ftn.bom.boats.BoatType;
 import com.fishingbooker.ftn.bom.boats.NavigationalEquipment;
+import com.fishingbooker.ftn.dto.AdventureQuickReservationDto;
 import com.fishingbooker.ftn.dto.BoatCreationDto;
 import com.fishingbooker.ftn.dto.BoatDto;
 import com.fishingbooker.ftn.dto.EntitySearchDto;
@@ -38,4 +39,6 @@ public interface BoatService {
     List<BoatType> getBoatTypes();
 
     List<NavigationalEquipment> getNavigationalEquipment();
+
+    Long createQuickReservation(AdventureQuickReservationDto dto);
 }

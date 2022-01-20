@@ -3,15 +3,25 @@ package com.fishingbooker.ftn.service;
 import com.fishingbooker.ftn.bom.Address;
 import com.fishingbooker.ftn.bom.RuleOfConduct;
 import com.fishingbooker.ftn.bom.boats.*;
+import com.fishingbooker.ftn.bom.boats.Boat;
+import com.fishingbooker.ftn.bom.boats.BoatQuickReservation;
+import com.fishingbooker.ftn.bom.boats.AvailableBoatTimePeriod;
+import com.fishingbooker.ftn.bom.boats.Boat;
+import com.fishingbooker.ftn.bom.boats.BoatQuickReservation;
+import com.fishingbooker.ftn.bom.boats.BoatReservation;
 import com.fishingbooker.ftn.bom.users.BoatOwner;
+import com.fishingbooker.ftn.bom.users.RegisteredClient;
 import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.conversion.UnixTimeToLocalDateTimeConverter;
+import com.fishingbooker.ftn.dto.AdventureQuickReservationDto;
 import com.fishingbooker.ftn.dto.BoatCreationDto;
 import com.fishingbooker.ftn.dto.BoatDto;
 import com.fishingbooker.ftn.dto.EntitySearchDto;
 import com.fishingbooker.ftn.repository.*;
 import com.fishingbooker.ftn.service.interfaces.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -38,6 +48,14 @@ public class BoatServiceImpl implements BoatService {
     private final UtilityService utilityService;
     private final BoatTypeRepository boatTypeRepository;
     private final NavigationalEquipmentRepository navigationalEquipmentRepository;
+    private SubscriptionService subscriptionService;
+    @Autowired
+    public void setSubscriptionService(@Lazy SubscriptionService subscriptionService) {
+        this.subscriptionService = subscriptionService;
+    }
+    private final MailingService mailingService;
+    private final BoatQuickReservationRepository boatQuickReservationRepository;
+    private final AvailableBoatTimePeriodRepository availableBoatTimePeriodRepository;
 
     @Override
     public List<Boat> findAll() {
@@ -210,6 +228,46 @@ public class BoatServiceImpl implements BoatService {
     @Override
     public List<NavigationalEquipment> getNavigationalEquipment() {
         return navigationalEquipmentRepository.findAll();
+    }
+
+    @Override
+    public Long createQuickReservation(AdventureQuickReservationDto dto) {
+        Boat boat = boatRepository.getById(dto.getAdventureId());
+        if (!validate(boat, dto.getActionStart(), dto.getActionEnd())) {
+            return -1l;
+        } else {
+            BoatQuickReservation boatQuickReservation = new BoatQuickReservation();
+            boatQuickReservation.setBoat(boat);
+            boatQuickReservation.setActionStart(dto.getActionStart());
+            boatQuickReservation.setActionEnd(dto.getActionEnd());
+            boatQuickReservation.setGuestLimit(dto.getGuestLimit());
+            boatQuickReservation.setPrice(dto.getPrice());
+            boatQuickReservation.setUtilities(utilityService.convertUtilityDtoToUtility(dto.getAdventureUtilityDtoList()));
+            boatQuickReservation.recalculateFullPrice();
+            BoatQuickReservation persistedReservation = boatQuickReservationRepository.save(boatQuickReservation);
+            List<RegisteredClient> clients = subscriptionService.getBoatSubscribers(persistedReservation.getBoat().getBoatOwner().getId());
+            for (RegisteredClient client : clients) {
+                mailingService.sendMailToSubscribedUsers(client, persistedReservation.getReservationClient().getFullName());
+            }
+            return persistedReservation.getId();
+        }
+    }
+
+    private boolean validate(Boat boat, LocalDateTime startDate, LocalDateTime endDate) {
+        List<BoatQuickReservation> quickReservations = boatQuickReservationRepository.getOverlappedWithNewAction(startDate, endDate, boat.getId());
+        if (quickReservations.size() != 0) { //vec postoji kreiranja brza rezervacija u ovom periodu
+            return false;
+        }
+        List<BoatReservation> boatReservations = boatReservationRepository.getOverlappedWithNewAction(startDate, endDate, boat.getId());
+        if (boatReservations.size() != 0) {//vec postoji kreirana obicna rezervacija u ovom periodu
+            return false;
+        }
+        List<AvailableBoatTimePeriod> periods = availableBoatTimePeriodRepository.getAvailabilityForDate(startDate, endDate, boat.getId());
+        if (periods.size() == 0) { //znaci da vikendica nije dostupna za vrijeme kreiranja
+            return false;
+        }
+
+        return true;
     }
 
     private NavigationalEquipment getNavigationalEquipmentByName(String name) {

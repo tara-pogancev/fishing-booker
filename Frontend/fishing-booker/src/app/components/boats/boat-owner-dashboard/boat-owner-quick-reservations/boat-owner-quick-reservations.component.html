@@ -1,0 +1,144 @@
+<div class="content is-medium">
+    <h1 class="title">Add Quick Reservation</h1>
+    <hr />
+    <div class="box p-6">
+      <h4>Chose Boat</h4>
+  
+      <div class="columns">
+        <div class="column">
+            <div class="field">
+              <label class="label"></label>
+              
+                <select style="height:40px;width: 300px;" [(ngModel)]=reservation.adventureId>
+                  <option value="">Select dropdown</option>
+                  <option *ngFor="let boat of boats" value={{boat.id}}>{{boat.name}}</option>
+                </select>
+            </div>
+        </div>
+      </div>
+
+      <div class="columns">
+        <div class="column">
+            <div class="field">
+              <label class="label">Start Date</label>
+              <div class="control">
+                <input
+                  class="input"
+                  type="date"
+                  placeholder="Street"
+                  [(ngModel)]=reservation.actionStart
+                />
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="field">
+              <label class="label">End Date</label>
+              <div class="control">
+                <input
+                  class="input"
+                  type="date"
+                  placeholder="End date"
+                  [(ngModel)]=reservation.actionEnd
+                />
+              </div>
+            </div>
+          </div>
+       </div>
+
+       <div class="columns">
+        <div class="column">
+            <div class="field">
+              <label class="label">Maximum nuber of persons:</label>
+              <div class="control">
+                <input
+                  class="input"
+                  type="text"
+                  placeholder="Maximum number of persons"
+                  [(ngModel)]=reservation.guestLimit
+                />
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="field">
+              <label class="label">Price:</label>
+              <div class="control">
+                <input
+                  class="input"
+                  type="text"
+                  placeholder="Price"
+                  [(ngModel)]=reservation.price
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <gap height="40"></gap>
+      <hr />
+      <h4>Additional services</h4>
+      <div class="columns">
+        
+        <div class="column">
+            <div class="field">
+              <label class="label">Chose additional services </label>
+              
+                <select style="height:40px;width: 200px;" [(ngModel)]=selectedService>
+                  <option value="">Select dropdown</option>
+                  <option *ngFor="let utility of utilities" value={{utility.name}}>{{utility.name}}</option>
+                  
+                </select>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="field">
+                <label class="label">Price</label>
+              <div class="control">
+                <input
+                  class="input"
+                  type="number"
+                  placeholder="Enter your equipment"
+                  [(ngModel)]="price"
+                />
+              </div>
+            </div>
+            
+          </div>
+          
+        <div class="column"> 
+            <div class="addDiv">
+                <button class="button is-success" style="margin-top: 30px;" (click)="addService()">Add</button>
+            </div>
+        </div>
+      </div>
+
+      <div class="columns"> 
+        <div class="column">
+            <div class="tags" >
+                <span class="tag is-warning is-medium" *ngFor="let service of chosenUtilities">
+                    Name:{{service.name}} &nbsp; &nbsp; &nbsp;Price:{{service.price}}
+                    <button class="delete is-small" (click)="removeService(service)"></button>
+                </span>
+              </div>  
+    
+          </div>
+      </div>
+
+      <gap height="30"></gap>
+      <div class="field">
+        <div class="control">
+          <button class="button is-link" (click)="validateForm()">Submit</button>
+          <p
+            class="help is-danger mt-5"
+            [ngStyle]="{
+              visibility: !validForm ? 'visible' : 'hidden'
+            }"
+          >
+            Please fill in all the form fields!
+          </p>
+        </div>
+      </div>
+      
+    </div>
