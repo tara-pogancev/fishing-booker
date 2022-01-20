@@ -17,4 +17,9 @@ public interface RegisteredClientRepository extends EntityRepository<RegisteredC
             "\tFROM public.adventure_reservation natural join public.reservation\n" +
             "\tWHERE NOW() between reservation_start and reservation_end and :instructorId in (SELECT instructor from public.adventure) ", nativeQuery = true)
     List<Long> getUsersWithReservationInMoment(@Param("instructorId") Long instructorId);
+
+    @Query(value = "SELECT user_id\n" +
+            "\tFROM public.cottage_reservation natural join public.reservation\n" +
+            "\tWHERE NOW() between reservation_start and reservation_end and :cottageOwnerId in (SELECT cottage_owner from public.cottage) ", nativeQuery = true)
+    List<Long> getUsersWithCottageReservationAtTheMoment(@Param("cottageOwnerId") Long cottageOwnerId);
 }

@@ -46,6 +46,7 @@ public class CottageServiceImpl implements CottageService {
     private final MailingService mailingService;
     private final CottageQuickReservationRepository cottageQuickReservationRepository;
     private final AvailableCottageTimePeriodRepository availableCottageTimePeriodRepository;
+    private final RegisteredClientRepository clientRepository;
 
     @Override
     public List<Cottage> findAll() {
@@ -202,6 +203,33 @@ public class CottageServiceImpl implements CottageService {
                 mailingService.sendMailToSubscribedUsers(client, persistedReservation.getReservationClient().getFullName());
             }
             return persistedReservation.getId();
+        }
+    }
+
+    @Override
+    public List<CottageUtility> getCottageUtilities(Long id) {
+        Cottage cottage = cottageRepository.getById(id);
+        return new ArrayList<>(cottage.getUtilities());
+    }
+
+    @Override
+    public Long createReservation(NewReservationDto dto) {
+        Cottage cottage = cottageRepository.getById(dto.getEntityId());
+        if (!validate(cottage, UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getStartDate()), UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getEndDate()))) {
+            return -1L;
+        } else {
+            CottageReservation cottageReservation = new CottageReservation();
+            cottageReservation.setCottage(cottage);
+            cottageReservation.setReservationClient(clientRepository.getById(dto.getClientId()));
+            cottageReservation.setReservationStart(UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getStartDate()));
+            cottageReservation.setReservationEnd(UnixTimeToLocalDateTimeConverter.TimeStampToDate(dto.getEndDate()));
+            cottageReservation.setGuestNumber(dto.getGuestNumber());
+            cottageReservation.setPrice(dto.getPrice());
+            cottageReservation.setGuestNumber(dto.getGuestNumber());
+            cottageReservation.setPrice(dto.getPrice());
+            Set<CottageUtility> utilities = utilityService.convertStringToUtility(dto.getUtilities(), cottage);
+            cottageReservation.setUtilities(utilities);
+            return reservationRepository.save(cottageReservation).getId();
         }
     }
 

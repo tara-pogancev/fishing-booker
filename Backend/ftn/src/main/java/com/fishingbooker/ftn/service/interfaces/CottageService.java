@@ -2,10 +2,8 @@ package com.fishingbooker.ftn.service.interfaces;
 
 import com.fishingbooker.ftn.bom.cottages.Cottage;
 import com.fishingbooker.ftn.bom.cottages.CottageReservation;
-import com.fishingbooker.ftn.dto.AdventureQuickReservationDto;
-import com.fishingbooker.ftn.dto.CottageCreationDto;
-import com.fishingbooker.ftn.dto.CottageDto;
-import com.fishingbooker.ftn.dto.EntitySearchDto;
+import com.fishingbooker.ftn.bom.cottages.CottageUtility;
+import com.fishingbooker.ftn.dto.*;
 import org.springframework.cache.annotation.Cacheable;
 
 import java.time.LocalDateTime;
@@ -35,4 +33,8 @@ public interface CottageService {
     Boolean isCottageAvailable(Cottage cottage, LocalDateTime start, LocalDateTime end);
 
     Long createQuickReservation(AdventureQuickReservationDto dto);
+
+    List<CottageUtility> getCottageUtilities(Long id);
+
+    Long createReservation(NewReservationDto dto);
 }

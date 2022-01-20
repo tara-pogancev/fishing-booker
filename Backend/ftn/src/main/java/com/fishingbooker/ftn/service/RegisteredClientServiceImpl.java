@@ -204,6 +204,13 @@ public class RegisteredClientServiceImpl implements RegisteredClientService {
     }
 
     @Override
+    public List<RegisteredClient> getClientsWithCottageReservation(Long cottageOwnerId) {
+        List<Long> clientsIds = clientRepository.getUsersWithCottageReservationAtTheMoment(cottageOwnerId);
+        List<RegisteredClient> clients = clientsIds.stream().map(id -> clientRepository.get(id)).collect(Collectors.toList());
+        return clients;
+    }
+
+    @Override
     public Boolean clientHasOverlappingReservation(LocalDateTime start, LocalDateTime end, Long clientId) {
         RegisteredClient client = clientRepository.getById(clientId);
         if (client != null) {
