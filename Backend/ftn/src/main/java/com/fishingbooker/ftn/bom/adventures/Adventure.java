@@ -77,6 +77,9 @@ public class Adventure extends DatabaseEntity {
     @JoinColumn(name = "instructor")
     private FishingInstructor instructor;
 
+    @Column(name = "deleted")
+    private boolean deleted = false;
+
     public List<AdventureReservation> getUnCanceledReservations() {
         List<AdventureReservation> uncanceled = new ArrayList<>();
         for (AdventureReservation adventureReservation : this.adventureReservations) {
@@ -87,9 +90,6 @@ public class Adventure extends DatabaseEntity {
 
         return uncanceled;
     }
-
-    @Column(name = "deleted")
-    private boolean deleted = false;
 
     public boolean existsReservations() {
         if (adventureReservations==null){

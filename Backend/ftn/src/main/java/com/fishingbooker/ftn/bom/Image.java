@@ -15,5 +15,7 @@ import javax.persistence.Table;
 @Table(name = "Image")
 @RequiredArgsConstructor
 public class Image extends DatabaseEntity {
+
     String url;
+
 }

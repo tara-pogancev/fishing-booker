@@ -18,7 +18,6 @@ public class BoatOwner extends ApplicationUser {
     @OneToMany(mappedBy = "boatOwner", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Boat> boats;
 
-
     @ManyToOne()
     @JoinColumn(name = "rank")
     UserRank rank;

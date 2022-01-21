@@ -7,3 +7,7 @@
   background-color: rgb(248, 125, 103);
   color: white;
 }
+
+.stretch-width {
+  width: 100% !important;
+}

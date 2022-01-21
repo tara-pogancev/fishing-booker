@@ -17,6 +17,8 @@ import javax.persistence.Table;
 @Setter
 @Table(name = "BoatType")
 public class BoatType extends DatabaseEntity {
+
     @Column(name = "name", nullable = false)
     private BoatTypeEnum name;
+
 }
