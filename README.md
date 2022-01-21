@@ -24,7 +24,7 @@ Frontend: [![badge](https://img.shields.io/badge/Heroku-frontend-9676B9)](https:
 To start the Spring Boot application, make sure you have a Postgres database `fishing-booker` ready. Default postgres user name is `postgres`. In the `application.properties` file, setup the required Enviromental Variables to suit your needs. If you decide on running the tests, verify their enviromental variables as well. Applications URL on local is `https://localhost:8080`. 
 
 This is the list of enviromental variables you need: **PASS** (your database password), **EMAIL**, **EPASS** (email password), **APP_URL**,  
- **PictureLocations** (absolute path to the assets\images folder of angular frontend application.Example:C:\Users\Djordje\Desktop\Folder_u_kom_se_projekat_nalazi\Frontend\fishing-booker\src\assets\images)
+ **PictureLocations** (absolute path to the assets\images folder of angular frontend application.     Example:C:\Users\Djordje\Desktop\Folder_u_kom_se_projekat_nalazi\Frontend\fishing-booker\src\assets\images)
 
 For the Angular application have the backend running, and run the following commands:
 ```
