@@ -93,13 +93,13 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
                         user = clientService.create(userDto);
                         break;
                 }
-                sendRegistrationConfirmationEmail(user);
-
                 Address userAddress = addressService.create(userDto);
                 user.setUserAddress(userAddress);
                 user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
                 update(user);
                 System.out.println("User added!");
+
+                sendRegistrationConfirmationEmail(user);
                 return user;
             }
         } catch (Exception e) {
