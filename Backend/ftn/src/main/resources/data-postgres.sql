@@ -324,6 +324,7 @@ INSERT INTO public.reservation(guest_number, price, reservation_end, reservation
 INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled, version)	VALUES (4, 90, '20190606 10:00:00 AM', '20190602 10:00:00 AM', false, 1);
 INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled, version)	VALUES (3, 98, '20180606 10:00:00 AM', '20180602 10:00:00 AM', false, 1);
 INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled, version)	VALUES (6, 102, '20220108 10:00:00 AM', '20220101 10:00:00 AM', false, 1);
+INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled, version)	VALUES (6, 102, '20220129 10:00:00 AM', '20220120 10:00:00 AM', false, 1);
 
 INSERT INTO public.cottage_reservation(id, cottage_id, user_id)	VALUES (1, 1, 1);
 INSERT INTO public.boat_reservation(id, boat_id, user_id)	VALUES (2, 1, 1);
@@ -337,6 +338,7 @@ INSERT INTO public.cottage_reservation(id, cottage_id, user_id)	VALUES (8, 3, 1)
 INSERT INTO public.boat_reservation(id, boat_id, user_id)	VALUES (9, 2, 1);
 INSERT INTO public.adventure_reservation(instructor_id,id, adventure_id, user_id)	VALUES (4,10, 3, 1);
 INSERT INTO public.adventure_reservation(instructor_id,id, adventure_id, user_id)	VALUES (4,11, 2, 1);
+INSERT INTO public.adventure_reservation(instructor_id,id, adventure_id, user_id)	VALUES (4,13, 2, 1);
 
 -- REVIEWS
 

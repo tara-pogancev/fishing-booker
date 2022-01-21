@@ -246,8 +246,9 @@ public class AdventureServiceImpl implements AdventureService {
                 adventureReservation.setPrice(dto.getPrice());
                 Set<AdventureUtility> utilities = utilityService.convertStringToUtility(dto.getUtilities(), adventure);
                 adventureReservation.setUtilities(utilities);
+                adventureReservation.setInstructorId(adventure.getInstructor().getId());
                 Long id=adventureReservationRepository.save(adventureReservation).getId();
-                //TODO sending mail to client
+                mailingService.sendMailToUserAboutNewReservation(adventure.getInstructor(),clientRepository.getById(dto.getClientId()));
                 return id;
             }
         } catch (PessimisticLockingFailureException e) {

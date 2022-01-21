@@ -123,7 +123,7 @@ public class ReservationServiceImpl implements ReservationService {
                         utilities.add(utility);
                 }
                 reservation.setUtilities(utilities);
-
+                reservation.setInstructorId(adventure.getInstructor().getId());
                 adventureReservationRepository.save(reservation);
                 sendReservationConfirmationEmail(client, reservationDto);
                 return reservation;

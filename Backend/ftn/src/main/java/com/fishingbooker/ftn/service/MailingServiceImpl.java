@@ -113,4 +113,16 @@ public class MailingServiceImpl implements MailingService {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void sendMailToUserAboutNewReservation(ApplicationUser instructor, RegisteredClient client) {
+        InstructorCreateNewReservation emailContext=new InstructorCreateNewReservation();
+        emailContext.setDate(client.getFullName(),instructor.getFullName());
+        emailContext.init(client);
+        try {
+            emailService.sendMail(emailContext);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+    }
 }
