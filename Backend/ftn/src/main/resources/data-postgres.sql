@@ -29,6 +29,8 @@ INSERT INTO public.application_user(deleted,email, enabled, last_name, first_nam
 INSERT INTO public.application_user(deleted,email, enabled, last_name, first_name, password, phone, role, address)	VALUES (false,'adventures@fishing.com', true, 'Filip', 'Magana', '$2a$10$KqyJ6IcfwIwV4pkjbfQ7LeGlhRRHTlIKtPKS7ElLJ0NcsOP2Zgpqm', '310-793-7864', '3', '4');
 INSERT INTO public.application_user(deleted,email, enabled, last_name, first_name, password, phone, role, address)	VALUES (false,'admin@fishing.com', true, 'Admin', 'Admin', '$2a$10$KqyJ6IcfwIwV4pkjbfQ7LeGlhRRHTlIKtPKS7ElLJ0NcsOP2Zgpqm', '978-809-5104', '4', '5');
 INSERT INTO public.application_user(deleted,email, enabled, last_name, first_name, password, phone, role, address)	VALUES (false,'djordje1499@gmail.com', true, 'Admin', 'Admin', '$2a$10$KqyJ6IcfwIwV4pkjbfQ7LeGlhRRHTlIKtPKS7ElLJ0NcsOP2Zgpqm', '978-809-5104', '4', '18');
+INSERT INTO public.application_user(deleted,email, enabled, last_name, first_name, password, phone, role, address)	VALUES (false,'client1.email@fishing.com', true, 'Marc', 'Gasol', '$2a$10$KqyJ6IcfwIwV4pkjbfQ7LeGlhRRHTlIKtPKS7ElLJ0NcsOP2Zgpqm', '210-822-0348', '0', '1');
+
 
 INSERT INTO public.registered_client(is_blocked, penalties, user_id, rank)	VALUES (false, 0, 1, null);
 INSERT INTO public.cottage_owner(user_id, rank)	VALUES (2, null);
@@ -36,7 +38,7 @@ INSERT INTO public.boat_owner(user_id, rank)	VALUES (3, null);
 INSERT INTO public.fishing_instructor(biography, rating, id, rank)	VALUES ('Lorem ipsum dolor sit amet, consectetur adipiscing elit. In blandit leo sed nibh ultrices tincidunt. Donec vulputate sapien ut mauris sagittis laoreet. Phasellus viverra nibh et eros consectetur, id facilisis est lacinia.', 0.0, 4, null);
 INSERT INTO public.administrator(user_id)	VALUES (5);
 INSERT INTO public.fishing_instructor(biography, rating, id, rank)	VALUES ('Lorem ipsum dolor sit amet, consectetur adipiscing elit. In blandit leo sed nibh ultrices tincidunt. Donec vulputate sapien ut mauris sagittis laoreet. Phasellus viverra nibh et eros consectetur, id facilisis est lacinia.', 0.0, 6, null);
-
+INSERT INTO public.registered_client(is_blocked, penalties, user_id, rank)	VALUES (false, 0, 7, null);
 -- IMAGES
 
 --boat images  id 1-8
@@ -338,7 +340,7 @@ INSERT INTO public.cottage_reservation(id, cottage_id, user_id)	VALUES (8, 3, 1)
 INSERT INTO public.boat_reservation(id, boat_id, user_id)	VALUES (9, 2, 1);
 INSERT INTO public.adventure_reservation(instructor_id,id, adventure_id, user_id)	VALUES (4,10, 3, 1);
 INSERT INTO public.adventure_reservation(instructor_id,id, adventure_id, user_id)	VALUES (4,11, 2, 1);
-INSERT INTO public.adventure_reservation(instructor_id,id, adventure_id, user_id)	VALUES (4,13, 2, 1);
+INSERT INTO public.adventure_reservation(instructor_id,id, adventure_id, user_id)	VALUES (4,13, 2, 7);
 
 -- REVIEWS
 

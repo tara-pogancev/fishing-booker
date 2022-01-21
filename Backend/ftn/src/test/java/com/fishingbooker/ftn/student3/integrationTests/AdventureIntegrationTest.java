@@ -65,8 +65,8 @@ public class AdventureIntegrationTest {
         dto.setClientId(1l);
         dto.setPrice(150.0);
         dto.setGuestNumber(4);
-        dto.setStartDate(1642631033l);
-        dto.setEndDate(1642717433l);
+        dto.setStartDate( 1646135669l);
+        dto.setEndDate( 1646222069l);
 
         String json = TestUtil.json(dto);
         String url= URL_PREFIX+"/add-reservation";
