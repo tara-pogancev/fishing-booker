@@ -39,7 +39,7 @@ public class ReservationServiceImpl implements ReservationService {
 
     private final BoatService boatService;
     private final DateService dateService;
-    private final EmailService emailService;
+    private final MailingService mailingService;
     private final CottageService cottageService;
     private final BoatRepository boatRepository;
     private final AdventureService adventureService;
@@ -87,7 +87,7 @@ public class ReservationServiceImpl implements ReservationService {
                 reservation.setUtilities(utilities);
 
                 cottageReservationRepository.save(reservation);
-                sendReservationConfirmationEmail(client, reservationDto);
+                mailingService.sendReservationConfirmationEmail(client, reservationDto);
                 return reservation;
             }
         } catch (Exception e) {
@@ -125,7 +125,7 @@ public class ReservationServiceImpl implements ReservationService {
                 reservation.setUtilities(utilities);
                 reservation.setInstructorId(adventure.getInstructor().getId());
                 adventureReservationRepository.save(reservation);
-                sendReservationConfirmationEmail(client, reservationDto);
+                mailingService.sendReservationConfirmationEmail(client, reservationDto);
                 return reservation;
             }
         } catch (Exception e) {
@@ -164,7 +164,7 @@ public class ReservationServiceImpl implements ReservationService {
                 reservation.setUtilities(utilities);
 
                 boatReservationRepository.save(reservation);
-                sendReservationConfirmationEmail(client, reservationDto);
+                mailingService.sendReservationConfirmationEmail(client, reservationDto);
 
                 return reservation;
             }
@@ -269,17 +269,6 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public List<Reservation> getInDate(LocalDate startDate, LocalDate endDate) {
         return reservationRepository.getReservationsInDate(startDate, endDate);
-    }
-
-    public void sendReservationConfirmationEmail(ApplicationUser user, ReservationDto reservationDto) {
-        ClientReservationConfirmationEmailContext emailContext = new ClientReservationConfirmationEmailContext();
-        emailContext.init(user);
-        emailContext.setReservationData(reservationDto);
-        try {
-            emailService.sendMail(emailContext);
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        }
     }
 
     private Boolean clientHasOverlappingReservation(LocalDateTime start, LocalDateTime end, Long clientId) {

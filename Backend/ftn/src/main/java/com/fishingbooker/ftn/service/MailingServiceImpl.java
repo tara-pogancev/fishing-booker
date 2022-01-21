@@ -2,11 +2,17 @@ package com.fishingbooker.ftn.service;
 
 import com.fishingbooker.ftn.bom.users.ApplicationUser;
 import com.fishingbooker.ftn.bom.users.RegisteredClient;
+import com.fishingbooker.ftn.dto.ReservationDto;
 import com.fishingbooker.ftn.email.context.*;
 import com.fishingbooker.ftn.email.service.EmailService;
+import com.fishingbooker.ftn.repository.RegistrationTokenRepository;
+import com.fishingbooker.ftn.security.registration.RegistrationToken;
+import com.fishingbooker.ftn.security.registration.RegistrationTokenService;
 import com.fishingbooker.ftn.service.interfaces.MailingService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.security.core.token.TokenService;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
@@ -16,6 +22,11 @@ import javax.mail.MessagingException;
 public class MailingServiceImpl implements MailingService {
 
     private final EmailService emailService;
+    private final RegistrationTokenService tokenService;
+    private final RegistrationTokenRepository registrationTokenRepository;
+
+    @Value("${site.base.url.https}")
+    private String baseURL;
 
     @Override
     @Async
@@ -133,4 +144,18 @@ public class MailingServiceImpl implements MailingService {
             e.printStackTrace();
         }
     }
+
+    @Override
+    @Async
+    public void sendReservationConfirmationEmail(ApplicationUser user, ReservationDto reservationDto) {
+        ClientReservationConfirmationEmailContext emailContext = new ClientReservationConfirmationEmailContext();
+        emailContext.init(user);
+        emailContext.setReservationData(reservationDto);
+        try {
+            emailService.sendMail(emailContext);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
