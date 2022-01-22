@@ -1,10 +1,8 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
 
 import { server } from '../app-global';
-import { ActionModel } from '../model/action-model';
 import { Client } from '../model/client-model';
 import { SearchFilter } from '../model/search-filter-model';
 import { LoginService } from './login.service';
@@ -107,7 +105,9 @@ export class ClientService {
     return this._http.get<any>(url, { headers: headers });
   }
 
-  getClientsWithCottageReservationAtTheMoment(id: number): Observable<Client[]> {
+  getClientsWithCottageReservationAtTheMoment(
+    id: number
+  ): Observable<Client[]> {
     const url = this.url + '/users-with-cottage-reservation/' + id;
     const headers = this.loginService.getHeaders();
     return this._http.get<Client[]>(url, { headers: headers });
@@ -117,5 +117,9 @@ export class ClientService {
     const url = this.url + '/users-with-boat-reservation/' + id;
     const headers = this.loginService.getHeaders();
     return this._http.get<Client[]>(url, { headers: headers });
+  }
+
+  isCurrentUserClient() {
+    return this.loginService.getCurrentUser().role == 'REGISTERED_CLIENT';
   }
 }

@@ -32,16 +32,18 @@
                 class="button is-success is-large is-outlined"
                 (click)="subscribe()"
                 [disabled]="isSubscribed"
+                [style.visibility]="isClient ? 'visible' : 'hidden'"
               >
                 Subscribe
               </button>
             </div>
             <div>
-              <a
+              <button
                 class="button is-success is-large"
-                href="/client-db/FISHING_RESERVATIONS"
-                >Book now</a
+                (click)="bookNowButton()"
               >
+                Book now
+              </button>
             </div>
           </div>
         </div>
