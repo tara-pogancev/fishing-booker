@@ -6,7 +6,9 @@ import { ReservationModel } from 'src/app/model/reservation-model';
 import { ReviewModel } from 'src/app/model/review-model';
 import { ActionService } from 'src/app/service/action.service';
 import { AdvetnureService } from 'src/app/service/adventure-service';
+import { ClientService } from 'src/app/service/client.service';
 import { ImageService } from 'src/app/service/image.service';
+import { LoginService } from 'src/app/service/login.service';
 import { ReviewService } from 'src/app/service/review.service';
 import { SubscriptionService } from 'src/app/service/subscription-service';
 
@@ -25,16 +27,21 @@ export class FishingPageComponent implements OnInit {
   reviews: ReviewModel[] = [];
   isSubscribed: boolean = false;
   actions: ActionModel[] = [];
+  isClient: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
     private adventureService: AdvetnureService,
     private subscriptionService: SubscriptionService,
-    private actionService: ActionService
+    private actionService: ActionService,
+    private clientService: ClientService,
+    private loginService: LoginService
   ) {}
 
   ngOnInit(): void {
     this.id = +this.route.snapshot.paramMap.get('id')!;
+
+    this.isClient = this.clientService.isCurrentUserClient();
 
     this.adventureService.findById(this.id).subscribe((data) => {
       this.adventure = data;
@@ -58,19 +65,26 @@ export class FishingPageComponent implements OnInit {
       this.reviews = data;
     });
 
-    this.subscriptionService.getInstructorsSubscriptions().subscribe((data) => {
-      let instructors = data;
-      for (let instructor of instructors) {
-        if (instructor.id == this.adventure.ownerId) {
-          this.isSubscribed = true;
-          break;
-        }
-      }
-    });
+    if (this.isClient) {
+      this.subscriptionService
+        .getInstructorsSubscriptions()
+        .subscribe((data) => {
+          let instructors = data;
+          for (let instructor of instructors) {
+            if (instructor.id == this.adventure.ownerId) {
+              this.isSubscribed = true;
+              break;
+            }
+          }
+        });
+    }
 
     this.actionService.findAll().subscribe((data) => {
       for (let action of data) {
-        if (action.entityId == this.adventure.id && action.entityType == 'ADVENTURE') {
+        if (
+          action.entityId == this.adventure.id &&
+          action.entityType == 'ADVENTURE'
+        ) {
           this.actions.push(action);
         }
       }
@@ -83,5 +97,15 @@ export class FishingPageComponent implements OnInit {
       .subscribe((data) => {
         this.isSubscribed = true;
       });
+  }
+
+  bookNowButton() {
+    if (this.isClient) {
+      window.location.href = '/client-db/FISHING_RESERVATIONS';
+    } else if (this.loginService.isUserLoggedIn()) {
+      window.location.href = '/401';
+    } else {
+      window.location.href = '/login';
+    }
   }
 }
