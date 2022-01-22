@@ -4,6 +4,7 @@ import com.fishingbooker.ftn.bom.adventures.AdventureQuickReservation;
 import com.fishingbooker.ftn.bom.adventures.AdventureReservation;
 import com.fishingbooker.ftn.bom.users.FishingInstructor;
 import com.fishingbooker.ftn.dto.ApplicationUserDto;
+import org.springframework.cache.annotation.Cacheable;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -12,6 +13,7 @@ public interface FishingInstructorService {
 
     List<FishingInstructor> findAll();
 
+    @Cacheable("fishingInstructor")
     FishingInstructor findById(Long id);
 
     FishingInstructor create(ApplicationUserDto userDto);

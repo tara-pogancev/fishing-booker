@@ -66,5 +66,12 @@
             <heap>2</heap>
         </resources>
     </cache>
+    <cache alias="fishingInstructor" uses-template="default">
+        <key-type>java.lang.Long</key-type>
+        <value-type>com.fishingbooker.ftn.bom.users.FishingInstructor</value-type>
+        <resources>
+            <heap>2</heap>
+        </resources>
+    </cache>
 
 </config>

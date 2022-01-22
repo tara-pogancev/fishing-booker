@@ -363,6 +363,10 @@ INSERT INTO public.review(is_approved, date, entity_id, rating, reservation_type
 INSERT INTO public.complaint(approved, date, description, entity_id, reservation_type, type, reservation_id, user_id)
 	VALUES (1, '20210310 11:16:00 AM', 'ugh', 3, 1, 0, 8, 1);
 
+
+
+
+
 -- ACTIONS
 
 INSERT INTO public.quick_reservation(action_end, action_start, guest_limit, is_reserved, price, version)
@@ -392,6 +396,15 @@ INSERT INTO public.boat_type(id, name)	VALUES (5, 4);
 INSERT INTO public.boat_type(id, name)	VALUES (6, 5);
 INSERT INTO public.boat_type(id, name)	VALUES (7, 6);
 INSERT INTO public.boat_type(id, name)	VALUES (8, 7);
+
+----RESERVATION REPORT
+INSERT INTO public.adventure_reservation_report(
+	 comment, processed_by_admin, report_status, adventure_reservation)
+	VALUES ('Bad experience with client', false, 1, 3);
+--
+INSERT INTO public.boat_reservation_report(
+	 comment, processed_by_admin, report_status, boat_reservation)
+	 VALUES ('Client destroyed my boat', false, 1, 6);
 
 
 
