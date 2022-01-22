@@ -319,7 +319,7 @@ INSERT INTO public.reservation(guest_number, price, reservation_end, reservation
 INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled)	VALUES (4, 54, '20220205 10:00:00 AM', '20220201 10:00:00 AM', false);
 INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled)	VALUES (5, 78, '20220106 10:00:00 AM', '20220102 10:00:00 AM', false);
 INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled)	VALUES (1, 32, '20220121 10:00:00 AM', '20220120 10:00:00 AM', false);
-INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled)	VALUES (6, 10, '20220108 10:00:00 AM', '20220101 10:00:00 AM', false);
+INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled)	VALUES (6, 10, '20220108 10:00:00 AM', '20220105 10:00:00 AM', false);
 
 INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled)	VALUES (6, 84, '20191010 10:00:00 AM', '20191005 10:00:00 AM', false);
 INSERT INTO public.reservation(guest_number, price, reservation_end, reservation_start, is_canceled)	VALUES (2, 70, '20190215 10:00:00 AM', '20190208 10:00:00 AM', false);
@@ -370,9 +370,9 @@ INSERT INTO public.complaint(approved, date, description, entity_id, reservation
 -- ACTIONS
 
 INSERT INTO public.quick_reservation(action_end, action_start, guest_limit, is_reserved, price, version)
-	VALUES ('20220506 10:00:00 AM', '20220501 10:00:00 AM', 5, false, 20, 1);
+	VALUES ('20220306 10:00:00 AM', '20220301 10:00:00 AM', 5, false, 20, 1);
 INSERT INTO public.quick_reservation(action_end, action_start, guest_limit, is_reserved, price, version)
-	VALUES ('20220606 10:00:00 AM', '20220601 10:00:00 AM', 3, false, 15, 1);
+	VALUES ('20220306 10:00:00 AM', '20220301 10:00:00 AM', 3, false, 15, 1);
 INSERT INTO public.quick_reservation(action_end, action_start, guest_limit, is_reserved, price, version)
 	VALUES ('20220706 10:00:00 AM', '20220701 10:00:00 AM', 4, false, 35, 1);
 
