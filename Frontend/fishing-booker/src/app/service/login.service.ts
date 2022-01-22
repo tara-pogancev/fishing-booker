@@ -1,11 +1,5 @@
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpHeaders,
-  HttpResponse,
-} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { server } from '../app-global';
 import { ActiveUser, AuthRequest } from '../model/user-model';
 import { Router } from '@angular/router';
@@ -38,6 +32,16 @@ export class LoginService {
 
   getCurrentUser(): ActiveUser {
     return JSON.parse(localStorage.getItem('currentUser')!);
+  }
+
+  isUserLoggedIn() {
+    return (
+      this.getCurrentUser().role == 'REGISTERED_CLIENT' ||
+      this.getCurrentUser().role == 'ADMINISTRATOR' ||
+      this.getCurrentUser().role == 'BOAT_OWNER' ||
+      this.getCurrentUser().role == 'COTTAGE_OWNER' ||
+      this.getCurrentUser().role == 'FISHING_INSTRUCTOR'
+    );
   }
 
   getHeaders() {

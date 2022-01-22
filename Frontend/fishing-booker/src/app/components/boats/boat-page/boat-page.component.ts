@@ -6,7 +6,9 @@ import { ReservationModel } from 'src/app/model/reservation-model';
 import { ReviewModel } from 'src/app/model/review-model';
 import { ActionService } from 'src/app/service/action.service';
 import { BoatService } from 'src/app/service/boat.service';
+import { ClientService } from 'src/app/service/client.service';
 import { ImageService } from 'src/app/service/image.service';
+import { LoginService } from 'src/app/service/login.service';
 import { SubscriptionService } from 'src/app/service/subscription-service';
 
 @Component({
@@ -24,16 +26,21 @@ export class BoatPageComponent implements OnInit {
   reviews: ReviewModel[] = [];
   isSubscribed: boolean = false;
   actions: ActionModel[] = [];
+  isClient: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
     private boatService: BoatService,
     private subscriptionService: SubscriptionService,
-    private actionService: ActionService
+    private actionService: ActionService,
+    private clientService: ClientService,
+    private loginService: LoginService
   ) {}
 
   ngOnInit(): void {
     this.id = +this.route.snapshot.paramMap.get('id')!;
+
+    this.isClient = this.clientService.isCurrentUserClient();
 
     this.boatService.findById(this.id).subscribe((data) => {
       this.boat = data;
@@ -44,8 +51,6 @@ export class BoatPageComponent implements OnInit {
       });
       this.navEquipment = this.navEquipment.slice(0, -2);
       if (this.navEquipment == '') this.navEquipment = 'None';
-
-      console.log(data);
     });
 
     this.boatService.getBoatReservations(this.id).subscribe((data) => {
@@ -57,15 +62,17 @@ export class BoatPageComponent implements OnInit {
       this.reviews = data;
     });
 
-    this.subscriptionService.getBoatSubscriptions().subscribe((data) => {
-      let boats = data;
-      for (let boat of boats) {
-        if (boat.id == this.boat.id) {
-          this.isSubscribed = true;
-          break;
+    if (this.isClient) {
+      this.subscriptionService.getBoatSubscriptions().subscribe((data) => {
+        let boats = data;
+        for (let boat of boats) {
+          if (boat.id == this.boat.id) {
+            this.isSubscribed = true;
+            break;
+          }
         }
-      }
-    });
+      });
+    }
 
     this.actionService.findAll().subscribe((data) => {
       for (let action of data) {
@@ -82,5 +89,15 @@ export class BoatPageComponent implements OnInit {
       .subscribe((data) => {
         this.isSubscribed = true;
       });
+  }
+
+  bookNowButton() {
+    if (this.isClient) {
+      window.location.href = '/client-db/BOAT_RESERVATIONS';
+    } else if (this.loginService.isUserLoggedIn()) {
+      window.location.href = '/401';
+    } else {
+      window.location.href = '/login';
+    }
   }
 }

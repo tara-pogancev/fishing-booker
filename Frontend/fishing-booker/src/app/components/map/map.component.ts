@@ -16,7 +16,7 @@ export class MapComponent implements OnInit {
 
   ngOnInit(): void {
     this.mapService.getCoordinates(this.address).subscribe((data) => {
-      console.log("Address: " + this.address);
+      //console.log("Address: " + this.address);
 
       this.lat = data.results[0].geometry.location.lat;
       this.lng = data.results[0].geometry.location.lng;
