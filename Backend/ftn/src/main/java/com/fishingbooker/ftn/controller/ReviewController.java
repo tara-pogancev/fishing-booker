@@ -47,17 +47,20 @@ public class ReviewController {
     }
 
     @GetMapping("/admin")
+    @PreAuthorize("hasRole('ADMINISTRATOR')")
     public List<ReviewDto> getAllAdminReviews() {
         List<Review> reviews = reviewService.findAll();
         return converter.convert(reviews, ReviewDto.class);
     }
 
     @PutMapping("/accept/{id}")
+    @PreAuthorize("hasRole('ADMINISTRATOR')")
     public void acceptReview(@PathVariable Long id) {
         reviewService.acceptReview(id);
     }
 
     @PutMapping("/decline/{id}")
+    @PreAuthorize("hasRole('ADMINISTRATOR')")
     public void declineReview(@PathVariable Long id) {
         reviewService.declineReview(id);
     }

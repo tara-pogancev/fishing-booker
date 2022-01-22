@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,10 +21,12 @@ public class AvailableInstructorTimePeriodController {
     private final AvailableInstructorTimePeriodService availableInstructorTimePeriodService;
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('FISHING_INSTRUCTOR')")
     public List<AvailableInstructorTimePeriod> get(@PathVariable("id") Long instructorId) {
         return availableInstructorTimePeriodService.findAll(instructorId);
     }
 
+    @PreAuthorize("hasRole('FISHING_INSTRUCTOR')")
     @PostMapping
     public HttpEntity<Long> createOrUpdate(@RequestBody AvailableInstructorTimePeriodDto availableTime) {
         Long id=availableInstructorTimePeriodService.create(availableTime);
@@ -35,11 +38,13 @@ public class AvailableInstructorTimePeriodController {
 
     }
 
+    @PreAuthorize("hasRole('FISHING_INSTRUCTOR')")
     @DeleteMapping("/{id}")
     public boolean delete(@PathVariable("id") Long id) {
         return availableInstructorTimePeriodService.delete(id);
     }
 
+    @PreAuthorize("hasRole('FISHING_INSTRUCTOR')")
     @PutMapping()
     public boolean update(@RequestBody ChangeTimeSlotDto dto) {
         return availableInstructorTimePeriodService.update(dto);

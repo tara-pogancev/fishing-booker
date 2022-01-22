@@ -44,6 +44,7 @@ public class AdventureController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('FISHING_INSTRUCTOR')")
     public EditAdventureDto getAdventure(@PathVariable("id") Long id) {
         Adventure adventure = adventureService.get(id);
         EditAdventureDto dto = converter.convert(adventure, EditAdventureDto.class);
@@ -56,6 +57,7 @@ public class AdventureController {
         return adventureService.deleteAdventure(id);
     }
 
+    @PreAuthorize("hasRole('REGISTERED_CLIENT')")
     @PostMapping("/book")
     public ResponseEntity<Long> book(@RequestBody ReservationDto reservationDto) {
         Reservation reservation = reservationService.bookAdventure(reservationDto);
@@ -67,7 +69,7 @@ public class AdventureController {
     }
 
 
-    //@PreAuthorize("hasRole('FISHING_INSTRUCTOR')")
+    @PreAuthorize("hasRole('FISHING_INSTRUCTOR')")
     @PostMapping("/add-quick-reservation")
     public ResponseEntity<Long> addQuickReservation(@RequestBody CreateAdventureQuickReservationDto dto) {
 
@@ -82,6 +84,7 @@ public class AdventureController {
     }
 
     @PostMapping("/add-reservation")
+    @PreAuthorize("hasRole('FISHING_INSTRUCTOR')")
     public ResponseEntity<Long> addReservation(@RequestBody InstructorNewReservationDto dto) {
         Long ret=adventureService.createReservation(dto);
         if (ret!=-1){
@@ -92,6 +95,7 @@ public class AdventureController {
     }
 
     @GetMapping("/get-quick-reservations-calendar/{id}")
+    @PreAuthorize("hasRole('FISHING_INSTRUCTOR')")
     public List<AdventureQuickReservationCalendarDto> getAdventureQuickReservation(@PathVariable Long id) {
         List<AdventureQuickReservation> reservations = adventureService.getQuickReservations(id);
         List<AdventureQuickReservationCalendarDto> reservationsDto = converter.convert(reservations, AdventureQuickReservationCalendarDto.class);
@@ -99,6 +103,7 @@ public class AdventureController {
     }
 
     @GetMapping("/get-reservation/{id}")
+    @PreAuthorize("hasRole('FISHING_INSTRUCTOR')")
     public ShowReservationInCalendarDto getReservationForCalendar(@PathVariable Long id) {
         AdventureReservation adventureReservation = reservationService.getAdventureReservation(id);
         ShowReservationInCalendarDto dto = converter.convert(adventureReservation, ShowReservationInCalendarDto.class);
@@ -106,6 +111,7 @@ public class AdventureController {
     }
 
     @GetMapping("/get-quick-reservation/{id}")
+    @PreAuthorize("hasRole('FISHING_INSTRUCTOR')")
     public ShowReservationInCalendarDto getQuickReservationForCalendar(@PathVariable Long id) {
         AdventureQuickReservation adventureReservation = reservationService.getAdventureQuickReservation(id);
         ShowReservationInCalendarDto dto = converter.convert(adventureReservation, ShowReservationInCalendarDto.class);

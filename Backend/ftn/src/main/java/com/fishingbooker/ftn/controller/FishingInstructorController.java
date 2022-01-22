@@ -7,6 +7,7 @@ import com.fishingbooker.ftn.conversion.DataConverter;
 import com.fishingbooker.ftn.dto.*;
 import com.fishingbooker.ftn.service.interfaces.FishingInstructorService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -49,6 +50,7 @@ public class FishingInstructorController {
     }
 
     @PutMapping()
+    @PreAuthorize("hasRole('FISHING_INSTRUCTOR')")
     public FishingInstructorDto changePersonalInfo(@RequestBody FishingInstructorDto instructorDto) {
         FishingInstructor instructor = fishingInstructorService.findById(instructorDto.getId());
         instructor.setPassword(new BCryptPasswordEncoder().encode(instructorDto.getPassword()));
@@ -63,6 +65,7 @@ public class FishingInstructorController {
     }
 
     @GetMapping("/get-instructor-reservations/{id}")
+    @PreAuthorize("hasRole('FISHING_INSTRUCTOR')")
     public List<InstructorCalendarReservationDto> getInstructorReservations(@PathVariable() Long id) {
         List<AdventureReservation> reservations = fishingInstructorService.getInstructorReservations(id);
         List<AdventureQuickReservation> quickReservations = fishingInstructorService.getInstructorQuickReservations(id);
@@ -74,6 +77,7 @@ public class FishingInstructorController {
     }
 
     @GetMapping("/get-instructor-past-reservations/{id}")
+    @PreAuthorize("hasRole('FISHING_INSTRUCTOR')")
     public List<InstructorPastReservationsDto> getInstructorPastReservations(@PathVariable() Long id) {
         List<AdventureReservation> reservations = fishingInstructorService.getInstructorPastReservations(id);
         List<AdventureQuickReservation> quickReservations = fishingInstructorService.getInsturctorPastQuickReservations(id);
@@ -85,6 +89,7 @@ public class FishingInstructorController {
     }
 
     @GetMapping("instructor-business-report/{id}")
+    @PreAuthorize("hasRole('FISHING_INSTRUCTOR')")
     public List<InstructorBusinessReportDto> getBusinessReport(@PathVariable() Long id) {
         List<AdventureReservation> reservations = fishingInstructorService.getInstructorPastReservations(id);
         List<InstructorBusinessReportDto> report = converter.convert(reservations, InstructorBusinessReportDto.class);
@@ -92,6 +97,7 @@ public class FishingInstructorController {
     }
 
     @PutMapping("instructor-business-report")
+    @PreAuthorize("hasRole('FISHING_INSTRUCTOR')")
     public List<InstructorBusinessReportDto> getReservationsInDate(@RequestBody DateRangeDto dateRangeDto) {
         List<AdventureReservation> reservations = fishingInstructorService.getReservationsInDate(dateRangeDto.getStartDate(), dateRangeDto.getEndDate(), dateRangeDto.getId());
         List<InstructorBusinessReportDto> report = converter.convert(reservations, InstructorBusinessReportDto.class);

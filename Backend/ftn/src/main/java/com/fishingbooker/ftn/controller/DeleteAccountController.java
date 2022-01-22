@@ -22,6 +22,7 @@ public class DeleteAccountController {
     private final DataConverter converter;
 
     @GetMapping()
+    @PreAuthorize("hasRole('ADMINISTRATOR')")
     public List<DeleteAccountRequestDto> get() {
         List<DeleteAccountRequest> requests = deleteAccountService.get();
         List<DeleteAccountRequestDto> dtos = converter.convert(requests, DeleteAccountRequestDto.class);
