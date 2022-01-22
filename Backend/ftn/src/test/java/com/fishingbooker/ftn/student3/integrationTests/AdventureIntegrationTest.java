@@ -74,7 +74,7 @@ public class AdventureIntegrationTest {
 
         String json = TestUtil.json(dto);
         String url= URL_PREFIX+"/add-reservation";
-        this.mockMvc.perform(post(url).contentType(contentType).content(json)).andExpect(status().isOk());
+        this.mockMvc.perform(post(url).contentType(contentType).content(json)).andExpect(status().isBadRequest());
     }
 
     @WithMockUser(roles="FISHING_INSTRUCTOR")
