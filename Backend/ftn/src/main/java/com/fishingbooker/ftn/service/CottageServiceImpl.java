@@ -229,6 +229,7 @@ public class CottageServiceImpl implements CottageService {
             cottageReservation.setPrice(dto.getPrice());
             Set<CottageUtility> utilities = utilityService.convertStringToUtility(dto.getUtilities(), cottage);
             cottageReservation.setUtilities(utilities);
+            mailingService.sendMailToUserAboutNewReservation(cottage.getCottageOwner(),clientRepository.getById(dto.getClientId()));
             return cottageReservationRepository.save(cottageReservation).getId();
         }
     }

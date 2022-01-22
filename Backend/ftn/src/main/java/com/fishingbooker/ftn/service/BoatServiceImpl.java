@@ -277,6 +277,7 @@ public class BoatServiceImpl implements BoatService {
             boatReservation.setPrice(dto.getPrice());
             Set<BoatUtility> utilities = utilityService.convertStringToUtility(dto.getUtilities(), boat);
             boatReservation.setUtilities(utilities);
+            mailingService.sendMailToUserAboutNewReservation(boat.getBoatOwner(),clientRepository.getById(dto.getClientId()));
             return boatReservationRepository.save(boatReservation).getId();
         }
     }

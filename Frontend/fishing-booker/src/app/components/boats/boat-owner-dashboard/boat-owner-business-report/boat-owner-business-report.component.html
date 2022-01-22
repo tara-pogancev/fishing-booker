@@ -1,0 +1,62 @@
+<div class="content is-medium">
+    <h1 class="title">Business Report</h1>
+  
+    <div class="columns" >
+      <div class="column">
+        <div class="field">
+          <label class="label">Start Date:</label>
+          <div class="control">
+            <input
+              class="input"
+              type="date"
+              [(ngModel)]="startDate"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="field">
+          <label class="label">End date:</label>
+          <div class="control">
+            <input
+              class="input"
+              type="date"
+              [(ngModel)]="endDate"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div style="margin-top: 30px;">
+          <button class="button is-success" (click)="search()">Search</button>
+        </div>
+      </div>
+    </div>
+
+    <div>
+        <div style="float: right; margin-right: 10%;">
+            <span style="font-size: larger;">Sum:{{price}}</span>
+        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th><abbr title="ID">ID</abbr></th>
+              <th><abbr title="Start Date">Start Date</abbr></th>
+              <th><abbr title="End Date">End Date</abbr></th>
+              <th><abbr title="Price">Price</abbr></th>
+              
+            </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let reservation of reservations">
+                  <td>{{reservation.id}}</td>
+                  <td>{{reservation.startDate}}</td>
+                  <td>{{reservation.endDate}}</td>
+                  <td>{{reservation.price}}</td>
+              </tr>
+          </tbody>
+          
+        </table>
+      </div>
+  
+

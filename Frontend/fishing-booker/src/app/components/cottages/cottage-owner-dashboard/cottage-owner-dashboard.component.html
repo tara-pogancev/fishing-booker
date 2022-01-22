@@ -32,6 +32,12 @@
           <a [ngClass]="{ 'is-active': activeTab === 'CREATE_RESERVATION' }" (click)="changeTab('CREATE_RESERVATION')">Create Reservation</a>
         </li>
       </ul>
+      <p class="menu-label">Report</p>
+      <ul class="menu-list">
+        <li>
+          <a [ngClass]="{ 'is-active': activeTab === 'BUSINESS-REPORT' }" (click)="changeTab('BUSINESS-REPORT')">Business Report</a>
+        </li>
+      </ul>
     </aside>
   </div>
 
@@ -66,6 +72,9 @@
       </div>
       <div *ngIf="activeTab == 'CREATE_RESERVATION'">
         <app-cottage-owner-create-reservation [cottageOwner]="cottageOwner"></app-cottage-owner-create-reservation>
+      </div>
+      <div *ngIf="activeTab == 'BUSINESS-REPORT'">
+        <app-cottage-owner-business-report [cottageOwner]="cottageOwner"></app-cottage-owner-business-report>
       </div>
     </div>
   </div>
