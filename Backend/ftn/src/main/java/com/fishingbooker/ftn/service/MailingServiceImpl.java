@@ -146,7 +146,7 @@ public class MailingServiceImpl implements MailingService {
     }
 
     @Override
-    @Async
+    // @Async
     public void sendReservationConfirmationEmail(ApplicationUser user, ReservationDto reservationDto) {
         ClientReservationConfirmationEmailContext emailContext = new ClientReservationConfirmationEmailContext();
         emailContext.init(user);
