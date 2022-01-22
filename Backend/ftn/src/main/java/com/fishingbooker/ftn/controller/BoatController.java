@@ -46,11 +46,15 @@ public class BoatController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('BOAT_OWNER')")
+    @PreAuthorize("hasAnyRole('COTTAGE_OWNER')")
     public Boolean delete(@PathVariable("id") Long id) {
         return boatService.delete(id);
     }
 
+    @DeleteMapping("admin-delete/{id}")
+    public void deleteByAdmin(@PathVariable("id")Long id){
+        boatService.deleteByAdmin(id);
+    }
     @PostMapping("/book")
     public ResponseEntity<Long> book(@RequestBody ReservationDto reservationDto) {
         BoatReservation reservation = reservationService.bookBoat(reservationDto);

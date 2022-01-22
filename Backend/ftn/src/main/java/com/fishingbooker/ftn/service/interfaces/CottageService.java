@@ -37,4 +37,6 @@ public interface CottageService {
     List<CottageUtility> getCottageUtilities(Long id);
 
     Long createReservation(NewReservationDto dto);
+
+    void deleteByAdmin(Long id);
 }

@@ -66,9 +66,15 @@ public class CottageController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('COTTAGE_OWNER')")
+    @PreAuthorize("hasAnyRole('COTTAGE_OWNER')")
     public Boolean delete(@PathVariable("id") Long id) {
         return cottageService.delete(id);
+    }
+
+    @PreAuthorize("hasRole('ADMINISTRATOR')")
+    @DeleteMapping("admin-delete/{id}")
+    public void deleteByAdmin(@PathVariable("id")Long id){
+        cottageService.deleteByAdmin(id);
     }
 
     @PostMapping("/book")

@@ -281,6 +281,13 @@ public class BoatServiceImpl implements BoatService {
         }
     }
 
+    @Override
+    public void deleteByAdmin(Long id) {
+        Boat boat=boatRepository.getById(id);
+        boat.setDeleted(true);
+        boatRepository.save(boat);
+    }
+
     private boolean validate(Boat boat, LocalDateTime startDate, LocalDateTime endDate) {
         List<BoatQuickReservation> quickReservations = boatQuickReservationRepository.getOverlappedWithNewAction(startDate, endDate, boat.getId());
         if (quickReservations.size() != 0) { //vec postoji kreiranja brza rezervacija u ovom periodu

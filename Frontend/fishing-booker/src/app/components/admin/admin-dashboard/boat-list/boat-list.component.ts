@@ -16,7 +16,7 @@ export class BoatListComponent implements OnInit {
   }
 
   deleteBoat(boat:any){
-    this.boatService.deleteBoat(boat.id).subscribe();
+    this.boatService.deleteBoatByAdmin(boat.id).subscribe();
     const index=this.boats.indexOf(boat);
     this.boats.splice(index,1);
   }

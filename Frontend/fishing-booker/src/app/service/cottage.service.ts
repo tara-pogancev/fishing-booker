@@ -62,6 +62,12 @@ export class CottageService {
     return this._http.delete<any>(url, { headers: headers });
   }
 
+  deleteCottageByAdmin(id: any) {
+    const url = server + 'api/cottages/admin-delete/' + id;
+    const headers = this.loginService.getHeaders();
+    return this._http.delete<any>(url, { headers: headers });
+  }
+
   findByCottageOwnerId(id: any) {
     const url = server + 'api/cottages/findByCottageOwnerId/' + id;
     const headers = this.loginService.getHeaders();

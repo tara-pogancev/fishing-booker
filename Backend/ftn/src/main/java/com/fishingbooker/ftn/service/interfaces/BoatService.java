@@ -39,4 +39,6 @@ public interface BoatService {
     List<BoatUtility> getBoatUtilities(Long id);
 
     Long createReservation(NewReservationDto dto);
+
+    void deleteByAdmin(Long id);
 }

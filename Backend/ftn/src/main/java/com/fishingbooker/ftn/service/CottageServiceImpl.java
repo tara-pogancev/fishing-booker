@@ -50,7 +50,7 @@ public class CottageServiceImpl implements CottageService {
 
     @Override
     public List<Cottage> findAll() {
-        return cottageRepository.findAll();
+        return cottageRepository.getCottages();
     }
 
     @Override
@@ -231,6 +231,13 @@ public class CottageServiceImpl implements CottageService {
             cottageReservation.setUtilities(utilities);
             return cottageReservationRepository.save(cottageReservation).getId();
         }
+    }
+
+    @Override
+    public void deleteByAdmin(Long id) {
+        Cottage cottage=cottageRepository.getById(id);
+        cottage.setDeleted(true);
+        cottageRepository.save(cottage);
     }
 
     private boolean validate(Cottage cottage, LocalDateTime startDate, LocalDateTime endDate) {

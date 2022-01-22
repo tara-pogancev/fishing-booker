@@ -23,4 +23,6 @@ public interface CottageRepository extends EntityRepository<Cottage> {
     @QueryHints({@QueryHint(name = "javax.persistence.lock.timeout", value = "10000")})
     Cottage getLock(Long id);
 
+    @Query("SELECT c FROM Cottage c WHERE c.deleted = false")
+    List<Cottage> getCottages();
 }

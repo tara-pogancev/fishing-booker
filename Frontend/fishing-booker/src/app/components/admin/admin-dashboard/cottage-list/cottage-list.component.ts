@@ -16,7 +16,7 @@ export class CottageListComponent implements OnInit {
   }
 
   deleteCottage(cottage:any){
-      this.cottageService.deleteCottage(cottage.id).subscribe();
+      this.cottageService.deleteCottageByAdmin(cottage.id).subscribe();
       const index=this.cottages.indexOf(cottage);
       this.cottages.splice(index,1);
   }

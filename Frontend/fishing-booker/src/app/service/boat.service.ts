@@ -49,6 +49,14 @@ export class BoatService {
     return this._http.delete<any>(url, { headers: headers });
   }
 
+  deleteBoatByAdmin(id: any) {
+    const url = server + 'api/boats/admin-delete/' + id;
+    const headers = this.loginService.getHeaders();
+    return this._http.delete<any>(url, { headers: headers });
+  }
+
+
+
   bookBoat(reservation: ReservationModel) {
     const url = server + 'api/boats/book';
     const headers = this.loginService.getHeaders();
