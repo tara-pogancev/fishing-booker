@@ -1,9 +1,8 @@
 package com.fishingbooker.ftn.service;
 
 import com.fishingbooker.ftn.bom.cottages.CottageReservation;
+import com.fishingbooker.ftn.bom.reservation_report.*;
 import com.fishingbooker.ftn.bom.reservation_report.CottageReservationReport;
-import com.fishingbooker.ftn.bom.reservation_report.CottageReservationReport;
-import com.fishingbooker.ftn.bom.reservation_report.ReservationReportStatus;
 import com.fishingbooker.ftn.bom.users.RegisteredClient;
 import com.fishingbooker.ftn.dto.CreateAdventureReservationReportDto;
 import com.fishingbooker.ftn.dto.ReservationReportDto;
@@ -16,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @Transactional
@@ -64,5 +64,21 @@ public class CottageReservationReportServiceImpl implements CottageReservationRe
         registeredClientRepository.save(client);
         mailingService.sendMailToUsersAboutGivingPenalty(client, report.getCottageReservation().getCottage().getCottageOwner());
         return report.getId();
+    }
+
+    @Override
+    public Long forgiveClient(ReservationReportDto reportDto) {
+        RegisteredClient client;
+        CottageReservationReport report = cottageReservationReportRepository.getById(reportDto.getReportId());
+        report.setProcessedByAdmin(true);
+        cottageReservationReportRepository.save(report);
+        client = registeredClientRepository.getById(report.getCottageReservation().getReservationClient().getId());
+        mailingService.sendMailToUsersAboutNotGivingPenalty(client, report.getCottageReservation().getCottage().getCottageOwner());
+        return report.getId();
+    }
+
+    @Override
+    public List<CottageReservationReport> getUnprocessedReports() {
+        return cottageReservationReportRepository.getUnprocessed();
     }
 }

@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class ApplicationUserServiceImpl implements ApplicationUserService {
 
@@ -51,7 +52,6 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
     }
 
     @Override
-    @CacheEvict
     public ApplicationUser findById(Long id) {
         return userRepository.get(id);
     }

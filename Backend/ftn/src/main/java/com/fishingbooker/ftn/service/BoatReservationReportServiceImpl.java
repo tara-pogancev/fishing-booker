@@ -1,7 +1,9 @@
 package com.fishingbooker.ftn.service;
 
 import com.fishingbooker.ftn.bom.boats.BoatReservation;
+import com.fishingbooker.ftn.bom.reservation_report.AdventureReservationReport;
 import com.fishingbooker.ftn.bom.reservation_report.BoatReservationReport;
+import com.fishingbooker.ftn.bom.reservation_report.CottageReservationReport;
 import com.fishingbooker.ftn.bom.reservation_report.ReservationReportStatus;
 import com.fishingbooker.ftn.bom.users.RegisteredClient;
 import com.fishingbooker.ftn.dto.CreateAdventureReservationReportDto;
@@ -15,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @Transactional
@@ -62,6 +65,22 @@ public class BoatReservationReportServiceImpl implements BoatReservationReportSe
         client.setPenalties(client.getPenalties() + 1);
         registeredClientRepository.save(client);
         mailingService.sendMailToUsersAboutGivingPenalty(client, report.getBoatReservation().getBoat().getBoatOwner());
+        return report.getId();
+    }
+
+    @Override
+    public List<BoatReservationReport> getUnprocessedReports() {
+        return boatReservationReportRepository.getUnprocessedReports();
+    }
+
+    @Override
+    public Long forgiveClient(ReservationReportDto reportDto) {
+        RegisteredClient client;
+        BoatReservationReport report = boatReservationReportRepository.getById(reportDto.getReportId());
+        report.setProcessedByAdmin(true);
+        boatReservationReportRepository.save(report);
+        client = registeredClientRepository.getById(report.getBoatReservation().getReservationClient().getId());
+        mailingService.sendMailToUsersAboutNotGivingPenalty(client, report.getBoatReservation().getBoat().getBoatOwner());
         return report.getId();
     }
 }

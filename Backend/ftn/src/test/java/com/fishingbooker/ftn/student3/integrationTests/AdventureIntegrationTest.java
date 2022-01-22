@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -24,6 +25,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
+import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -54,10 +56,12 @@ public class AdventureIntegrationTest {
 
     @Before
     public void setup() {
-        this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+        this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).apply(springSecurity()).build();
     }
 
 
+
+    @WithMockUser(roles="FISHING_INSTRUCTOR")
     @Test
     public void testAddInstructorReservation() throws Exception {
         InstructorNewReservationDto dto=new InstructorNewReservationDto();
@@ -71,9 +75,9 @@ public class AdventureIntegrationTest {
         String json = TestUtil.json(dto);
         String url= URL_PREFIX+"/add-reservation";
         this.mockMvc.perform(post(url).contentType(contentType).content(json)).andExpect(status().isOk());
-
     }
 
+    @WithMockUser(roles="FISHING_INSTRUCTOR")
     @Test
     public void testCreateQuickReservation() throws Exception {
         CreateAdventureQuickReservationDto dto=new CreateAdventureQuickReservationDto();

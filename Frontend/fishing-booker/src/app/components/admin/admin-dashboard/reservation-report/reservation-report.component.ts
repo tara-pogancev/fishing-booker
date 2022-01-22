@@ -22,6 +22,7 @@ export class ReservationReportComponent implements OnInit {
       this.reservationReportService.givePenalty(report).subscribe(data=>{
         if (data!=null){
           alert('Successfully')
+          this.removeFromFrontend(report);
         }
       });
    }
@@ -30,9 +31,14 @@ export class ReservationReportComponent implements OnInit {
     this.reservationReportService.forgiveClient(report).subscribe(data=>{
         if (data!=null){
           alert('Successfully!');
+          this.removeFromFrontend(report);
         }
         
     });
+  }
+  removeFromFrontend(report:AdventureReservationReport){
+    const index=this.reservationReports.indexOf(report);
+    this.reservationReports.splice(index,1);
   }
 
    

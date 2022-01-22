@@ -10,6 +10,7 @@ import com.fishingbooker.ftn.repository.AdventureReservationReportRepository;
 import com.fishingbooker.ftn.repository.AdventureReservationRepository;
 import com.fishingbooker.ftn.repository.RegisteredClientRepository;
 import com.fishingbooker.ftn.service.interfaces.AdventureReservationReportService;
+import com.fishingbooker.ftn.service.interfaces.BoatReservationReportService;
 import com.fishingbooker.ftn.service.interfaces.CottageReservationReportService;
 import com.fishingbooker.ftn.service.interfaces.MailingService;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +29,7 @@ public class AdventureReservationReportServiceImpl implements AdventureReservati
     private final RegisteredClientRepository registeredClientRepository;
     private final MailingService mailingService;
     private final CottageReservationReportService cottageReservationReportService;
+    private final BoatReservationReportService boatReservationReportService;
 
     @Override
     public List<AdventureReservationReport> getUnprocessedReports() {
@@ -64,7 +66,7 @@ public class AdventureReservationReportServiceImpl implements AdventureReservati
             return cottageReservationReportService.givePenaltyForCottageReservation(reportDto);
         }
         else if (reportDto.getReportType().equalsIgnoreCase("Boat")) {
-            //return givePenaltyForBoatReservation(reportDto);
+            return boatReservationReportService.givePenaltyForBoatReservation(reportDto);
         }
 
         return null;
@@ -75,6 +77,10 @@ public class AdventureReservationReportServiceImpl implements AdventureReservati
     public Long forgiveClient(ReservationReportDto reportDto) {
         if (reportDto.getReportType().equalsIgnoreCase("Adventure")) {
             return forgiveForAdventureReservation(reportDto);
+        }else if(reportDto.getReportType().equalsIgnoreCase("Cottage")){
+            return cottageReservationReportService.forgiveClient(reportDto);
+        }else if(reportDto.getReportType().equalsIgnoreCase("Boat")){
+            return boatReservationReportService.forgiveClient(reportDto);
         }
 
         return null;
